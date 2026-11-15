@@ -22,6 +22,8 @@ import {
   getSleepTimerState,
   registerMediaSessionHandlers,
   updateMediaSessionMetadata,
+  setAudioFallbackHandler,
+  setActiveAudioTrackMeta,
 } from './audio/audioEngine.js';
 import {
   startVisualizer,
@@ -195,6 +197,10 @@ registerMediaSessionHandlers({
   onNext: () => hudCtrl?.playNextTrack(),
   onPrevious: () => hudCtrl?.playPreviousTrack(),
   onSeek: (sec) => seekPlayback(sec),
+});
+setActiveAudioTrackMeta(currentActiveTrack);
+setAudioFallbackHandler(() => {
+  showToast('🎧 Audio MP3 lokal belum tersedia — memutar mode pratinjau ambient (Drag & Drop MP3 untuk lagu penuh)');
 });
 updateMediaSessionMetadata(currentActiveTrack);
 

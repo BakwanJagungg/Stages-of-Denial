@@ -30,7 +30,132 @@ let pannerLfoGain = null;
 let activeCustomObjectUrl = null;
 let switchToken = 0;
 let onTrackEndedHandler = null;
+let onAudioFallbackHandler = null;
 let playbackSpeed = 1.0;
+let currentTrackMeta = null;
+
+// Built-in Generative Ambient Pad Fallback State (when local MP3 is omitted)
+let ambientFallbackActive = false;
+let ambientPlaying = false;
+let ambientDuration = 240;
+let ambientElapsed = 0;
+let ambientAnchorMs = 0;
+let ambientNodes = null;
+let ambientFallbackNotifiedForTrack = '';
+
+export function setAudioFallbackHandler(fn) {
+  onAudioFallbackHandler = typeof fn === 'function' ? fn : null;
+}
+
+export function setActiveAudioTrackMeta(track) {
+  currentTrackMeta = track || null;
+}
+
+function resolveTrackDuration(trackConfig) {
+  const d = Number(trackConfig?.duration);
+  if (Number.isFinite(d) && d > 10) return d;
+  const acts = trackConfig?.acts;
+  if (Array.isArray(acts) && acts.length > 0) {
+    const end = Number(acts[acts.length - 1]?.endTime);
+    if (Number.isFinite(end) && end > 10) return end;
+  }
+  return 240;
+}
+
+function stopAmbientPad() {
+  if (!ambientNodes) return;
+  try {
+    ambientNodes.oscs.forEach((o) => {
+      try { o.stop(); o.disconnect(); } catch {}
+    });
+    ambientNodes.lfo?.stop();
+    ambientNodes.lfo?.disconnect();
+    ambientNodes.lfoGain?.disconnect();
+    ambientNodes.filter?.disconnect();
+    ambientNodes.padGain?.disconnect();
+  } catch {}
+  ambientNodes = null;
+}
+
+function startAmbientPad() {
+  if (!audioCtx || !analyser) return;
+  stopAmbientPad();
+  const now = audioCtx.currentTime;
+  const padGain = audioCtx.createGain();
+  padGain.gain.setValueAtTime(0.0001, now);
+  padGain.gain.setTargetAtTime(0.14, now, 0.45);
+
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(520, now);
+  filter.Q.setValueAtTime(1.1, now);
+
+  const lfo = audioCtx.createOscillator();
+  lfo.type = 'sine';
+  lfo.frequency.setValueAtTime(0.11, now);
+  const lfoGain = audioCtx.createGain();
+  lfoGain.gain.setValueAtTime(220, now);
+  lfo.connect(lfoGain);
+  lfoGain.connect(filter.frequency);
+  lfo.start(now);
+
+  // Warm atmospheric chord (D2, A2, D3, F3)
+  const freqs = [73.42, 110.0, 146.83, 174.61];
+  const oscs = freqs.map((hz, i) => {
+    const osc = audioCtx.createOscillator();
+    osc.type = i % 2 === 0 ? 'triangle' : 'sine';
+    osc.frequency.setValueAtTime(hz, now);
+    osc.detune.setValueAtTime((i - 1.5) * 4, now);
+    osc.connect(filter);
+    osc.start(now);
+    return osc;
+  });
+
+  filter.connect(padGain);
+  padGain.connect(analyser);
+  ambientNodes = { oscs, lfo, lfoGain, filter, padGain };
+}
+
+function exitAmbientFallback() {
+  ambientFallbackActive = false;
+  ambientPlaying = false;
+  stopAmbientPad();
+}
+
+function enterAmbientFallback(trackConfig = currentTrackMeta, startAt = 0, autoPlay = true) {
+  setupAudioGraph();
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
+  }
+  const dur = resolveTrackDuration(trackConfig);
+  ambientFallbackActive = true;
+  ambientDuration = dur;
+  ambientElapsed = Math.max(0, Math.min(dur, Number(startAt) || 0));
+  ambientAnchorMs = performance.now();
+  ambientPlaying = Boolean(autoPlay);
+
+  if (audioEl && !audioEl.paused) {
+    try { audioEl.pause(); } catch {}
+  }
+
+  if (ambientPlaying) {
+    startAmbientPad();
+    updatePlayPauseIcons(true);
+    syncMediaPlaybackState('playing');
+  } else {
+    stopAmbientPad();
+    updatePlayPauseIcons(false);
+    syncMediaPlaybackState('paused');
+  }
+
+  const trackId = trackConfig?.id || 'default';
+  if (ambientFallbackNotifiedForTrack !== trackId) {
+    ambientFallbackNotifiedForTrack = trackId;
+    if (typeof onAudioFallbackHandler === 'function') {
+      onAudioFallbackHandler(trackConfig);
+    }
+  }
+}
 
 // Midnight Sleep Timer State
 let sleepMode = 'off'; // 'off' | '15m' | '30m' | 'end'
@@ -206,8 +331,11 @@ function setupAudioGraph() {
       }
     });
 
-    audioEl.addEventListener('error', (err) => {
-      console.warn('Audio playback error:', err);
+    audioEl.addEventListener('error', () => {
+      const src = audioEl?.currentSrc || audioEl?.src || '';
+      if (!src || src.startsWith('blob:')) return;
+      if (ambientFallbackActive) return;
+      enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, false);
     });
   }
 
@@ -226,19 +354,29 @@ export async function initAudio(mode = 'song', source = null) {
   }
 
   if (mode === 'file' && source) {
+    exitAmbientFallback();
     audioEl.src = typeof source === 'string' ? source : URL.createObjectURL(source);
+  }
+
+  if (audioEl.error || audioEl.networkState === 3) {
+    enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
+    return;
   }
 
   try {
     await audioEl.play();
-    if (bgVideoEl) {
+    if (bgVideoEl && bgVideoEl.style.display !== 'none') {
       bgVideoEl.muted = true;
       bgVideoEl.volume = 0;
       bgVideoEl.currentTime = audioEl.currentTime;
       bgVideoEl.play().catch(() => {});
     }
   } catch (err) {
-    console.warn('audioEl.play() awaiting user gesture:', err);
+    if (audioEl.error || audioEl.networkState === 3 || err?.name === 'NotSupportedError') {
+      enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
+    } else {
+      console.warn('audioEl.play() awaiting user gesture:', err);
+    }
   }
 }
 
@@ -247,6 +385,33 @@ export async function initAudio(mode = 'song', source = null) {
  * @returns {{ currentTime: number, duration: number, progress: number }}
  */
 export function getAudioTime() {
+  if (ambientFallbackActive) {
+    const nowMs = performance.now();
+    let cur = ambientElapsed;
+    if (ambientPlaying) {
+      cur = ambientElapsed + (nowMs - ambientAnchorMs) * 0.001 * (playbackSpeed || 1);
+      if (cur >= ambientDuration) {
+        ambientElapsed = ambientDuration;
+        ambientPlaying = false;
+        stopAmbientPad();
+        updatePlayPauseIcons(false);
+        syncMediaPlaybackState('paused');
+        if (sleepMode === 'end') {
+          clearSleepTimerInternal(true);
+        } else if (typeof onTrackEndedHandler === 'function') {
+          onTrackEndedHandler();
+        }
+        cur = ambientDuration;
+      }
+    }
+    const synced = Math.min(ambientDuration, Math.max(0, cur));
+    return {
+      currentTime: synced,
+      duration: ambientDuration,
+      progress: Math.min(1, Math.max(0, synced / (ambientDuration || 1))),
+    };
+  }
+
   if (!audioEl) {
     return { currentTime: 0, duration: 240, progress: 0 };
   }
@@ -284,6 +449,13 @@ export function getAudioTime() {
  * @param {number} timeInSeconds
  */
 export function seekAudio(timeInSeconds) {
+  if (ambientFallbackActive) {
+    const target = Math.max(0, Math.min(ambientDuration, Number(timeInSeconds) || 0));
+    ambientElapsed = target;
+    ambientAnchorMs = performance.now();
+    syncMediaSessionPositionState(true);
+    return;
+  }
   const dur = audioEl && audioEl.duration && !Number.isNaN(audioEl.duration) ? audioEl.duration : 240;
   const target = Math.max(0, Math.min(dur, timeInSeconds));
   if (audioEl) audioEl.currentTime = target;
@@ -390,6 +562,9 @@ export function getVolume() {
 export async function switchTrack(trackConfig, customFile = null, initialTime = 0) {
   setupAudioGraph();
   const myToken = ++switchToken;
+  currentTrackMeta = trackConfig || currentTrackMeta;
+  ambientFallbackNotifiedForTrack = '';
+  exitAmbientFallback();
   updateMediaSessionMetadata(trackConfig);
 
   if (audioCtx.state === 'suspended') {
@@ -450,10 +625,12 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
     bgVideoEl.muted = true;
     bgVideoEl.volume = 0;
     if (targetVideoSrc && !isCustomAudio) {
+      bgVideoEl.style.display = '';
       bgVideoEl.src = targetVideoSrc;
       bgVideoEl.currentTime = seekStart;
       bgVideoEl.playbackRate = playbackSpeed;
     } else {
+      bgVideoEl.style.display = 'none';
       bgVideoEl.removeAttribute('src');
       bgVideoEl.load();
     }
@@ -466,11 +643,31 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
     if (shouldCrossfade) crossfadeGain.gain.setTargetAtTime(1.0, nowIn, 0.22);
   }
 
+  if (!customFile && targetAudioSrc) {
+    try {
+      const headRes = await fetch(targetAudioSrc, { method: 'HEAD' });
+      const contentType = String(headRes.headers.get('content-type') || '');
+      if (myToken !== switchToken) return;
+      if (!headRes.ok || contentType.includes('text/html')) {
+        enterAmbientFallback(trackConfig, seekStart, true);
+        return;
+      }
+    } catch {
+      if (myToken !== switchToken) return;
+      enterAmbientFallback(trackConfig, seekStart, true);
+      return;
+    }
+  }
+
   try {
     if (audioEl) await audioEl.play();
     if (bgVideoEl && targetVideoSrc && !isCustomAudio) bgVideoEl.play().catch(() => {});
   } catch (err) {
     if (crossfadeGain && audioCtx) crossfadeGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+    if (!customFile && audioEl && (audioEl.error || audioEl.networkState === 3)) {
+      enterAmbientFallback(trackConfig, seekStart, true);
+      return;
+    }
     console.warn('Playback play request deferred (awaiting user gesture):', err);
   }
 }
@@ -479,19 +676,48 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
 export async function togglePlayPause() {
   if (!audioCtx) setupAudioGraph();
   if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+  if (ambientFallbackActive) {
+    if (ambientPlaying) {
+      ambientElapsed = Math.min(ambientDuration, ambientElapsed + (performance.now() - ambientAnchorMs) * 0.001 * (playbackSpeed || 1));
+      ambientPlaying = false;
+      stopAmbientPad();
+      updatePlayPauseIcons(false);
+      syncMediaPlaybackState('paused');
+    } else {
+      if (ambientElapsed >= ambientDuration - 0.1) ambientElapsed = 0;
+      ambientAnchorMs = performance.now();
+      ambientPlaying = true;
+      startAmbientPad();
+      updatePlayPauseIcons(true);
+      syncMediaPlaybackState('playing');
+    }
+    syncMediaSessionPositionState(true);
+    return;
+  }
+
   if (!audioEl) return;
+
+  if (audioEl.error || audioEl.networkState === 3) {
+    enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
+    return;
+  }
 
   if (audioEl.paused) {
     try {
       await audioEl.play();
-      if (bgVideoEl) {
+      if (bgVideoEl && bgVideoEl.style.display !== 'none') {
         bgVideoEl.muted = true;
         bgVideoEl.volume = 0;
         bgVideoEl.currentTime = audioEl.currentTime;
         bgVideoEl.play().catch(() => {});
       }
     } catch (err) {
-      console.error('Playback failed:', err);
+      if (audioEl.error || audioEl.networkState === 3 || err?.name === 'NotSupportedError') {
+        enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
+      } else {
+        console.error('Playback failed:', err);
+      }
     }
   } else {
     audioEl.pause();
@@ -518,6 +744,7 @@ function updatePlayPauseIcons(playing) {
 
 /** @returns {boolean} */
 export function isAudioPlaying() {
+  if (ambientFallbackActive) return ambientPlaying;
   return Boolean(audioEl && !audioEl.paused);
 }
 
@@ -615,6 +842,10 @@ function applySpeedToElements(rate) {
 /** @param {number} rate */
 export function setPlaybackSpeed(rate) {
   const safeRate = Math.max(0.5, Math.min(2.0, Number(rate) || 1.0));
+  if (ambientFallbackActive && ambientPlaying) {
+    ambientElapsed = Math.min(ambientDuration, ambientElapsed + (performance.now() - ambientAnchorMs) * 0.001 * (playbackSpeed || 1));
+    ambientAnchorMs = performance.now();
+  }
   playbackSpeed = safeRate;
   applySpeedToElements(safeRate);
   if (audioEl) resetClockAnchor(audioEl.currentTime || 0);

@@ -62,6 +62,16 @@ const hudTimeDuration = document.getElementById('hudTimeDuration');
 const hudProgressBar = document.getElementById('hudProgressBar');
 const hudProgressFill = document.getElementById('hudProgressFill');
 const bgVideo = document.getElementById('bgVideo');
+if (bgVideo) {
+  const activatePureAuroraFallback = () => {
+    bgVideo.style.display = 'none';
+    document.body.classList.add('custom-audio-mode');
+  };
+  bgVideo.addEventListener('error', activatePureAuroraFallback);
+  bgVideo.querySelectorAll('source').forEach((srcEl) => {
+    srcEl.addEventListener('error', activatePureAuroraFallback);
+  });
+}
 const cinematicTransition = document.getElementById('cinematicTransition');
 
 const bassMeterBar = document.getElementById('bassMeterBar');
