@@ -1,0 +1,1183 @@
+{
+  "id": "bersamamu",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 14.96,
+      "text": "♪ [Intro Akustik Romantis & Bass Lembut Membuka Harapan] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 15.04,
+      "end": 21.6,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, kita</span> akan taklukkan dunia",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 15.04,
+          "d": 1.38,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 16.42,
+          "d": 0.89,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 17.31,
+          "d": 0.7,
+          "w": "akan"
+        },
+        {
+          "t": 18.01,
+          "d": 1.04,
+          "w": "taklukkan"
+        },
+        {
+          "t": 19.05,
+          "d": 2.55,
+          "w": "dunia"
+        }
+      ]
+    },
+    {
+      "start": 21.76,
+      "end": 28.05,
+      "text": "Arungi samudera penuh <span class=\"kinetic-highlight\">rintangan</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 21.76,
+          "d": 1.03,
+          "w": "Arungi"
+        },
+        {
+          "t": 22.79,
+          "d": 1.27,
+          "w": "samudera"
+        },
+        {
+          "t": 24.06,
+          "d": 0.85,
+          "w": "penuh"
+        },
+        {
+          "t": 24.91,
+          "d": 3.14,
+          "w": "rintangan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 28.17,
+      "end": 33.76,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, kita</span> akan jalani semua",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 28.17,
+          "d": 1.15,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 29.32,
+          "d": 0.94,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 30.26,
+          "d": 0.66,
+          "w": "akan"
+        },
+        {
+          "t": 30.92,
+          "d": 1.07,
+          "w": "jalani"
+        },
+        {
+          "t": 31.99,
+          "d": 1.77,
+          "w": "semua"
+        }
+      ]
+    },
+    {
+      "start": 33.88,
+      "end": 40.83,
+      "text": "Jangan takut untuk <span class=\"kinetic-highlight\">melangkah bersamaku</span> (bersama)",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 33.88,
+          "d": 1.01,
+          "w": "Jangan"
+        },
+        {
+          "t": 34.89,
+          "d": 0.81,
+          "w": "takut"
+        },
+        {
+          "t": 35.7,
+          "d": 1.12,
+          "w": "untuk"
+        },
+        {
+          "t": 36.82,
+          "d": 0.96,
+          "w": "melangkah",
+          "h": true
+        },
+        {
+          "t": 37.78,
+          "d": 1.66,
+          "w": "bersamaku",
+          "h": true
+        },
+        {
+          "t": 39.44,
+          "d": 1.39,
+          "w": "(bersama)"
+        }
+      ]
+    },
+    {
+      "start": 40.95,
+      "end": 47.45,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, 'ku</span> akan dicintai dengan tulus (tanpa ragu)",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 40.95,
+          "d": 1.34,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 42.29,
+          "d": 0.37,
+          "w": "'ku",
+          "h": true
+        },
+        {
+          "t": 42.66,
+          "d": 0.57,
+          "w": "akan"
+        },
+        {
+          "t": 43.23,
+          "d": 0.85,
+          "w": "dicintai"
+        },
+        {
+          "t": 44.08,
+          "d": 0.84,
+          "w": "dengan"
+        },
+        {
+          "t": 44.92,
+          "d": 0.64,
+          "w": "tulus"
+        },
+        {
+          "t": 45.56,
+          "d": 0.72,
+          "w": "(tanpa"
+        },
+        {
+          "t": 46.28,
+          "d": 1.17,
+          "w": "ragu)"
+        }
+      ]
+    },
+    {
+      "start": 47.57,
+      "end": 53.95,
+      "text": "Tanpa ragu, 'ku <span class=\"kinetic-highlight\">akan memberikan</span> cintaku",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 47.57,
+          "d": 0.8,
+          "w": "Tanpa"
+        },
+        {
+          "t": 48.37,
+          "d": 0.66,
+          "w": "ragu,"
+        },
+        {
+          "t": 49.03,
+          "d": 0.56,
+          "w": "'ku"
+        },
+        {
+          "t": 49.59,
+          "d": 1.02,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 50.61,
+          "d": 1.54,
+          "w": "memberikan",
+          "h": true
+        },
+        {
+          "t": 52.15,
+          "d": 1.8,
+          "w": "cintaku"
+        }
+      ]
+    },
+    {
+      "start": 54.07,
+      "end": 59.76,
+      "text": "<span class=\"kinetic-highlight\">Bersamaku, kamu</span> tak akan sendu",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 54.07,
+          "d": 1.76,
+          "w": "Bersamaku,",
+          "h": true
+        },
+        {
+          "t": 55.83,
+          "d": 0.75,
+          "w": "kamu",
+          "h": true
+        },
+        {
+          "t": 56.58,
+          "d": 0.51,
+          "w": "tak"
+        },
+        {
+          "t": 57.09,
+          "d": 0.89,
+          "w": "akan"
+        },
+        {
+          "t": 57.98,
+          "d": 1.78,
+          "w": "sendu"
+        }
+      ]
+    },
+    {
+      "start": 59.88,
+      "end": 63.96,
+      "text": "Yakinkan kamu aku yang <span class=\"kinetic-highlight\">terbaik untukmu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 59.88,
+          "d": 0.73,
+          "w": "Yakinkan"
+        },
+        {
+          "t": 60.61,
+          "d": 0.52,
+          "w": "kamu"
+        },
+        {
+          "t": 61.13,
+          "d": 0.48,
+          "w": "aku"
+        },
+        {
+          "t": 61.61,
+          "d": 0.49,
+          "w": "yang"
+        },
+        {
+          "t": 62.1,
+          "d": 0.78,
+          "w": "terbaik",
+          "h": true
+        },
+        {
+          "t": 62.88,
+          "d": 1.08,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 64.04,
+      "end": 69.05,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 69.13,
+      "end": 73.36,
+      "text": "Du-du-du, du-du-du (da-da-da, <span class=\"kinetic-highlight\">da-da-da-da-da)</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 69.13,
+          "d": 0.97,
+          "w": "Du-du-du,"
+        },
+        {
+          "t": 70.1,
+          "d": 0.8,
+          "w": "du-du-du"
+        },
+        {
+          "t": 70.9,
+          "d": 0.91,
+          "w": "(da-da-da,"
+        },
+        {
+          "t": 71.81,
+          "d": 1.55,
+          "w": "da-da-da-da-da)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 73.44,
+      "end": 80.07,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, kita</span> 'kan jelajahi semesta (semesta)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 73.44,
+          "d": 1.03,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 74.47,
+          "d": 0.9,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 75.37,
+          "d": 0.9,
+          "w": "'kan"
+        },
+        {
+          "t": 76.27,
+          "d": 1.6,
+          "w": "jelajahi"
+        },
+        {
+          "t": 77.87,
+          "d": 1.05,
+          "w": "semesta"
+        },
+        {
+          "t": 78.92,
+          "d": 1.15,
+          "w": "(semesta)"
+        }
+      ]
+    },
+    {
+      "start": 80.19,
+      "end": 86.1,
+      "text": "Bertualang dengan cerita kita <span class=\"kinetic-highlight\">(cerita kita)</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 80.19,
+          "d": 0.81,
+          "w": "Bertualang"
+        },
+        {
+          "t": 81,
+          "d": 0.63,
+          "w": "dengan"
+        },
+        {
+          "t": 81.63,
+          "d": 0.81,
+          "w": "cerita"
+        },
+        {
+          "t": 82.44,
+          "d": 0.95,
+          "w": "kita"
+        },
+        {
+          "t": 83.39,
+          "d": 1.19,
+          "w": "(cerita",
+          "h": true
+        },
+        {
+          "t": 84.58,
+          "d": 1.52,
+          "w": "kita)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 86.36,
+      "end": 92,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, kita</span> akan berbagi semua",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 86.36,
+          "d": 1.1,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 87.46,
+          "d": 0.9,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 88.36,
+          "d": 0.98,
+          "w": "akan"
+        },
+        {
+          "t": 89.34,
+          "d": 1.19,
+          "w": "berbagi"
+        },
+        {
+          "t": 90.53,
+          "d": 1.47,
+          "w": "semua"
+        }
+      ]
+    },
+    {
+      "start": 92.83,
+      "end": 98.45,
+      "text": "Segala baik dan <span class=\"kinetic-highlight\">buruk diriku</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 92.83,
+          "d": 1.29,
+          "w": "Segala"
+        },
+        {
+          "t": 94.12,
+          "d": 0.48,
+          "w": "baik"
+        },
+        {
+          "t": 94.6,
+          "d": 0.71,
+          "w": "dan"
+        },
+        {
+          "t": 95.31,
+          "d": 1.12,
+          "w": "buruk",
+          "h": true
+        },
+        {
+          "t": 96.43,
+          "d": 2.02,
+          "w": "diriku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 98.57,
+      "end": 101.7,
+      "text": "'Ku tahu kau <span class=\"kinetic-highlight\">ragu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 98.57,
+          "d": 0.59,
+          "w": "'Ku"
+        },
+        {
+          "t": 99.16,
+          "d": 0.55,
+          "w": "tahu"
+        },
+        {
+          "t": 99.71,
+          "d": 0.33,
+          "w": "kau"
+        },
+        {
+          "t": 100.04,
+          "d": 1.66,
+          "w": "ragu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 101.82,
+      "end": 105.74,
+      "text": "Biar 'ku beritahu <span class=\"kinetic-highlight\">padamu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 101.82,
+          "d": 0.65,
+          "w": "Biar"
+        },
+        {
+          "t": 102.47,
+          "d": 0.77,
+          "w": "'ku"
+        },
+        {
+          "t": 103.24,
+          "d": 1.19,
+          "w": "beritahu"
+        },
+        {
+          "t": 104.43,
+          "d": 1.31,
+          "w": "padamu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 105.86,
+      "end": 112,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu, 'ku</span> akan dicintai dengan tulus",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 105.86,
+          "d": 1.42,
+          "w": "Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 107.28,
+          "d": 0.44,
+          "w": "'ku",
+          "h": true
+        },
+        {
+          "t": 107.72,
+          "d": 0.87,
+          "w": "akan"
+        },
+        {
+          "t": 108.59,
+          "d": 1.61,
+          "w": "dicintai"
+        },
+        {
+          "t": 110.2,
+          "d": 0.68,
+          "w": "dengan"
+        },
+        {
+          "t": 110.88,
+          "d": 1.12,
+          "w": "tulus"
+        }
+      ]
+    },
+    {
+      "start": 112.4,
+      "end": 118.76,
+      "text": "Tanpa ragu, 'ku <span class=\"kinetic-highlight\">akan memberikan</span> cintaku",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 112.4,
+          "d": 0.73,
+          "w": "Tanpa"
+        },
+        {
+          "t": 113.13,
+          "d": 0.67,
+          "w": "ragu,"
+        },
+        {
+          "t": 113.8,
+          "d": 0.57,
+          "w": "'ku"
+        },
+        {
+          "t": 114.37,
+          "d": 1.07,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 115.44,
+          "d": 1.7,
+          "w": "memberikan",
+          "h": true
+        },
+        {
+          "t": 117.14,
+          "d": 1.62,
+          "w": "cintaku"
+        }
+      ]
+    },
+    {
+      "start": 118.88,
+      "end": 124.51,
+      "text": "<span class=\"kinetic-highlight\">Bersamaku, kamu</span> tak akan sendu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 118.88,
+          "d": 1.62,
+          "w": "Bersamaku,",
+          "h": true
+        },
+        {
+          "t": 120.5,
+          "d": 0.73,
+          "w": "kamu",
+          "h": true
+        },
+        {
+          "t": 121.23,
+          "d": 0.55,
+          "w": "tak"
+        },
+        {
+          "t": 121.78,
+          "d": 0.77,
+          "w": "akan"
+        },
+        {
+          "t": 122.55,
+          "d": 1.96,
+          "w": "sendu"
+        }
+      ]
+    },
+    {
+      "start": 124.63,
+      "end": 128.71,
+      "text": "Yakinkan kamu aku yang <span class=\"kinetic-highlight\">terbaik untukmu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 124.63,
+          "d": 0.94,
+          "w": "Yakinkan"
+        },
+        {
+          "t": 125.57,
+          "d": 0.5,
+          "w": "kamu"
+        },
+        {
+          "t": 126.07,
+          "d": 0.53,
+          "w": "aku"
+        },
+        {
+          "t": 126.6,
+          "d": 0.54,
+          "w": "yang"
+        },
+        {
+          "t": 127.14,
+          "d": 0.49,
+          "w": "terbaik",
+          "h": true
+        },
+        {
+          "t": 127.63,
+          "d": 1.08,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 128.79,
+      "end": 135.48,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 135.56,
+      "end": 139.9,
+      "text": "<span class=\"kinetic-highlight\">Buka hatimu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 135.56,
+          "d": 1.36,
+          "w": "Buka",
+          "h": true
+        },
+        {
+          "t": 136.92,
+          "d": 2.98,
+          "w": "hatimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 140.06,
+      "end": 147.53,
+      "text": "Segala rasa 'kan kuberikan <span class=\"kinetic-highlight\">untukmu (oh),</span> ho-ho",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 140.06,
+          "d": 1.23,
+          "w": "Segala"
+        },
+        {
+          "t": 141.29,
+          "d": 0.59,
+          "w": "rasa"
+        },
+        {
+          "t": 141.88,
+          "d": 0.85,
+          "w": "'kan"
+        },
+        {
+          "t": 142.73,
+          "d": 1.62,
+          "w": "kuberikan"
+        },
+        {
+          "t": 144.35,
+          "d": 1.16,
+          "w": "untukmu",
+          "h": true
+        },
+        {
+          "t": 145.51,
+          "d": 0.81,
+          "w": "(oh),",
+          "h": true
+        },
+        {
+          "t": 146.32,
+          "d": 1.21,
+          "w": "ho-ho"
+        }
+      ]
+    },
+    {
+      "start": 148.12,
+      "end": 154.48,
+      "text": "<span class=\"kinetic-highlight\">(Bersamamu, 'ku</span> akan dicintai tulus tanpa ragu)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 148.12,
+          "d": 1.13,
+          "w": "(Bersamamu,",
+          "h": true
+        },
+        {
+          "t": 149.25,
+          "d": 0.53,
+          "w": "'ku",
+          "h": true
+        },
+        {
+          "t": 149.78,
+          "d": 0.58,
+          "w": "akan"
+        },
+        {
+          "t": 150.36,
+          "d": 0.72,
+          "w": "dicintai"
+        },
+        {
+          "t": 151.08,
+          "d": 0.5,
+          "w": "tulus"
+        },
+        {
+          "t": 151.58,
+          "d": 0.5,
+          "w": "tanpa"
+        },
+        {
+          "t": 152.08,
+          "d": 2.4,
+          "w": "ragu)"
+        }
+      ]
+    },
+    {
+      "start": 154.6,
+      "end": 160.91,
+      "text": "(Tanpa ragu) 'ku <span class=\"kinetic-highlight\">akan memberikan</span> cintaku",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 154.6,
+          "d": 0.96,
+          "w": "(Tanpa"
+        },
+        {
+          "t": 155.56,
+          "d": 0.99,
+          "w": "ragu)"
+        },
+        {
+          "t": 156.55,
+          "d": 0.77,
+          "w": "'ku"
+        },
+        {
+          "t": 157.32,
+          "d": 0.83,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 158.15,
+          "d": 1.53,
+          "w": "memberikan",
+          "h": true
+        },
+        {
+          "t": 159.68,
+          "d": 1.23,
+          "w": "cintaku"
+        }
+      ]
+    },
+    {
+      "start": 161.03,
+      "end": 166.6,
+      "text": "<span class=\"kinetic-highlight\">Bersamaku, kamu</span> tak akan sendu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 161.03,
+          "d": 1.45,
+          "w": "Bersamaku,",
+          "h": true
+        },
+        {
+          "t": 162.48,
+          "d": 0.97,
+          "w": "kamu",
+          "h": true
+        },
+        {
+          "t": 163.45,
+          "d": 0.56,
+          "w": "tak"
+        },
+        {
+          "t": 164.01,
+          "d": 0.64,
+          "w": "akan"
+        },
+        {
+          "t": 164.65,
+          "d": 1.95,
+          "w": "sendu"
+        }
+      ]
+    },
+    {
+      "start": 166.72,
+      "end": 173.65,
+      "text": "Yakinkan kamu aku yang <span class=\"kinetic-highlight\">terbaik untukmu,</span> oh",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 166.72,
+          "d": 1.38,
+          "w": "Yakinkan"
+        },
+        {
+          "t": 168.1,
+          "d": 0.97,
+          "w": "kamu"
+        },
+        {
+          "t": 169.07,
+          "d": 0.88,
+          "w": "aku"
+        },
+        {
+          "t": 169.95,
+          "d": 0.61,
+          "w": "yang"
+        },
+        {
+          "t": 170.56,
+          "d": 0.82,
+          "w": "terbaik",
+          "h": true
+        },
+        {
+          "t": 171.38,
+          "d": 1.41,
+          "w": "untukmu,",
+          "h": true
+        },
+        {
+          "t": 172.79,
+          "d": 0.86,
+          "w": "oh"
+        }
+      ]
+    },
+    {
+      "start": 174.07,
+      "end": 180.2,
+      "text": "<span class=\"kinetic-highlight\">Bersamamu ('ku</span> akan dicintai dengan tulus)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 174.07,
+          "d": 1.24,
+          "w": "Bersamamu",
+          "h": true
+        },
+        {
+          "t": 175.31,
+          "d": 0.56,
+          "w": "('ku",
+          "h": true
+        },
+        {
+          "t": 175.87,
+          "d": 0.5,
+          "w": "akan"
+        },
+        {
+          "t": 176.37,
+          "d": 0.7,
+          "w": "dicintai"
+        },
+        {
+          "t": 177.07,
+          "d": 1.24,
+          "w": "dengan"
+        },
+        {
+          "t": 178.31,
+          "d": 1.89,
+          "w": "tulus)"
+        }
+      ]
+    },
+    {
+      "start": 180.32,
+      "end": 186.7,
+      "text": "Tanpa ragu ('ku <span class=\"kinetic-highlight\">akan memberikan</span> cintaku)",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 180.32,
+          "d": 0.88,
+          "w": "Tanpa"
+        },
+        {
+          "t": 181.2,
+          "d": 0.63,
+          "w": "ragu"
+        },
+        {
+          "t": 181.83,
+          "d": 0.39,
+          "w": "('ku"
+        },
+        {
+          "t": 182.22,
+          "d": 0.8,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 183.02,
+          "d": 1.12,
+          "w": "memberikan",
+          "h": true
+        },
+        {
+          "t": 184.14,
+          "d": 2.56,
+          "w": "cintaku)"
+        }
+      ]
+    },
+    {
+      "start": 186.93,
+      "end": 192.72,
+      "text": "<span class=\"kinetic-highlight\">Bersamaku, kamu</span> tak akan sendu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 186.93,
+          "d": 1.49,
+          "w": "Bersamaku,",
+          "h": true
+        },
+        {
+          "t": 188.42,
+          "d": 1.05,
+          "w": "kamu",
+          "h": true
+        },
+        {
+          "t": 189.47,
+          "d": 0.51,
+          "w": "tak"
+        },
+        {
+          "t": 189.98,
+          "d": 0.9,
+          "w": "akan"
+        },
+        {
+          "t": 190.88,
+          "d": 1.84,
+          "w": "sendu"
+        }
+      ]
+    },
+    {
+      "start": 192.84,
+      "end": 199.11,
+      "text": "Yakinkan kamu aku yang <span class=\"kinetic-highlight\">terbaik untukmu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 192.84,
+          "d": 1.23,
+          "w": "Yakinkan"
+        },
+        {
+          "t": 194.07,
+          "d": 1.02,
+          "w": "kamu"
+        },
+        {
+          "t": 195.09,
+          "d": 0.71,
+          "w": "aku"
+        },
+        {
+          "t": 195.8,
+          "d": 0.51,
+          "w": "yang"
+        },
+        {
+          "t": 196.31,
+          "d": 0.91,
+          "w": "terbaik",
+          "h": true
+        },
+        {
+          "t": 197.22,
+          "d": 1.89,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 199.23,
+      "end": 203.37,
+      "text": "(Yakinkan kamu) yang <span class=\"kinetic-highlight\">terbaik untukmu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 199.23,
+          "d": 0.7,
+          "w": "(Yakinkan"
+        },
+        {
+          "t": 199.93,
+          "d": 0.47,
+          "w": "kamu)"
+        },
+        {
+          "t": 200.4,
+          "d": 0.35,
+          "w": "yang"
+        },
+        {
+          "t": 200.75,
+          "d": 0.55,
+          "w": "terbaik",
+          "h": true
+        },
+        {
+          "t": 201.3,
+          "d": 2.07,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 203.45,
+      "end": 220.97,
+      "text": "♪ [Melodi Manis Mengunci Janji Bersama] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

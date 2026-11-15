@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+*.mp3
+*.mp4
+*.wav
+*.log
+.DS_Store
+Thumbs.db
+!public/assets/audio/.gitkeep
+!public/assets/video/.gitkeep

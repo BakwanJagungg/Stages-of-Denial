@@ -1,0 +1,1012 @@
+{
+  "id": "sadrah",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 19.88,
+      "text": "♪ [Dentik Nada Sayu Membuka Ruang Hampa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 19.96,
+      "end": 22.96,
+      "text": "Aku yang dipaksa <span class=\"kinetic-highlight\">menyerah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 19.96,
+          "d": 0.46,
+          "w": "Aku"
+        },
+        {
+          "t": 20.42,
+          "d": 0.3,
+          "w": "yang"
+        },
+        {
+          "t": 20.72,
+          "d": 0.81,
+          "w": "dipaksa"
+        },
+        {
+          "t": 21.53,
+          "d": 1.43,
+          "w": "menyerah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 23.04,
+      "end": 27.23,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 27.31,
+      "end": 30.76,
+      "text": "Jadi yang <span class=\"kinetic-highlight\">paling</span> salah",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 27.31,
+          "d": 0.68,
+          "w": "Jadi"
+        },
+        {
+          "t": 27.99,
+          "d": 0.43,
+          "w": "yang"
+        },
+        {
+          "t": 28.42,
+          "d": 0.82,
+          "w": "paling",
+          "h": true
+        },
+        {
+          "t": 29.24,
+          "d": 1.52,
+          "w": "salah"
+        }
+      ]
+    },
+    {
+      "start": 30.88,
+      "end": 33.02,
+      "text": "Sementara kau <span class=\"kinetic-highlight\">dengannya</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 30.88,
+          "d": 0.95,
+          "w": "Sementara"
+        },
+        {
+          "t": 31.83,
+          "d": 0.41,
+          "w": "kau"
+        },
+        {
+          "t": 32.24,
+          "d": 0.78,
+          "w": "dengannya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 33.1,
+      "end": 39.59,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 39.67,
+      "end": 42.13,
+      "text": "Aku yang kini <span class=\"kinetic-highlight\">terbuang</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 39.67,
+          "d": 0.61,
+          "w": "Aku"
+        },
+        {
+          "t": 40.28,
+          "d": 0.21,
+          "w": "yang"
+        },
+        {
+          "t": 40.49,
+          "d": 0.84,
+          "w": "kini"
+        },
+        {
+          "t": 41.33,
+          "d": 0.8,
+          "w": "terbuang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 42.21,
+      "end": 47.21,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 47.29,
+      "end": 50.59,
+      "text": "Kau jadikan <span class=\"kinetic-highlight\">pecundang</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 47.29,
+          "d": 0.67,
+          "w": "Kau"
+        },
+        {
+          "t": 47.96,
+          "d": 0.88,
+          "w": "jadikan"
+        },
+        {
+          "t": 48.84,
+          "d": 1.75,
+          "w": "pecundang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 50.71,
+      "end": 52.92,
+      "text": "Sementara kau <span class=\"kinetic-highlight\">bersulang</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 50.71,
+          "d": 1.12,
+          "w": "Sementara"
+        },
+        {
+          "t": 51.83,
+          "d": 0.35,
+          "w": "kau"
+        },
+        {
+          "t": 52.18,
+          "d": 0.74,
+          "w": "bersulang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 53,
+      "end": 58.92,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 59,
+      "end": 62,
+      "text": "<span class=\"kinetic-highlight\">Sudahlah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 59,
+          "d": 3,
+          "w": "Sudahlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 62.12,
+      "end": 66.88,
+      "text": "Kali ini aku <span class=\"kinetic-highlight\">kalah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 62.12,
+          "d": 1.78,
+          "w": "Kali"
+        },
+        {
+          "t": 63.9,
+          "d": 1.2,
+          "w": "ini"
+        },
+        {
+          "t": 65.1,
+          "d": 0.6,
+          "w": "aku"
+        },
+        {
+          "t": 65.7,
+          "d": 1.18,
+          "w": "kalah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 67,
+      "end": 71.84,
+      "text": "<span class=\"kinetic-highlight\">Kehilangan mahkota</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 67,
+          "d": 2.45,
+          "w": "Kehilangan",
+          "h": true
+        },
+        {
+          "t": 69.45,
+          "d": 2.39,
+          "w": "mahkota",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 71.96,
+      "end": 74.42,
+      "text": "Kau dan dia <span class=\"kinetic-highlight\">pemenangnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 71.96,
+          "d": 0.62,
+          "w": "Kau"
+        },
+        {
+          "t": 72.58,
+          "d": 0.38,
+          "w": "dan"
+        },
+        {
+          "t": 72.96,
+          "d": 0.42,
+          "w": "dia"
+        },
+        {
+          "t": 73.38,
+          "d": 1.04,
+          "w": "pemenangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 74.5,
+      "end": 79.44,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 79.52,
+      "end": 81.82,
+      "text": "Berakhir, tak usah <span class=\"kinetic-highlight\">khawatir</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 79.52,
+          "d": 0.6,
+          "w": "Berakhir,"
+        },
+        {
+          "t": 80.12,
+          "d": 0.27,
+          "w": "tak"
+        },
+        {
+          "t": 80.39,
+          "d": 0.81,
+          "w": "usah"
+        },
+        {
+          "t": 81.2,
+          "d": 0.62,
+          "w": "khawatir",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 81.9,
+      "end": 87.95,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 88.03,
+      "end": 92.72,
+      "text": "Tak mengapa, kuhanya harus <span class=\"kinetic-highlight\">terima</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 88.03,
+          "d": 0.7,
+          "w": "Tak"
+        },
+        {
+          "t": 88.73,
+          "d": 0.74,
+          "w": "mengapa,"
+        },
+        {
+          "t": 89.47,
+          "d": 0.7,
+          "w": "kuhanya"
+        },
+        {
+          "t": 90.17,
+          "d": 1.06,
+          "w": "harus"
+        },
+        {
+          "t": 91.23,
+          "d": 1.49,
+          "w": "terima",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 92.8,
+      "end": 99.17,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 99.25,
+      "end": 102.25,
+      "text": "Tersingkir, tak usah <span class=\"kinetic-highlight\">permisi</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 99.25,
+          "d": 0.86,
+          "w": "Tersingkir,"
+        },
+        {
+          "t": 100.11,
+          "d": 0.35,
+          "w": "tak"
+        },
+        {
+          "t": 100.46,
+          "d": 0.7,
+          "w": "usah"
+        },
+        {
+          "t": 101.16,
+          "d": 1.09,
+          "w": "permisi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 102.33,
+      "end": 108.02,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 108.1,
+      "end": 111.91,
+      "text": "Tak mengapa, bahagialah <span class=\"kinetic-highlight\">bersamanya</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 108.1,
+          "d": 0.51,
+          "w": "Tak"
+        },
+        {
+          "t": 108.61,
+          "d": 0.73,
+          "w": "mengapa,"
+        },
+        {
+          "t": 109.34,
+          "d": 0.77,
+          "w": "bahagialah"
+        },
+        {
+          "t": 110.11,
+          "d": 1.8,
+          "w": "bersamanya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 111.99,
+      "end": 118.63,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 118.71,
+      "end": 121.72,
+      "text": "<span class=\"kinetic-highlight\">Sudahlah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 118.71,
+          "d": 3.01,
+          "w": "Sudahlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 121.84,
+      "end": 126.48,
+      "text": "Kali ini aku <span class=\"kinetic-highlight\">kalah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 121.84,
+          "d": 1.06,
+          "w": "Kali"
+        },
+        {
+          "t": 122.9,
+          "d": 1.75,
+          "w": "ini"
+        },
+        {
+          "t": 124.65,
+          "d": 0.65,
+          "w": "aku"
+        },
+        {
+          "t": 125.3,
+          "d": 1.18,
+          "w": "kalah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 126.6,
+      "end": 131.62,
+      "text": "<span class=\"kinetic-highlight\">Kehilangan mahkota</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 126.6,
+          "d": 2.49,
+          "w": "Kehilangan",
+          "h": true
+        },
+        {
+          "t": 129.09,
+          "d": 2.53,
+          "w": "mahkota",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 131.74,
+      "end": 134.2,
+      "text": "Kau dan dia <span class=\"kinetic-highlight\">pemenangnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 131.74,
+          "d": 0.45,
+          "w": "Kau"
+        },
+        {
+          "t": 132.19,
+          "d": 0.31,
+          "w": "dan"
+        },
+        {
+          "t": 132.5,
+          "d": 0.51,
+          "w": "dia"
+        },
+        {
+          "t": 133.01,
+          "d": 1.19,
+          "w": "pemenangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 134.28,
+      "end": 138.44,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 138.52,
+      "end": 141.36,
+      "text": "<span class=\"kinetic-highlight\">Sudahlah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 138.52,
+          "d": 2.84,
+          "w": "Sudahlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 141.48,
+      "end": 146.19,
+      "text": "Kali ini <span class=\"kinetic-highlight\">kuberserah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 141.48,
+          "d": 1.36,
+          "w": "Kali"
+        },
+        {
+          "t": 142.84,
+          "d": 1.62,
+          "w": "ini"
+        },
+        {
+          "t": 144.46,
+          "d": 1.73,
+          "w": "kuberserah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 146.31,
+      "end": 151.21,
+      "text": "<span class=\"kinetic-highlight\">Kehilangan segalanya</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 146.31,
+          "d": 2.52,
+          "w": "Kehilangan",
+          "h": true
+        },
+        {
+          "t": 148.83,
+          "d": 2.38,
+          "w": "segalanya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 151.33,
+      "end": 153.79,
+      "text": "Kau dan dia <span class=\"kinetic-highlight\">pemenangnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 151.33,
+          "d": 0.64,
+          "w": "Kau"
+        },
+        {
+          "t": 151.97,
+          "d": 0.34,
+          "w": "dan"
+        },
+        {
+          "t": 152.31,
+          "d": 0.42,
+          "w": "dia"
+        },
+        {
+          "t": 152.73,
+          "d": 1.06,
+          "w": "pemenangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 153.87,
+      "end": 179.94,
+      "text": "♪ [Alunan Melodi Mengisyaratkan Luka Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 180.02,
+      "end": 184.91,
+      "text": "Lelah harus <span class=\"kinetic-highlight\">bijaksana</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 180.02,
+          "d": 0.98,
+          "w": "Lelah"
+        },
+        {
+          "t": 181,
+          "d": 1.02,
+          "w": "harus"
+        },
+        {
+          "t": 182.02,
+          "d": 2.89,
+          "w": "bijaksana",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 185.03,
+      "end": 189.89,
+      "text": "Saat kita yang <span class=\"kinetic-highlight\">terluka</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 185.03,
+          "d": 0.68,
+          "w": "Saat"
+        },
+        {
+          "t": 185.71,
+          "d": 1.35,
+          "w": "kita"
+        },
+        {
+          "t": 187.06,
+          "d": 0.85,
+          "w": "yang"
+        },
+        {
+          "t": 187.91,
+          "d": 1.98,
+          "w": "terluka",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 190.01,
+      "end": 194.8,
+      "text": "Lelah harus <span class=\"kinetic-highlight\">bijaksana</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 190.01,
+          "d": 0.95,
+          "w": "Lelah"
+        },
+        {
+          "t": 190.96,
+          "d": 1.2,
+          "w": "harus"
+        },
+        {
+          "t": 192.16,
+          "d": 2.64,
+          "w": "bijaksana",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 194.94,
+      "end": 198.2,
+      "text": "Saat kita yang <span class=\"kinetic-highlight\">terluka</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 194.94,
+          "d": 0.57,
+          "w": "Saat"
+        },
+        {
+          "t": 195.51,
+          "d": 0.62,
+          "w": "kita"
+        },
+        {
+          "t": 196.13,
+          "d": 0.66,
+          "w": "yang"
+        },
+        {
+          "t": 196.79,
+          "d": 1.41,
+          "w": "terluka",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 198.28,
+      "end": 200.98,
+      "text": "<span class=\"kinetic-highlight\">Sudahlah</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 198.28,
+          "d": 2.7,
+          "w": "Sudahlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 201.1,
+      "end": 206.16,
+      "text": "Kali ini aku <span class=\"kinetic-highlight\">kalah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 201.1,
+          "d": 1.27,
+          "w": "Kali"
+        },
+        {
+          "t": 202.37,
+          "d": 1.23,
+          "w": "ini"
+        },
+        {
+          "t": 203.6,
+          "d": 0.99,
+          "w": "aku"
+        },
+        {
+          "t": 204.59,
+          "d": 1.57,
+          "w": "kalah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 206.28,
+      "end": 211.16,
+      "text": "<span class=\"kinetic-highlight\">Kehilangan mahkota</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 206.28,
+          "d": 2.4,
+          "w": "Kehilangan",
+          "h": true
+        },
+        {
+          "t": 208.68,
+          "d": 2.48,
+          "w": "mahkota",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 211.28,
+      "end": 213.74,
+      "text": "Kau dan dia <span class=\"kinetic-highlight\">pemenangnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 211.28,
+          "d": 0.36,
+          "w": "Kau"
+        },
+        {
+          "t": 211.64,
+          "d": 0.39,
+          "w": "dan"
+        },
+        {
+          "t": 212.03,
+          "d": 0.56,
+          "w": "dia"
+        },
+        {
+          "t": 212.59,
+          "d": 1.15,
+          "w": "pemenangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 213.82,
+      "end": 218.17,
+      "text": "♪ [Solo Gitar Emo Mengiringi Kepasrahan Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 218.25,
+      "end": 220.92,
+      "text": "<span class=\"kinetic-highlight\">Sudahlah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 218.25,
+          "d": 2.67,
+          "w": "Sudahlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 221.04,
+      "end": 225.97,
+      "text": "Kali ini <span class=\"kinetic-highlight\">kuberserah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 221.04,
+          "d": 1.34,
+          "w": "Kali"
+        },
+        {
+          "t": 222.38,
+          "d": 1.43,
+          "w": "ini"
+        },
+        {
+          "t": 223.81,
+          "d": 2.16,
+          "w": "kuberserah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 226.09,
+      "end": 230.82,
+      "text": "<span class=\"kinetic-highlight\">Kehilangan segalanya</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 226.09,
+          "d": 2.19,
+          "w": "Kehilangan",
+          "h": true
+        },
+        {
+          "t": 228.28,
+          "d": 2.54,
+          "w": "segalanya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 230.94,
+      "end": 235.29,
+      "text": "Kau dan dia <span class=\"kinetic-highlight\">pemenangnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 230.94,
+          "d": 0.85,
+          "w": "Kau"
+        },
+        {
+          "t": 231.79,
+          "d": 0.71,
+          "w": "dan"
+        },
+        {
+          "t": 232.5,
+          "d": 0.56,
+          "w": "dia"
+        },
+        {
+          "t": 233.06,
+          "d": 2.23,
+          "w": "pemenangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 235.41,
+      "end": 237.87,
+      "text": "Sepatutnya kau <span class=\"kinetic-highlight\">rayakan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 235.41,
+          "d": 0.82,
+          "w": "Sepatutnya"
+        },
+        {
+          "t": 236.23,
+          "d": 0.81,
+          "w": "kau"
+        },
+        {
+          "t": 237.04,
+          "d": 0.83,
+          "w": "rayakan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 237.95,
+      "end": 247.01,
+      "text": "♪ [Gema Nada Terakhir Menyudahi Kisah Sadrah] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

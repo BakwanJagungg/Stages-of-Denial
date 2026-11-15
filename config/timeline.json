@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Penyangkalan",
+    "artist": "for Revenge",
+    "genre": "Alternative Rock / Post-Rock Indonesian",
+    "duration": 240.6,
+    "audioSrc": "/assets/audio/penyangkalan.mp3",
+    "videoSrc": "/assets/video/penyangkalan.mp4",
+    "developer": "Dava",
+    "version": "3.0.0"
+  },
+  "subtitles": [],
+  "acts": [
+    {
+      "id": "act1",
+      "roman": "I",
+      "chapterBadge": "BABAK I • KESUNYIAN AWAL",
+      "heading": "Ketika Semua Terasa Jauh",
+      "lead": "Malam merayap perlahan dalam kesunyian. Getaran nada akustik membuka kembali memori yang terkunci di sudut batin.",
+      "startTime": 0,
+      "endTime": 45,
+      "theme": "slate",
+      "visualMode": "intro",
+      "glowColor": "#64748b",
+      "videoFilter": "grayscale(100%) contrast(110%) brightness(0.75)",
+      "videoOpacity": 0.7
+    },
+    {
+      "id": "act2",
+      "roman": "II",
+      "chapterBadge": "BABAK II • PERLAHAN MERACUNI",
+      "heading": "Dia Masih di Sini",
+      "lead": "Menari-nari di celah ingatan. Perlahan meracuni kewarasan yang telah mati di bawah bayang kepalsuan.",
+      "startTime": 45,
+      "endTime": 80,
+      "theme": "indigo",
+      "visualMode": "verse",
+      "glowColor": "#6366f1",
+      "videoFilter": "sepia(40%) contrast(120%) brightness(0.85) hue-rotate(220deg)",
+      "videoOpacity": 0.8
+    },
+    {
+      "id": "act3",
+      "roman": "III",
+      "chapterBadge": "BABAK III • SALING MENGHANTAM",
+      "heading": "PENYANGKALAN",
+      "lead": "Bertukar peran menyakiti. Berpura-pura pulih sendiri, nyatanya kutelah mati berkali-kali di hadapan kenyataan.",
+      "startTime": 80,
+      "endTime": 144,
+      "theme": "crimson",
+      "visualMode": "climax",
+      "glowColor": "#e11d48",
+      "videoFilter": "contrast(135%) brightness(0.90) saturate(1.2)",
+      "videoOpacity": 0.9
+    },
+    {
+      "id": "act4",
+      "roman": "IV",
+      "chapterBadge": "BABAK IV • SALING MENGHANTAM",
+      "heading": "Kenyataan yang Sepi",
+      "lead": "Bertukar peran saling menghantam! Di ujung malam, selamat datang kembali di penyangkalan yang abadi.",
+      "startTime": 144,
+      "endTime": 240.61,
+      "theme": "crimson",
+      "visualMode": "outro",
+      "glowColor": "#38bdf8",
+      "videoFilter": "grayscale(60%) contrast(105%) brightness(0.70)",
+      "videoOpacity": 0.6
+    }
+  ]
+}

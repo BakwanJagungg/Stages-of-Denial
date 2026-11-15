@@ -1,0 +1,1507 @@
+{
+  "id": "starla",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 27.04,
+      "text": "♪ [Petikan Mesin Tik & Alunan Gitar Akustik Romantis] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 27.12,
+      "end": 31.19,
+      "text": "Kutuliskan kenangan <span class=\"kinetic-highlight\">tentang</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 27.12,
+          "d": 1.61,
+          "w": "Kutuliskan"
+        },
+        {
+          "t": 28.73,
+          "d": 0.9,
+          "w": "kenangan"
+        },
+        {
+          "t": 29.63,
+          "d": 1.56,
+          "w": "tentang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 31.31,
+      "end": 37.1,
+      "text": "<span class=\"kinetic-highlight\">Caraku</span> menemukan dirimu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 31.31,
+          "d": 1.45,
+          "w": "Caraku",
+          "h": true
+        },
+        {
+          "t": 32.76,
+          "d": 1.36,
+          "w": "menemukan"
+        },
+        {
+          "t": 34.12,
+          "d": 2.98,
+          "w": "dirimu"
+        }
+      ]
+    },
+    {
+      "start": 37.22,
+      "end": 41.26,
+      "text": "Tentang apa yang <span class=\"kinetic-highlight\">membuatku mudah</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 37.22,
+          "d": 0.8,
+          "w": "Tentang"
+        },
+        {
+          "t": 38.02,
+          "d": 0.8,
+          "w": "apa"
+        },
+        {
+          "t": 38.82,
+          "d": 0.37,
+          "w": "yang"
+        },
+        {
+          "t": 39.19,
+          "d": 0.86,
+          "w": "membuatku",
+          "h": true
+        },
+        {
+          "t": 40.05,
+          "d": 1.21,
+          "w": "mudah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 41.34,
+      "end": 47.24,
+      "text": "<span class=\"kinetic-highlight\">Berikan</span> hatiku padamu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 41.34,
+          "d": 1.4,
+          "w": "Berikan",
+          "h": true
+        },
+        {
+          "t": 42.74,
+          "d": 1.45,
+          "w": "hatiku"
+        },
+        {
+          "t": 44.19,
+          "d": 3.05,
+          "w": "padamu"
+        }
+      ]
+    },
+    {
+      "start": 47.36,
+      "end": 51.2,
+      "text": "Takkan habis sejuta <span class=\"kinetic-highlight\">lagu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 47.36,
+          "d": 0.71,
+          "w": "Takkan"
+        },
+        {
+          "t": 48.07,
+          "d": 0.61,
+          "w": "habis"
+        },
+        {
+          "t": 48.68,
+          "d": 1.14,
+          "w": "sejuta"
+        },
+        {
+          "t": 49.82,
+          "d": 1.38,
+          "w": "lagu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 51.32,
+      "end": 57.2,
+      "text": "Untuk <span class=\"kinetic-highlight\">menceritakan</span> cantikmu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 51.32,
+          "d": 0.98,
+          "w": "Untuk"
+        },
+        {
+          "t": 52.3,
+          "d": 1.98,
+          "w": "menceritakan",
+          "h": true
+        },
+        {
+          "t": 54.28,
+          "d": 2.92,
+          "w": "cantikmu"
+        }
+      ]
+    },
+    {
+      "start": 57.32,
+      "end": 61.11,
+      "text": "'Kan teramat panjang <span class=\"kinetic-highlight\">puisi</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 57.32,
+          "d": 0.65,
+          "w": "'Kan"
+        },
+        {
+          "t": 57.97,
+          "d": 1.03,
+          "w": "teramat"
+        },
+        {
+          "t": 59,
+          "d": 0.63,
+          "w": "panjang"
+        },
+        {
+          "t": 59.63,
+          "d": 1.48,
+          "w": "puisi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 61.23,
+      "end": 65.39,
+      "text": "'Tuk <span class=\"kinetic-highlight\">menyuratkan</span> cinta ini",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 61.23,
+          "d": 0.76,
+          "w": "'Tuk"
+        },
+        {
+          "t": 61.99,
+          "d": 1.22,
+          "w": "menyuratkan",
+          "h": true
+        },
+        {
+          "t": 63.21,
+          "d": 0.64,
+          "w": "cinta"
+        },
+        {
+          "t": 63.85,
+          "d": 1.54,
+          "w": "ini"
+        }
+      ]
+    },
+    {
+      "start": 65.51,
+      "end": 70.05,
+      "text": "Telah habis sudah <span class=\"kinetic-highlight\">cinta ini</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 65.51,
+          "d": 0.78,
+          "w": "Telah"
+        },
+        {
+          "t": 66.29,
+          "d": 0.81,
+          "w": "habis"
+        },
+        {
+          "t": 67.1,
+          "d": 0.55,
+          "w": "sudah"
+        },
+        {
+          "t": 67.65,
+          "d": 1.08,
+          "w": "cinta",
+          "h": true
+        },
+        {
+          "t": 68.73,
+          "d": 1.32,
+          "w": "ini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 70.17,
+      "end": 75.1,
+      "text": "Tak <span class=\"kinetic-highlight\">lagi tersisa</span> untuk dunia",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 70.17,
+          "d": 0.64,
+          "w": "Tak"
+        },
+        {
+          "t": 70.81,
+          "d": 0.95,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 71.76,
+          "d": 1.14,
+          "w": "tersisa",
+          "h": true
+        },
+        {
+          "t": 72.9,
+          "d": 1.29,
+          "w": "untuk"
+        },
+        {
+          "t": 74.19,
+          "d": 0.91,
+          "w": "dunia"
+        }
+      ]
+    },
+    {
+      "start": 75.22,
+      "end": 78.35,
+      "text": "Kar'na t'lah <span class=\"kinetic-highlight\">kuhabiskan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 75.22,
+          "d": 0.73,
+          "w": "Kar'na"
+        },
+        {
+          "t": 75.95,
+          "d": 0.48,
+          "w": "t'lah"
+        },
+        {
+          "t": 76.43,
+          "d": 1.92,
+          "w": "kuhabiskan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 78.43,
+      "end": 81.7,
+      "text": "<span class=\"kinetic-highlight\">Sisa</span> cintaku hanya untukmu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 78.43,
+          "d": 1.09,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 79.52,
+          "d": 0.77,
+          "w": "cintaku"
+        },
+        {
+          "t": 80.29,
+          "d": 0.52,
+          "w": "hanya"
+        },
+        {
+          "t": 80.81,
+          "d": 0.89,
+          "w": "untukmu"
+        }
+      ]
+    },
+    {
+      "start": 81.78,
+      "end": 92.15,
+      "text": "♪ [Melodi Biola Mengiringi Ikrar Suci] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 92.23,
+      "end": 96.36,
+      "text": "Aku pernah berfikir <span class=\"kinetic-highlight\">tentang</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 92.23,
+          "d": 0.86,
+          "w": "Aku"
+        },
+        {
+          "t": 93.09,
+          "d": 0.65,
+          "w": "pernah"
+        },
+        {
+          "t": 93.74,
+          "d": 0.92,
+          "w": "berfikir"
+        },
+        {
+          "t": 94.66,
+          "d": 1.7,
+          "w": "tentang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 96.48,
+      "end": 102.03,
+      "text": "<span class=\"kinetic-highlight\">Hidupku</span> tanpa ada dirimu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 96.48,
+          "d": 1.44,
+          "w": "Hidupku",
+          "h": true
+        },
+        {
+          "t": 97.92,
+          "d": 0.82,
+          "w": "tanpa"
+        },
+        {
+          "t": 98.74,
+          "d": 0.69,
+          "w": "ada"
+        },
+        {
+          "t": 99.43,
+          "d": 2.6,
+          "w": "dirimu"
+        }
+      ]
+    },
+    {
+      "start": 102.15,
+      "end": 106.27,
+      "text": "Dapatkah lebih <span class=\"kinetic-highlight\">indah</span> dari",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 102.15,
+          "d": 1.24,
+          "w": "Dapatkah"
+        },
+        {
+          "t": 103.39,
+          "d": 0.66,
+          "w": "lebih"
+        },
+        {
+          "t": 104.05,
+          "d": 0.97,
+          "w": "indah",
+          "h": true
+        },
+        {
+          "t": 105.02,
+          "d": 1.25,
+          "w": "dari"
+        }
+      ]
+    },
+    {
+      "start": 106.39,
+      "end": 111.8,
+      "text": "Yang <span class=\"kinetic-highlight\">kujalani</span> sampai kini?",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 106.39,
+          "d": 0.58,
+          "w": "Yang"
+        },
+        {
+          "t": 106.97,
+          "d": 1.27,
+          "w": "kujalani",
+          "h": true
+        },
+        {
+          "t": 108.24,
+          "d": 0.76,
+          "w": "sampai"
+        },
+        {
+          "t": 109,
+          "d": 2.8,
+          "w": "kini?"
+        }
+      ]
+    },
+    {
+      "start": 112.24,
+      "end": 116.37,
+      "text": "Aku s'lalu bermimpi <span class=\"kinetic-highlight\">tentang</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 112.24,
+          "d": 1.02,
+          "w": "Aku"
+        },
+        {
+          "t": 113.26,
+          "d": 0.62,
+          "w": "s'lalu"
+        },
+        {
+          "t": 113.88,
+          "d": 1.03,
+          "w": "bermimpi"
+        },
+        {
+          "t": 114.91,
+          "d": 1.46,
+          "w": "tentang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 116.49,
+      "end": 122.25,
+      "text": "<span class=\"kinetic-highlight\">Indah</span> hari tua bersamamu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 116.49,
+          "d": 0.91,
+          "w": "Indah",
+          "h": true
+        },
+        {
+          "t": 117.4,
+          "d": 0.92,
+          "w": "hari"
+        },
+        {
+          "t": 118.32,
+          "d": 0.62,
+          "w": "tua"
+        },
+        {
+          "t": 118.94,
+          "d": 3.31,
+          "w": "bersamamu"
+        }
+      ]
+    },
+    {
+      "start": 122.37,
+      "end": 126.46,
+      "text": "<span class=\"kinetic-highlight\">Tetap</span> cantik rambut panjangmu",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 122.37,
+          "d": 0.92,
+          "w": "Tetap",
+          "h": true
+        },
+        {
+          "t": 123.29,
+          "d": 0.79,
+          "w": "cantik"
+        },
+        {
+          "t": 124.08,
+          "d": 0.8,
+          "w": "rambut"
+        },
+        {
+          "t": 124.88,
+          "d": 1.58,
+          "w": "panjangmu"
+        }
+      ]
+    },
+    {
+      "start": 126.58,
+      "end": 130.5,
+      "text": "Meskipun nanti tak <span class=\"kinetic-highlight\">hitam lagi</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 126.58,
+          "d": 0.87,
+          "w": "Meskipun"
+        },
+        {
+          "t": 127.45,
+          "d": 0.71,
+          "w": "nanti"
+        },
+        {
+          "t": 128.16,
+          "d": 0.46,
+          "w": "tak"
+        },
+        {
+          "t": 128.62,
+          "d": 0.71,
+          "w": "hitam",
+          "h": true
+        },
+        {
+          "t": 129.33,
+          "d": 1.17,
+          "w": "lagi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 130.58,
+      "end": 134.88,
+      "text": "Bila habis sudah <span class=\"kinetic-highlight\">waktu ini</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 130.58,
+          "d": 0.64,
+          "w": "Bila"
+        },
+        {
+          "t": 131.22,
+          "d": 0.83,
+          "w": "habis"
+        },
+        {
+          "t": 132.05,
+          "d": 0.63,
+          "w": "sudah"
+        },
+        {
+          "t": 132.68,
+          "d": 0.96,
+          "w": "waktu",
+          "h": true
+        },
+        {
+          "t": 133.64,
+          "d": 1.24,
+          "w": "ini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 135,
+      "end": 140.01,
+      "text": "Tak <span class=\"kinetic-highlight\">lagi berpijak</span> pada dunia",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 135,
+          "d": 0.77,
+          "w": "Tak"
+        },
+        {
+          "t": 135.77,
+          "d": 0.97,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 136.74,
+          "d": 1.12,
+          "w": "berpijak",
+          "h": true
+        },
+        {
+          "t": 137.86,
+          "d": 1.07,
+          "w": "pada"
+        },
+        {
+          "t": 138.93,
+          "d": 1.08,
+          "w": "dunia"
+        }
+      ]
+    },
+    {
+      "start": 140.13,
+      "end": 143.29,
+      "text": "Telah aku <span class=\"kinetic-highlight\">habiskan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 140.13,
+          "d": 0.63,
+          "w": "Telah"
+        },
+        {
+          "t": 140.76,
+          "d": 0.8,
+          "w": "aku"
+        },
+        {
+          "t": 141.56,
+          "d": 1.73,
+          "w": "habiskan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 143.37,
+      "end": 149.22,
+      "text": "<span class=\"kinetic-highlight\">Sisa</span> hidupku hanya untukmu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 143.37,
+          "d": 1.72,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 145.09,
+          "d": 1.49,
+          "w": "hidupku"
+        },
+        {
+          "t": 146.58,
+          "d": 0.99,
+          "w": "hanya"
+        },
+        {
+          "t": 147.57,
+          "d": 1.65,
+          "w": "untukmu"
+        }
+      ]
+    },
+    {
+      "start": 150.56,
+      "end": 155.05,
+      "text": "Dan t'lah habis sudah <span class=\"kinetic-highlight\">cinta ini</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 150.56,
+          "d": 0.53,
+          "w": "Dan"
+        },
+        {
+          "t": 151.09,
+          "d": 0.3,
+          "w": "t'lah"
+        },
+        {
+          "t": 151.39,
+          "d": 0.7,
+          "w": "habis"
+        },
+        {
+          "t": 152.09,
+          "d": 0.57,
+          "w": "sudah"
+        },
+        {
+          "t": 152.66,
+          "d": 1.08,
+          "w": "cinta",
+          "h": true
+        },
+        {
+          "t": 153.74,
+          "d": 1.31,
+          "w": "ini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 155.17,
+      "end": 160.09,
+      "text": "Tak <span class=\"kinetic-highlight\">lagi tersisa</span> untuk dunia",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 155.17,
+          "d": 0.61,
+          "w": "Tak"
+        },
+        {
+          "t": 155.78,
+          "d": 0.92,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 156.7,
+          "d": 1.16,
+          "w": "tersisa",
+          "h": true
+        },
+        {
+          "t": 157.86,
+          "d": 1.29,
+          "w": "untuk"
+        },
+        {
+          "t": 159.15,
+          "d": 0.94,
+          "w": "dunia"
+        }
+      ]
+    },
+    {
+      "start": 160.21,
+      "end": 163.46,
+      "text": "Kar'na t'lah <span class=\"kinetic-highlight\">kuhabiskan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 160.21,
+          "d": 0.73,
+          "w": "Kar'na"
+        },
+        {
+          "t": 160.94,
+          "d": 0.45,
+          "w": "t'lah"
+        },
+        {
+          "t": 161.39,
+          "d": 2.07,
+          "w": "kuhabiskan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 163.54,
+      "end": 166.81,
+      "text": "<span class=\"kinetic-highlight\">Sisa</span> cintaku hanya untukmu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 163.54,
+          "d": 0.69,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 164.23,
+          "d": 0.82,
+          "w": "cintaku"
+        },
+        {
+          "t": 165.05,
+          "d": 0.7,
+          "w": "hanya"
+        },
+        {
+          "t": 165.75,
+          "d": 1.06,
+          "w": "untukmu"
+        }
+      ]
+    },
+    {
+      "start": 166.89,
+      "end": 171.14,
+      "text": "♪ [Alunan Orkestra Megah Menggugah Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 171.22,
+      "end": 175.57,
+      "text": "<span class=\"kinetic-highlight\">Untukmu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 171.22,
+          "d": 4.35,
+          "w": "Untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 176.07,
+      "end": 178.26,
+      "text": "<span class=\"kinetic-highlight\">Hidup</span> dan matiku",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 176.07,
+          "d": 0.86,
+          "w": "Hidup",
+          "h": true
+        },
+        {
+          "t": 176.93,
+          "d": 0.46,
+          "w": "dan"
+        },
+        {
+          "t": 177.39,
+          "d": 0.87,
+          "w": "matiku"
+        }
+      ]
+    },
+    {
+      "start": 178.34,
+      "end": 185.13,
+      "text": "♪ [Melodi Biola Mengiringi Ikrar Suci] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 185.21,
+      "end": 189.83,
+      "text": "Bila musim <span class=\"kinetic-highlight\">berganti</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 185.21,
+          "d": 0.89,
+          "w": "Bila"
+        },
+        {
+          "t": 186.1,
+          "d": 0.92,
+          "w": "musim"
+        },
+        {
+          "t": 187.02,
+          "d": 2.81,
+          "w": "berganti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 189.95,
+      "end": 195.06,
+      "text": "<span class=\"kinetic-highlight\">Sampai</span> waktu terhenti",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 189.95,
+          "d": 1.32,
+          "w": "Sampai",
+          "h": true
+        },
+        {
+          "t": 191.27,
+          "d": 1.19,
+          "w": "waktu"
+        },
+        {
+          "t": 192.46,
+          "d": 2.6,
+          "w": "terhenti"
+        }
+      ]
+    },
+    {
+      "start": 195.18,
+      "end": 199.91,
+      "text": "Walau <span class=\"kinetic-highlight\">dunia</span> membenci",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 195.18,
+          "d": 1.02,
+          "w": "Walau"
+        },
+        {
+          "t": 196.2,
+          "d": 1.24,
+          "w": "dunia",
+          "h": true
+        },
+        {
+          "t": 197.44,
+          "d": 2.47,
+          "w": "membenci"
+        }
+      ]
+    },
+    {
+      "start": 200.03,
+      "end": 204.97,
+      "text": "Ku 'kan <span class=\"kinetic-highlight\">tetap di</span> sini",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 200.03,
+          "d": 1.1,
+          "w": "Ku"
+        },
+        {
+          "t": 201.13,
+          "d": 0.62,
+          "w": "'kan"
+        },
+        {
+          "t": 201.75,
+          "d": 1.17,
+          "w": "tetap",
+          "h": true
+        },
+        {
+          "t": 202.92,
+          "d": 0.67,
+          "w": "di",
+          "h": true
+        },
+        {
+          "t": 203.59,
+          "d": 1.38,
+          "w": "sini"
+        }
+      ]
+    },
+    {
+      "start": 205.09,
+      "end": 210.07,
+      "text": "Bila habis sudah waktu ini (bila <span class=\"kinetic-highlight\">musim berganti)</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 205.09,
+          "d": 0.6,
+          "w": "Bila"
+        },
+        {
+          "t": 205.69,
+          "d": 0.41,
+          "w": "habis"
+        },
+        {
+          "t": 206.1,
+          "d": 0.42,
+          "w": "sudah"
+        },
+        {
+          "t": 206.52,
+          "d": 0.59,
+          "w": "waktu"
+        },
+        {
+          "t": 207.11,
+          "d": 0.39,
+          "w": "ini"
+        },
+        {
+          "t": 207.5,
+          "d": 0.4,
+          "w": "(bila"
+        },
+        {
+          "t": 207.9,
+          "d": 0.8,
+          "w": "musim",
+          "h": true
+        },
+        {
+          "t": 208.7,
+          "d": 1.37,
+          "w": "berganti)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 210.15,
+      "end": 215.08,
+      "text": "Tak <span class=\"kinetic-highlight\">lagi berpijak</span> pada dunia (sampai waktu terhenti)",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 210.15,
+          "d": 0.54,
+          "w": "Tak"
+        },
+        {
+          "t": 210.69,
+          "d": 0.51,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 211.2,
+          "d": 0.81,
+          "w": "berpijak",
+          "h": true
+        },
+        {
+          "t": 212.01,
+          "d": 0.53,
+          "w": "pada"
+        },
+        {
+          "t": 212.54,
+          "d": 0.38,
+          "w": "dunia"
+        },
+        {
+          "t": 212.92,
+          "d": 0.57,
+          "w": "(sampai"
+        },
+        {
+          "t": 213.49,
+          "d": 0.67,
+          "w": "waktu"
+        },
+        {
+          "t": 214.16,
+          "d": 0.92,
+          "w": "terhenti)"
+        }
+      ]
+    },
+    {
+      "start": 215.16,
+      "end": 218.33,
+      "text": "Telah aku habiskan (walau <span class=\"kinetic-highlight\">dunia membenci)</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 215.16,
+          "d": 0.44,
+          "w": "Telah"
+        },
+        {
+          "t": 215.6,
+          "d": 0.29,
+          "w": "aku"
+        },
+        {
+          "t": 215.89,
+          "d": 0.65,
+          "w": "habiskan"
+        },
+        {
+          "t": 216.54,
+          "d": 0.36,
+          "w": "(walau"
+        },
+        {
+          "t": 216.9,
+          "d": 0.53,
+          "w": "dunia",
+          "h": true
+        },
+        {
+          "t": 217.43,
+          "d": 0.9,
+          "w": "membenci)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 218.41,
+      "end": 225.16,
+      "text": "<span class=\"kinetic-highlight\">Sisa hidupku</span> hanya untukmu (ku 'kan tetap di sini)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 218.41,
+          "d": 1.23,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 219.64,
+          "d": 1.32,
+          "w": "hidupku",
+          "h": true
+        },
+        {
+          "t": 220.96,
+          "d": 0.56,
+          "w": "hanya"
+        },
+        {
+          "t": 221.52,
+          "d": 0.93,
+          "w": "untukmu"
+        },
+        {
+          "t": 222.45,
+          "d": 0.35,
+          "w": "(ku"
+        },
+        {
+          "t": 222.8,
+          "d": 0.37,
+          "w": "'kan"
+        },
+        {
+          "t": 223.17,
+          "d": 0.53,
+          "w": "tetap"
+        },
+        {
+          "t": 223.7,
+          "d": 0.4,
+          "w": "di"
+        },
+        {
+          "t": 224.1,
+          "d": 1.06,
+          "w": "sini)"
+        }
+      ]
+    },
+    {
+      "start": 225.28,
+      "end": 230.09,
+      "text": "Telah habis sudah <span class=\"kinetic-highlight\">cinta ini</span> (bila musim berganti)",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 225.28,
+          "d": 0.66,
+          "w": "Telah"
+        },
+        {
+          "t": 225.94,
+          "d": 0.39,
+          "w": "habis"
+        },
+        {
+          "t": 226.33,
+          "d": 0.42,
+          "w": "sudah"
+        },
+        {
+          "t": 226.75,
+          "d": 0.6,
+          "w": "cinta",
+          "h": true
+        },
+        {
+          "t": 227.35,
+          "d": 0.43,
+          "w": "ini",
+          "h": true
+        },
+        {
+          "t": 227.78,
+          "d": 0.35,
+          "w": "(bila"
+        },
+        {
+          "t": 228.13,
+          "d": 0.76,
+          "w": "musim"
+        },
+        {
+          "t": 228.89,
+          "d": 1.2,
+          "w": "berganti)"
+        }
+      ]
+    },
+    {
+      "start": 230.17,
+      "end": 235.21,
+      "text": "Tak <span class=\"kinetic-highlight\">lagi tersisa</span> untuk dunia (sampai waktu terhenti)",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 230.17,
+          "d": 0.5,
+          "w": "Tak"
+        },
+        {
+          "t": 230.67,
+          "d": 0.54,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 231.21,
+          "d": 0.79,
+          "w": "tersisa",
+          "h": true
+        },
+        {
+          "t": 232,
+          "d": 0.58,
+          "w": "untuk"
+        },
+        {
+          "t": 232.58,
+          "d": 0.32,
+          "w": "dunia"
+        },
+        {
+          "t": 232.9,
+          "d": 0.74,
+          "w": "(sampai"
+        },
+        {
+          "t": 233.64,
+          "d": 0.61,
+          "w": "waktu"
+        },
+        {
+          "t": 234.25,
+          "d": 0.96,
+          "w": "terhenti)"
+        }
+      ]
+    },
+    {
+      "start": 235.29,
+      "end": 238.33,
+      "text": "Kar'na t'lah kuhabiskan (walau <span class=\"kinetic-highlight\">dunia membenci)</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 235.29,
+          "d": 0.24,
+          "w": "Kar'na"
+        },
+        {
+          "t": 235.53,
+          "d": 0.23,
+          "w": "t'lah"
+        },
+        {
+          "t": 235.76,
+          "d": 0.52,
+          "w": "kuhabiskan"
+        },
+        {
+          "t": 236.28,
+          "d": 0.41,
+          "w": "(walau"
+        },
+        {
+          "t": 236.69,
+          "d": 0.38,
+          "w": "dunia",
+          "h": true
+        },
+        {
+          "t": 237.07,
+          "d": 1.26,
+          "w": "membenci)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 238.41,
+      "end": 244.98,
+      "text": "<span class=\"kinetic-highlight\">Sisa cintaku</span> hanya untukmu (ku 'kan tetap di sini)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 238.41,
+          "d": 0.8,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 239.21,
+          "d": 0.76,
+          "w": "cintaku",
+          "h": true
+        },
+        {
+          "t": 239.97,
+          "d": 0.6,
+          "w": "hanya"
+        },
+        {
+          "t": 240.57,
+          "d": 0.54,
+          "w": "untukmu"
+        },
+        {
+          "t": 241.11,
+          "d": 0.24,
+          "w": "(ku"
+        },
+        {
+          "t": 241.35,
+          "d": 0.59,
+          "w": "'kan"
+        },
+        {
+          "t": 241.94,
+          "d": 0.93,
+          "w": "tetap"
+        },
+        {
+          "t": 242.87,
+          "d": 0.56,
+          "w": "di"
+        },
+        {
+          "t": 243.43,
+          "d": 1.55,
+          "w": "sini)"
+        }
+      ]
+    },
+    {
+      "start": 245.1,
+      "end": 248.4,
+      "text": "Kar'na t'lah <span class=\"kinetic-highlight\">kuhabiskan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 245.1,
+          "d": 0.73,
+          "w": "Kar'na"
+        },
+        {
+          "t": 245.83,
+          "d": 0.48,
+          "w": "t'lah"
+        },
+        {
+          "t": 246.31,
+          "d": 2.09,
+          "w": "kuhabiskan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 248.52,
+      "end": 251.79,
+      "text": "<span class=\"kinetic-highlight\">Sisa</span> cintaku hanya untukmu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 248.52,
+          "d": 1.05,
+          "w": "Sisa",
+          "h": true
+        },
+        {
+          "t": 249.57,
+          "d": 0.76,
+          "w": "cintaku"
+        },
+        {
+          "t": 250.33,
+          "d": 0.59,
+          "w": "hanya"
+        },
+        {
+          "t": 250.92,
+          "d": 0.87,
+          "w": "untukmu"
+        }
+      ]
+    },
+    {
+      "start": 251.87,
+      "end": 272.09,
+      "text": "♪ [Petikan Lembut Akustik Menutup Surat Cinta Abadi] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

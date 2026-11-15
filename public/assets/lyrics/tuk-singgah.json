@@ -1,0 +1,997 @@
+{
+  "id": "tuk-singgah",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 28.5,
+      "text": "♪ [Adegan Dialog MV & Kesunyian Malam Membuka Cerita] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 28.6,
+      "end": 40.9,
+      "text": "♪ [Harmoni Petikan Gitar Akustik Dua Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 41.04,
+      "end": 45.82,
+      "text": "Saat kau lelah <span class=\"kinetic-highlight\">bersandarlah</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 41.04,
+          "d": 0.62,
+          "w": "Saat"
+        },
+        {
+          "t": 41.66,
+          "d": 0.59,
+          "w": "kau"
+        },
+        {
+          "t": 42.25,
+          "d": 1.46,
+          "w": "lelah"
+        },
+        {
+          "t": 43.71,
+          "d": 2.11,
+          "w": "bersandarlah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 45.92,
+      "end": 50.56,
+      "text": "Saat kau sepi ku <span class=\"kinetic-highlight\">temani</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 45.92,
+          "d": 0.54,
+          "w": "Saat"
+        },
+        {
+          "t": 46.46,
+          "d": 0.5,
+          "w": "kau"
+        },
+        {
+          "t": 46.96,
+          "d": 1.06,
+          "w": "sepi"
+        },
+        {
+          "t": 48.02,
+          "d": 0.9,
+          "w": "ku"
+        },
+        {
+          "t": 48.92,
+          "d": 1.64,
+          "w": "temani",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 50.66,
+      "end": 55.2,
+      "text": "Kapanpun kau butuh ku di <span class=\"kinetic-highlight\">sini</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 50.66,
+          "d": 1.04,
+          "w": "Kapanpun"
+        },
+        {
+          "t": 51.7,
+          "d": 0.48,
+          "w": "kau"
+        },
+        {
+          "t": 52.18,
+          "d": 1.03,
+          "w": "butuh"
+        },
+        {
+          "t": 53.21,
+          "d": 0.36,
+          "w": "ku"
+        },
+        {
+          "t": 53.57,
+          "d": 0.6,
+          "w": "di"
+        },
+        {
+          "t": 54.17,
+          "d": 1.03,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 55.3,
+      "end": 60.65,
+      "text": "♪ [Alunan Petikan Dawai Dua Rasa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 60.75,
+      "end": 65.6,
+      "text": "Semua cerita ku <span class=\"kinetic-highlight\">terima</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 60.75,
+          "d": 0.95,
+          "w": "Semua"
+        },
+        {
+          "t": 61.7,
+          "d": 1.33,
+          "w": "cerita"
+        },
+        {
+          "t": 63.03,
+          "d": 0.63,
+          "w": "ku"
+        },
+        {
+          "t": 63.66,
+          "d": 1.94,
+          "w": "terima",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 65.7,
+      "end": 70.18,
+      "text": "Tanpa berharap <span class=\"kinetic-highlight\">apa-apa</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 65.7,
+          "d": 0.97,
+          "w": "Tanpa"
+        },
+        {
+          "t": 66.67,
+          "d": 1.81,
+          "w": "berharap"
+        },
+        {
+          "t": 68.48,
+          "d": 1.7,
+          "w": "apa-apa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 70.28,
+      "end": 78.92,
+      "text": "Kapanpun kau butuh ku di <span class=\"kinetic-highlight\">sini</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 70.28,
+          "d": 1.53,
+          "w": "Kapanpun"
+        },
+        {
+          "t": 71.81,
+          "d": 1.04,
+          "w": "kau"
+        },
+        {
+          "t": 72.85,
+          "d": 1.07,
+          "w": "butuh"
+        },
+        {
+          "t": 73.92,
+          "d": 0.74,
+          "w": "ku"
+        },
+        {
+          "t": 74.66,
+          "d": 1.24,
+          "w": "di"
+        },
+        {
+          "t": 75.9,
+          "d": 3.02,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 79.04,
+      "end": 83.4,
+      "text": "Namun jika kau <span class=\"kinetic-highlight\">temukan lagi</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 79.04,
+          "d": 0.67,
+          "w": "Namun"
+        },
+        {
+          "t": 79.71,
+          "d": 0.55,
+          "w": "jika"
+        },
+        {
+          "t": 80.26,
+          "d": 0.52,
+          "w": "kau"
+        },
+        {
+          "t": 80.78,
+          "d": 1.21,
+          "w": "temukan",
+          "h": true
+        },
+        {
+          "t": 81.99,
+          "d": 1.41,
+          "w": "lagi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 83.52,
+      "end": 88.8,
+      "text": "Yang bisa membuatku <span class=\"kinetic-highlight\">terganti</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 83.52,
+          "d": 0.88,
+          "w": "Yang"
+        },
+        {
+          "t": 84.4,
+          "d": 0.79,
+          "w": "bisa"
+        },
+        {
+          "t": 85.19,
+          "d": 1.33,
+          "w": "membuatku"
+        },
+        {
+          "t": 86.52,
+          "d": 2.28,
+          "w": "terganti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 88.92,
+      "end": 93.34,
+      "text": "Ku terima karena t'lah <span class=\"kinetic-highlight\">ku duga</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 88.92,
+          "d": 0.36,
+          "w": "Ku"
+        },
+        {
+          "t": 89.28,
+          "d": 0.46,
+          "w": "terima"
+        },
+        {
+          "t": 89.74,
+          "d": 0.63,
+          "w": "karena"
+        },
+        {
+          "t": 90.37,
+          "d": 0.79,
+          "w": "t'lah"
+        },
+        {
+          "t": 91.16,
+          "d": 0.74,
+          "w": "ku",
+          "h": true
+        },
+        {
+          "t": 91.9,
+          "d": 1.44,
+          "w": "duga",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 93.44,
+      "end": 99.6,
+      "text": "Aku hanya tempatmu <span class=\"kinetic-highlight\">'tuk singgah</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 93.44,
+          "d": 0.82,
+          "w": "Aku"
+        },
+        {
+          "t": 94.26,
+          "d": 0.83,
+          "w": "hanya"
+        },
+        {
+          "t": 95.09,
+          "d": 1.35,
+          "w": "tempatmu"
+        },
+        {
+          "t": 96.44,
+          "d": 0.92,
+          "w": "'tuk",
+          "h": true
+        },
+        {
+          "t": 97.36,
+          "d": 2.24,
+          "w": "singgah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 99.7,
+      "end": 104.58,
+      "text": "♪ [Petikan Gitar Akustik Mengalun Lembut] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 104.68,
+      "end": 109.74,
+      "text": "'Kan ku nikmati <span class=\"kinetic-highlight\">masa ini</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 104.68,
+          "d": 0.74,
+          "w": "'Kan"
+        },
+        {
+          "t": 105.42,
+          "d": 0.74,
+          "w": "ku"
+        },
+        {
+          "t": 106.16,
+          "d": 1.26,
+          "w": "nikmati"
+        },
+        {
+          "t": 107.42,
+          "d": 0.86,
+          "w": "masa",
+          "h": true
+        },
+        {
+          "t": 108.28,
+          "d": 1.46,
+          "w": "ini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 109.84,
+      "end": 114.42,
+      "text": "Selagi kau masih di <span class=\"kinetic-highlight\">sini</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 109.84,
+          "d": 1.02,
+          "w": "Selagi"
+        },
+        {
+          "t": 110.86,
+          "d": 0.43,
+          "w": "kau"
+        },
+        {
+          "t": 111.29,
+          "d": 0.85,
+          "w": "masih"
+        },
+        {
+          "t": 112.14,
+          "d": 0.78,
+          "w": "di"
+        },
+        {
+          "t": 112.92,
+          "d": 1.5,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 114.52,
+      "end": 118.8,
+      "text": "Sebelum kau kembali <span class=\"kinetic-highlight\">beralih</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 114.52,
+          "d": 0.81,
+          "w": "Sebelum"
+        },
+        {
+          "t": 115.33,
+          "d": 0.51,
+          "w": "kau"
+        },
+        {
+          "t": 115.84,
+          "d": 0.69,
+          "w": "kembali"
+        },
+        {
+          "t": 116.53,
+          "d": 2.27,
+          "w": "beralih",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 118.9,
+      "end": 122.95,
+      "text": "♪ [Alunan Petikan Dawai Dua Rasa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 123.08,
+      "end": 127.58,
+      "text": "Karna jika kau temukan <span class=\"kinetic-highlight\">lagi</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 123.08,
+          "d": 0.63,
+          "w": "Karna"
+        },
+        {
+          "t": 123.71,
+          "d": 0.58,
+          "w": "jika"
+        },
+        {
+          "t": 124.29,
+          "d": 0.57,
+          "w": "kau"
+        },
+        {
+          "t": 124.86,
+          "d": 1.29,
+          "w": "temukan"
+        },
+        {
+          "t": 126.15,
+          "d": 1.43,
+          "w": "lagi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 127.68,
+      "end": 133.98,
+      "text": "Yang bisa membuatku <span class=\"kinetic-highlight\">terganti</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 127.68,
+          "d": 0.81,
+          "w": "Yang"
+        },
+        {
+          "t": 128.49,
+          "d": 1.04,
+          "w": "bisa"
+        },
+        {
+          "t": 129.53,
+          "d": 2.16,
+          "w": "membuatku"
+        },
+        {
+          "t": 131.69,
+          "d": 2.29,
+          "w": "terganti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 134.08,
+      "end": 137.42,
+      "text": "Ku terima karena t'lah ku <span class=\"kinetic-highlight\">duga</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 134.08,
+          "d": 0.31,
+          "w": "Ku"
+        },
+        {
+          "t": 134.39,
+          "d": 1.09,
+          "w": "terima"
+        },
+        {
+          "t": 135.48,
+          "d": 0.77,
+          "w": "karena"
+        },
+        {
+          "t": 136.25,
+          "d": 0.34,
+          "w": "t'lah"
+        },
+        {
+          "t": 136.59,
+          "d": 0.26,
+          "w": "ku"
+        },
+        {
+          "t": 136.85,
+          "d": 0.57,
+          "w": "duga",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 137.52,
+      "end": 145.2,
+      "text": "Aku hanya tempatmu <span class=\"kinetic-highlight\">'tuk singgah</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 137.52,
+          "d": 1.1,
+          "w": "Aku"
+        },
+        {
+          "t": 138.62,
+          "d": 1.36,
+          "w": "hanya"
+        },
+        {
+          "t": 139.98,
+          "d": 1.79,
+          "w": "tempatmu"
+        },
+        {
+          "t": 141.77,
+          "d": 1.17,
+          "w": "'tuk",
+          "h": true
+        },
+        {
+          "t": 142.94,
+          "d": 2.26,
+          "w": "singgah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 145.3,
+      "end": 162.15,
+      "text": "♪ [Na-na-na & Jeda Akustik Menanti Kepastian] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 162.28,
+      "end": 167.46,
+      "text": "Jika nanti kau tak lagi <span class=\"kinetic-highlight\">sepi</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 162.28,
+          "d": 0.71,
+          "w": "Jika"
+        },
+        {
+          "t": 162.99,
+          "d": 0.9,
+          "w": "nanti"
+        },
+        {
+          "t": 163.89,
+          "d": 0.89,
+          "w": "kau"
+        },
+        {
+          "t": 164.78,
+          "d": 0.52,
+          "w": "tak"
+        },
+        {
+          "t": 165.3,
+          "d": 1.04,
+          "w": "lagi"
+        },
+        {
+          "t": 166.34,
+          "d": 1.12,
+          "w": "sepi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 167.56,
+      "end": 171.9,
+      "text": "Tak lagi di <span class=\"kinetic-highlight\">sini</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 167.56,
+          "d": 0.39,
+          "w": "Tak"
+        },
+        {
+          "t": 167.95,
+          "d": 1.14,
+          "w": "lagi"
+        },
+        {
+          "t": 169.09,
+          "d": 0.73,
+          "w": "di"
+        },
+        {
+          "t": 169.82,
+          "d": 2.08,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 172,
+      "end": 176.86,
+      "text": "Pintu ini tak <span class=\"kinetic-highlight\">akan terkunci</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 172,
+          "d": 0.62,
+          "w": "Pintu"
+        },
+        {
+          "t": 172.62,
+          "d": 0.68,
+          "w": "ini"
+        },
+        {
+          "t": 173.3,
+          "d": 0.89,
+          "w": "tak"
+        },
+        {
+          "t": 174.19,
+          "d": 0.92,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 175.11,
+          "d": 1.75,
+          "w": "terkunci",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 176.96,
+      "end": 183.04,
+      "text": "Kapan pun kau <span class=\"kinetic-highlight\">kembali</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 176.96,
+          "d": 1.23,
+          "w": "Kapan"
+        },
+        {
+          "t": 178.19,
+          "d": 0.79,
+          "w": "pun"
+        },
+        {
+          "t": 178.98,
+          "d": 0.8,
+          "w": "kau"
+        },
+        {
+          "t": 179.78,
+          "d": 3.26,
+          "w": "kembali",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 183.16,
+      "end": 187.82,
+      "text": "Walau hanya sekedar <span class=\"kinetic-highlight\">'tuk singgah</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 183.16,
+          "d": 1.51,
+          "w": "Walau"
+        },
+        {
+          "t": 184.67,
+          "d": 0.69,
+          "w": "hanya"
+        },
+        {
+          "t": 185.36,
+          "d": 1.19,
+          "w": "sekedar"
+        },
+        {
+          "t": 186.55,
+          "d": 0.51,
+          "w": "'tuk",
+          "h": true
+        },
+        {
+          "t": 187.06,
+          "d": 0.76,
+          "w": "singgah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 187.92,
+      "end": 191.3,
+      "text": "Namun jika kau <span class=\"kinetic-highlight\">temukan lagi</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 187.92,
+          "d": 0.39,
+          "w": "Namun"
+        },
+        {
+          "t": 188.31,
+          "d": 0.33,
+          "w": "jika"
+        },
+        {
+          "t": 188.64,
+          "d": 0.53,
+          "w": "kau"
+        },
+        {
+          "t": 189.17,
+          "d": 0.94,
+          "w": "temukan",
+          "h": true
+        },
+        {
+          "t": 190.11,
+          "d": 1.19,
+          "w": "lagi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 191.4,
+      "end": 197.58,
+      "text": "Yang bisa membuatku <span class=\"kinetic-highlight\">terganti</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 191.4,
+          "d": 0.84,
+          "w": "Yang"
+        },
+        {
+          "t": 192.24,
+          "d": 0.96,
+          "w": "bisa"
+        },
+        {
+          "t": 193.2,
+          "d": 2.22,
+          "w": "membuatku"
+        },
+        {
+          "t": 195.42,
+          "d": 2.16,
+          "w": "terganti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 197.68,
+      "end": 200.9,
+      "text": "Ku terima karena t'lah <span class=\"kinetic-highlight\">ku duga</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 197.68,
+          "d": 0.27,
+          "w": "Ku"
+        },
+        {
+          "t": 197.95,
+          "d": 0.67,
+          "w": "terima"
+        },
+        {
+          "t": 198.62,
+          "d": 0.37,
+          "w": "karena"
+        },
+        {
+          "t": 198.99,
+          "d": 0.3,
+          "w": "t'lah"
+        },
+        {
+          "t": 199.29,
+          "d": 0.49,
+          "w": "ku",
+          "h": true
+        },
+        {
+          "t": 199.78,
+          "d": 1.12,
+          "w": "duga",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 201,
+      "end": 206.4,
+      "text": "Aku hanya tempatmu <span class=\"kinetic-highlight\">'tuk singgah</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 201,
+          "d": 0.68,
+          "w": "Aku"
+        },
+        {
+          "t": 201.68,
+          "d": 0.59,
+          "w": "hanya"
+        },
+        {
+          "t": 202.27,
+          "d": 1.07,
+          "w": "tempatmu"
+        },
+        {
+          "t": 203.34,
+          "d": 0.64,
+          "w": "'tuk",
+          "h": true
+        },
+        {
+          "t": 203.98,
+          "d": 2.42,
+          "w": "singgah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 206.5,
+      "end": 211.5,
+      "text": "Aku hanya tempatmu <span class=\"kinetic-highlight\">'tuk singgah...</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 206.5,
+          "d": 0.89,
+          "w": "Aku"
+        },
+        {
+          "t": 207.39,
+          "d": 0.68,
+          "w": "hanya"
+        },
+        {
+          "t": 208.07,
+          "d": 1.07,
+          "w": "tempatmu"
+        },
+        {
+          "t": 209.14,
+          "d": 0.47,
+          "w": "'tuk",
+          "h": true
+        },
+        {
+          "t": 209.61,
+          "d": 1.89,
+          "w": "singgah...",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 211.6,
+      "end": 271.8,
+      "text": "♪ [Petikan Lembut & Epilog Dialog MV: \"Tempat Singgah\"] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

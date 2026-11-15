@@ -1,0 +1,1009 @@
+{
+  "id": "penyangkalan",
+  "subtitles": [
+    {
+      "start": 0.32,
+      "end": 3.29,
+      "text": "Selamat datang di <span class=\"kinetic-highlight\">penyangkalan</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 0.32,
+          "d": 0.97,
+          "w": "Selamat"
+        },
+        {
+          "t": 1.29,
+          "d": 0.45,
+          "w": "datang"
+        },
+        {
+          "t": 1.74,
+          "d": 0.36,
+          "w": "di"
+        },
+        {
+          "t": 2.1,
+          "d": 1.19,
+          "w": "penyangkalan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 3.37,
+      "end": 24.87,
+      "text": "♪ [Alunan Akustik Hening Membuka Malam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 24.95,
+      "end": 28.72,
+      "text": "Sesunyi rumah yang <span class=\"kinetic-highlight\">kuhuni</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 24.95,
+          "d": 1.39,
+          "w": "Sesunyi"
+        },
+        {
+          "t": 26.34,
+          "d": 0.51,
+          "w": "rumah"
+        },
+        {
+          "t": 26.85,
+          "d": 0.36,
+          "w": "yang"
+        },
+        {
+          "t": 27.21,
+          "d": 1.51,
+          "w": "kuhuni",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 28.8,
+      "end": 32.82,
+      "text": "Sebising derau di <span class=\"kinetic-highlight\">ujung hari</span> (di ujung hari)",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 28.8,
+          "d": 1.01,
+          "w": "Sebising"
+        },
+        {
+          "t": 29.81,
+          "d": 0.58,
+          "w": "derau"
+        },
+        {
+          "t": 30.39,
+          "d": 0.23,
+          "w": "di"
+        },
+        {
+          "t": 30.62,
+          "d": 0.48,
+          "w": "ujung",
+          "h": true
+        },
+        {
+          "t": 31.1,
+          "d": 0.42,
+          "w": "hari",
+          "h": true
+        },
+        {
+          "t": 31.52,
+          "d": 0.25,
+          "w": "(di"
+        },
+        {
+          "t": 31.77,
+          "d": 0.43,
+          "w": "ujung"
+        },
+        {
+          "t": 32.2,
+          "d": 0.62,
+          "w": "hari)"
+        }
+      ]
+    },
+    {
+      "start": 32.9,
+      "end": 37.37,
+      "text": "♪ [Getaran Harmoni Menanti Alunan Vokal] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 37.45,
+      "end": 41.25,
+      "text": "Seperih luka yang <span class=\"kinetic-highlight\">abadi</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 37.45,
+          "d": 1.16,
+          "w": "Seperih"
+        },
+        {
+          "t": 38.61,
+          "d": 0.8,
+          "w": "luka"
+        },
+        {
+          "t": 39.41,
+          "d": 0.44,
+          "w": "yang"
+        },
+        {
+          "t": 39.85,
+          "d": 1.4,
+          "w": "abadi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 41.33,
+      "end": 48.9,
+      "text": "Sebisanya 'kan <span class=\"kinetic-highlight\">kunikmati</span> (kunikmati)",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 41.33,
+          "d": 1.83,
+          "w": "Sebisanya"
+        },
+        {
+          "t": 43.16,
+          "d": 0.64,
+          "w": "'kan"
+        },
+        {
+          "t": 43.8,
+          "d": 1.73,
+          "w": "kunikmati",
+          "h": true
+        },
+        {
+          "t": 45.53,
+          "d": 3.37,
+          "w": "(kunikmati)"
+        }
+      ]
+    },
+    {
+      "start": 49.98,
+      "end": 53.25,
+      "text": "Selamat datang di <span class=\"kinetic-highlight\">penyangkalan</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 49.98,
+          "d": 0.99,
+          "w": "Selamat"
+        },
+        {
+          "t": 50.97,
+          "d": 0.49,
+          "w": "datang"
+        },
+        {
+          "t": 51.46,
+          "d": 0.45,
+          "w": "di"
+        },
+        {
+          "t": 51.91,
+          "d": 1.34,
+          "w": "penyangkalan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 53.33,
+      "end": 63.53,
+      "text": "♪ [Distorsi Gitar Merayap Membakar Emosi] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 63.61,
+      "end": 69.72,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 63.61,
+          "d": 0.6,
+          "w": "Dia"
+        },
+        {
+          "t": 64.21,
+          "d": 0.75,
+          "w": "masih"
+        },
+        {
+          "t": 64.96,
+          "d": 0.83,
+          "w": "di"
+        },
+        {
+          "t": 65.79,
+          "d": 1.3,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 67.09,
+          "d": 0.57,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 67.66,
+          "d": 2.06,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 69.84,
+      "end": 75.9,
+      "text": "Perlahan <span class=\"kinetic-highlight\">meracuni kewarasan</span> yang mati",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 69.84,
+          "d": 0.89,
+          "w": "Perlahan"
+        },
+        {
+          "t": 70.73,
+          "d": 1.59,
+          "w": "meracuni",
+          "h": true
+        },
+        {
+          "t": 72.32,
+          "d": 1.23,
+          "w": "kewarasan",
+          "h": true
+        },
+        {
+          "t": 73.55,
+          "d": 0.64,
+          "w": "yang"
+        },
+        {
+          "t": 74.19,
+          "d": 1.71,
+          "w": "mati"
+        }
+      ]
+    },
+    {
+      "start": 76.02,
+      "end": 82.22,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 76.02,
+          "d": 0.6,
+          "w": "Dia"
+        },
+        {
+          "t": 76.62,
+          "d": 0.72,
+          "w": "masih"
+        },
+        {
+          "t": 77.34,
+          "d": 0.73,
+          "w": "di"
+        },
+        {
+          "t": 78.07,
+          "d": 1.19,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 79.26,
+          "d": 0.68,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 79.94,
+          "d": 2.28,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 82.34,
+      "end": 87.52,
+      "text": "Perlahan <span class=\"kinetic-highlight\">menghantui kenyataan</span> yang sepi",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 82.34,
+          "d": 0.96,
+          "w": "Perlahan"
+        },
+        {
+          "t": 83.3,
+          "d": 1.2,
+          "w": "menghantui",
+          "h": true
+        },
+        {
+          "t": 84.5,
+          "d": 1.15,
+          "w": "kenyataan",
+          "h": true
+        },
+        {
+          "t": 85.65,
+          "d": 0.58,
+          "w": "yang"
+        },
+        {
+          "t": 86.23,
+          "d": 1.29,
+          "w": "sepi"
+        }
+      ]
+    },
+    {
+      "start": 87.6,
+      "end": 99.73,
+      "text": "♪ [Raungan Gitar Distorsi Perlahan Meluruh] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 99.81,
+      "end": 103.73,
+      "text": "Bertukar peran <span class=\"kinetic-highlight\">menyakiti</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 99.81,
+          "d": 1.12,
+          "w": "Bertukar"
+        },
+        {
+          "t": 100.93,
+          "d": 0.72,
+          "w": "peran"
+        },
+        {
+          "t": 101.65,
+          "d": 2.08,
+          "w": "menyakiti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 103.85,
+      "end": 107.22,
+      "text": "Seakan ku tak <span class=\"kinetic-highlight\">bisa mati</span> (bisa mati)",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 103.85,
+          "d": 0.45,
+          "w": "Seakan"
+        },
+        {
+          "t": 104.3,
+          "d": 0.36,
+          "w": "ku"
+        },
+        {
+          "t": 104.66,
+          "d": 0.36,
+          "w": "tak"
+        },
+        {
+          "t": 105.02,
+          "d": 0.63,
+          "w": "bisa",
+          "h": true
+        },
+        {
+          "t": 105.65,
+          "d": 0.67,
+          "w": "mati",
+          "h": true
+        },
+        {
+          "t": 106.32,
+          "d": 0.35,
+          "w": "(bisa"
+        },
+        {
+          "t": 106.67,
+          "d": 0.55,
+          "w": "mati)"
+        }
+      ]
+    },
+    {
+      "start": 107.3,
+      "end": 112.41,
+      "text": "♪ [Gema Nada Terakhir Membawa Keikhlasan Batin] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 112.49,
+      "end": 116.22,
+      "text": "Berpura-pura <span class=\"kinetic-highlight\">pulih</span> sendiri",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 112.49,
+          "d": 1.43,
+          "w": "Berpura-pura"
+        },
+        {
+          "t": 113.92,
+          "d": 0.85,
+          "w": "pulih",
+          "h": true
+        },
+        {
+          "t": 114.77,
+          "d": 1.45,
+          "w": "sendiri"
+        }
+      ]
+    },
+    {
+      "start": 116.3,
+      "end": 121.27,
+      "text": "Nyatanya ku telah <span class=\"kinetic-highlight\">mati</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 116.3,
+          "d": 1.15,
+          "w": "Nyatanya"
+        },
+        {
+          "t": 117.45,
+          "d": 0.79,
+          "w": "ku"
+        },
+        {
+          "t": 118.24,
+          "d": 0.76,
+          "w": "telah"
+        },
+        {
+          "t": 119,
+          "d": 2.27,
+          "w": "mati",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 121.39,
+      "end": 125.89,
+      "text": "<span class=\"kinetic-highlight\">Berkali-kali</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 121.39,
+          "d": 4.5,
+          "w": "Berkali-kali",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 126.08,
+      "end": 132.13,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 126.08,
+          "d": 0.49,
+          "w": "Dia"
+        },
+        {
+          "t": 126.57,
+          "d": 0.78,
+          "w": "masih"
+        },
+        {
+          "t": 127.35,
+          "d": 0.7,
+          "w": "di"
+        },
+        {
+          "t": 128.05,
+          "d": 1.26,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 129.31,
+          "d": 0.67,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 129.98,
+          "d": 2.15,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 132.25,
+      "end": 138.43,
+      "text": "Perlahan <span class=\"kinetic-highlight\">meracuni kewarasan</span> yang mati",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 132.25,
+          "d": 0.82,
+          "w": "Perlahan"
+        },
+        {
+          "t": 133.07,
+          "d": 1.36,
+          "w": "meracuni",
+          "h": true
+        },
+        {
+          "t": 134.43,
+          "d": 1.44,
+          "w": "kewarasan",
+          "h": true
+        },
+        {
+          "t": 135.87,
+          "d": 0.69,
+          "w": "yang"
+        },
+        {
+          "t": 136.56,
+          "d": 1.87,
+          "w": "mati"
+        }
+      ]
+    },
+    {
+      "start": 138.55,
+      "end": 144.77,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 138.55,
+          "d": 0.47,
+          "w": "Dia"
+        },
+        {
+          "t": 139.02,
+          "d": 0.82,
+          "w": "masih"
+        },
+        {
+          "t": 139.84,
+          "d": 0.86,
+          "w": "di"
+        },
+        {
+          "t": 140.7,
+          "d": 1.16,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 141.86,
+          "d": 0.64,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 142.5,
+          "d": 2.27,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 144.89,
+      "end": 149.62,
+      "text": "Perlahan <span class=\"kinetic-highlight\">menghantui kenyataan</span> yang sepi",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 144.89,
+          "d": 1,
+          "w": "Perlahan"
+        },
+        {
+          "t": 145.89,
+          "d": 1.09,
+          "w": "menghantui",
+          "h": true
+        },
+        {
+          "t": 146.98,
+          "d": 1.1,
+          "w": "kenyataan",
+          "h": true
+        },
+        {
+          "t": 148.08,
+          "d": 0.45,
+          "w": "yang"
+        },
+        {
+          "t": 148.53,
+          "d": 1.09,
+          "w": "sepi"
+        }
+      ]
+    },
+    {
+      "start": 149.74,
+      "end": 153.01,
+      "text": "Selamat datang di <span class=\"kinetic-highlight\">penyangkalan</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 149.74,
+          "d": 0.61,
+          "w": "Selamat"
+        },
+        {
+          "t": 150.35,
+          "d": 0.48,
+          "w": "datang"
+        },
+        {
+          "t": 150.83,
+          "d": 0.4,
+          "w": "di"
+        },
+        {
+          "t": 151.23,
+          "d": 1.78,
+          "w": "penyangkalan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 153.09,
+      "end": 161.93,
+      "text": "♪ [Getaran Harmoni Menanti Alunan Vokal] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 162.01,
+      "end": 165.28,
+      "text": "Selamat datang di <span class=\"kinetic-highlight\">penyangkalan</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 162.01,
+          "d": 1.03,
+          "w": "Selamat"
+        },
+        {
+          "t": 163.04,
+          "d": 0.59,
+          "w": "datang"
+        },
+        {
+          "t": 163.63,
+          "d": 0.36,
+          "w": "di"
+        },
+        {
+          "t": 163.99,
+          "d": 1.29,
+          "w": "penyangkalan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 165.36,
+      "end": 174.51,
+      "text": "♪ [Distorsi Gitar Merayap Membakar Emosi] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 174.59,
+      "end": 177.86,
+      "text": "Selamat datang di <span class=\"kinetic-highlight\">penyangkalan</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 174.59,
+          "d": 0.56,
+          "w": "Selamat"
+        },
+        {
+          "t": 175.15,
+          "d": 0.54,
+          "w": "datang"
+        },
+        {
+          "t": 175.69,
+          "d": 0.28,
+          "w": "di"
+        },
+        {
+          "t": 175.97,
+          "d": 1.89,
+          "w": "penyangkalan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 177.94,
+      "end": 187.17,
+      "text": "♪ [Raungan Gitar Distorsi Perlahan Meluruh] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 187.25,
+      "end": 190.52,
+      "text": "Bertukar peran <span class=\"kinetic-highlight\">saling</span> menghantam",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 187.25,
+          "d": 0.79,
+          "w": "Bertukar"
+        },
+        {
+          "t": 188.04,
+          "d": 0.9,
+          "w": "peran"
+        },
+        {
+          "t": 188.94,
+          "d": 0.91,
+          "w": "saling",
+          "h": true
+        },
+        {
+          "t": 189.85,
+          "d": 0.67,
+          "w": "menghantam"
+        }
+      ]
+    },
+    {
+      "start": 190.6,
+      "end": 200.74,
+      "text": "♪ [Gema Nada Terakhir Membawa Keikhlasan Batin] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 200.82,
+      "end": 207,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 200.82,
+          "d": 0.53,
+          "w": "Dia"
+        },
+        {
+          "t": 201.35,
+          "d": 0.7,
+          "w": "masih"
+        },
+        {
+          "t": 202.05,
+          "d": 0.8,
+          "w": "di"
+        },
+        {
+          "t": 202.85,
+          "d": 1.38,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 204.23,
+          "d": 0.45,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 204.68,
+          "d": 2.32,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 207.12,
+      "end": 213.22,
+      "text": "Perlahan <span class=\"kinetic-highlight\">meracuni kewarasan</span> yang mati",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 207.12,
+          "d": 0.87,
+          "w": "Perlahan"
+        },
+        {
+          "t": 207.99,
+          "d": 1.8,
+          "w": "meracuni",
+          "h": true
+        },
+        {
+          "t": 209.79,
+          "d": 1.05,
+          "w": "kewarasan",
+          "h": true
+        },
+        {
+          "t": 210.84,
+          "d": 0.64,
+          "w": "yang"
+        },
+        {
+          "t": 211.48,
+          "d": 1.74,
+          "w": "mati"
+        }
+      ]
+    },
+    {
+      "start": 213.34,
+      "end": 219.46,
+      "text": "Dia masih di <span class=\"kinetic-highlight\">sini dan</span> menari-nari",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 213.34,
+          "d": 0.43,
+          "w": "Dia"
+        },
+        {
+          "t": 213.77,
+          "d": 0.85,
+          "w": "masih"
+        },
+        {
+          "t": 214.62,
+          "d": 0.72,
+          "w": "di"
+        },
+        {
+          "t": 215.34,
+          "d": 1.38,
+          "w": "sini",
+          "h": true
+        },
+        {
+          "t": 216.72,
+          "d": 0.53,
+          "w": "dan",
+          "h": true
+        },
+        {
+          "t": 217.25,
+          "d": 2.21,
+          "w": "menari-nari"
+        }
+      ]
+    },
+    {
+      "start": 219.58,
+      "end": 224.72,
+      "text": "Perlahan <span class=\"kinetic-highlight\">menghantui kenyataan</span> yang sepi",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 219.58,
+          "d": 0.9,
+          "w": "Perlahan"
+        },
+        {
+          "t": 220.48,
+          "d": 1.05,
+          "w": "menghantui",
+          "h": true
+        },
+        {
+          "t": 221.53,
+          "d": 1.47,
+          "w": "kenyataan",
+          "h": true
+        },
+        {
+          "t": 223,
+          "d": 0.36,
+          "w": "yang"
+        },
+        {
+          "t": 223.36,
+          "d": 1.36,
+          "w": "sepi"
+        }
+      ]
+    },
+    {
+      "start": 224.8,
+      "end": 240.61,
+      "text": "♪ [Hening Sempurna Menutup Babak Penyangkalan] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

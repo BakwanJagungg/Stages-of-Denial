@@ -1,0 +1,1109 @@
+{
+  "id": "l",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 17.26,
+      "text": "♪ [Alunan Lembut Nostalgia Mengenang Tujuh Tahun] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 17.34,
+      "end": 20.46,
+      "text": "Sungguh tak <span class=\"kinetic-highlight\">terasa</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 17.34,
+          "d": 0.76,
+          "w": "Sungguh"
+        },
+        {
+          "t": 18.1,
+          "d": 0.58,
+          "w": "tak"
+        },
+        {
+          "t": 18.68,
+          "d": 1.78,
+          "w": "terasa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 20.58,
+      "end": 23.72,
+      "text": "<span class=\"kinetic-highlight\">Sudah</span> tujuh tahun",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 20.58,
+          "d": 0.8,
+          "w": "Sudah",
+          "h": true
+        },
+        {
+          "t": 21.38,
+          "d": 0.89,
+          "w": "tujuh"
+        },
+        {
+          "t": 22.27,
+          "d": 1.45,
+          "w": "tahun"
+        }
+      ]
+    },
+    {
+      "start": 23.84,
+      "end": 29,
+      "text": "Rotasi waktu <span class=\"kinetic-highlight\">hidupku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 23.84,
+          "d": 1.28,
+          "w": "Rotasi"
+        },
+        {
+          "t": 25.12,
+          "d": 0.98,
+          "w": "waktu"
+        },
+        {
+          "t": 26.1,
+          "d": 2.9,
+          "w": "hidupku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 29.81,
+      "end": 33.19,
+      "text": "<span class=\"kinetic-highlight\">Binar</span> mata yang membiru",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 29.81,
+          "d": 0.82,
+          "w": "Binar",
+          "h": true
+        },
+        {
+          "t": 30.63,
+          "d": 0.72,
+          "w": "mata"
+        },
+        {
+          "t": 31.35,
+          "d": 0.52,
+          "w": "yang"
+        },
+        {
+          "t": 31.87,
+          "d": 1.32,
+          "w": "membiru"
+        }
+      ]
+    },
+    {
+      "start": 33.27,
+      "end": 36.14,
+      "text": "Hari-hari yang <span class=\"kinetic-highlight\">lesu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 33.27,
+          "d": 0.75,
+          "w": "Hari-hari"
+        },
+        {
+          "t": 34.02,
+          "d": 0.6,
+          "w": "yang"
+        },
+        {
+          "t": 34.62,
+          "d": 1.52,
+          "w": "lesu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 36.22,
+      "end": 39.44,
+      "text": "Aku <span class=\"kinetic-highlight\">menunggu</span> kamu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 36.22,
+          "d": 0.68,
+          "w": "Aku"
+        },
+        {
+          "t": 36.9,
+          "d": 1.01,
+          "w": "menunggu",
+          "h": true
+        },
+        {
+          "t": 37.91,
+          "d": 1.53,
+          "w": "kamu"
+        }
+      ]
+    },
+    {
+      "start": 39.52,
+      "end": 45.32,
+      "text": "<span class=\"kinetic-highlight\">Selalu aku</span> lihat belakang punggungmu",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 39.52,
+          "d": 1.77,
+          "w": "Selalu",
+          "h": true
+        },
+        {
+          "t": 41.29,
+          "d": 0.69,
+          "w": "aku",
+          "h": true
+        },
+        {
+          "t": 41.98,
+          "d": 0.94,
+          "w": "lihat"
+        },
+        {
+          "t": 42.92,
+          "d": 0.82,
+          "w": "belakang"
+        },
+        {
+          "t": 43.74,
+          "d": 1.58,
+          "w": "punggungmu"
+        }
+      ]
+    },
+    {
+      "start": 45.44,
+      "end": 51.83,
+      "text": "Di saat kau lihat <span class=\"kinetic-highlight\">belakang punggung</span> pria lain",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 45.44,
+          "d": 0.63,
+          "w": "Di"
+        },
+        {
+          "t": 46.07,
+          "d": 0.37,
+          "w": "saat"
+        },
+        {
+          "t": 46.44,
+          "d": 0.57,
+          "w": "kau"
+        },
+        {
+          "t": 47.01,
+          "d": 0.62,
+          "w": "lihat"
+        },
+        {
+          "t": 47.63,
+          "d": 1.51,
+          "w": "belakang",
+          "h": true
+        },
+        {
+          "t": 49.14,
+          "d": 1.21,
+          "w": "punggung",
+          "h": true
+        },
+        {
+          "t": 50.35,
+          "d": 0.38,
+          "w": "pria"
+        },
+        {
+          "t": 50.73,
+          "d": 1.1,
+          "w": "lain"
+        }
+      ]
+    },
+    {
+      "start": 52.16,
+      "end": 58.55,
+      "text": "<span class=\"kinetic-highlight\">Menunggu kau</span> menoleh dan berlari ke arahku",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 52.16,
+          "d": 1.95,
+          "w": "Menunggu",
+          "h": true
+        },
+        {
+          "t": 54.11,
+          "d": 0.59,
+          "w": "kau",
+          "h": true
+        },
+        {
+          "t": 54.7,
+          "d": 0.76,
+          "w": "menoleh"
+        },
+        {
+          "t": 55.46,
+          "d": 0.55,
+          "w": "dan"
+        },
+        {
+          "t": 56.01,
+          "d": 0.77,
+          "w": "berlari"
+        },
+        {
+          "t": 56.78,
+          "d": 0.7,
+          "w": "ke"
+        },
+        {
+          "t": 57.48,
+          "d": 1.07,
+          "w": "arahku"
+        }
+      ]
+    },
+    {
+      "start": 58.67,
+      "end": 61.02,
+      "text": "Dan memelukku <span class=\"kinetic-highlight\">seerat-eratnya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 58.67,
+          "d": 0.26,
+          "w": "Dan"
+        },
+        {
+          "t": 58.93,
+          "d": 0.78,
+          "w": "memelukku"
+        },
+        {
+          "t": 59.71,
+          "d": 1.31,
+          "w": "seerat-eratnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 61.1,
+      "end": 67.51,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 67.59,
+      "end": 70.76,
+      "text": "<span class=\"kinetic-highlight\">Sudah</span> aku coba",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 67.59,
+          "d": 0.84,
+          "w": "Sudah",
+          "h": true
+        },
+        {
+          "t": 68.43,
+          "d": 0.95,
+          "w": "aku"
+        },
+        {
+          "t": 69.38,
+          "d": 1.38,
+          "w": "coba"
+        }
+      ]
+    },
+    {
+      "start": 70.88,
+      "end": 73.75,
+      "text": "<span class=\"kinetic-highlight\">Untuk menghapusmu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 70.88,
+          "d": 0.84,
+          "w": "Untuk",
+          "h": true
+        },
+        {
+          "t": 71.72,
+          "d": 2.03,
+          "w": "menghapusmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 73.83,
+      "end": 79.2,
+      "text": "Naifku hanya <span class=\"kinetic-highlight\">jelaga</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 73.83,
+          "d": 1.04,
+          "w": "Naifku"
+        },
+        {
+          "t": 74.87,
+          "d": 1.14,
+          "w": "hanya"
+        },
+        {
+          "t": 76.01,
+          "d": 3.19,
+          "w": "jelaga",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 80.12,
+      "end": 83.3,
+      "text": "Di rindu pada <span class=\"kinetic-highlight\">siapa</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 80.12,
+          "d": 0.53,
+          "w": "Di"
+        },
+        {
+          "t": 80.65,
+          "d": 0.79,
+          "w": "rindu"
+        },
+        {
+          "t": 81.44,
+          "d": 0.76,
+          "w": "pada"
+        },
+        {
+          "t": 82.2,
+          "d": 1.1,
+          "w": "siapa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 83.38,
+      "end": 86.4,
+      "text": "Ku masih <span class=\"kinetic-highlight\">merasakannya</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 83.38,
+          "d": 0.41,
+          "w": "Ku"
+        },
+        {
+          "t": 83.79,
+          "d": 0.77,
+          "w": "masih"
+        },
+        {
+          "t": 84.56,
+          "d": 1.84,
+          "w": "merasakannya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 86.48,
+      "end": 89.62,
+      "text": "<span class=\"kinetic-highlight\">Kamu</span> masih penyebabnya",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 86.48,
+          "d": 0.69,
+          "w": "Kamu",
+          "h": true
+        },
+        {
+          "t": 87.17,
+          "d": 0.86,
+          "w": "masih"
+        },
+        {
+          "t": 88.03,
+          "d": 1.59,
+          "w": "penyebabnya"
+        }
+      ]
+    },
+    {
+      "start": 89.7,
+      "end": 95.38,
+      "text": "<span class=\"kinetic-highlight\">Selalu aku</span> lihat belakang punggungmu",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 89.7,
+          "d": 1.52,
+          "w": "Selalu",
+          "h": true
+        },
+        {
+          "t": 91.22,
+          "d": 0.94,
+          "w": "aku",
+          "h": true
+        },
+        {
+          "t": 92.16,
+          "d": 0.79,
+          "w": "lihat"
+        },
+        {
+          "t": 92.95,
+          "d": 0.92,
+          "w": "belakang"
+        },
+        {
+          "t": 93.87,
+          "d": 1.51,
+          "w": "punggungmu"
+        }
+      ]
+    },
+    {
+      "start": 95.5,
+      "end": 101.89,
+      "text": "Di saat kau lihat <span class=\"kinetic-highlight\">belakang punggung</span> pria lain",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 95.5,
+          "d": 0.72,
+          "w": "Di"
+        },
+        {
+          "t": 96.22,
+          "d": 0.39,
+          "w": "saat"
+        },
+        {
+          "t": 96.61,
+          "d": 0.66,
+          "w": "kau"
+        },
+        {
+          "t": 97.27,
+          "d": 0.84,
+          "w": "lihat"
+        },
+        {
+          "t": 98.11,
+          "d": 1.22,
+          "w": "belakang",
+          "h": true
+        },
+        {
+          "t": 99.33,
+          "d": 1.04,
+          "w": "punggung",
+          "h": true
+        },
+        {
+          "t": 100.37,
+          "d": 0.41,
+          "w": "pria"
+        },
+        {
+          "t": 100.78,
+          "d": 1.11,
+          "w": "lain"
+        }
+      ]
+    },
+    {
+      "start": 102.46,
+      "end": 108.81,
+      "text": "<span class=\"kinetic-highlight\">Menunggu kau</span> menoleh dan berlari ke arahku",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 102.46,
+          "d": 2.17,
+          "w": "Menunggu",
+          "h": true
+        },
+        {
+          "t": 104.63,
+          "d": 0.58,
+          "w": "kau",
+          "h": true
+        },
+        {
+          "t": 105.21,
+          "d": 0.81,
+          "w": "menoleh"
+        },
+        {
+          "t": 106.02,
+          "d": 0.44,
+          "w": "dan"
+        },
+        {
+          "t": 106.46,
+          "d": 1.07,
+          "w": "berlari"
+        },
+        {
+          "t": 107.53,
+          "d": 0.35,
+          "w": "ke"
+        },
+        {
+          "t": 107.88,
+          "d": 0.93,
+          "w": "arahku"
+        }
+      ]
+    },
+    {
+      "start": 108.93,
+      "end": 114.78,
+      "text": "Dan memelukku <span class=\"kinetic-highlight\">seerat-eratnya</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 108.93,
+          "d": 0.7,
+          "w": "Dan"
+        },
+        {
+          "t": 109.63,
+          "d": 2.15,
+          "w": "memelukku"
+        },
+        {
+          "t": 111.78,
+          "d": 3,
+          "w": "seerat-eratnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 114.96,
+      "end": 120.6,
+      "text": "<span class=\"kinetic-highlight\">Selalu aku</span> lihat belakang punggungmu",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 114.96,
+          "d": 1.03,
+          "w": "Selalu",
+          "h": true
+        },
+        {
+          "t": 115.99,
+          "d": 0.77,
+          "w": "aku",
+          "h": true
+        },
+        {
+          "t": 116.76,
+          "d": 0.9,
+          "w": "lihat"
+        },
+        {
+          "t": 117.66,
+          "d": 1.14,
+          "w": "belakang"
+        },
+        {
+          "t": 118.8,
+          "d": 1.8,
+          "w": "punggungmu"
+        }
+      ]
+    },
+    {
+      "start": 120.72,
+      "end": 127.11,
+      "text": "Di saat kau lihat <span class=\"kinetic-highlight\">belakang punggung</span> pria lain",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 120.72,
+          "d": 0.7,
+          "w": "Di"
+        },
+        {
+          "t": 121.42,
+          "d": 0.35,
+          "w": "saat"
+        },
+        {
+          "t": 121.77,
+          "d": 0.75,
+          "w": "kau"
+        },
+        {
+          "t": 122.52,
+          "d": 0.75,
+          "w": "lihat"
+        },
+        {
+          "t": 123.27,
+          "d": 1.17,
+          "w": "belakang",
+          "h": true
+        },
+        {
+          "t": 124.44,
+          "d": 1.16,
+          "w": "punggung",
+          "h": true
+        },
+        {
+          "t": 125.6,
+          "d": 0.39,
+          "w": "pria"
+        },
+        {
+          "t": 125.99,
+          "d": 1.12,
+          "w": "lain"
+        }
+      ]
+    },
+    {
+      "start": 127.55,
+      "end": 133.93,
+      "text": "<span class=\"kinetic-highlight\">Menunggu kau</span> menoleh dan berlari ke arahku",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 127.55,
+          "d": 2.16,
+          "w": "Menunggu",
+          "h": true
+        },
+        {
+          "t": 129.71,
+          "d": 0.57,
+          "w": "kau",
+          "h": true
+        },
+        {
+          "t": 130.28,
+          "d": 0.76,
+          "w": "menoleh"
+        },
+        {
+          "t": 131.04,
+          "d": 0.49,
+          "w": "dan"
+        },
+        {
+          "t": 131.53,
+          "d": 0.73,
+          "w": "berlari"
+        },
+        {
+          "t": 132.26,
+          "d": 0.66,
+          "w": "ke"
+        },
+        {
+          "t": 132.92,
+          "d": 1.01,
+          "w": "arahku"
+        }
+      ]
+    },
+    {
+      "start": 134.05,
+      "end": 137.32,
+      "text": "Dan memelukku <span class=\"kinetic-highlight\">seerat-eratnya</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 134.05,
+          "d": 0.34,
+          "w": "Dan"
+        },
+        {
+          "t": 134.39,
+          "d": 0.87,
+          "w": "memelukku"
+        },
+        {
+          "t": 135.26,
+          "d": 2.06,
+          "w": "seerat-eratnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 137.4,
+      "end": 165,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 165.08,
+      "end": 169.85,
+      "text": "Mencoba berdamai dengan <span class=\"kinetic-highlight\">diriku</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 165.08,
+          "d": 1.24,
+          "w": "Mencoba"
+        },
+        {
+          "t": 166.32,
+          "d": 0.94,
+          "w": "berdamai"
+        },
+        {
+          "t": 167.26,
+          "d": 0.68,
+          "w": "dengan"
+        },
+        {
+          "t": 167.94,
+          "d": 1.91,
+          "w": "diriku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 169.97,
+      "end": 176.5,
+      "text": "Tapi kau s'lalu tahu itu, bagaimana <span class=\"kinetic-highlight\">mungkin?</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 169.97,
+          "d": 0.65,
+          "w": "Tapi"
+        },
+        {
+          "t": 170.62,
+          "d": 0.54,
+          "w": "kau"
+        },
+        {
+          "t": 171.16,
+          "d": 0.67,
+          "w": "s'lalu"
+        },
+        {
+          "t": 171.83,
+          "d": 0.66,
+          "w": "tahu"
+        },
+        {
+          "t": 172.49,
+          "d": 1.18,
+          "w": "itu,"
+        },
+        {
+          "t": 173.67,
+          "d": 1.44,
+          "w": "bagaimana"
+        },
+        {
+          "t": 175.11,
+          "d": 1.39,
+          "w": "mungkin?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 177.46,
+      "end": 186.01,
+      "text": "Ketika kau masih jadi <span class=\"kinetic-highlight\">satu-satunya alasanku</span> menunggu",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 177.46,
+          "d": 1.29,
+          "w": "Ketika"
+        },
+        {
+          "t": 178.75,
+          "d": 0.78,
+          "w": "kau"
+        },
+        {
+          "t": 179.53,
+          "d": 0.72,
+          "w": "masih"
+        },
+        {
+          "t": 180.25,
+          "d": 1.24,
+          "w": "jadi"
+        },
+        {
+          "t": 181.49,
+          "d": 1.51,
+          "w": "satu-satunya",
+          "h": true
+        },
+        {
+          "t": 183,
+          "d": 1.17,
+          "w": "alasanku",
+          "h": true
+        },
+        {
+          "t": 184.17,
+          "d": 1.84,
+          "w": "menunggu"
+        }
+      ]
+    },
+    {
+      "start": 186.97,
+      "end": 192.2,
+      "text": "Di lini <span class=\"kinetic-highlight\">waktuku</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 186.97,
+          "d": 0.67,
+          "w": "Di"
+        },
+        {
+          "t": 187.64,
+          "d": 1.35,
+          "w": "lini"
+        },
+        {
+          "t": 188.99,
+          "d": 3.21,
+          "w": "waktuku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 193.16,
+      "end": 196.2,
+      "text": "Sungguh tak <span class=\"kinetic-highlight\">terasa</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 193.16,
+          "d": 0.63,
+          "w": "Sungguh"
+        },
+        {
+          "t": 193.79,
+          "d": 0.69,
+          "w": "tak"
+        },
+        {
+          "t": 194.48,
+          "d": 1.72,
+          "w": "terasa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 196.32,
+      "end": 199.23,
+      "text": "<span class=\"kinetic-highlight\">Sudah</span> tujuh tahun",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 196.32,
+          "d": 0.61,
+          "w": "Sudah",
+          "h": true
+        },
+        {
+          "t": 196.93,
+          "d": 0.82,
+          "w": "tujuh"
+        },
+        {
+          "t": 197.75,
+          "d": 1.48,
+          "w": "tahun"
+        }
+      ]
+    },
+    {
+      "start": 199.31,
+      "end": 204.7,
+      "text": "Habiskan masa <span class=\"kinetic-highlight\">mudaku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 199.31,
+          "d": 1.29,
+          "w": "Habiskan"
+        },
+        {
+          "t": 200.6,
+          "d": 1.19,
+          "w": "masa"
+        },
+        {
+          "t": 201.79,
+          "d": 2.91,
+          "w": "mudaku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 205.75,
+      "end": 208.76,
+      "text": "Hanya untuk <span class=\"kinetic-highlight\">membuatmu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 205.75,
+          "d": 0.73,
+          "w": "Hanya"
+        },
+        {
+          "t": 206.48,
+          "d": 0.84,
+          "w": "untuk"
+        },
+        {
+          "t": 207.32,
+          "d": 1.44,
+          "w": "membuatmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 208.84,
+      "end": 212,
+      "text": "<span class=\"kinetic-highlight\">Terkesan kepadaku</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 208.84,
+          "d": 1.13,
+          "w": "Terkesan",
+          "h": true
+        },
+        {
+          "t": 209.97,
+          "d": 2.03,
+          "w": "kepadaku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 212.08,
+      "end": 213.85,
+      "text": "Begitu <span class=\"kinetic-highlight\">bodohnya</span> aku",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 212.08,
+          "d": 0.45,
+          "w": "Begitu"
+        },
+        {
+          "t": 212.53,
+          "d": 0.66,
+          "w": "bodohnya",
+          "h": true
+        },
+        {
+          "t": 213.19,
+          "d": 0.66,
+          "w": "aku"
+        }
+      ]
+    },
+    {
+      "start": 213.93,
+      "end": 221.14,
+      "text": "♪ [Hening Menelan Tujuh Tahun Sia-Sia] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

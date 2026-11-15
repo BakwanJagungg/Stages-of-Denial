@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Penyangkalan · Pengalaman Audiovisual Sinestesia</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23D65A70'/><polygon points='40,30 75,50 40,70' fill='%23F2EFE9'/></svg>">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Cinematic Transition Light Leak Overlay -->
+  <div id="cinematicTransition" class="cinematic-transition"></div>
+
+  <!-- Spatial Kinetic Subtitle Stage (Naked Cinema Text Edit) -->
+  <div id="kineticStage" class="kinetic-stage"></div>
+
+  <!-- Cinematic Video Background -->
+  <div class="bg-video-wrapper" id="bgVideoWrapper">
+    <video id="bgVideo" src="/assets/video/penyangkalan.mp4" playsinline muted loop preload="auto"></video>
+    <div class="optical-scrim" id="opticalScrim" aria-hidden="true"></div>
+    <div class="video-vignette"></div>
+  </div>
+
+  <!-- Ambient Mist Overlay -->
+  <div class="cinematic-bg" id="cinematicBg">
+    <div class="mist-overlay" id="mistOverlay"></div>
+  </div>
+
+  <!-- AudioMotion Real-Time Spectrum Analyzer Container -->
+  <div id="audiomotion-container" class="audiomotion-container"></div>
+
+  <!-- Background Canvas Visualizer (Fluid Curves, Particles & Shockwaves) -->
+  <canvas id="visualizer-canvas"></canvas>
+
+  <!-- Ambient Radial Glow -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- Gateway Jukebox & Track Selector Modal (Choose & Close Library + YTM Playlist Selector) -->
+  <div class="gateway-overlay" id="gatewayOverlay" role="dialog" aria-modal="true" aria-labelledby="gatewayTitle">
+    <div class="gateway-card jukebox-modal">
+      <header class="jukebox-sticky-header">
+        <div class="jukebox-header-top">
+          <div class="jukebox-tabs" role="tablist" aria-label="Mode perpustakaan musik">
+            <button type="button" id="tabInstalledBtn" class="jukebox-tab active" role="tab" aria-selected="true" aria-controls="panelInstalled">
+              Koleksi Terpasang (<span id="tabInstalledCount">14</span>)
+            </button>
+            <button type="button" id="tabPlaylistBtn" class="jukebox-tab" role="tab" aria-selected="false" aria-controls="panelPlaylistCatalog">
+              + Pilih dari Playlist YTM (<span id="tabPlaylistCount">239</span>)
+            </button>
+          </div>
+          <h1 class="sr-only" id="gatewayTitle">Anthology Library</h1>
+
+          <input type="search" id="jukeboxSearch" class="jukebox-search-input" placeholder="Cari judul atau artis..." aria-label="Cari judul atau artis lagu" autocomplete="off">
+
+          <div class="jukebox-mood-group" id="jukeboxMoodGroup" role="group" aria-label="Filter karakter energi lagu">
+            <button type="button" class="mood-pill active" data-mood="all" aria-pressed="true">Semua</button>
+            <button type="button" class="mood-pill" data-mood="calm" aria-pressed="false">Tenang</button>
+            <button type="button" class="mood-pill" data-mood="groovy" aria-pressed="false">Upbeat</button>
+            <button type="button" class="mood-pill" data-mood="intense" aria-pressed="false">Klimaks</button>
+          </div>
+
+          <div class="jukebox-genre-wrap" id="jukeboxGenreWrap">
+            <label class="sr-only" for="jukeboxGenreSelect">Filter Genre Koleksi</label>
+            <select id="jukeboxGenreSelect" class="jukebox-genre-select" aria-label="Filter Genre Koleksi">
+              <option value="all">Genre: Semua</option>
+            </select>
+          </div>
+
+          <div class="jukebox-header-actions">
+            <div class="jukebox-queue-pill" id="jukeboxQueueBadge" hidden>
+              <span id="jukeboxQueueCountLabel">Antrean: 0</span>
+              <button type="button" id="btnClearQueue" class="jukebox-queue-clear" aria-label="Kosongkan antrean putar berikutnya" title="Kosongkan antrean">✕</button>
+            </div>
+            <span class="jukebox-result-count" id="jukeboxResultCount" role="status" aria-live="polite">14 lagu</span>
+            <label for="audioFileInput" class="jukebox-upload-btn" title="Muat berkas MP3 Anda sendiri">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Unggah MP3</span>
+            </label>
+            <input type="file" id="audioFileInput" accept="audio/*" hidden>
+            <button type="button" id="btnCloseGateway" class="jukebox-close-btn" aria-label="Tutup Anthology Library (Esc)" title="Tutup (Esc)">✕</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Tab Panel 1: Installed Tracks (14 Originals + Downloaded Playlist Tracks) -->
+      <div id="panelInstalled" class="jukebox-tabpanel" role="tabpanel" aria-labelledby="tabInstalledBtn">
+        <div class="tracks-grid" id="tracksGrid"></div>
+        <div class="jukebox-empty-state" id="jukeboxEmptyState" hidden>Tidak ada lagu yang cocok dengan pencarian Anda.</div>
+      </div>
+
+      <!-- Tab Panel 2: Universal Playlist Selector ("Choose & Close") -->
+      <div id="panelPlaylistCatalog" class="jukebox-tabpanel" role="tabpanel" aria-labelledby="tabPlaylistBtn" hidden>
+        <div class="playlist-url-bar">
+          <div class="playlist-url-input-wrap">
+            <input type="url" id="playlistUrlInput" class="playlist-url-input" placeholder="Tempel URL YouTube / YouTube Music Playlist (https://...list=...)" aria-label="URL Playlist YouTube atau YouTube Music" autocomplete="off">
+            <button type="button" id="btnLoadPlaylistUrl" class="btn-primary-sm">Muat Playlist</button>
+            <button type="button" id="btnResetDefaultPlaylist" class="btn-secondary-sm" title="Kembali ke Playlist Utama (239 lagu)">Playlist Utama</button>
+          </div>
+          <div class="playlist-catalog-meta" id="playlistCatalogMeta">Menampilkan playlist tersimpan...</div>
+        </div>
+        <div class="tracks-grid playlist-grid" id="playlistGrid"></div>
+        <div class="jukebox-empty-state" id="playlistEmptyState" hidden>Tidak ada lagu playlist yang cocok dengan pencarian Anda.</div>
+        <div class="playlist-action-bar">
+          <div class="playlist-status-col">
+            <div class="playlist-action-status" id="playlistImportStatus" role="status" aria-live="polite">
+              Pilih lagu dari playlist untuk diunduh dan ditambahkan ke Koleksi Terpasang.
+            </div>
+            <div class="playlist-progress-wrap" id="playlistProgressWrap" hidden>
+              <div class="playlist-progress-track">
+                <div class="playlist-progress-fill" id="playlistProgressFill" style="width: 0%"></div>
+              </div>
+              <span class="playlist-progress-pct" id="playlistProgressPct">0%</span>
+            </div>
+          </div>
+          <div class="playlist-action-btns">
+            <button type="button" id="btnResetPlaylistSelection" class="btn-secondary-sm" disabled>Reset Pilihan</button>
+            <button type="button" id="btnClosePlaylistBar" class="btn-secondary-sm">Tutup</button>
+            <button type="button" id="btnImportSelected" class="btn-primary-sm" disabled>Unduh &amp; Tambahkan Terpilih (0)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Audio Controls HUD (Clean Minimalist Cinema Bar) -->
+  <nav class="audio-hud" id="audioHud" aria-label="Kontrol Pemutar & Studio Audio">
+    <!-- 1. Track Switcher -->
+    <button type="button" id="btnChangeTrack" class="hud-track-switcher" aria-label="Pilih lagu dari Anthology Library (Shortcut L)" title="Ganti Lagu (L)">
+      <span class="hud-dot" aria-hidden="true"></span>
+      <span class="hud-track-name" id="hudTrackName">for Revenge · Penyangkalan</span>
+      <span class="hud-chevron" aria-hidden="true">▾</span>
+    </button>
+
+    <div class="hud-controls">
+      <!-- 2. Play / Pause + Time Readout -->
+      <button type="button" id="btnPlayPause" class="hud-btn" aria-label="Putar atau jeda audio (Spasi)" title="Putar / Jeda (Spasi)">
+        <svg id="iconPause" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <svg id="iconPlay" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+
+      <div class="hud-time-readout" aria-label="Waktu lagu">
+        <span class="hud-time-text" id="hudTimeCurrent">00:00</span>
+        <span class="hud-time-sep" aria-hidden="true">/</span>
+        <span class="hud-time-text" id="hudTimeDuration">04:00</span>
+      </div>
+
+      <!-- 3. Progress Seekbar (+ A-B Loop indicator) -->
+      <div class="hud-progress-bar" id="hudProgressBar" role="slider" tabindex="0" aria-label="Posisi durasi lagu" title="Klik untuk melompat ke detik lagu (Tekan [ / ] untuk A-B Loop)">
+        <div class="hud-loop-range" id="hudLoopRange" aria-hidden="true" hidden></div>
+        <div class="hud-progress-fill" id="hudProgressFill"></div>
+        <div class="hud-progress-tooltip" id="progressTooltip">00:00</div>
+      </div>
+
+      <button type="button" id="btnClearLoop" class="hud-chip hud-loop-pill" aria-label="Matikan A-B Loop (Backslash)" title="Matikan A-B Loop (\)" hidden>
+        <span id="hudLoopLabel">A–B ×</span>
+      </button>
+
+      <!-- 4. Compact Volume Slider -->
+      <div class="hud-volume">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.85" aria-label="Volume audio">
+      </div>
+
+      <!-- 5. Lirik (KeyT) & Studio ▾ (KeyD) -->
+      <button type="button" id="btnLyricDrawer" class="hud-chip" aria-pressed="false" aria-controls="lyricDrawer" aria-label="Buka panel lirik lengkap (Shortcut T)" title="Panel Lirik Lengkap (T)">
+        <span>Lirik</span>
+      </button>
+
+      <button type="button" id="btnStudioPopover" class="hud-chip" aria-pressed="false" aria-expanded="false" aria-controls="studioPopover" aria-label="Buka panel Studio dan kontrol sekunder (Shortcut D)" title="Panel Studio & Telemetri (D)">
+        <span class="chip-dot"></span>
+        <span>Studio ▾</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Chapter Timeline & Lyric Signal Indicator Strip -->
+  <div class="chapter-signal-strip" id="chapterSignalStrip" aria-label="Indikator Babak & Status Lirik">
+    <div class="chapter-steps" role="navigation" aria-label="Navigasi Babak Cerita">
+      <button type="button" class="chapter-step active" data-act="act1" title="Lompat ke Babak I · Verse">BABAK I · VERSE</button>
+      <span class="chapter-sep" aria-hidden="true">→</span>
+      <button type="button" class="chapter-step" data-act="act2" title="Lompat ke Babak II · Rising">BABAK II · RISING</button>
+      <span class="chapter-sep" aria-hidden="true">→</span>
+      <button type="button" class="chapter-step" data-act="act3" title="Lompat ke Babak III · Climax">BABAK III · CLIMAX</button>
+      <span class="chapter-sep" aria-hidden="true">→</span>
+      <button type="button" class="chapter-step" data-act="act4" title="Lompat ke Babak IV · Outro">BABAK IV · OUTRO</button>
+    </div>
+    <div class="main-genre-wrap">
+      <label class="sr-only" for="mainGenreSelect">Filter Genre Antrean Utama</label>
+      <select id="mainGenreSelect" class="main-genre-select" aria-label="Filter Genre Antrean Utama" title="Filter radio Auto-Next berdasarkan Genre">
+        <option value="all">Genre: Semua</option>
+      </select>
+    </div>
+    <div class="signal-status-pill" id="signalStatusPill" data-state="synced" role="status" aria-live="polite">
+      <span class="signal-dot" id="signalStatusDot" aria-hidden="true">●</span>
+      <span class="signal-text" id="signalStatusText">Lirik Tersinkron</span>
+    </div>
+  </div>
+
+  <!-- Auto-Scroll Pause Countdown Pill -->
+  <div class="autoscroll-countdown-pill" id="autoScrollCountdownPill" role="status" aria-live="polite" hidden>
+    Auto-Scroll dilanjutkan dalam 4d...
+  </div>
+
+  <!-- Smart "Up Next" Preview Banner (Active during final 15s when Auto-Next is ON) -->
+  <aside class="up-next-pill" id="upNextPill" aria-label="Pratinjau Lagu Berikutnya" hidden>
+    <div class="up-next-info">
+      <span class="up-next-eyebrow">BERIKUTNYA</span>
+      <span class="up-next-title" id="upNextTrackLabel">Judul · Genre</span>
+    </div>
+    <div class="up-next-actions">
+      <button type="button" id="btnUpNextPlay" class="up-next-btn is-primary">Putar Sekarang</button>
+      <button type="button" id="btnUpNextSkip" class="up-next-btn">Lewati</button>
+    </div>
+  </aside>
+
+  <!-- Cinema Mode Exit Pill (Appears when in Fullscreen Cinema Mode) -->
+  <button id="btnExitCinema" class="btn-exit-cinema" title="Keluar Mode Bioskop (Esc)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <span>Keluar Bioskop</span>
+  </button>
+
+  <!-- Interactive Floating Audio Toast -->
+  <div class="audio-toast" id="audioToast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Drag & Drop Custom Studio Overlay -->
+  <div class="drop-overlay" id="dropOverlay" aria-hidden="true">
+    <div class="drop-overlay-card">
+      <div class="drop-eyebrow">CUSTOM AUDIO STUDIO</div>
+      <h2 class="drop-title">Lepas Berkas .MP3 &amp; .LRC Anda</h2>
+      <p class="drop-desc">Jatuhkan berkas audio (.mp3/.wav) dan/atau lirik LRC tersinkron (.lrc) untuk memutar langsung dengan Silk Aurora &amp; mesin karaoke presisi.</p>
+    </div>
+  </div>
+
+  <!-- Unified Studio Popover Drawer (Top Right under Studio ▾, Toggle via KeyD) -->
+  <aside class="studio-popover" id="studioPopover" aria-label="Panel Studio dan Telemetri" hidden>
+    <div class="director-header">
+      <span class="director-title">STUDIO TELEMETRY</span>
+      <span class="director-dsp" id="directorDsp">Studio Master</span>
+    </div>
+    <canvas id="directorVocalWave" width="296" height="44" aria-label="Grafik energi vokal 300 hingga 3400Hz"></canvas>
+    <div class="director-grid">
+      <div class="director-cell"><span>FPS</span><strong id="directorFps">60</strong></div>
+      <div class="director-cell"><span>TIME</span><strong id="directorTime">0.00s</strong></div>
+      <div class="director-cell"><span>RATE</span><strong id="directorRate">0.0/s</strong></div>
+      <div class="director-cell"><span>PHASE</span><strong id="directorPhase">idle</strong></div>
+    </div>
+
+    <div class="studio-controls">
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">AUDIO DSP &amp; ALUR</span>
+        <div class="studio-chip-row">
+          <button type="button" id="btnAudioProfile" class="hud-chip" aria-label="Ganti profil DSP audio" title="Ganti Profil DSP (Studio Master / Midnight Lo-Fi / 8D Spatial)">
+            <span class="chip-dot" id="audioProfileDot" style="background: #68B2D6; box-shadow: 0 0 8px rgba(104, 178, 214, 0.55);"></span>
+            <span id="audioProfileText">Studio Master</span>
+          </button>
+          <button type="button" id="btnAutoNext" class="hud-chip active" aria-pressed="true" aria-label="Toggle putar otomatis lagu berikutnya">
+            <span class="chip-dot"></span>
+            <span id="autoNextStatusText">Auto-Next</span>
+          </button>
+          <button type="button" id="btnToggleAutoScroll" class="hud-chip active" aria-pressed="true" aria-label="Toggle gulir otomatis">
+            <span class="chip-dot"></span>
+            <span id="autoScrollStatusText">Auto-Scroll</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">SCENE MODE</span>
+        <div class="studio-seg-group" role="group" aria-label="Mode intensitas visual">
+          <button type="button" class="studio-seg-btn active" data-scene="cinema" aria-pressed="true">Cinema</button>
+          <button type="button" class="studio-seg-btn" data-scene="pure" aria-pressed="false">Pure Viz</button>
+          <button type="button" class="studio-seg-btn" data-scene="ambient" aria-pressed="false">Ambient</button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">PLAYBACK SPEED (PRESERVE PITCH)</span>
+        <div class="studio-seg-group" role="group" aria-label="Kecepatan putar">
+          <button type="button" class="studio-seg-btn" data-speed="0.85" aria-pressed="false">0.85x</button>
+          <button type="button" class="studio-seg-btn active" data-speed="1.0" aria-pressed="true">1.0x</button>
+          <button type="button" class="studio-seg-btn" data-speed="1.15" aria-pressed="false">1.15x</button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <div class="studio-ctrl-head">
+          <span class="studio-ctrl-label">SLEEP TIMER</span>
+          <span class="studio-sleep-badge" id="sleepRemainingBadge" hidden>00:00</span>
+        </div>
+        <div class="studio-seg-group" role="group" aria-label="Pengatur waktu tidur">
+          <button type="button" class="studio-seg-btn active" data-sleep="off" aria-pressed="true">Off</button>
+          <button type="button" class="studio-seg-btn" data-sleep="15m" aria-pressed="false">15m</button>
+          <button type="button" class="studio-seg-btn" data-sleep="30m" aria-pressed="false">30m</button>
+          <button type="button" class="studio-seg-btn" data-sleep="end" aria-pressed="false">End</button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">SYNC LIRIK (±50ms)</span>
+        <div class="studio-sync-row" role="group" aria-label="Kalibrasi sinkronisasi lirik real-time">
+          <button type="button" class="studio-seg-btn" data-sync-delta="-0.05" aria-label="Perlambat lirik 50 milidetik">-0.05s</button>
+          <span class="studio-sync-readout" id="studioSyncReadout" aria-live="polite">0.00s</span>
+          <button type="button" class="studio-seg-btn" data-sync-delta="0.05" aria-label="Percepat lirik 50 milidetik">+0.05s</button>
+          <button type="button" class="studio-seg-btn" data-sync-reset aria-label="Reset offset lirik ke nol">Reset</button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">EKSPOR &amp; TAMPILAN</span>
+        <div class="studio-chip-row">
+          <button type="button" id="btnToggleTranslation" class="hud-chip active" aria-pressed="true" aria-label="Tampilkan atau sembunyikan terjemahan lirik" title="Terjemahan Lirik">
+            <span>Terjemahan: ON</span>
+          </button>
+          <button type="button" id="btnQuoteCard" class="hud-chip" aria-label="Unduh kartu kutipan lirik PNG (Shortcut Q)" title="Quote Card PNG (Q)">
+            <span>Quote PNG</span>
+          </button>
+          <button type="button" id="btnShareMoment" class="hud-chip" aria-label="Salin tautan momen &amp; timestamp" title="Bagikan Momen">
+            <span>Bagikan</span>
+          </button>
+          <button type="button" id="btnCinemaMode" class="hud-chip" aria-label="Mode bioskop layar penuh (Shortcut F)" title="Bioskop (F)">
+            <span>Bioskop</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="director-shortcuts">Spasi: Play • L: Lagu • T: Lirik • D: Studio • [ / ] / \: A-B Loop</div>
+  </aside>
+
+  <!-- Interactive Lyric Timeline Drawer (Slide-Over, Toggle via KeyT) -->
+  <aside class="lyric-drawer" id="lyricDrawer" aria-label="Panel Lirik Lengkap" hidden>
+    <div class="lyric-drawer-header">
+      <div>
+        <span class="lyric-drawer-eyebrow">TIMELINE LIRIK</span>
+        <h2 class="lyric-drawer-title" id="lyricDrawerTrackTitle">for Revenge · Penyangkalan</h2>
+      </div>
+      <button type="button" id="btnCloseLyricDrawer" class="lyric-drawer-close" aria-label="Tutup panel lirik (Shortcut T)" title="Tutup (T)">✕</button>
+    </div>
+    <div class="lyric-sync-bar" role="group" aria-label="Sinkronisasi waktu lirik real-time">
+      <span class="lyric-sync-label">Sync Lirik</span>
+      <button type="button" class="lyric-sync-btn" data-sync-delta="-0.05" aria-label="Geser lirik mundur 50ms">-0.05s</button>
+      <span class="studio-sync-readout" id="drawerSyncReadout">0.00s</span>
+      <button type="button" class="lyric-sync-btn" data-sync-delta="0.05" aria-label="Geser lirik maju 50ms">+0.05s</button>
+      <button type="button" class="lyric-sync-btn" data-sync-reset aria-label="Reset sinkronisasi lirik">Reset</button>
+    </div>
+    <div class="lyric-drawer-list" id="lyricDrawerList" role="list" data-lenis-prevent>
+      <!-- Populated per active track in js/scrolly.js -->
+    </div>
+  </aside>
+
+  <!-- Scrollytelling Journey Container (Clean Editorial Layout) -->
+  <main class="story-container">
+
+    <!-- Act 1: Kesunyian Awal -->
+    <section class="story-section" id="act1" data-theme="slate">
+      <div class="section-content editorial-layout">
+        <div class="act-watermark">I</div>
+        <span class="chapter-badge">BABAK I • KESUNYIAN AWAL</span>
+        <h2 class="cinematic-heading">Ketika Semua Terasa Jauh</h2>
+
+        <p class="cinematic-lead">
+          Malam merayap perlahan dalam kesunyian. Getaran nada akustik membuka kembali memori yang terkunci di sudut batin.
+        </p>
+
+        <div class="scroll-cue">
+          <span>GULIR KE BAWAH ATAU BIARKAN ALUR AUTO-SCROLL</span>
+          <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 2: Perlahan Meracuni -->
+    <section class="story-section" id="act2" data-theme="indigo">
+      <div class="section-content editorial-layout">
+        <div class="act-watermark">II</div>
+        <span class="chapter-badge">BABAK II • PERLAHAN MERACUNI</span>
+        <h2 class="cinematic-heading">Dia Masih di Sini</h2>
+
+        <p class="cinematic-lead">
+          Menari-nari di celah ingatan. Perlahan meracuni kewarasan yang telah mati di bawah bayang kepalsuan.
+        </p>
+      </div>
+    </section>
+
+    <!-- Act 3: Saling Menghantam (Climax) -->
+    <section class="story-section" id="act3" data-theme="crimson">
+      <div class="section-content editorial-layout climax-layout">
+        <div class="act-watermark climax-watermark">III</div>
+        <span class="chapter-badge climax-badge">BABAK III • SALING MENGHANTAM</span>
+        <h2 class="cinematic-heading climax-heading">PENYANGKALAN</h2>
+
+        <p class="cinematic-lead climax-lead">
+          Bertukar peran menyakiti. Berpura-pura pulih sendiri, nyatanya kutelah mati berkali-kali di hadapan kenyataan.
+        </p>
+
+        <!-- Holographic Audio Frequency Matrix -->
+        <div class="holographic-freq-hud">
+          <div class="hud-metric">
+            <span class="hud-metric-label">BASS IMPACT</span>
+            <span class="hud-metric-value" id="liveBassLevel">0</span>
+            <div class="metric-meter"><div class="metric-meter-bar" id="bassMeterBar"></div></div>
+          </div>
+          <div class="hud-metric">
+            <span class="hud-metric-label">MID SPECTRUM</span>
+            <span class="hud-metric-value" id="liveMidLevel">0</span>
+            <div class="metric-meter"><div class="metric-meter-bar" id="midMeterBar"></div></div>
+          </div>
+          <div class="hud-metric">
+            <span class="hud-metric-label">TREBLE SPARK</span>
+            <span class="hud-metric-value" id="liveTrebleLevel">0</span>
+            <div class="metric-meter"><div class="metric-meter-bar" id="trebleMeterBar"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 4: Kenyataan yang Sepi -->
+    <section class="story-section" id="act4" data-theme="amber">
+      <div class="section-content editorial-layout">
+        <div class="act-watermark">IV</div>
+        <span class="chapter-badge">BABAK IV • KENYATAAN YANG SEPI</span>
+        <h2 class="cinematic-heading">Kenyataan yang Sepi</h2>
+
+        <p class="cinematic-lead">
+          Ketika pertahanan runtuh dan amarah mereda. Tersisa kesadaran bahwa dia takkan pernah kembali.
+        </p>
+        
+        <!-- Enhanced Post-Credit Ending Outro Card (Active during final 8s) -->
+        <div class="outro-card" id="act4OutroCard">
+          <div class="outro-eyebrow">AKHIR BABAK · STAGE IV</div>
+          <h3 class="outro-title" id="outroTrackTitle">Penerimaan &amp; Hening</h3>
+          <p class="outro-subtitle">Setiap nada yang selesai meninggalkan ruang tenang untuk bab berikutnya.</p>
+          <div class="outro-actions">
+            <button id="btnOutroReplay" class="btn-outline" type="button">↻ Putar Ulang Lagu Ini</button>
+            <button id="btnOutroNext" class="btn-primary" type="button">Lanjut ke Lagu Berikutnya →</button>
+            <button id="btnOutroQuote" class="btn-secondary" type="button">Unduh Quote Card</button>
+            <button id="btnOutroShare" class="btn-outline" type="button">🔗 Bagikan Momen</button>
+          </div>
+        </div>
+
+        <div class="experience-footer">
+          <p class="developer-note">
+            Dirancang &amp; Dikembangkan oleh <b>Dava</b><br>
+            <small>Interactive Creative Engineering • Web Audio API, Canvas 2D, AudioMotion &amp; GSAP Scrollytelling</small>
+          </p>
+          <button id="btnScrollTop" class="btn-outline">
+            ↑ Putar Ulang dari Awal
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Full-Width Cinematic Progress Bar -->
+  <div id="cinemaProgressBar" class="cinema-progress-line" title="Alur Progres Musik">
+    <div id="cinemaProgressFill" class="cinema-progress-fill"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

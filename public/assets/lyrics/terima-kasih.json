@@ -1,0 +1,993 @@
+{
+  "id": "terima-kasih",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 13.52,
+      "text": "♪ [Petikan Lembut Akustik Membuka Kehangatan] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 13.6,
+      "end": 19.21,
+      "text": "Terkadang sendu tak <span class=\"kinetic-highlight\">selalu merakit</span> luka",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 13.6,
+          "d": 0.91,
+          "w": "Terkadang"
+        },
+        {
+          "t": 14.51,
+          "d": 0.47,
+          "w": "sendu"
+        },
+        {
+          "t": 14.98,
+          "d": 0.49,
+          "w": "tak"
+        },
+        {
+          "t": 15.47,
+          "d": 0.91,
+          "w": "selalu",
+          "h": true
+        },
+        {
+          "t": 16.38,
+          "d": 2.01,
+          "w": "merakit",
+          "h": true
+        },
+        {
+          "t": 18.39,
+          "d": 0.82,
+          "w": "luka"
+        }
+      ]
+    },
+    {
+      "start": 19.33,
+      "end": 22.86,
+      "text": "Ia juga mengisyaratkan <span class=\"kinetic-highlight\">bahagia</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 19.33,
+          "d": 0.52,
+          "w": "Ia"
+        },
+        {
+          "t": 19.85,
+          "d": 0.49,
+          "w": "juga"
+        },
+        {
+          "t": 20.34,
+          "d": 1.03,
+          "w": "mengisyaratkan"
+        },
+        {
+          "t": 21.37,
+          "d": 1.49,
+          "w": "bahagia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 22.94,
+      "end": 29.64,
+      "text": "Seperti saat itu kala <span class=\"kinetic-highlight\">kulihat dia</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 22.94,
+          "d": 1.65,
+          "w": "Seperti"
+        },
+        {
+          "t": 24.59,
+          "d": 0.38,
+          "w": "saat"
+        },
+        {
+          "t": 24.97,
+          "d": 0.99,
+          "w": "itu"
+        },
+        {
+          "t": 25.96,
+          "d": 0.68,
+          "w": "kala"
+        },
+        {
+          "t": 26.64,
+          "d": 1.18,
+          "w": "kulihat",
+          "h": true
+        },
+        {
+          "t": 27.82,
+          "d": 1.82,
+          "w": "dia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 29.76,
+      "end": 35.67,
+      "text": "Menggandeng tanganmu dengan <span class=\"kinetic-highlight\">penuh mesra</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 29.76,
+          "d": 0.77,
+          "w": "Menggandeng"
+        },
+        {
+          "t": 30.53,
+          "d": 0.88,
+          "w": "tanganmu"
+        },
+        {
+          "t": 31.41,
+          "d": 0.95,
+          "w": "dengan"
+        },
+        {
+          "t": 32.36,
+          "d": 0.95,
+          "w": "penuh",
+          "h": true
+        },
+        {
+          "t": 33.31,
+          "d": 2.36,
+          "w": "mesra",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 35.79,
+      "end": 42.16,
+      "text": "Kepadamu dulu aku <span class=\"kinetic-highlight\">jatuh cinta</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 35.79,
+          "d": 2.27,
+          "w": "Kepadamu"
+        },
+        {
+          "t": 38.06,
+          "d": 0.71,
+          "w": "dulu"
+        },
+        {
+          "t": 38.77,
+          "d": 0.74,
+          "w": "aku"
+        },
+        {
+          "t": 39.51,
+          "d": 0.96,
+          "w": "jatuh",
+          "h": true
+        },
+        {
+          "t": 40.47,
+          "d": 1.69,
+          "w": "cinta",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 42.28,
+      "end": 48.68,
+      "text": "Menanam asa bisa bersama sepanjang <span class=\"kinetic-highlight\">usia</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 42.28,
+          "d": 1.53,
+          "w": "Menanam"
+        },
+        {
+          "t": 43.81,
+          "d": 0.94,
+          "w": "asa"
+        },
+        {
+          "t": 44.75,
+          "d": 0.66,
+          "w": "bisa"
+        },
+        {
+          "t": 45.41,
+          "d": 0.79,
+          "w": "bersama"
+        },
+        {
+          "t": 46.2,
+          "d": 0.86,
+          "w": "sepanjang"
+        },
+        {
+          "t": 47.06,
+          "d": 1.62,
+          "w": "usia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 48.8,
+      "end": 54.37,
+      "text": "Saat itu engkau di <span class=\"kinetic-highlight\">tepian kota</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 48.8,
+          "d": 0.6,
+          "w": "Saat"
+        },
+        {
+          "t": 49.4,
+          "d": 0.68,
+          "w": "itu"
+        },
+        {
+          "t": 50.08,
+          "d": 0.69,
+          "w": "engkau"
+        },
+        {
+          "t": 50.77,
+          "d": 0.51,
+          "w": "di"
+        },
+        {
+          "t": 51.28,
+          "d": 0.9,
+          "w": "tepian",
+          "h": true
+        },
+        {
+          "t": 52.18,
+          "d": 2.19,
+          "w": "kota",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 54.49,
+      "end": 62.2,
+      "text": "Aku masih sendiri kau <span class=\"kinetic-highlight\">sudah jadi</span> miliknya",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 54.49,
+          "d": 0.71,
+          "w": "Aku"
+        },
+        {
+          "t": 55.2,
+          "d": 0.78,
+          "w": "masih"
+        },
+        {
+          "t": 55.98,
+          "d": 0.92,
+          "w": "sendiri"
+        },
+        {
+          "t": 56.9,
+          "d": 0.52,
+          "w": "kau"
+        },
+        {
+          "t": 57.42,
+          "d": 0.78,
+          "w": "sudah",
+          "h": true
+        },
+        {
+          "t": 58.2,
+          "d": 0.98,
+          "w": "jadi",
+          "h": true
+        },
+        {
+          "t": 59.18,
+          "d": 3.02,
+          "w": "miliknya"
+        }
+      ]
+    },
+    {
+      "start": 62.56,
+      "end": 68.22,
+      "text": "<span class=\"kinetic-highlight\">Terima kasih</span> atas segala rasa",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 62.56,
+          "d": 2.05,
+          "w": "Terima",
+          "h": true
+        },
+        {
+          "t": 64.61,
+          "d": 1.15,
+          "w": "kasih",
+          "h": true
+        },
+        {
+          "t": 65.76,
+          "d": 0.65,
+          "w": "atas"
+        },
+        {
+          "t": 66.41,
+          "d": 0.71,
+          "w": "segala"
+        },
+        {
+          "t": 67.12,
+          "d": 1.1,
+          "w": "rasa"
+        }
+      ]
+    },
+    {
+      "start": 68.34,
+      "end": 74.17,
+      "text": "Pada hari itu pun aku <span class=\"kinetic-highlight\">turut bahagia</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 68.34,
+          "d": 0.65,
+          "w": "Pada"
+        },
+        {
+          "t": 68.99,
+          "d": 0.98,
+          "w": "hari"
+        },
+        {
+          "t": 69.97,
+          "d": 0.75,
+          "w": "itu"
+        },
+        {
+          "t": 70.72,
+          "d": 0.46,
+          "w": "pun"
+        },
+        {
+          "t": 71.18,
+          "d": 0.85,
+          "w": "aku"
+        },
+        {
+          "t": 72.03,
+          "d": 0.48,
+          "w": "turut",
+          "h": true
+        },
+        {
+          "t": 72.51,
+          "d": 1.66,
+          "w": "bahagia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 74.29,
+      "end": 79.57,
+      "text": "Karena aku <span class=\"kinetic-highlight\">selalu</span> tahu",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 74.29,
+          "d": 1.29,
+          "w": "Karena"
+        },
+        {
+          "t": 75.58,
+          "d": 1.24,
+          "w": "aku"
+        },
+        {
+          "t": 76.82,
+          "d": 1.28,
+          "w": "selalu",
+          "h": true
+        },
+        {
+          "t": 78.1,
+          "d": 1.47,
+          "w": "tahu"
+        }
+      ]
+    },
+    {
+      "start": 79.69,
+      "end": 83.5,
+      "text": "Menyukaimu bukan berarti <span class=\"kinetic-highlight\">selalu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 79.69,
+          "d": 1.43,
+          "w": "Menyukaimu"
+        },
+        {
+          "t": 81.12,
+          "d": 0.65,
+          "w": "bukan"
+        },
+        {
+          "t": 81.77,
+          "d": 0.62,
+          "w": "berarti"
+        },
+        {
+          "t": 82.39,
+          "d": 1.11,
+          "w": "selalu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 83.58,
+      "end": 87.95,
+      "text": "♪ [Melodi Akustik & Cello Mengalun Merestui] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 88.03,
+      "end": 89.95,
+      "text": "<span class=\"kinetic-highlight\">Memilikimu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 88.03,
+          "d": 1.92,
+          "w": "Memilikimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 90.03,
+      "end": 115.32,
+      "text": "♪ [Melodi Akustik & Cello Mengalun Merestui] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 115.4,
+      "end": 120.84,
+      "text": "<span class=\"kinetic-highlight\">Terima kasih</span> atas segala rasa",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 115.4,
+          "d": 1.58,
+          "w": "Terima",
+          "h": true
+        },
+        {
+          "t": 116.98,
+          "d": 1.34,
+          "w": "kasih",
+          "h": true
+        },
+        {
+          "t": 118.32,
+          "d": 0.59,
+          "w": "atas"
+        },
+        {
+          "t": 118.91,
+          "d": 0.68,
+          "w": "segala"
+        },
+        {
+          "t": 119.59,
+          "d": 1.25,
+          "w": "rasa"
+        }
+      ]
+    },
+    {
+      "start": 120.96,
+      "end": 126.37,
+      "text": "Pada hari itu pun aku <span class=\"kinetic-highlight\">turut bahagia</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 120.96,
+          "d": 0.54,
+          "w": "Pada"
+        },
+        {
+          "t": 121.5,
+          "d": 1.16,
+          "w": "hari"
+        },
+        {
+          "t": 122.66,
+          "d": 0.6,
+          "w": "itu"
+        },
+        {
+          "t": 123.26,
+          "d": 0.61,
+          "w": "pun"
+        },
+        {
+          "t": 123.87,
+          "d": 0.62,
+          "w": "aku"
+        },
+        {
+          "t": 124.49,
+          "d": 0.46,
+          "w": "turut",
+          "h": true
+        },
+        {
+          "t": 124.95,
+          "d": 1.42,
+          "w": "bahagia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 126.49,
+      "end": 132.05,
+      "text": "Karena aku <span class=\"kinetic-highlight\">selalu</span> tahu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 126.49,
+          "d": 1.59,
+          "w": "Karena"
+        },
+        {
+          "t": 128.08,
+          "d": 1.17,
+          "w": "aku"
+        },
+        {
+          "t": 129.25,
+          "d": 1.36,
+          "w": "selalu",
+          "h": true
+        },
+        {
+          "t": 130.61,
+          "d": 1.44,
+          "w": "tahu"
+        }
+      ]
+    },
+    {
+      "start": 132.17,
+      "end": 138.38,
+      "text": "Menyukaimu bukan berarti <span class=\"kinetic-highlight\">selalu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 132.17,
+          "d": 2.01,
+          "w": "Menyukaimu"
+        },
+        {
+          "t": 134.18,
+          "d": 0.95,
+          "w": "bukan"
+        },
+        {
+          "t": 135.13,
+          "d": 1.07,
+          "w": "berarti"
+        },
+        {
+          "t": 136.2,
+          "d": 2.18,
+          "w": "selalu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 138.5,
+      "end": 142.86,
+      "text": "<span class=\"kinetic-highlight\">Terima kasih</span> atas segala rasa",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 138.5,
+          "d": 1.26,
+          "w": "Terima",
+          "h": true
+        },
+        {
+          "t": 139.76,
+          "d": 0.86,
+          "w": "kasih",
+          "h": true
+        },
+        {
+          "t": 140.62,
+          "d": 0.54,
+          "w": "atas"
+        },
+        {
+          "t": 141.16,
+          "d": 0.72,
+          "w": "segala"
+        },
+        {
+          "t": 141.88,
+          "d": 0.98,
+          "w": "rasa"
+        }
+      ]
+    },
+    {
+      "start": 142.94,
+      "end": 148.28,
+      "text": "Pada hari itu pun aku <span class=\"kinetic-highlight\">turut bahagia</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 142.94,
+          "d": 0.56,
+          "w": "Pada"
+        },
+        {
+          "t": 143.5,
+          "d": 1.16,
+          "w": "hari"
+        },
+        {
+          "t": 144.66,
+          "d": 0.6,
+          "w": "itu"
+        },
+        {
+          "t": 145.26,
+          "d": 0.44,
+          "w": "pun"
+        },
+        {
+          "t": 145.7,
+          "d": 0.79,
+          "w": "aku"
+        },
+        {
+          "t": 146.49,
+          "d": 0.45,
+          "w": "turut",
+          "h": true
+        },
+        {
+          "t": 146.94,
+          "d": 1.34,
+          "w": "bahagia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 148.4,
+      "end": 153.8,
+      "text": "Karena aku <span class=\"kinetic-highlight\">selalu</span> tahu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 148.4,
+          "d": 1.66,
+          "w": "Karena"
+        },
+        {
+          "t": 150.06,
+          "d": 1.03,
+          "w": "aku"
+        },
+        {
+          "t": 151.09,
+          "d": 1.49,
+          "w": "selalu",
+          "h": true
+        },
+        {
+          "t": 152.58,
+          "d": 1.22,
+          "w": "tahu"
+        }
+      ]
+    },
+    {
+      "start": 153.92,
+      "end": 157.73,
+      "text": "Menyukaimu bukan berarti <span class=\"kinetic-highlight\">selalu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 153.92,
+          "d": 1.21,
+          "w": "Menyukaimu"
+        },
+        {
+          "t": 155.13,
+          "d": 0.8,
+          "w": "bukan"
+        },
+        {
+          "t": 155.93,
+          "d": 0.68,
+          "w": "berarti"
+        },
+        {
+          "t": 156.61,
+          "d": 1.12,
+          "w": "selalu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 157.81,
+      "end": 162.51,
+      "text": "♪ [Melodi Akustik & Cello Mengalun Merestui] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 162.59,
+      "end": 164.51,
+      "text": "<span class=\"kinetic-highlight\">Memilikimu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 162.59,
+          "d": 1.92,
+          "w": "Memilikimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 164.59,
+      "end": 169.13,
+      "text": "♪ [Melodi Akustik & Cello Mengalun Merestui] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 169.21,
+      "end": 175,
+      "text": "Yang terhebat dari waktu <span class=\"kinetic-highlight\">adalah karena</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 169.21,
+          "d": 0.95,
+          "w": "Yang"
+        },
+        {
+          "t": 170.16,
+          "d": 0.6,
+          "w": "terhebat"
+        },
+        {
+          "t": 170.76,
+          "d": 0.54,
+          "w": "dari"
+        },
+        {
+          "t": 171.3,
+          "d": 0.85,
+          "w": "waktu"
+        },
+        {
+          "t": 172.15,
+          "d": 0.83,
+          "w": "adalah",
+          "h": true
+        },
+        {
+          "t": 172.98,
+          "d": 2.02,
+          "w": "karena",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 175.12,
+      "end": 181.28,
+      "text": "Ia terus berputar secara <span class=\"kinetic-highlight\">sederhana</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 175.12,
+          "d": 0.88,
+          "w": "Ia"
+        },
+        {
+          "t": 176,
+          "d": 0.93,
+          "w": "terus"
+        },
+        {
+          "t": 176.93,
+          "d": 1.22,
+          "w": "berputar"
+        },
+        {
+          "t": 178.15,
+          "d": 1.27,
+          "w": "secara"
+        },
+        {
+          "t": 179.42,
+          "d": 1.86,
+          "w": "sederhana",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 181.4,
+      "end": 185.85,
+      "text": "Kita kembali bertemu di <span class=\"kinetic-highlight\">tepian kota</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 181.4,
+          "d": 0.49,
+          "w": "Kita"
+        },
+        {
+          "t": 181.89,
+          "d": 0.51,
+          "w": "kembali"
+        },
+        {
+          "t": 182.4,
+          "d": 0.87,
+          "w": "bertemu"
+        },
+        {
+          "t": 183.27,
+          "d": 0.55,
+          "w": "di"
+        },
+        {
+          "t": 183.82,
+          "d": 0.67,
+          "w": "tepian",
+          "h": true
+        },
+        {
+          "t": 184.49,
+          "d": 1.36,
+          "w": "kota",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 185.93,
+      "end": 191.78,
+      "text": "Engkau sendiri lagi dan <span class=\"kinetic-highlight\">aku</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 185.93,
+          "d": 1.47,
+          "w": "Engkau"
+        },
+        {
+          "t": 187.4,
+          "d": 0.92,
+          "w": "sendiri"
+        },
+        {
+          "t": 188.32,
+          "d": 0.81,
+          "w": "lagi"
+        },
+        {
+          "t": 189.13,
+          "d": 1.01,
+          "w": "dan"
+        },
+        {
+          "t": 190.14,
+          "d": 1.64,
+          "w": "aku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 192.15,
+      "end": 193.92,
+      "text": "<span class=\"kinetic-highlight\">Sudah berdua</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 192.15,
+          "d": 0.45,
+          "w": "Sudah",
+          "h": true
+        },
+        {
+          "t": 192.6,
+          "d": 1.32,
+          "w": "berdua",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 194,
+      "end": 201.47,
+      "text": "♪ [Hening Abadi • Ikhlas Menjadi Dewasa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

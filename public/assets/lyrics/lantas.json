@@ -1,0 +1,1398 @@
+{
+  "id": "lantas",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 9.56,
+      "text": "♪ [Petikan Gitar Akustik Manis Getir Membuka Rahasia] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 9.64,
+      "end": 14.8,
+      "text": "Lima hari sudah <span class=\"kinetic-highlight\">kurindu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 9.64,
+          "d": 1.01,
+          "w": "Lima"
+        },
+        {
+          "t": 10.65,
+          "d": 0.87,
+          "w": "hari"
+        },
+        {
+          "t": 11.52,
+          "d": 0.91,
+          "w": "sudah"
+        },
+        {
+          "t": 12.43,
+          "d": 2.37,
+          "w": "kurindu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 15.25,
+      "end": 20.18,
+      "text": "Tak bisa ku <span class=\"kinetic-highlight\">menghubungimu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 15.25,
+          "d": 0.63,
+          "w": "Tak"
+        },
+        {
+          "t": 15.88,
+          "d": 0.98,
+          "w": "bisa"
+        },
+        {
+          "t": 16.86,
+          "d": 0.59,
+          "w": "ku"
+        },
+        {
+          "t": 17.45,
+          "d": 2.73,
+          "w": "menghubungimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 20.3,
+      "end": 25.59,
+      "text": "Kau sedang dengan dirinya, sedang <span class=\"kinetic-highlight\">kita rahasia</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 20.3,
+          "d": 0.44,
+          "w": "Kau"
+        },
+        {
+          "t": 20.74,
+          "d": 0.48,
+          "w": "sedang"
+        },
+        {
+          "t": 21.22,
+          "d": 0.75,
+          "w": "dengan"
+        },
+        {
+          "t": 21.97,
+          "d": 1.15,
+          "w": "dirinya,"
+        },
+        {
+          "t": 23.12,
+          "d": 0.69,
+          "w": "sedang"
+        },
+        {
+          "t": 23.81,
+          "d": 0.44,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 24.25,
+          "d": 1.34,
+          "w": "rahasia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 25.71,
+      "end": 31.93,
+      "text": "Kapankah kau ada waktu sembunyi untuk <span class=\"kinetic-highlight\">bertemu?</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 25.71,
+          "d": 0.99,
+          "w": "Kapankah"
+        },
+        {
+          "t": 26.7,
+          "d": 0.32,
+          "w": "kau"
+        },
+        {
+          "t": 27.02,
+          "d": 0.7,
+          "w": "ada"
+        },
+        {
+          "t": 27.72,
+          "d": 0.93,
+          "w": "waktu"
+        },
+        {
+          "t": 28.65,
+          "d": 0.94,
+          "w": "sembunyi"
+        },
+        {
+          "t": 29.59,
+          "d": 0.6,
+          "w": "untuk"
+        },
+        {
+          "t": 30.19,
+          "d": 1.74,
+          "w": "bertemu?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 32.05,
+      "end": 37.3,
+      "text": "Baru kausapa, ku <span class=\"kinetic-highlight\">tersipu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 32.05,
+          "d": 0.79,
+          "w": "Baru"
+        },
+        {
+          "t": 32.84,
+          "d": 1.31,
+          "w": "kausapa,"
+        },
+        {
+          "t": 34.15,
+          "d": 0.65,
+          "w": "ku"
+        },
+        {
+          "t": 34.8,
+          "d": 2.5,
+          "w": "tersipu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 37.61,
+      "end": 42.52,
+      "text": "Kaupuji, lupa <span class=\"kinetic-highlight\">amarahku</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 37.61,
+          "d": 1.57,
+          "w": "Kaupuji,"
+        },
+        {
+          "t": 39.18,
+          "d": 0.89,
+          "w": "lupa"
+        },
+        {
+          "t": 40.07,
+          "d": 2.45,
+          "w": "amarahku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 42.64,
+      "end": 48.04,
+      "text": "Karena kau paling tahu cara <span class=\"kinetic-highlight\">lemahkan hatiku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 42.64,
+          "d": 0.74,
+          "w": "Karena"
+        },
+        {
+          "t": 43.38,
+          "d": 0.34,
+          "w": "kau"
+        },
+        {
+          "t": 43.72,
+          "d": 0.72,
+          "w": "paling"
+        },
+        {
+          "t": 44.44,
+          "d": 0.45,
+          "w": "tahu"
+        },
+        {
+          "t": 44.89,
+          "d": 0.89,
+          "w": "cara"
+        },
+        {
+          "t": 45.78,
+          "d": 0.68,
+          "w": "lemahkan",
+          "h": true
+        },
+        {
+          "t": 46.46,
+          "d": 1.58,
+          "w": "hatiku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 48.12,
+      "end": 54.55,
+      "text": "Walau tak ada yang pasti, yang kauberi hanya <span class=\"kinetic-highlight\">mimpi</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 48.12,
+          "d": 0.62,
+          "w": "Walau"
+        },
+        {
+          "t": 48.74,
+          "d": 0.38,
+          "w": "tak"
+        },
+        {
+          "t": 49.12,
+          "d": 0.48,
+          "w": "ada"
+        },
+        {
+          "t": 49.6,
+          "d": 0.55,
+          "w": "yang"
+        },
+        {
+          "t": 50.15,
+          "d": 1.24,
+          "w": "pasti,"
+        },
+        {
+          "t": 51.39,
+          "d": 0.31,
+          "w": "yang"
+        },
+        {
+          "t": 51.7,
+          "d": 0.71,
+          "w": "kauberi"
+        },
+        {
+          "t": 52.41,
+          "d": 0.57,
+          "w": "hanya"
+        },
+        {
+          "t": 52.98,
+          "d": 1.57,
+          "w": "mimpi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 54.67,
+      "end": 60.19,
+      "text": "<span class=\"kinetic-highlight\">Lantas mengapa</span> ku masih menaruh hati?",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 54.67,
+          "d": 1.2,
+          "w": "Lantas",
+          "h": true
+        },
+        {
+          "t": 55.87,
+          "d": 0.88,
+          "w": "mengapa",
+          "h": true
+        },
+        {
+          "t": 56.75,
+          "d": 0.63,
+          "w": "ku"
+        },
+        {
+          "t": 57.38,
+          "d": 0.68,
+          "w": "masih"
+        },
+        {
+          "t": 58.06,
+          "d": 0.66,
+          "w": "menaruh"
+        },
+        {
+          "t": 58.72,
+          "d": 1.47,
+          "w": "hati?"
+        }
+      ]
+    },
+    {
+      "start": 60.31,
+      "end": 65.51,
+      "text": "Padahal ku tahu kau t'lah <span class=\"kinetic-highlight\">terikat janji</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 60.31,
+          "d": 0.82,
+          "w": "Padahal"
+        },
+        {
+          "t": 61.13,
+          "d": 0.38,
+          "w": "ku"
+        },
+        {
+          "t": 61.51,
+          "d": 0.62,
+          "w": "tahu"
+        },
+        {
+          "t": 62.13,
+          "d": 0.54,
+          "w": "kau"
+        },
+        {
+          "t": 62.67,
+          "d": 0.52,
+          "w": "t'lah"
+        },
+        {
+          "t": 63.19,
+          "d": 0.79,
+          "w": "terikat",
+          "h": true
+        },
+        {
+          "t": 63.98,
+          "d": 1.53,
+          "w": "janji",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 65.63,
+      "end": 71,
+      "text": "Keliru ataukah bukan? <span class=\"kinetic-highlight\">Tak tahu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 65.63,
+          "d": 1.11,
+          "w": "Keliru"
+        },
+        {
+          "t": 66.74,
+          "d": 0.86,
+          "w": "ataukah"
+        },
+        {
+          "t": 67.6,
+          "d": 1.09,
+          "w": "bukan?"
+        },
+        {
+          "t": 68.69,
+          "d": 0.8,
+          "w": "Tak",
+          "h": true
+        },
+        {
+          "t": 69.49,
+          "d": 1.51,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 71.12,
+      "end": 78.7,
+      "text": "Lupakanmu, tapi aku tak <span class=\"kinetic-highlight\">mau</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 71.12,
+          "d": 2.57,
+          "w": "Lupakanmu,"
+        },
+        {
+          "t": 73.69,
+          "d": 1.2,
+          "w": "tapi"
+        },
+        {
+          "t": 74.89,
+          "d": 0.9,
+          "w": "aku"
+        },
+        {
+          "t": 75.79,
+          "d": 1.27,
+          "w": "tak"
+        },
+        {
+          "t": 77.06,
+          "d": 1.64,
+          "w": "mau",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 79.53,
+      "end": 82.13,
+      "text": "<span class=\"kinetic-highlight\">Oh-wo-oh</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 79.53,
+          "d": 2.6,
+          "w": "Oh-wo-oh",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 82.21,
+      "end": 87.82,
+      "text": "Baru kausapa, ku tersipu <span class=\"kinetic-highlight\">(tersipu)</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 82.21,
+          "d": 0.68,
+          "w": "Baru"
+        },
+        {
+          "t": 82.89,
+          "d": 0.99,
+          "w": "kausapa,"
+        },
+        {
+          "t": 83.88,
+          "d": 0.51,
+          "w": "ku"
+        },
+        {
+          "t": 84.39,
+          "d": 1.19,
+          "w": "tersipu"
+        },
+        {
+          "t": 85.58,
+          "d": 2.24,
+          "w": "(tersipu)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 87.94,
+      "end": 92.76,
+      "text": "Kaupuji, lupa <span class=\"kinetic-highlight\">amarahku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 87.94,
+          "d": 2.36,
+          "w": "Kaupuji,"
+        },
+        {
+          "t": 90.3,
+          "d": 0.75,
+          "w": "lupa"
+        },
+        {
+          "t": 91.05,
+          "d": 1.71,
+          "w": "amarahku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 92.88,
+      "end": 98.22,
+      "text": "Karena kau paling tahu (paling tahu) cara <span class=\"kinetic-highlight\">lemahkan hatiku</span> (hatiku)",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 92.88,
+          "d": 0.42,
+          "w": "Karena"
+        },
+        {
+          "t": 93.3,
+          "d": 0.33,
+          "w": "kau"
+        },
+        {
+          "t": 93.63,
+          "d": 0.3,
+          "w": "paling"
+        },
+        {
+          "t": 93.93,
+          "d": 0.31,
+          "w": "tahu"
+        },
+        {
+          "t": 94.24,
+          "d": 0.58,
+          "w": "(paling"
+        },
+        {
+          "t": 94.82,
+          "d": 0.33,
+          "w": "tahu)"
+        },
+        {
+          "t": 95.15,
+          "d": 0.65,
+          "w": "cara"
+        },
+        {
+          "t": 95.8,
+          "d": 0.42,
+          "w": "lemahkan",
+          "h": true
+        },
+        {
+          "t": 96.22,
+          "d": 0.51,
+          "w": "hatiku",
+          "h": true
+        },
+        {
+          "t": 96.73,
+          "d": 1.49,
+          "w": "(hatiku)"
+        }
+      ]
+    },
+    {
+      "start": 98.3,
+      "end": 104.76,
+      "text": "Walau tak ada yang pasti, yang kauberi <span class=\"kinetic-highlight\">hanya mimpi</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 98.3,
+          "d": 0.67,
+          "w": "Walau"
+        },
+        {
+          "t": 98.97,
+          "d": 0.33,
+          "w": "tak"
+        },
+        {
+          "t": 99.3,
+          "d": 0.5,
+          "w": "ada"
+        },
+        {
+          "t": 99.8,
+          "d": 0.73,
+          "w": "yang"
+        },
+        {
+          "t": 100.53,
+          "d": 1.22,
+          "w": "pasti,"
+        },
+        {
+          "t": 101.75,
+          "d": 0.33,
+          "w": "yang"
+        },
+        {
+          "t": 102.08,
+          "d": 0.69,
+          "w": "kauberi"
+        },
+        {
+          "t": 102.77,
+          "d": 0.56,
+          "w": "hanya",
+          "h": true
+        },
+        {
+          "t": 103.33,
+          "d": 1.43,
+          "w": "mimpi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 104.88,
+      "end": 110.36,
+      "text": "<span class=\"kinetic-highlight\">Lantas mengapa</span> ku masih menaruh hati?",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 104.88,
+          "d": 1.14,
+          "w": "Lantas",
+          "h": true
+        },
+        {
+          "t": 106.02,
+          "d": 0.84,
+          "w": "mengapa",
+          "h": true
+        },
+        {
+          "t": 106.86,
+          "d": 0.54,
+          "w": "ku"
+        },
+        {
+          "t": 107.4,
+          "d": 0.88,
+          "w": "masih"
+        },
+        {
+          "t": 108.28,
+          "d": 0.62,
+          "w": "menaruh"
+        },
+        {
+          "t": 108.9,
+          "d": 1.46,
+          "w": "hati?"
+        }
+      ]
+    },
+    {
+      "start": 110.48,
+      "end": 115.53,
+      "text": "Padahal ku tahu kau t'lah <span class=\"kinetic-highlight\">terikat janji</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 110.48,
+          "d": 0.97,
+          "w": "Padahal"
+        },
+        {
+          "t": 111.45,
+          "d": 0.43,
+          "w": "ku"
+        },
+        {
+          "t": 111.88,
+          "d": 0.57,
+          "w": "tahu"
+        },
+        {
+          "t": 112.45,
+          "d": 0.45,
+          "w": "kau"
+        },
+        {
+          "t": 112.9,
+          "d": 0.47,
+          "w": "t'lah"
+        },
+        {
+          "t": 113.37,
+          "d": 0.89,
+          "w": "terikat",
+          "h": true
+        },
+        {
+          "t": 114.26,
+          "d": 1.27,
+          "w": "janji",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 115.65,
+      "end": 121.12,
+      "text": "Keliru ataukah bukan? Tak <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 115.65,
+          "d": 1.35,
+          "w": "Keliru"
+        },
+        {
+          "t": 117,
+          "d": 1.03,
+          "w": "ataukah"
+        },
+        {
+          "t": 118.03,
+          "d": 1.32,
+          "w": "bukan?"
+        },
+        {
+          "t": 119.35,
+          "d": 0.44,
+          "w": "Tak"
+        },
+        {
+          "t": 119.79,
+          "d": 1.33,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 121.24,
+      "end": 127.07,
+      "text": "Lupakanmu, tapi aku <span class=\"kinetic-highlight\">tak mau</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 121.24,
+          "d": 2.06,
+          "w": "Lupakanmu,"
+        },
+        {
+          "t": 123.3,
+          "d": 0.76,
+          "w": "tapi"
+        },
+        {
+          "t": 124.06,
+          "d": 1.05,
+          "w": "aku"
+        },
+        {
+          "t": 125.11,
+          "d": 0.67,
+          "w": "tak",
+          "h": true
+        },
+        {
+          "t": 125.78,
+          "d": 1.29,
+          "w": "mau",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 127.19,
+      "end": 132.6,
+      "text": "Pantaskah aku menyimpan <span class=\"kinetic-highlight\">rasa cemburu?</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 127.19,
+          "d": 1.28,
+          "w": "Pantaskah"
+        },
+        {
+          "t": 128.47,
+          "d": 0.69,
+          "w": "aku"
+        },
+        {
+          "t": 129.16,
+          "d": 1.01,
+          "w": "menyimpan"
+        },
+        {
+          "t": 130.17,
+          "d": 0.71,
+          "w": "rasa",
+          "h": true
+        },
+        {
+          "t": 130.88,
+          "d": 1.72,
+          "w": "cemburu?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 132.74,
+      "end": 137.8,
+      "text": "Padahal bukan aku yang <span class=\"kinetic-highlight\">memilikimu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 132.74,
+          "d": 1.07,
+          "w": "Padahal"
+        },
+        {
+          "t": 133.81,
+          "d": 0.69,
+          "w": "bukan"
+        },
+        {
+          "t": 134.5,
+          "d": 0.67,
+          "w": "aku"
+        },
+        {
+          "t": 135.17,
+          "d": 0.49,
+          "w": "yang"
+        },
+        {
+          "t": 135.66,
+          "d": 2.14,
+          "w": "memilikimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 137.92,
+      "end": 143.67,
+      "text": "Sanggup sampai kapankah? Ku tak <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 137.92,
+          "d": 1.15,
+          "w": "Sanggup"
+        },
+        {
+          "t": 139.07,
+          "d": 0.97,
+          "w": "sampai"
+        },
+        {
+          "t": 140.04,
+          "d": 1.22,
+          "w": "kapankah?"
+        },
+        {
+          "t": 141.26,
+          "d": 0.65,
+          "w": "Ku"
+        },
+        {
+          "t": 141.91,
+          "d": 0.56,
+          "w": "tak"
+        },
+        {
+          "t": 142.47,
+          "d": 1.2,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 143.79,
+      "end": 148.72,
+      "text": "Akankah akal sehat <span class=\"kinetic-highlight\">menyadarkanku?</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 143.79,
+          "d": 1.26,
+          "w": "Akankah"
+        },
+        {
+          "t": 145.05,
+          "d": 0.65,
+          "w": "akal"
+        },
+        {
+          "t": 145.7,
+          "d": 0.93,
+          "w": "sehat"
+        },
+        {
+          "t": 146.63,
+          "d": 2.09,
+          "w": "menyadarkanku?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 148.8,
+      "end": 156.47,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 156.55,
+      "end": 158.32,
+      "text": "<span class=\"kinetic-highlight\">Oh-wo-oh</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 156.55,
+          "d": 1.77,
+          "w": "Oh-wo-oh",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 158.4,
+      "end": 164.74,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 164.82,
+      "end": 169,
+      "text": "<span class=\"kinetic-highlight\">Uh-uh</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 164.82,
+          "d": 4.18,
+          "w": "Uh-uh",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 169.12,
+      "end": 174.62,
+      "text": "<span class=\"kinetic-highlight\">Lantas mengapa</span> ku masih menaruh hati?",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 169.12,
+          "d": 1.28,
+          "w": "Lantas",
+          "h": true
+        },
+        {
+          "t": 170.4,
+          "d": 1.1,
+          "w": "mengapa",
+          "h": true
+        },
+        {
+          "t": 171.5,
+          "d": 0.52,
+          "w": "ku"
+        },
+        {
+          "t": 172.02,
+          "d": 0.96,
+          "w": "masih"
+        },
+        {
+          "t": 172.98,
+          "d": 0.69,
+          "w": "menaruh"
+        },
+        {
+          "t": 173.67,
+          "d": 0.95,
+          "w": "hati?"
+        }
+      ]
+    },
+    {
+      "start": 174.74,
+      "end": 180.36,
+      "text": "<span class=\"kinetic-highlight\">Lantas mengapa</span> ku masih menaruh hati?",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 174.74,
+          "d": 0.95,
+          "w": "Lantas",
+          "h": true
+        },
+        {
+          "t": 175.69,
+          "d": 0.77,
+          "w": "mengapa",
+          "h": true
+        },
+        {
+          "t": 176.46,
+          "d": 0.53,
+          "w": "ku"
+        },
+        {
+          "t": 176.99,
+          "d": 1.12,
+          "w": "masih"
+        },
+        {
+          "t": 178.11,
+          "d": 0.65,
+          "w": "menaruh"
+        },
+        {
+          "t": 178.76,
+          "d": 1.6,
+          "w": "hati?"
+        }
+      ]
+    },
+    {
+      "start": 180.48,
+      "end": 185.36,
+      "text": "Padahal ku tahu kau t'lah <span class=\"kinetic-highlight\">terikat janji</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 180.48,
+          "d": 0.72,
+          "w": "Padahal"
+        },
+        {
+          "t": 181.2,
+          "d": 0.4,
+          "w": "ku"
+        },
+        {
+          "t": 181.6,
+          "d": 0.56,
+          "w": "tahu"
+        },
+        {
+          "t": 182.16,
+          "d": 0.46,
+          "w": "kau"
+        },
+        {
+          "t": 182.62,
+          "d": 0.48,
+          "w": "t'lah"
+        },
+        {
+          "t": 183.1,
+          "d": 0.95,
+          "w": "terikat",
+          "h": true
+        },
+        {
+          "t": 184.05,
+          "d": 1.31,
+          "w": "janji",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 185.44,
+      "end": 191.06,
+      "text": "Keliru ataukah bukan? <span class=\"kinetic-highlight\">Tak tahu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 185.44,
+          "d": 1.41,
+          "w": "Keliru"
+        },
+        {
+          "t": 186.85,
+          "d": 0.89,
+          "w": "ataukah"
+        },
+        {
+          "t": 187.74,
+          "d": 1,
+          "w": "bukan?"
+        },
+        {
+          "t": 188.74,
+          "d": 0.84,
+          "w": "Tak",
+          "h": true
+        },
+        {
+          "t": 189.58,
+          "d": 1.48,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 191.18,
+      "end": 196.92,
+      "text": "Lupakanmu, tapi aku tak mau (pantaskah <span class=\"kinetic-highlight\">ku)</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 191.18,
+          "d": 1.36,
+          "w": "Lupakanmu,"
+        },
+        {
+          "t": 192.54,
+          "d": 0.98,
+          "w": "tapi"
+        },
+        {
+          "t": 193.52,
+          "d": 0.78,
+          "w": "aku"
+        },
+        {
+          "t": 194.3,
+          "d": 0.49,
+          "w": "tak"
+        },
+        {
+          "t": 194.79,
+          "d": 0.33,
+          "w": "mau"
+        },
+        {
+          "t": 195.12,
+          "d": 0.76,
+          "w": "(pantaskah"
+        },
+        {
+          "t": 195.88,
+          "d": 1.04,
+          "w": "ku)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 197.04,
+      "end": 199.86,
+      "text": "Pantaskah aku ('tuk <span class=\"kinetic-highlight\">menyimpan)</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 197.04,
+          "d": 0.64,
+          "w": "Pantaskah"
+        },
+        {
+          "t": 197.68,
+          "d": 0.65,
+          "w": "aku"
+        },
+        {
+          "t": 198.33,
+          "d": 0.41,
+          "w": "('tuk"
+        },
+        {
+          "t": 198.74,
+          "d": 1.12,
+          "w": "menyimpan)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 199.94,
+      "end": 204.27,
+      "text": "Untuk menyimpan <span class=\"kinetic-highlight\">(rasa</span> cemburu?)",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 199.94,
+          "d": 0.62,
+          "w": "Untuk"
+        },
+        {
+          "t": 200.56,
+          "d": 0.91,
+          "w": "menyimpan"
+        },
+        {
+          "t": 201.47,
+          "d": 0.51,
+          "w": "(rasa",
+          "h": true
+        },
+        {
+          "t": 201.98,
+          "d": 2.29,
+          "w": "cemburu?)"
+        }
+      ]
+    },
+    {
+      "start": 204.39,
+      "end": 207.91,
+      "text": "Kar'na bukan aku <span class=\"kinetic-highlight\">yang milikimu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 204.39,
+          "d": 0.48,
+          "w": "Kar'na"
+        },
+        {
+          "t": 204.87,
+          "d": 0.42,
+          "w": "bukan"
+        },
+        {
+          "t": 205.29,
+          "d": 0.48,
+          "w": "aku"
+        },
+        {
+          "t": 205.77,
+          "d": 0.51,
+          "w": "yang",
+          "h": true
+        },
+        {
+          "t": 206.28,
+          "d": 1.63,
+          "w": "milikimu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 207.99,
+      "end": 213.33,
+      "text": "Sanggup sampai kapankah? Ku tak <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 207.99,
+          "d": 0.74,
+          "w": "Sanggup"
+        },
+        {
+          "t": 208.73,
+          "d": 1.02,
+          "w": "sampai"
+        },
+        {
+          "t": 209.75,
+          "d": 1.21,
+          "w": "kapankah?"
+        },
+        {
+          "t": 210.96,
+          "d": 0.67,
+          "w": "Ku"
+        },
+        {
+          "t": 211.63,
+          "d": 0.38,
+          "w": "tak"
+        },
+        {
+          "t": 212.01,
+          "d": 1.32,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 213.45,
+      "end": 216.62,
+      "text": "Akankah akal sehat <span class=\"kinetic-highlight\">menyadarkanku?</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 213.45,
+          "d": 0.91,
+          "w": "Akankah"
+        },
+        {
+          "t": 214.36,
+          "d": 0.44,
+          "w": "akal"
+        },
+        {
+          "t": 214.8,
+          "d": 0.4,
+          "w": "sehat"
+        },
+        {
+          "t": 215.2,
+          "d": 1.42,
+          "w": "menyadarkanku?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 216.7,
+      "end": 234.03,
+      "text": "♪ [Alunan Saxophone Melankolis Menutup Kisah Terlarang] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

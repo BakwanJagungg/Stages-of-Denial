@@ -1,0 +1,1612 @@
+{
+  "id": "tarot",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 32.27,
+      "text": "♪ [Dengung Frekuensi Mistis Membuka Ritual] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 32.35,
+      "end": 37.09,
+      "text": "Nama yang sama <span class=\"kinetic-highlight\">bertahan</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 32.35,
+          "d": 1.16,
+          "w": "Nama"
+        },
+        {
+          "t": 33.51,
+          "d": 0.56,
+          "w": "yang"
+        },
+        {
+          "t": 34.07,
+          "d": 0.88,
+          "w": "sama"
+        },
+        {
+          "t": 34.95,
+          "d": 2.14,
+          "w": "bertahan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 37.21,
+      "end": 40.82,
+      "text": "Dalam <span class=\"kinetic-highlight\">ruangan</span> hening",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 37.21,
+          "d": 1.52,
+          "w": "Dalam"
+        },
+        {
+          "t": 38.73,
+          "d": 0.92,
+          "w": "ruangan",
+          "h": true
+        },
+        {
+          "t": 39.65,
+          "d": 1.17,
+          "w": "hening"
+        }
+      ]
+    },
+    {
+      "start": 40.94,
+      "end": 44.99,
+      "text": "Tanpa suara <span class=\"kinetic-highlight\">bertahan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 40.94,
+          "d": 1.27,
+          "w": "Tanpa"
+        },
+        {
+          "t": 42.21,
+          "d": 0.79,
+          "w": "suara"
+        },
+        {
+          "t": 43,
+          "d": 1.99,
+          "w": "bertahan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 45.11,
+      "end": 49.26,
+      "text": "<span class=\"kinetic-highlight\">Tak bergeming</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 45.11,
+          "d": 1.47,
+          "w": "Tak",
+          "h": true
+        },
+        {
+          "t": 46.58,
+          "d": 2.68,
+          "w": "bergeming",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 49.38,
+      "end": 54.18,
+      "text": "<span class=\"kinetic-highlight\">Terlalu</span> lama bercanda",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 49.38,
+          "d": 1.95,
+          "w": "Terlalu",
+          "h": true
+        },
+        {
+          "t": 51.33,
+          "d": 1.07,
+          "w": "lama"
+        },
+        {
+          "t": 52.4,
+          "d": 1.78,
+          "w": "bercanda"
+        }
+      ]
+    },
+    {
+      "start": 54.3,
+      "end": 57.87,
+      "text": "Kita tak <span class=\"kinetic-highlight\">terbiasa</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 54.3,
+          "d": 1.34,
+          "w": "Kita"
+        },
+        {
+          "t": 55.64,
+          "d": 0.54,
+          "w": "tak"
+        },
+        {
+          "t": 56.18,
+          "d": 1.69,
+          "w": "terbiasa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 57.99,
+      "end": 62.05,
+      "text": "Dengan celaka yang <span class=\"kinetic-highlight\">nyata</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 57.99,
+          "d": 0.8,
+          "w": "Dengan"
+        },
+        {
+          "t": 58.79,
+          "d": 1.02,
+          "w": "celaka"
+        },
+        {
+          "t": 59.81,
+          "d": 0.45,
+          "w": "yang"
+        },
+        {
+          "t": 60.26,
+          "d": 1.79,
+          "w": "nyata",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 62.19,
+      "end": 66.4,
+      "text": "<span class=\"kinetic-highlight\">Diam</span> tak berdaya",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 62.19,
+          "d": 1.68,
+          "w": "Diam",
+          "h": true
+        },
+        {
+          "t": 63.87,
+          "d": 0.62,
+          "w": "tak"
+        },
+        {
+          "t": 64.49,
+          "d": 1.91,
+          "w": "berdaya"
+        }
+      ]
+    },
+    {
+      "start": 66.52,
+      "end": 71.42,
+      "text": "<span class=\"kinetic-highlight\">Namun aku</span> bingung kenapa ku tak pergi",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 66.52,
+          "d": 1.11,
+          "w": "Namun",
+          "h": true
+        },
+        {
+          "t": 67.63,
+          "d": 0.83,
+          "w": "aku",
+          "h": true
+        },
+        {
+          "t": 68.46,
+          "d": 0.53,
+          "w": "bingung"
+        },
+        {
+          "t": 68.99,
+          "d": 0.94,
+          "w": "kenapa"
+        },
+        {
+          "t": 69.93,
+          "d": 0.29,
+          "w": "ku"
+        },
+        {
+          "t": 70.22,
+          "d": 0.32,
+          "w": "tak"
+        },
+        {
+          "t": 70.54,
+          "d": 0.88,
+          "w": "pergi"
+        }
+      ]
+    },
+    {
+      "start": 71.54,
+      "end": 75.71,
+      "text": "Aku bingung kalian masih di <span class=\"kinetic-highlight\">sini</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 71.54,
+          "d": 0.65,
+          "w": "Aku"
+        },
+        {
+          "t": 72.19,
+          "d": 0.56,
+          "w": "bingung"
+        },
+        {
+          "t": 72.75,
+          "d": 0.79,
+          "w": "kalian"
+        },
+        {
+          "t": 73.54,
+          "d": 0.73,
+          "w": "masih"
+        },
+        {
+          "t": 74.27,
+          "d": 0.28,
+          "w": "di"
+        },
+        {
+          "t": 74.55,
+          "d": 1.16,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 75.79,
+      "end": 79.77,
+      "text": "Apa mungkin karena <span class=\"kinetic-highlight\">terlalu lama?</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 75.79,
+          "d": 0.65,
+          "w": "Apa"
+        },
+        {
+          "t": 76.44,
+          "d": 0.52,
+          "w": "mungkin"
+        },
+        {
+          "t": 76.96,
+          "d": 1.08,
+          "w": "karena"
+        },
+        {
+          "t": 78.04,
+          "d": 0.76,
+          "w": "terlalu",
+          "h": true
+        },
+        {
+          "t": 78.8,
+          "d": 0.97,
+          "w": "lama?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 79.85,
+      "end": 84.06,
+      "text": "Apa benar 'tuk <span class=\"kinetic-highlight\">berbagi derita?</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 79.85,
+          "d": 1.02,
+          "w": "Apa"
+        },
+        {
+          "t": 80.87,
+          "d": 0.4,
+          "w": "benar"
+        },
+        {
+          "t": 81.27,
+          "d": 0.55,
+          "w": "'tuk"
+        },
+        {
+          "t": 81.82,
+          "d": 0.92,
+          "w": "berbagi",
+          "h": true
+        },
+        {
+          "t": 82.74,
+          "d": 1.32,
+          "w": "derita?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 84.14,
+      "end": 88.13,
+      "text": "Mungkin nanti semua <span class=\"kinetic-highlight\">justru memburuk</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 84.14,
+          "d": 0.44,
+          "w": "Mungkin"
+        },
+        {
+          "t": 84.58,
+          "d": 0.75,
+          "w": "nanti"
+        },
+        {
+          "t": 85.33,
+          "d": 0.62,
+          "w": "semua"
+        },
+        {
+          "t": 85.95,
+          "d": 1,
+          "w": "justru",
+          "h": true
+        },
+        {
+          "t": 86.95,
+          "d": 1.18,
+          "w": "memburuk",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 88.21,
+      "end": 92.31,
+      "text": "Hati-hati, <span class=\"kinetic-highlight\">namun</span> terjatuh lagi",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 88.21,
+          "d": 1.23,
+          "w": "Hati-hati,"
+        },
+        {
+          "t": 89.44,
+          "d": 1.05,
+          "w": "namun",
+          "h": true
+        },
+        {
+          "t": 90.49,
+          "d": 0.81,
+          "w": "terjatuh"
+        },
+        {
+          "t": 91.3,
+          "d": 1.01,
+          "w": "lagi"
+        }
+      ]
+    },
+    {
+      "start": 92.39,
+      "end": 96.5,
+      "text": "Tapi luka adalah <span class=\"kinetic-highlight\">niscaya</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 92.39,
+          "d": 1.12,
+          "w": "Tapi"
+        },
+        {
+          "t": 93.51,
+          "d": 0.91,
+          "w": "luka"
+        },
+        {
+          "t": 94.42,
+          "d": 0.75,
+          "w": "adalah"
+        },
+        {
+          "t": 95.17,
+          "d": 1.33,
+          "w": "niscaya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 96.62,
+      "end": 103.01,
+      "text": "Kutanggung denganmu <span class=\"kinetic-highlight\">selama ku</span> mampu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 96.62,
+          "d": 1.09,
+          "w": "Kutanggung"
+        },
+        {
+          "t": 97.71,
+          "d": 0.86,
+          "w": "denganmu"
+        },
+        {
+          "t": 98.57,
+          "d": 1.35,
+          "w": "selama",
+          "h": true
+        },
+        {
+          "t": 99.92,
+          "d": 0.95,
+          "w": "ku",
+          "h": true
+        },
+        {
+          "t": 100.87,
+          "d": 2.14,
+          "w": "mampu"
+        }
+      ]
+    },
+    {
+      "start": 103.78,
+      "end": 105.77,
+      "text": "<span class=\"kinetic-highlight\">Selama</span> ku mampu",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 103.78,
+          "d": 1.07,
+          "w": "Selama",
+          "h": true
+        },
+        {
+          "t": 104.85,
+          "d": 0.27,
+          "w": "ku"
+        },
+        {
+          "t": 105.12,
+          "d": 0.65,
+          "w": "mampu"
+        }
+      ]
+    },
+    {
+      "start": 105.85,
+      "end": 117.37,
+      "text": "♪ [Petikan Bass Berat Membangun Ketegangan Fuzz] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 117.45,
+      "end": 120.34,
+      "text": "Di kehidupan kedua (Di kehidupan <span class=\"kinetic-highlight\">kedua)</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 117.45,
+          "d": 0.46,
+          "w": "Di"
+        },
+        {
+          "t": 117.91,
+          "d": 0.81,
+          "w": "kehidupan"
+        },
+        {
+          "t": 118.72,
+          "d": 0.25,
+          "w": "kedua"
+        },
+        {
+          "t": 118.97,
+          "d": 0.37,
+          "w": "(Di"
+        },
+        {
+          "t": 119.34,
+          "d": 0.54,
+          "w": "kehidupan"
+        },
+        {
+          "t": 119.88,
+          "d": 0.46,
+          "w": "kedua)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 120.42,
+      "end": 124.93,
+      "text": "Semoga kau tak <span class=\"kinetic-highlight\">terlalu keras</span> kepala",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 120.42,
+          "d": 1.18,
+          "w": "Semoga"
+        },
+        {
+          "t": 121.6,
+          "d": 0.38,
+          "w": "kau"
+        },
+        {
+          "t": 121.98,
+          "d": 0.36,
+          "w": "tak"
+        },
+        {
+          "t": 122.34,
+          "d": 0.78,
+          "w": "terlalu",
+          "h": true
+        },
+        {
+          "t": 123.12,
+          "d": 0.62,
+          "w": "keras",
+          "h": true
+        },
+        {
+          "t": 123.74,
+          "d": 1.19,
+          "w": "kepala"
+        }
+      ]
+    },
+    {
+      "start": 125.01,
+      "end": 128.85,
+      "text": "Atau mungkin ini bukan yang pertama (Ini bukan yang <span class=\"kinetic-highlight\">pertama)</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 125.01,
+          "d": 0.77,
+          "w": "Atau"
+        },
+        {
+          "t": 125.78,
+          "d": 0.28,
+          "w": "mungkin"
+        },
+        {
+          "t": 126.06,
+          "d": 0.29,
+          "w": "ini"
+        },
+        {
+          "t": 126.35,
+          "d": 0.42,
+          "w": "bukan"
+        },
+        {
+          "t": 126.77,
+          "d": 0.18,
+          "w": "yang"
+        },
+        {
+          "t": 126.95,
+          "d": 0.34,
+          "w": "pertama"
+        },
+        {
+          "t": 127.29,
+          "d": 0.41,
+          "w": "(Ini"
+        },
+        {
+          "t": 127.7,
+          "d": 0.41,
+          "w": "bukan"
+        },
+        {
+          "t": 128.11,
+          "d": 0.28,
+          "w": "yang"
+        },
+        {
+          "t": 128.39,
+          "d": 0.46,
+          "w": "pertama)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 128.93,
+      "end": 133.22,
+      "text": "Dan kita diberi <span class=\"kinetic-highlight\">kesempatan berubah</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 128.93,
+          "d": 0.51,
+          "w": "Dan"
+        },
+        {
+          "t": 129.44,
+          "d": 1.13,
+          "w": "kita"
+        },
+        {
+          "t": 130.57,
+          "d": 0.94,
+          "w": "diberi"
+        },
+        {
+          "t": 131.51,
+          "d": 1.02,
+          "w": "kesempatan",
+          "h": true
+        },
+        {
+          "t": 132.53,
+          "d": 0.69,
+          "w": "berubah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 133.3,
+      "end": 138.26,
+      "text": "Kuyakin nyawa kita <span class=\"kinetic-highlight\">bertautan</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 133.3,
+          "d": 1.07,
+          "w": "Kuyakin"
+        },
+        {
+          "t": 134.37,
+          "d": 1.09,
+          "w": "nyawa"
+        },
+        {
+          "t": 135.46,
+          "d": 1.09,
+          "w": "kita"
+        },
+        {
+          "t": 136.55,
+          "d": 1.71,
+          "w": "bertautan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 138.38,
+      "end": 141.58,
+      "text": "<span class=\"kinetic-highlight\">Khatam</span> berbagai cobaan",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 138.38,
+          "d": 1.55,
+          "w": "Khatam",
+          "h": true
+        },
+        {
+          "t": 139.93,
+          "d": 0.89,
+          "w": "berbagai"
+        },
+        {
+          "t": 140.82,
+          "d": 0.76,
+          "w": "cobaan"
+        }
+      ]
+    },
+    {
+      "start": 141.66,
+      "end": 147.07,
+      "text": "Selalu menertawakan ramalan bintang, kartu <span class=\"kinetic-highlight\">tarot</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 141.66,
+          "d": 1.14,
+          "w": "Selalu"
+        },
+        {
+          "t": 142.8,
+          "d": 1.07,
+          "w": "menertawakan"
+        },
+        {
+          "t": 143.87,
+          "d": 0.73,
+          "w": "ramalan"
+        },
+        {
+          "t": 144.6,
+          "d": 0.76,
+          "w": "bintang,"
+        },
+        {
+          "t": 145.36,
+          "d": 0.54,
+          "w": "kartu"
+        },
+        {
+          "t": 145.9,
+          "d": 1.17,
+          "w": "tarot",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 147.15,
+      "end": 149.94,
+      "text": "<span class=\"kinetic-highlight\">Orang</span> pintar pembaca nasib",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 147.15,
+          "d": 0.46,
+          "w": "Orang",
+          "h": true
+        },
+        {
+          "t": 147.61,
+          "d": 0.59,
+          "w": "pintar"
+        },
+        {
+          "t": 148.2,
+          "d": 0.8,
+          "w": "pembaca"
+        },
+        {
+          "t": 149,
+          "d": 0.94,
+          "w": "nasib"
+        }
+      ]
+    },
+    {
+      "start": 150.02,
+      "end": 154.93,
+      "text": "<span class=\"kinetic-highlight\">Namun aku</span> bingung kenapa ku tak pergi",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 150.02,
+          "d": 0.77,
+          "w": "Namun",
+          "h": true
+        },
+        {
+          "t": 150.79,
+          "d": 0.66,
+          "w": "aku",
+          "h": true
+        },
+        {
+          "t": 151.45,
+          "d": 0.72,
+          "w": "bingung"
+        },
+        {
+          "t": 152.17,
+          "d": 0.96,
+          "w": "kenapa"
+        },
+        {
+          "t": 153.13,
+          "d": 0.53,
+          "w": "ku"
+        },
+        {
+          "t": 153.66,
+          "d": 0.34,
+          "w": "tak"
+        },
+        {
+          "t": 154,
+          "d": 0.93,
+          "w": "pergi"
+        }
+      ]
+    },
+    {
+      "start": 155.05,
+      "end": 159.02,
+      "text": "Aku bingung kalian masih <span class=\"kinetic-highlight\">di sini</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 155.05,
+          "d": 0.64,
+          "w": "Aku"
+        },
+        {
+          "t": 155.69,
+          "d": 0.57,
+          "w": "bingung"
+        },
+        {
+          "t": 156.26,
+          "d": 0.67,
+          "w": "kalian"
+        },
+        {
+          "t": 156.93,
+          "d": 0.71,
+          "w": "masih"
+        },
+        {
+          "t": 157.64,
+          "d": 0.3,
+          "w": "di",
+          "h": true
+        },
+        {
+          "t": 157.94,
+          "d": 1.08,
+          "w": "sini",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 159.1,
+      "end": 163.1,
+      "text": "Apa mungkin karena <span class=\"kinetic-highlight\">terlalu lama?</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 159.1,
+          "d": 0.72,
+          "w": "Apa"
+        },
+        {
+          "t": 159.82,
+          "d": 0.55,
+          "w": "mungkin"
+        },
+        {
+          "t": 160.37,
+          "d": 0.79,
+          "w": "karena"
+        },
+        {
+          "t": 161.16,
+          "d": 0.87,
+          "w": "terlalu",
+          "h": true
+        },
+        {
+          "t": 162.03,
+          "d": 1.07,
+          "w": "lama?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 163.18,
+      "end": 167.54,
+      "text": "Apa benar 'tuk <span class=\"kinetic-highlight\">berbagi derita?</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 163.18,
+          "d": 0.94,
+          "w": "Apa"
+        },
+        {
+          "t": 164.12,
+          "d": 0.6,
+          "w": "benar"
+        },
+        {
+          "t": 164.72,
+          "d": 0.48,
+          "w": "'tuk"
+        },
+        {
+          "t": 165.2,
+          "d": 0.98,
+          "w": "berbagi",
+          "h": true
+        },
+        {
+          "t": 166.18,
+          "d": 1.36,
+          "w": "derita?",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 167.66,
+      "end": 171.71,
+      "text": "Mungkin nanti semua justru <span class=\"kinetic-highlight\">memburuk</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 167.66,
+          "d": 0.46,
+          "w": "Mungkin"
+        },
+        {
+          "t": 168.12,
+          "d": 0.75,
+          "w": "nanti"
+        },
+        {
+          "t": 168.87,
+          "d": 0.75,
+          "w": "semua"
+        },
+        {
+          "t": 169.62,
+          "d": 0.78,
+          "w": "justru"
+        },
+        {
+          "t": 170.4,
+          "d": 1.31,
+          "w": "memburuk",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 171.79,
+      "end": 175.57,
+      "text": "Hati-hati, <span class=\"kinetic-highlight\">namun</span> terjatuh lagi",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 171.79,
+          "d": 1.08,
+          "w": "Hati-hati,"
+        },
+        {
+          "t": 172.87,
+          "d": 0.8,
+          "w": "namun",
+          "h": true
+        },
+        {
+          "t": 173.67,
+          "d": 0.96,
+          "w": "terjatuh"
+        },
+        {
+          "t": 174.63,
+          "d": 0.94,
+          "w": "lagi"
+        }
+      ]
+    },
+    {
+      "start": 175.65,
+      "end": 179.97,
+      "text": "Tapi luka adalah <span class=\"kinetic-highlight\">niscaya</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 175.65,
+          "d": 1.01,
+          "w": "Tapi"
+        },
+        {
+          "t": 176.66,
+          "d": 1.18,
+          "w": "luka"
+        },
+        {
+          "t": 177.84,
+          "d": 0.8,
+          "w": "adalah"
+        },
+        {
+          "t": 178.64,
+          "d": 1.33,
+          "w": "niscaya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 180.09,
+      "end": 186.48,
+      "text": "Kutanggung denganmu, <span class=\"kinetic-highlight\">selama ku</span> mampu",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 180.09,
+          "d": 1.05,
+          "w": "Kutanggung"
+        },
+        {
+          "t": 181.14,
+          "d": 0.96,
+          "w": "denganmu,"
+        },
+        {
+          "t": 182.1,
+          "d": 1.33,
+          "w": "selama",
+          "h": true
+        },
+        {
+          "t": 183.43,
+          "d": 0.89,
+          "w": "ku",
+          "h": true
+        },
+        {
+          "t": 184.32,
+          "d": 2.16,
+          "w": "mampu"
+        }
+      ]
+    },
+    {
+      "start": 186.92,
+      "end": 191.34,
+      "text": "<span class=\"kinetic-highlight\">Selama</span> ku mampu",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 186.92,
+          "d": 1.53,
+          "w": "Selama",
+          "h": true
+        },
+        {
+          "t": 188.45,
+          "d": 0.55,
+          "w": "ku"
+        },
+        {
+          "t": 189,
+          "d": 2.34,
+          "w": "mampu"
+        }
+      ]
+    },
+    {
+      "start": 191.46,
+      "end": 197.09,
+      "text": "Selalu menertawakan ramalan bintang, kartu <span class=\"kinetic-highlight\">tarot</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 191.46,
+          "d": 1.49,
+          "w": "Selalu"
+        },
+        {
+          "t": 192.95,
+          "d": 1.01,
+          "w": "menertawakan"
+        },
+        {
+          "t": 193.96,
+          "d": 0.64,
+          "w": "ramalan"
+        },
+        {
+          "t": 194.6,
+          "d": 0.73,
+          "w": "bintang,"
+        },
+        {
+          "t": 195.33,
+          "d": 0.57,
+          "w": "kartu"
+        },
+        {
+          "t": 195.9,
+          "d": 1.19,
+          "w": "tarot",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 197.17,
+      "end": 200.03,
+      "text": "<span class=\"kinetic-highlight\">Orang</span> pintar pembaca nasib",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 197.17,
+          "d": 0.52,
+          "w": "Orang",
+          "h": true
+        },
+        {
+          "t": 197.69,
+          "d": 0.57,
+          "w": "pintar"
+        },
+        {
+          "t": 198.26,
+          "d": 0.79,
+          "w": "pembaca"
+        },
+        {
+          "t": 199.05,
+          "d": 0.98,
+          "w": "nasib"
+        }
+      ]
+    },
+    {
+      "start": 200.11,
+      "end": 202.27,
+      "text": "<span class=\"kinetic-highlight\">Namun</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 200.11,
+          "d": 2.16,
+          "w": "Namun",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 202.35,
+      "end": 206.42,
+      "text": "<span class=\"kinetic-highlight\">Padamu kupercaya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 202.35,
+          "d": 2,
+          "w": "Padamu",
+          "h": true
+        },
+        {
+          "t": 204.35,
+          "d": 2.07,
+          "w": "kupercaya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 206.5,
+      "end": 210.87,
+      "text": "♪ [Solo Gitar Fuzz Eksplosif Menutup Takdir] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 210.95,
+      "end": 213.14,
+      "text": "Tak <span class=\"kinetic-highlight\">masuk</span> logika",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 210.95,
+          "d": 0.77,
+          "w": "Tak"
+        },
+        {
+          "t": 211.72,
+          "d": 0.61,
+          "w": "masuk",
+          "h": true
+        },
+        {
+          "t": 212.33,
+          "d": 0.81,
+          "w": "logika"
+        }
+      ]
+    },
+    {
+      "start": 213.22,
+      "end": 219.25,
+      "text": "♪ [Petikan Bass Berat Membangun Ketegangan Fuzz] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 219.33,
+      "end": 221.52,
+      "text": "<span class=\"kinetic-highlight\">Padamu kupercaya</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 219.33,
+          "d": 1.22,
+          "w": "Padamu",
+          "h": true
+        },
+        {
+          "t": 220.55,
+          "d": 0.97,
+          "w": "kupercaya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 221.6,
+      "end": 227.3,
+      "text": "♪ [Solo Gitar Fuzz Eksplosif Menutup Takdir] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 227.38,
+      "end": 231.19,
+      "text": "Tak <span class=\"kinetic-highlight\">masuk logika</span> (Tak masuk logika)",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 227.38,
+          "d": 1.18,
+          "w": "Tak"
+        },
+        {
+          "t": 228.56,
+          "d": 0.58,
+          "w": "masuk",
+          "h": true
+        },
+        {
+          "t": 229.14,
+          "d": 0.55,
+          "w": "logika",
+          "h": true
+        },
+        {
+          "t": 229.69,
+          "d": 0.22,
+          "w": "(Tak"
+        },
+        {
+          "t": 229.91,
+          "d": 0.47,
+          "w": "masuk"
+        },
+        {
+          "t": 230.38,
+          "d": 0.81,
+          "w": "logika)"
+        }
+      ]
+    },
+    {
+      "start": 231.27,
+      "end": 236.16,
+      "text": "♪ [Petikan Bass Berat Membangun Ketegangan Fuzz] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 236.24,
+      "end": 240.12,
+      "text": "Padamu kupercaya (Padamu <span class=\"kinetic-highlight\">kupercaya)</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 236.24,
+          "d": 1.1,
+          "w": "Padamu"
+        },
+        {
+          "t": 237.34,
+          "d": 0.85,
+          "w": "kupercaya"
+        },
+        {
+          "t": 238.19,
+          "d": 0.82,
+          "w": "(Padamu"
+        },
+        {
+          "t": 239.01,
+          "d": 1.11,
+          "w": "kupercaya)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 240.2,
+      "end": 244.41,
+      "text": "♪ [Solo Gitar Fuzz Eksplosif Menutup Takdir] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 244.49,
+      "end": 248.3,
+      "text": "Tak <span class=\"kinetic-highlight\">masuk logika</span> (Tak masuk logika)",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 244.49,
+          "d": 0.82,
+          "w": "Tak"
+        },
+        {
+          "t": 245.31,
+          "d": 0.62,
+          "w": "masuk",
+          "h": true
+        },
+        {
+          "t": 245.93,
+          "d": 0.61,
+          "w": "logika",
+          "h": true
+        },
+        {
+          "t": 246.54,
+          "d": 0.34,
+          "w": "(Tak"
+        },
+        {
+          "t": 246.88,
+          "d": 0.58,
+          "w": "masuk"
+        },
+        {
+          "t": 247.46,
+          "d": 0.84,
+          "w": "logika)"
+        }
+      ]
+    },
+    {
+      "start": 248.38,
+      "end": 252.85,
+      "text": "♪ [Petikan Bass Berat Membangun Ketegangan Fuzz] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 252.93,
+      "end": 256.92,
+      "text": "Padamu kupercaya (Padamu <span class=\"kinetic-highlight\">kupercaya)</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 252.93,
+          "d": 1.16,
+          "w": "Padamu"
+        },
+        {
+          "t": 254.09,
+          "d": 0.8,
+          "w": "kupercaya"
+        },
+        {
+          "t": 254.89,
+          "d": 0.82,
+          "w": "(Padamu"
+        },
+        {
+          "t": 255.71,
+          "d": 1.21,
+          "w": "kupercaya)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 257,
+      "end": 261.06,
+      "text": "♪ [Solo Gitar Fuzz Eksplosif Menutup Takdir] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 261.14,
+      "end": 267.53,
+      "text": "Tak <span class=\"kinetic-highlight\">masuk logika</span> (Tak masuk logika)",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 261.14,
+          "d": 0.57,
+          "w": "Tak"
+        },
+        {
+          "t": 261.71,
+          "d": 0.9,
+          "w": "masuk",
+          "h": true
+        },
+        {
+          "t": 262.61,
+          "d": 1.15,
+          "w": "logika",
+          "h": true
+        },
+        {
+          "t": 263.76,
+          "d": 0.89,
+          "w": "(Tak"
+        },
+        {
+          "t": 264.65,
+          "d": 1.1,
+          "w": "masuk"
+        },
+        {
+          "t": 265.75,
+          "d": 1.78,
+          "w": "logika)"
+        }
+      ]
+    },
+    {
+      "start": 268.99,
+      "end": 271.18,
+      "text": "<span class=\"kinetic-highlight\">Padamu kupercaya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 268.99,
+          "d": 1.24,
+          "w": "Padamu",
+          "h": true
+        },
+        {
+          "t": 270.23,
+          "d": 0.95,
+          "w": "kupercaya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 271.26,
+      "end": 277.87,
+      "text": "♪ [Petikan Bass Berat Membangun Ketegangan Fuzz] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 277.95,
+      "end": 280.41,
+      "text": "Tak <span class=\"kinetic-highlight\">masuk</span> logika",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 277.95,
+          "d": 0.75,
+          "w": "Tak"
+        },
+        {
+          "t": 278.7,
+          "d": 0.73,
+          "w": "masuk",
+          "h": true
+        },
+        {
+          "t": 279.43,
+          "d": 0.98,
+          "w": "logika"
+        }
+      ]
+    },
+    {
+      "start": 280.49,
+      "end": 306.72,
+      "text": "♪ [Gema Ritual Merayap Hening Menutup Kisah] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

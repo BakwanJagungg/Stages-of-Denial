@@ -1,0 +1,1275 @@
+{
+  "id": "bunga-maaf",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 12.51,
+      "text": "♪ [Petikan Gitar Retro 70s Membuka Ruang Kenangan] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 12.81,
+      "end": 14.8,
+      "text": "<span class=\"kinetic-highlight\">Hai</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 12.81,
+          "d": 1.99,
+          "w": "Hai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 14.88,
+      "end": 18.54,
+      "text": "<span class=\"kinetic-highlight\">Masihkah</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 14.88,
+          "d": 3.66,
+          "w": "Masihkah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 18.66,
+      "end": 21.77,
+      "text": "<span class=\"kinetic-highlight\">Luka itu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 18.66,
+          "d": 1.02,
+          "w": "Luka",
+          "h": true
+        },
+        {
+          "t": 19.68,
+          "d": 2.09,
+          "w": "itu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 21.89,
+      "end": 24.13,
+      "text": "Ada di <span class=\"kinetic-highlight\">sana</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 21.89,
+          "d": 0.59,
+          "w": "Ada"
+        },
+        {
+          "t": 22.48,
+          "d": 0.44,
+          "w": "di"
+        },
+        {
+          "t": 22.92,
+          "d": 1.21,
+          "w": "sana",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 24.25,
+      "end": 26.76,
+      "text": "<span class=\"kinetic-highlight\">Yang ku</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 24.25,
+          "d": 1.21,
+          "w": "Yang",
+          "h": true
+        },
+        {
+          "t": 25.46,
+          "d": 1.3,
+          "w": "ku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 26.88,
+      "end": 30.6,
+      "text": "<span class=\"kinetic-highlight\">Tinggalkan</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 26.88,
+          "d": 3.72,
+          "w": "Tinggalkan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 30.72,
+      "end": 34.03,
+      "text": "<span class=\"kinetic-highlight\">Saat kita</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 30.72,
+          "d": 0.97,
+          "w": "Saat",
+          "h": true
+        },
+        {
+          "t": 31.69,
+          "d": 2.34,
+          "w": "kita",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 34.15,
+      "end": 36.49,
+      "text": "<span class=\"kinetic-highlight\">Masih bersama</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 34.15,
+          "d": 0.69,
+          "w": "Masih",
+          "h": true
+        },
+        {
+          "t": 34.84,
+          "d": 1.65,
+          "w": "bersama",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 36.57,
+      "end": 42.42,
+      "text": "Kini waktu terasa <span class=\"kinetic-highlight\">berbeda</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 36.57,
+          "d": 1.75,
+          "w": "Kini"
+        },
+        {
+          "t": 38.32,
+          "d": 0.96,
+          "w": "waktu"
+        },
+        {
+          "t": 39.28,
+          "d": 1.49,
+          "w": "terasa"
+        },
+        {
+          "t": 40.77,
+          "d": 1.65,
+          "w": "berbeda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 42.72,
+      "end": 44.64,
+      "text": "<span class=\"kinetic-highlight\">Tanpa hadirmu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 42.72,
+          "d": 1.03,
+          "w": "Tanpa",
+          "h": true
+        },
+        {
+          "t": 43.75,
+          "d": 0.89,
+          "w": "hadirmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 44.72,
+      "end": 48.97,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 49.05,
+      "end": 54.74,
+      "text": "Keras hati yang <span class=\"kinetic-highlight\">dulu bicara</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 49.05,
+          "d": 1.29,
+          "w": "Keras"
+        },
+        {
+          "t": 50.34,
+          "d": 0.98,
+          "w": "hati"
+        },
+        {
+          "t": 51.32,
+          "d": 0.84,
+          "w": "yang"
+        },
+        {
+          "t": 52.16,
+          "d": 1.21,
+          "w": "dulu",
+          "h": true
+        },
+        {
+          "t": 53.37,
+          "d": 1.37,
+          "w": "bicara",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 54.86,
+      "end": 56.78,
+      "text": "<span class=\"kinetic-highlight\">Berujung pilu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 54.86,
+          "d": 0.98,
+          "w": "Berujung",
+          "h": true
+        },
+        {
+          "t": 55.84,
+          "d": 0.94,
+          "w": "pilu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 56.86,
+      "end": 62.45,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 62.53,
+      "end": 64.2,
+      "text": "<span class=\"kinetic-highlight\">Andai</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 62.53,
+          "d": 1.67,
+          "w": "Andai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 64.28,
+      "end": 66.27,
+      "text": "<span class=\"kinetic-highlight\">Angin mengulang</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 64.28,
+          "d": 0.89,
+          "w": "Angin",
+          "h": true
+        },
+        {
+          "t": 65.17,
+          "d": 1.1,
+          "w": "mengulang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 66.35,
+      "end": 70.17,
+      "text": "Sebuah <span class=\"kinetic-highlight\">masa yang</span> t'lah usang",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 66.35,
+          "d": 0.7,
+          "w": "Sebuah"
+        },
+        {
+          "t": 67.05,
+          "d": 0.76,
+          "w": "masa",
+          "h": true
+        },
+        {
+          "t": 67.81,
+          "d": 0.46,
+          "w": "yang",
+          "h": true
+        },
+        {
+          "t": 68.27,
+          "d": 0.49,
+          "w": "t'lah"
+        },
+        {
+          "t": 68.76,
+          "d": 1.41,
+          "w": "usang"
+        }
+      ]
+    },
+    {
+      "start": 70.29,
+      "end": 76.71,
+      "text": "Kan ku telan isi bumi <span class=\"kinetic-highlight\">hanya untukmu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 70.29,
+          "d": 0.76,
+          "w": "Kan"
+        },
+        {
+          "t": 71.05,
+          "d": 0.4,
+          "w": "ku"
+        },
+        {
+          "t": 71.45,
+          "d": 0.86,
+          "w": "telan"
+        },
+        {
+          "t": 72.31,
+          "d": 0.61,
+          "w": "isi"
+        },
+        {
+          "t": 72.92,
+          "d": 0.58,
+          "w": "bumi"
+        },
+        {
+          "t": 73.5,
+          "d": 0.83,
+          "w": "hanya",
+          "h": true
+        },
+        {
+          "t": 74.33,
+          "d": 2.38,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 76.83,
+      "end": 80.12,
+      "text": "Terima <span class=\"kinetic-highlight\">bunga</span> maafku",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 76.83,
+          "d": 1.16,
+          "w": "Terima"
+        },
+        {
+          "t": 77.99,
+          "d": 1.12,
+          "w": "bunga",
+          "h": true
+        },
+        {
+          "t": 79.11,
+          "d": 1.01,
+          "w": "maafku"
+        }
+      ]
+    },
+    {
+      "start": 80.24,
+      "end": 84.96,
+      "text": "<span class=\"kinetic-highlight\">Layu</span> termakan egoku",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 80.24,
+          "d": 0.9,
+          "w": "Layu",
+          "h": true
+        },
+        {
+          "t": 81.14,
+          "d": 1.45,
+          "w": "termakan"
+        },
+        {
+          "t": 82.59,
+          "d": 2.37,
+          "w": "egoku"
+        }
+      ]
+    },
+    {
+      "start": 85.08,
+      "end": 87.57,
+      "text": "Meski ku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 85.08,
+          "d": 0.94,
+          "w": "Meski"
+        },
+        {
+          "t": 86.02,
+          "d": 0.41,
+          "w": "ku"
+        },
+        {
+          "t": 86.43,
+          "d": 1.14,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 87.65,
+      "end": 89.42,
+      "text": "<span class=\"kinetic-highlight\">Tak bisa</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 87.65,
+          "d": 0.92,
+          "w": "Tak",
+          "h": true
+        },
+        {
+          "t": 88.57,
+          "d": 0.85,
+          "w": "bisa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 89.5,
+      "end": 104.05,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 104.13,
+      "end": 106.25,
+      "text": "<span class=\"kinetic-highlight\">Oh</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 104.13,
+          "d": 2.12,
+          "w": "Oh",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 106.33,
+      "end": 110.16,
+      "text": "<span class=\"kinetic-highlight\">Mungkinkah</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 106.33,
+          "d": 3.83,
+          "w": "Mungkinkah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 110.28,
+      "end": 112.77,
+      "text": "<span class=\"kinetic-highlight\">Ada rindu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 110.28,
+          "d": 0.68,
+          "w": "Ada",
+          "h": true
+        },
+        {
+          "t": 110.96,
+          "d": 1.81,
+          "w": "rindu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 112.85,
+      "end": 117.7,
+      "text": "Dibalik <span class=\"kinetic-highlight\">benci</span> itu",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 112.85,
+          "d": 1.23,
+          "w": "Dibalik"
+        },
+        {
+          "t": 114.08,
+          "d": 1.39,
+          "w": "benci",
+          "h": true
+        },
+        {
+          "t": 115.47,
+          "d": 2.23,
+          "w": "itu"
+        }
+      ]
+    },
+    {
+      "start": 118.15,
+      "end": 121.25,
+      "text": "<span class=\"kinetic-highlight\">Yang perlahan</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 118.15,
+          "d": 1.13,
+          "w": "Yang",
+          "h": true
+        },
+        {
+          "t": 119.28,
+          "d": 1.97,
+          "w": "perlahan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 121.38,
+      "end": 122.94,
+      "text": "<span class=\"kinetic-highlight\">Menghilang</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 121.38,
+          "d": 1.56,
+          "w": "Menghilang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 123.02,
+      "end": 127.99,
+      "text": "Saat nyamanku tak <span class=\"kinetic-highlight\">lagi kau</span> butuh",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 123.02,
+          "d": 0.58,
+          "w": "Saat"
+        },
+        {
+          "t": 123.6,
+          "d": 1.1,
+          "w": "nyamanku"
+        },
+        {
+          "t": 124.7,
+          "d": 0.51,
+          "w": "tak"
+        },
+        {
+          "t": 125.21,
+          "d": 1.02,
+          "w": "lagi",
+          "h": true
+        },
+        {
+          "t": 126.23,
+          "d": 0.68,
+          "w": "kau",
+          "h": true
+        },
+        {
+          "t": 126.91,
+          "d": 1.08,
+          "w": "butuh"
+        }
+      ]
+    },
+    {
+      "start": 128.11,
+      "end": 133.96,
+      "text": "Kini waktu terasa <span class=\"kinetic-highlight\">berbeda</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 128.11,
+          "d": 1.63,
+          "w": "Kini"
+        },
+        {
+          "t": 129.74,
+          "d": 1.09,
+          "w": "waktu"
+        },
+        {
+          "t": 130.83,
+          "d": 1.38,
+          "w": "terasa"
+        },
+        {
+          "t": 132.21,
+          "d": 1.75,
+          "w": "berbeda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 134.22,
+      "end": 136.14,
+      "text": "<span class=\"kinetic-highlight\">Tanpa hadirmu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 134.22,
+          "d": 1.03,
+          "w": "Tanpa",
+          "h": true
+        },
+        {
+          "t": 135.25,
+          "d": 0.89,
+          "w": "hadirmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 136.22,
+      "end": 140.16,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 140.24,
+      "end": 146.09,
+      "text": "Keras hati yang dulu <span class=\"kinetic-highlight\">bicara</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 140.24,
+          "d": 1.26,
+          "w": "Keras"
+        },
+        {
+          "t": 141.5,
+          "d": 0.84,
+          "w": "hati"
+        },
+        {
+          "t": 142.34,
+          "d": 0.63,
+          "w": "yang"
+        },
+        {
+          "t": 142.97,
+          "d": 1.4,
+          "w": "dulu"
+        },
+        {
+          "t": 144.37,
+          "d": 1.72,
+          "w": "bicara",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 146.36,
+      "end": 148.28,
+      "text": "<span class=\"kinetic-highlight\">Berujung pilu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 146.36,
+          "d": 1.01,
+          "w": "Berujung",
+          "h": true
+        },
+        {
+          "t": 147.37,
+          "d": 0.91,
+          "w": "pilu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 148.36,
+      "end": 153.74,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 153.82,
+      "end": 155.44,
+      "text": "<span class=\"kinetic-highlight\">Andai</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 153.82,
+          "d": 1.62,
+          "w": "Andai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 155.52,
+      "end": 157.45,
+      "text": "<span class=\"kinetic-highlight\">Angin mengulang</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 155.52,
+          "d": 0.55,
+          "w": "Angin",
+          "h": true
+        },
+        {
+          "t": 156.07,
+          "d": 1.38,
+          "w": "mengulang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 157.53,
+      "end": 160.93,
+      "text": "Sebuah <span class=\"kinetic-highlight\">masa yang</span> t'lah usang",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 157.53,
+          "d": 0.65,
+          "w": "Sebuah"
+        },
+        {
+          "t": 158.18,
+          "d": 0.72,
+          "w": "masa",
+          "h": true
+        },
+        {
+          "t": 158.9,
+          "d": 0.54,
+          "w": "yang",
+          "h": true
+        },
+        {
+          "t": 159.44,
+          "d": 0.41,
+          "w": "t'lah"
+        },
+        {
+          "t": 159.85,
+          "d": 1.08,
+          "w": "usang"
+        }
+      ]
+    },
+    {
+      "start": 161.01,
+      "end": 167.67,
+      "text": "Kan ku telan isi bumi <span class=\"kinetic-highlight\">hanya untukmu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 161.01,
+          "d": 1.06,
+          "w": "Kan"
+        },
+        {
+          "t": 162.07,
+          "d": 0.45,
+          "w": "ku"
+        },
+        {
+          "t": 162.52,
+          "d": 0.83,
+          "w": "telan"
+        },
+        {
+          "t": 163.35,
+          "d": 0.57,
+          "w": "isi"
+        },
+        {
+          "t": 163.92,
+          "d": 0.64,
+          "w": "bumi"
+        },
+        {
+          "t": 164.56,
+          "d": 0.9,
+          "w": "hanya",
+          "h": true
+        },
+        {
+          "t": 165.46,
+          "d": 2.21,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 168.08,
+      "end": 171.71,
+      "text": "Terima <span class=\"kinetic-highlight\">bunga</span> maafku",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 168.08,
+          "d": 1.19,
+          "w": "Terima"
+        },
+        {
+          "t": 169.27,
+          "d": 1.08,
+          "w": "bunga",
+          "h": true
+        },
+        {
+          "t": 170.35,
+          "d": 1.36,
+          "w": "maafku"
+        }
+      ]
+    },
+    {
+      "start": 171.83,
+      "end": 176.21,
+      "text": "<span class=\"kinetic-highlight\">Layu</span> termakan egoku",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 171.83,
+          "d": 0.54,
+          "w": "Layu",
+          "h": true
+        },
+        {
+          "t": 172.37,
+          "d": 1.29,
+          "w": "termakan"
+        },
+        {
+          "t": 173.66,
+          "d": 2.55,
+          "w": "egoku"
+        }
+      ]
+    },
+    {
+      "start": 176.33,
+      "end": 179.58,
+      "text": "Meski ku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 176.33,
+          "d": 1.08,
+          "w": "Meski"
+        },
+        {
+          "t": 177.41,
+          "d": 0.54,
+          "w": "ku"
+        },
+        {
+          "t": 177.95,
+          "d": 1.63,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 179.73,
+      "end": 181.6,
+      "text": "<span class=\"kinetic-highlight\">Tak bisa</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 179.73,
+          "d": 0.74,
+          "w": "Tak",
+          "h": true
+        },
+        {
+          "t": 180.47,
+          "d": 1.13,
+          "w": "bisa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 181.68,
+      "end": 183.07,
+      "text": "<span class=\"kinetic-highlight\">Andai</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 181.68,
+          "d": 1.39,
+          "w": "Andai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 183.15,
+      "end": 184.82,
+      "text": "<span class=\"kinetic-highlight\">Angin mengulang</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 183.15,
+          "d": 0.9,
+          "w": "Angin",
+          "h": true
+        },
+        {
+          "t": 184.05,
+          "d": 0.77,
+          "w": "mengulang",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 184.9,
+      "end": 188.27,
+      "text": "Semua <span class=\"kinetic-highlight\">masa yang</span> t'lah hilang",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 184.9,
+          "d": 0.8,
+          "w": "Semua"
+        },
+        {
+          "t": 185.7,
+          "d": 0.76,
+          "w": "masa",
+          "h": true
+        },
+        {
+          "t": 186.46,
+          "d": 0.49,
+          "w": "yang",
+          "h": true
+        },
+        {
+          "t": 186.95,
+          "d": 0.42,
+          "w": "t'lah"
+        },
+        {
+          "t": 187.37,
+          "d": 0.9,
+          "w": "hilang"
+        }
+      ]
+    },
+    {
+      "start": 188.35,
+      "end": 195.01,
+      "text": "Kan ku telan isi bumi <span class=\"kinetic-highlight\">hanya untukmu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 188.35,
+          "d": 1.04,
+          "w": "Kan"
+        },
+        {
+          "t": 189.39,
+          "d": 0.51,
+          "w": "ku"
+        },
+        {
+          "t": 189.9,
+          "d": 0.85,
+          "w": "telan"
+        },
+        {
+          "t": 190.75,
+          "d": 0.65,
+          "w": "isi"
+        },
+        {
+          "t": 191.4,
+          "d": 0.54,
+          "w": "bumi"
+        },
+        {
+          "t": 191.94,
+          "d": 0.82,
+          "w": "hanya",
+          "h": true
+        },
+        {
+          "t": 192.76,
+          "d": 2.25,
+          "w": "untukmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 195.4,
+      "end": 198.7,
+      "text": "Terima <span class=\"kinetic-highlight\">bunga</span> maafku",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 195.4,
+          "d": 0.83,
+          "w": "Terima"
+        },
+        {
+          "t": 196.23,
+          "d": 0.98,
+          "w": "bunga",
+          "h": true
+        },
+        {
+          "t": 197.21,
+          "d": 1.49,
+          "w": "maafku"
+        }
+      ]
+    },
+    {
+      "start": 198.78,
+      "end": 203.57,
+      "text": "<span class=\"kinetic-highlight\">Layu</span> termakan egoku",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 198.78,
+          "d": 0.97,
+          "w": "Layu",
+          "h": true
+        },
+        {
+          "t": 199.75,
+          "d": 1.21,
+          "w": "termakan"
+        },
+        {
+          "t": 200.96,
+          "d": 2.61,
+          "w": "egoku"
+        }
+      ]
+    },
+    {
+      "start": 203.69,
+      "end": 205.61,
+      "text": "Meski ku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 203.69,
+          "d": 0.92,
+          "w": "Meski"
+        },
+        {
+          "t": 204.61,
+          "d": 0.26,
+          "w": "ku"
+        },
+        {
+          "t": 204.87,
+          "d": 0.74,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 205.69,
+      "end": 209.7,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 209.78,
+      "end": 211.7,
+      "text": "Meski ku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 209.78,
+          "d": 0.87,
+          "w": "Meski"
+        },
+        {
+          "t": 210.65,
+          "d": 0.37,
+          "w": "ku"
+        },
+        {
+          "t": 211.02,
+          "d": 0.68,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 211.78,
+      "end": 217.03,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 217.91,
+      "end": 219.3,
+      "text": "Ku tak <span class=\"kinetic-highlight\">akan</span> bisa",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 217.91,
+          "d": 0.29,
+          "w": "Ku"
+        },
+        {
+          "t": 218.2,
+          "d": 0.16,
+          "w": "tak"
+        },
+        {
+          "t": 218.36,
+          "d": 0.35,
+          "w": "akan",
+          "h": true
+        },
+        {
+          "t": 218.71,
+          "d": 0.59,
+          "w": "bisa"
+        }
+      ]
+    },
+    {
+      "start": 219.38,
+      "end": 252.37,
+      "text": "♪ [Dawai Gitar Meluruh dalam Keikhlasan Abadi] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}

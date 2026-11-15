@@ -1,0 +1,1680 @@
+{
+  "id": "everything-u-are",
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 11.93,
+      "text": "♪ [Detak Drum & Glitch Synth Nostalgia Membuka Ruang Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 12.01,
+      "end": 17.8,
+      "text": "Wajahmu kuingat <span class=\"kinetic-highlight\">selalu</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 12.01,
+          "d": 1.54,
+          "w": "Wajahmu"
+        },
+        {
+          "t": 13.55,
+          "d": 1.04,
+          "w": "kuingat"
+        },
+        {
+          "t": 14.59,
+          "d": 3.21,
+          "w": "selalu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 19.03,
+      "end": 24.7,
+      "text": "Lupakan hal-hal yang <span class=\"kinetic-highlight\">menggangguku</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 19.03,
+          "d": 1.31,
+          "w": "Lupakan"
+        },
+        {
+          "t": 20.34,
+          "d": 0.74,
+          "w": "hal-hal"
+        },
+        {
+          "t": 21.08,
+          "d": 0.68,
+          "w": "yang"
+        },
+        {
+          "t": 21.76,
+          "d": 2.94,
+          "w": "menggangguku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 25.72,
+      "end": 31.61,
+      "text": "Kar'na hari ini mata <span class=\"kinetic-highlight\">kita beradu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 25.72,
+          "d": 0.79,
+          "w": "Kar'na"
+        },
+        {
+          "t": 26.51,
+          "d": 0.98,
+          "w": "hari"
+        },
+        {
+          "t": 27.49,
+          "d": 1.11,
+          "w": "ini"
+        },
+        {
+          "t": 28.6,
+          "d": 0.95,
+          "w": "mata"
+        },
+        {
+          "t": 29.55,
+          "d": 0.67,
+          "w": "kita",
+          "h": true
+        },
+        {
+          "t": 30.22,
+          "d": 1.39,
+          "w": "beradu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 31.73,
+      "end": 34.99,
+      "text": "Kita saling <span class=\"kinetic-highlight\">bantu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 31.73,
+          "d": 1.17,
+          "w": "Kita"
+        },
+        {
+          "t": 32.9,
+          "d": 0.68,
+          "w": "saling"
+        },
+        {
+          "t": 33.58,
+          "d": 1.41,
+          "w": "bantu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 35.11,
+      "end": 37.96,
+      "text": "<span class=\"kinetic-highlight\">Melepas perasaan</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 35.11,
+          "d": 1.23,
+          "w": "Melepas",
+          "h": true
+        },
+        {
+          "t": 36.34,
+          "d": 1.62,
+          "w": "perasaan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 38.04,
+      "end": 41.06,
+      "text": "Tinggi ke <span class=\"kinetic-highlight\">angkasa</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 38.04,
+          "d": 0.8,
+          "w": "Tinggi"
+        },
+        {
+          "t": 38.84,
+          "d": 0.47,
+          "w": "ke"
+        },
+        {
+          "t": 39.31,
+          "d": 1.75,
+          "w": "angkasa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 41.18,
+      "end": 44.08,
+      "text": "<span class=\"kinetic-highlight\">Menantang dunia</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 41.18,
+          "d": 1.41,
+          "w": "Menantang",
+          "h": true
+        },
+        {
+          "t": 42.59,
+          "d": 1.49,
+          "w": "dunia",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 44.2,
+      "end": 47.26,
+      "text": "<span class=\"kinetic-highlight\">Merayakan muda</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 44.2,
+          "d": 1.34,
+          "w": "Merayakan",
+          "h": true
+        },
+        {
+          "t": 45.54,
+          "d": 1.72,
+          "w": "muda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 47.38,
+      "end": 49.2,
+      "text": "'Tuk satu jam <span class=\"kinetic-highlight\">saja</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 47.38,
+          "d": 0.47,
+          "w": "'Tuk"
+        },
+        {
+          "t": 47.85,
+          "d": 0.37,
+          "w": "satu"
+        },
+        {
+          "t": 48.22,
+          "d": 0.36,
+          "w": "jam"
+        },
+        {
+          "t": 48.58,
+          "d": 0.62,
+          "w": "saja",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 49.28,
+      "end": 51.57,
+      "text": "Kita hampir <span class=\"kinetic-highlight\">mati</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 49.28,
+          "d": 0.69,
+          "w": "Kita"
+        },
+        {
+          "t": 49.97,
+          "d": 0.37,
+          "w": "hampir"
+        },
+        {
+          "t": 50.34,
+          "d": 1.23,
+          "w": "mati",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 51.65,
+      "end": 54.66,
+      "text": "Dan kauselamatkan <span class=\"kinetic-highlight\">aku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 51.65,
+          "d": 0.83,
+          "w": "Dan"
+        },
+        {
+          "t": 52.48,
+          "d": 1.03,
+          "w": "kauselamatkan"
+        },
+        {
+          "t": 53.51,
+          "d": 1.15,
+          "w": "aku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 54.74,
+      "end": 57.81,
+      "text": "Dan ku <span class=\"kinetic-highlight\">menyelamatkanmu</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 54.74,
+          "d": 0.9,
+          "w": "Dan"
+        },
+        {
+          "t": 55.64,
+          "d": 0.52,
+          "w": "ku"
+        },
+        {
+          "t": 56.16,
+          "d": 1.65,
+          "w": "menyelamatkanmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 57.89,
+      "end": 61.32,
+      "text": "Dan sekarang aku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 57.89,
+          "d": 0.61,
+          "w": "Dan"
+        },
+        {
+          "t": 58.5,
+          "d": 0.67,
+          "w": "sekarang"
+        },
+        {
+          "t": 59.17,
+          "d": 0.51,
+          "w": "aku"
+        },
+        {
+          "t": 59.68,
+          "d": 1.64,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 61.44,
+      "end": 64.41,
+      "text": "Cerita kita tak jauh <span class=\"kinetic-highlight\">berbeda</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 61.44,
+          "d": 0.66,
+          "w": "Cerita"
+        },
+        {
+          "t": 62.1,
+          "d": 0.31,
+          "w": "kita"
+        },
+        {
+          "t": 62.41,
+          "d": 0.26,
+          "w": "tak"
+        },
+        {
+          "t": 62.67,
+          "d": 0.2,
+          "w": "jauh"
+        },
+        {
+          "t": 62.87,
+          "d": 1.54,
+          "w": "berbeda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 64.49,
+      "end": 68.43,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 68.51,
+      "end": 71.87,
+      "text": "Got beat down by <span class=\"kinetic-highlight\">the world</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 68.51,
+          "d": 0.69,
+          "w": "Got"
+        },
+        {
+          "t": 69.2,
+          "d": 0.55,
+          "w": "beat"
+        },
+        {
+          "t": 69.75,
+          "d": 0.39,
+          "w": "down"
+        },
+        {
+          "t": 70.14,
+          "d": 0.28,
+          "w": "by"
+        },
+        {
+          "t": 70.42,
+          "d": 0.54,
+          "w": "the",
+          "h": true
+        },
+        {
+          "t": 70.96,
+          "d": 0.91,
+          "w": "world",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 71.99,
+      "end": 73.77,
+      "text": "Sometimes I wanna <span class=\"kinetic-highlight\">fold</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 71.99,
+          "d": 0.82,
+          "w": "Sometimes"
+        },
+        {
+          "t": 72.81,
+          "d": 0.18,
+          "w": "I"
+        },
+        {
+          "t": 72.99,
+          "d": 0.28,
+          "w": "wanna"
+        },
+        {
+          "t": 73.27,
+          "d": 0.5,
+          "w": "fold",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 73.85,
+      "end": 76.44,
+      "text": "Namun, suratmu 'kan <span class=\"kinetic-highlight\">kuceritakan</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 73.85,
+          "d": 0.39,
+          "w": "Namun,"
+        },
+        {
+          "t": 74.24,
+          "d": 0.5,
+          "w": "suratmu"
+        },
+        {
+          "t": 74.74,
+          "d": 0.27,
+          "w": "'kan"
+        },
+        {
+          "t": 75.01,
+          "d": 1.43,
+          "w": "kuceritakan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 76.52,
+      "end": 79.24,
+      "text": "Ke anak-anakku <span class=\"kinetic-highlight\">nanti</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 76.52,
+          "d": 0.46,
+          "w": "Ke"
+        },
+        {
+          "t": 76.98,
+          "d": 0.96,
+          "w": "anak-anakku"
+        },
+        {
+          "t": 77.94,
+          "d": 1.3,
+          "w": "nanti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 79.32,
+      "end": 84.12,
+      "text": "Bahwa aku pernah <span class=\"kinetic-highlight\">dicintai</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 79.32,
+          "d": 0.99,
+          "w": "Bahwa"
+        },
+        {
+          "t": 80.31,
+          "d": 0.86,
+          "w": "aku"
+        },
+        {
+          "t": 81.17,
+          "d": 0.73,
+          "w": "pernah"
+        },
+        {
+          "t": 81.9,
+          "d": 2.22,
+          "w": "dicintai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 84.24,
+      "end": 89.6,
+      "text": "<span class=\"kinetic-highlight\">With</span> everything you are",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 84.24,
+          "d": 0.7,
+          "w": "With",
+          "h": true
+        },
+        {
+          "t": 84.94,
+          "d": 1.33,
+          "w": "everything"
+        },
+        {
+          "t": 86.27,
+          "d": 0.5,
+          "w": "you"
+        },
+        {
+          "t": 86.77,
+          "d": 2.83,
+          "w": "are"
+        }
+      ]
+    },
+    {
+      "start": 90.38,
+      "end": 93.32,
+      "text": "Fully as I <span class=\"kinetic-highlight\">am</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 90.38,
+          "d": 0.82,
+          "w": "Fully"
+        },
+        {
+          "t": 91.2,
+          "d": 0.4,
+          "w": "as"
+        },
+        {
+          "t": 91.6,
+          "d": 0.53,
+          "w": "I"
+        },
+        {
+          "t": 92.13,
+          "d": 1.19,
+          "w": "am",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 93.44,
+      "end": 97.96,
+      "text": "<span class=\"kinetic-highlight\">With</span> everything you are",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 93.44,
+          "d": 0.73,
+          "w": "With",
+          "h": true
+        },
+        {
+          "t": 94.17,
+          "d": 1.06,
+          "w": "everything"
+        },
+        {
+          "t": 95.23,
+          "d": 0.42,
+          "w": "you"
+        },
+        {
+          "t": 95.65,
+          "d": 2.31,
+          "w": "are"
+        }
+      ]
+    },
+    {
+      "start": 98.08,
+      "end": 104.8,
+      "text": "Wajahmu yang beragam <span class=\"kinetic-highlight\">rupa</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 98.08,
+          "d": 1.41,
+          "w": "Wajahmu"
+        },
+        {
+          "t": 99.49,
+          "d": 0.76,
+          "w": "yang"
+        },
+        {
+          "t": 100.25,
+          "d": 1.49,
+          "w": "beragam"
+        },
+        {
+          "t": 101.74,
+          "d": 3.06,
+          "w": "rupa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 105.04,
+      "end": 111.3,
+      "text": "Pastikan ku tak <span class=\"kinetic-highlight\">sendirian</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 105.04,
+          "d": 0.91,
+          "w": "Pastikan"
+        },
+        {
+          "t": 105.95,
+          "d": 1.32,
+          "w": "ku"
+        },
+        {
+          "t": 107.27,
+          "d": 0.82,
+          "w": "tak"
+        },
+        {
+          "t": 108.09,
+          "d": 3.21,
+          "w": "sendirian",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 111.64,
+      "end": 114.87,
+      "text": "<span class=\"kinetic-highlight\">Jalani derita</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 111.64,
+          "d": 1.35,
+          "w": "Jalani",
+          "h": true
+        },
+        {
+          "t": 112.99,
+          "d": 1.88,
+          "w": "derita",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 114.99,
+      "end": 120.97,
+      "text": "Kaubawakan kisahmu, aku <span class=\"kinetic-highlight\">mendengarkan</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 114.99,
+          "d": 1.29,
+          "w": "Kaubawakan"
+        },
+        {
+          "t": 116.28,
+          "d": 1.6,
+          "w": "kisahmu,"
+        },
+        {
+          "t": 117.88,
+          "d": 1.07,
+          "w": "aku"
+        },
+        {
+          "t": 118.95,
+          "d": 2.02,
+          "w": "mendengarkan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 121.09,
+      "end": 124.07,
+      "text": "Oh, kita <span class=\"kinetic-highlight\">bergantian</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 121.09,
+          "d": 0.94,
+          "w": "Oh,"
+        },
+        {
+          "t": 122.03,
+          "d": 0.63,
+          "w": "kita"
+        },
+        {
+          "t": 122.66,
+          "d": 1.41,
+          "w": "bergantian",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 124.15,
+      "end": 127.06,
+      "text": "<span class=\"kinetic-highlight\">Bertukar nestapa</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 124.15,
+          "d": 1.12,
+          "w": "Bertukar",
+          "h": true
+        },
+        {
+          "t": 125.27,
+          "d": 1.79,
+          "w": "nestapa",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 127.14,
+      "end": 130.19,
+      "text": "<span class=\"kinetic-highlight\">Menawar trauma</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 127.14,
+          "d": 1.45,
+          "w": "Menawar",
+          "h": true
+        },
+        {
+          "t": 128.59,
+          "d": 1.6,
+          "w": "trauma",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 130.31,
+      "end": 133.11,
+      "text": "<span class=\"kinetic-highlight\">Datang seadanya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 130.31,
+          "d": 1.28,
+          "w": "Datang",
+          "h": true
+        },
+        {
+          "t": 131.59,
+          "d": 1.52,
+          "w": "seadanya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 133.23,
+      "end": 135.38,
+      "text": "<span class=\"kinetic-highlight\">Terasku terbuka</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 133.23,
+          "d": 1.1,
+          "w": "Terasku",
+          "h": true
+        },
+        {
+          "t": 134.33,
+          "d": 1.05,
+          "w": "terbuka",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 135.46,
+      "end": 137.77,
+      "text": "Kita hampir <span class=\"kinetic-highlight\">mati</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 135.46,
+          "d": 0.53,
+          "w": "Kita"
+        },
+        {
+          "t": 135.99,
+          "d": 0.42,
+          "w": "hampir"
+        },
+        {
+          "t": 136.41,
+          "d": 1.36,
+          "w": "mati",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 137.85,
+      "end": 140.97,
+      "text": "Dan kauselamatkan <span class=\"kinetic-highlight\">aku</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 137.85,
+          "d": 0.78,
+          "w": "Dan"
+        },
+        {
+          "t": 138.63,
+          "d": 1.13,
+          "w": "kauselamatkan"
+        },
+        {
+          "t": 139.76,
+          "d": 1.21,
+          "w": "aku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 141.05,
+      "end": 143.92,
+      "text": "Dan ku <span class=\"kinetic-highlight\">menyelamatkanmu</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 141.05,
+          "d": 0.85,
+          "w": "Dan"
+        },
+        {
+          "t": 141.9,
+          "d": 0.43,
+          "w": "ku"
+        },
+        {
+          "t": 142.33,
+          "d": 1.59,
+          "w": "menyelamatkanmu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 144,
+      "end": 147.18,
+      "text": "Dan sekarang aku <span class=\"kinetic-highlight\">tahu</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 144,
+          "d": 0.81,
+          "w": "Dan"
+        },
+        {
+          "t": 144.81,
+          "d": 0.65,
+          "w": "sekarang"
+        },
+        {
+          "t": 145.46,
+          "d": 0.56,
+          "w": "aku"
+        },
+        {
+          "t": 146.02,
+          "d": 1.16,
+          "w": "tahu",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 147.26,
+      "end": 150.53,
+      "text": "Cerita kita tak jauh <span class=\"kinetic-highlight\">berbeda</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 147.26,
+          "d": 1.05,
+          "w": "Cerita"
+        },
+        {
+          "t": 148.31,
+          "d": 0.45,
+          "w": "kita"
+        },
+        {
+          "t": 148.76,
+          "d": 0.32,
+          "w": "tak"
+        },
+        {
+          "t": 149.08,
+          "d": 0.37,
+          "w": "jauh"
+        },
+        {
+          "t": 149.45,
+          "d": 1.08,
+          "w": "berbeda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 150.61,
+      "end": 154.82,
+      "text": "♪ [Jeda Instrumen Mengalun Mendalam] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    },
+    {
+      "start": 154.9,
+      "end": 157.97,
+      "text": "Got beat down by <span class=\"kinetic-highlight\">the world</span>",
+      "zone": "center-dramatic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 154.9,
+          "d": 0.46,
+          "w": "Got"
+        },
+        {
+          "t": 155.36,
+          "d": 0.58,
+          "w": "beat"
+        },
+        {
+          "t": 155.94,
+          "d": 0.43,
+          "w": "down"
+        },
+        {
+          "t": 156.37,
+          "d": 0.42,
+          "w": "by"
+        },
+        {
+          "t": 156.79,
+          "d": 0.39,
+          "w": "the",
+          "h": true
+        },
+        {
+          "t": 157.18,
+          "d": 0.79,
+          "w": "world",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 158.09,
+      "end": 159.98,
+      "text": "Sometimes I wanna <span class=\"kinetic-highlight\">fold</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 158.09,
+          "d": 0.9,
+          "w": "Sometimes"
+        },
+        {
+          "t": 158.99,
+          "d": 0.18,
+          "w": "I"
+        },
+        {
+          "t": 159.17,
+          "d": 0.3,
+          "w": "wanna"
+        },
+        {
+          "t": 159.47,
+          "d": 0.51,
+          "w": "fold",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 160.06,
+      "end": 162.6,
+      "text": "Namun, suratmu 'kan <span class=\"kinetic-highlight\">kuceritakan</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 160.06,
+          "d": 0.32,
+          "w": "Namun,"
+        },
+        {
+          "t": 160.38,
+          "d": 0.56,
+          "w": "suratmu"
+        },
+        {
+          "t": 160.94,
+          "d": 0.37,
+          "w": "'kan"
+        },
+        {
+          "t": 161.31,
+          "d": 1.29,
+          "w": "kuceritakan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 162.68,
+      "end": 165.39,
+      "text": "Ke anak-anakku <span class=\"kinetic-highlight\">nanti</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 162.68,
+          "d": 0.47,
+          "w": "Ke"
+        },
+        {
+          "t": 163.15,
+          "d": 1.17,
+          "w": "anak-anakku"
+        },
+        {
+          "t": 164.32,
+          "d": 1.07,
+          "w": "nanti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 165.47,
+      "end": 170,
+      "text": "Bahwa aku pernah <span class=\"kinetic-highlight\">dicintai</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 165.47,
+          "d": 0.94,
+          "w": "Bahwa"
+        },
+        {
+          "t": 166.41,
+          "d": 0.75,
+          "w": "aku"
+        },
+        {
+          "t": 167.16,
+          "d": 0.76,
+          "w": "pernah"
+        },
+        {
+          "t": 167.92,
+          "d": 2.08,
+          "w": "dicintai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 170.12,
+      "end": 173.4,
+      "text": "<span class=\"kinetic-highlight\">Seada-adanya</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 170.12,
+          "d": 3.28,
+          "w": "Seada-adanya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 173.52,
+      "end": 176.49,
+      "text": "<span class=\"kinetic-highlight\">Sekurang-kurangnya</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 173.52,
+          "d": 2.97,
+          "w": "Sekurang-kurangnya",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 176.57,
+      "end": 182.54,
+      "text": "Walau sulit utarakan hatiku dengan <span class=\"kinetic-highlight\">indah</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 176.57,
+          "d": 0.67,
+          "w": "Walau"
+        },
+        {
+          "t": 177.24,
+          "d": 0.76,
+          "w": "sulit"
+        },
+        {
+          "t": 178,
+          "d": 1.18,
+          "w": "utarakan"
+        },
+        {
+          "t": 179.18,
+          "d": 0.88,
+          "w": "hatiku"
+        },
+        {
+          "t": 180.06,
+          "d": 0.78,
+          "w": "dengan"
+        },
+        {
+          "t": 180.84,
+          "d": 1.7,
+          "w": "indah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 182.66,
+      "end": 185.56,
+      "text": "Walau jarang ku <span class=\"kinetic-highlight\">bernyanyi</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 182.66,
+          "d": 0.61,
+          "w": "Walau"
+        },
+        {
+          "t": 183.27,
+          "d": 0.54,
+          "w": "jarang"
+        },
+        {
+          "t": 183.81,
+          "d": 0.36,
+          "w": "ku"
+        },
+        {
+          "t": 184.17,
+          "d": 1.39,
+          "w": "bernyanyi",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 185.64,
+      "end": 188.68,
+      "text": "Dengan cara yang <span class=\"kinetic-highlight\">indah</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 185.64,
+          "d": 0.58,
+          "w": "Dengan"
+        },
+        {
+          "t": 186.22,
+          "d": 0.7,
+          "w": "cara"
+        },
+        {
+          "t": 186.92,
+          "d": 0.35,
+          "w": "yang"
+        },
+        {
+          "t": 187.27,
+          "d": 1.41,
+          "w": "indah",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 188.76,
+      "end": 192.43,
+      "text": "Tapi tak sekali <span class=\"kinetic-highlight\">pun kisahku</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 188.76,
+          "d": 0.84,
+          "w": "Tapi"
+        },
+        {
+          "t": 189.6,
+          "d": 0.46,
+          "w": "tak"
+        },
+        {
+          "t": 190.06,
+          "d": 0.6,
+          "w": "sekali"
+        },
+        {
+          "t": 190.66,
+          "d": 0.59,
+          "w": "pun",
+          "h": true
+        },
+        {
+          "t": 191.25,
+          "d": 1.18,
+          "w": "kisahku",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 192.51,
+      "end": 196.64,
+      "text": "Pernah kaubantah, <span class=\"kinetic-highlight\">oh</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 192.51,
+          "d": 0.93,
+          "w": "Pernah"
+        },
+        {
+          "t": 193.44,
+          "d": 1.4,
+          "w": "kaubantah,"
+        },
+        {
+          "t": 194.84,
+          "d": 1.8,
+          "w": "oh",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 196.76,
+      "end": 202.61,
+      "text": "Cerita kita tak <span class=\"kinetic-highlight\">jauh berbeda</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 196.76,
+          "d": 1.2,
+          "w": "Cerita"
+        },
+        {
+          "t": 197.96,
+          "d": 0.88,
+          "w": "kita"
+        },
+        {
+          "t": 198.84,
+          "d": 1.37,
+          "w": "tak"
+        },
+        {
+          "t": 200.21,
+          "d": 0.79,
+          "w": "jauh",
+          "h": true
+        },
+        {
+          "t": 201,
+          "d": 1.61,
+          "w": "berbeda",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 204.08,
+      "end": 207.18,
+      "text": "Got beat down by the world (got beat down by the <span class=\"kinetic-highlight\">world)</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 204.08,
+          "d": 0.46,
+          "w": "Got"
+        },
+        {
+          "t": 204.54,
+          "d": 0.21,
+          "w": "beat"
+        },
+        {
+          "t": 204.75,
+          "d": 0.38,
+          "w": "down"
+        },
+        {
+          "t": 205.13,
+          "d": 0.11,
+          "w": "by"
+        },
+        {
+          "t": 205.24,
+          "d": 0.26,
+          "w": "the"
+        },
+        {
+          "t": 205.5,
+          "d": 0.11,
+          "w": "world"
+        },
+        {
+          "t": 205.61,
+          "d": 0.13,
+          "w": "(got"
+        },
+        {
+          "t": 205.74,
+          "d": 0.19,
+          "w": "beat"
+        },
+        {
+          "t": 205.93,
+          "d": 0.24,
+          "w": "down"
+        },
+        {
+          "t": 206.17,
+          "d": 0.17,
+          "w": "by"
+        },
+        {
+          "t": 206.34,
+          "d": 0.19,
+          "w": "the"
+        },
+        {
+          "t": 206.53,
+          "d": 0.65,
+          "w": "world)",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 207.26,
+      "end": 209.17,
+      "text": "Sometimes I wanna <span class=\"kinetic-highlight\">fold</span>",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 207.26,
+          "d": 0.74,
+          "w": "Sometimes"
+        },
+        {
+          "t": 208,
+          "d": 0.29,
+          "w": "I"
+        },
+        {
+          "t": 208.29,
+          "d": 0.33,
+          "w": "wanna"
+        },
+        {
+          "t": 208.62,
+          "d": 0.55,
+          "w": "fold",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 209.25,
+      "end": 211.75,
+      "text": "Namun, suratmu 'kan <span class=\"kinetic-highlight\">kuceritakan</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 209.25,
+          "d": 0.36,
+          "w": "Namun,"
+        },
+        {
+          "t": 209.61,
+          "d": 0.51,
+          "w": "suratmu"
+        },
+        {
+          "t": 210.12,
+          "d": 0.35,
+          "w": "'kan"
+        },
+        {
+          "t": 210.47,
+          "d": 1.28,
+          "w": "kuceritakan",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 211.83,
+      "end": 214.76,
+      "text": "Ke anak-anakku <span class=\"kinetic-highlight\">nanti</span>",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 211.83,
+          "d": 0.53,
+          "w": "Ke"
+        },
+        {
+          "t": 212.36,
+          "d": 1.09,
+          "w": "anak-anakku"
+        },
+        {
+          "t": 213.45,
+          "d": 1.31,
+          "w": "nanti",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 214.84,
+      "end": 219.28,
+      "text": "Bahwa aku pernah <span class=\"kinetic-highlight\">dicintai</span>",
+      "zone": "mid-right",
+      "vector": "throw-from-right",
+      "words": [
+        {
+          "t": 214.84,
+          "d": 0.73,
+          "w": "Bahwa"
+        },
+        {
+          "t": 215.57,
+          "d": 0.63,
+          "w": "aku"
+        },
+        {
+          "t": 216.2,
+          "d": 0.85,
+          "w": "pernah"
+        },
+        {
+          "t": 217.05,
+          "d": 2.23,
+          "w": "dicintai",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 219.4,
+      "end": 224.9,
+      "text": "<span class=\"kinetic-highlight\">With</span> everything you are",
+      "zone": "bottom-center",
+      "vector": "throw-diagonal-up",
+      "words": [
+        {
+          "t": 219.4,
+          "d": 0.75,
+          "w": "With",
+          "h": true
+        },
+        {
+          "t": 220.15,
+          "d": 1.29,
+          "w": "everything"
+        },
+        {
+          "t": 221.44,
+          "d": 0.55,
+          "w": "you"
+        },
+        {
+          "t": 221.99,
+          "d": 2.91,
+          "w": "are"
+        }
+      ]
+    },
+    {
+      "start": 225.68,
+      "end": 228.42,
+      "text": "Fully as I <span class=\"kinetic-highlight\">am</span>",
+      "zone": "center-cinematic",
+      "vector": "zoom-impact",
+      "words": [
+        {
+          "t": 225.68,
+          "d": 0.83,
+          "w": "Fully"
+        },
+        {
+          "t": 226.51,
+          "d": 0.33,
+          "w": "as"
+        },
+        {
+          "t": 226.84,
+          "d": 0.41,
+          "w": "I"
+        },
+        {
+          "t": 227.25,
+          "d": 1.17,
+          "w": "am",
+          "h": true
+        }
+      ]
+    },
+    {
+      "start": 228.54,
+      "end": 229.86,
+      "text": "<span class=\"kinetic-highlight\">With</span> everything you are",
+      "zone": "mid-left",
+      "vector": "throw-from-left",
+      "words": [
+        {
+          "t": 228.54,
+          "d": 0.47,
+          "w": "With",
+          "h": true
+        },
+        {
+          "t": 229.01,
+          "d": 0.49,
+          "w": "everything"
+        },
+        {
+          "t": 229.5,
+          "d": 0.11,
+          "w": "you"
+        },
+        {
+          "t": 229.61,
+          "d": 0.25,
+          "w": "are"
+        }
+      ]
+    },
+    {
+      "start": 229.94,
+      "end": 236.29,
+      "text": "♪ [Gema Synth Menutup Penuh Kedamaian Jiwa] ♪",
+      "zone": "bottom-center",
+      "vector": "zoom-impact",
+      "isInstrumental": true
+    }
+  ]
+}
