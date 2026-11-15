@@ -1,83 +1,102 @@
-# Stages of Denial (`penyangkalan-scrollytelling`)
+<div align="center">
 
-> Pengalaman *audiovisual scrollytelling* sinematik 60 FPS berbasis Web Audio API, kanvas partikel adaptif per genre (*zero-allocation*), karaoke kata presisi tinggi (`50ms`), subtitle dwibahasa, serta kontrol studio interaktif.
+# Stages of Denial
 
-**Stack:** ES Modules (`src/`) · Vite (`^5.4.11`) · Web Audio API · Canvas 2D · AudioMotion-Analyzer (`^4.5.4`) · GSAP (`^3.12.5`) · Lenis (`^1.1.20`)
+**An eye-comfort 60 FPS audiovisual scrollytelling experience powered by Web Audio API, adaptive Canvas 2D physics, and 50ms precision kinetic karaoke.**
 
----
+[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Web Audio API](https://img.shields.io/badge/Web_Audio-DSP_Engine-D65A70?style=flat-square)](#architecture)
+[![Canvas 2D](https://img.shields.io/badge/Canvas_2D-Zero--Allocation_60FPS-68B2D6?style=flat-square)](#architecture)
+[![License: MIT](https://img.shields.io/badge/License-MIT-A7A29C?style=flat-square)](LICENSE)
 
-## Fitur Utama
-
-- **4-Act Audiovisual Scrollytelling**: Koreografi scroll dinamis (*Babak I · Verse → Babak II · Rising → Babak III · Climax → Babak IV · Outro*) dengan *depth camera zoom*, pergeseran warna *Silk Aurora*, serta *Eye-Comfort Cinema Theme* (`#0B0C10` / `#F2EFE9`).
-- **Genre-Specific Canvas Physics (60 FPS Zero-Allocation)**:
-  - `intense`: Partikel bara api (*rising embers*) + distorsi harmonik gelombang aurora.
-  - `groovy`: *Sonic Pulse Rings* konsentris yang selaras dengan transien bass/mid.
-  - `calm`: Rintik hujan diagonal halus dan riak air tenang.
-- **Karaoke Kata & Subtitle Dwibahasa**:
-  - Data lirik dimuat *lazy-loaded* dari `public/assets/lyrics/<id>.json`.
-  - *Click-to-Seek* langsung pada kata lirik aktif.
-  - **Live Lyric Sync Offset (`±0.05s`)** yang tersimpan per lagu di `localStorage`.
-  - Toggle **Terjemahan Lirik (`ON/OFF`)** di bawah baris lirik utama.
-- **Kontrol Studio & Antrean Putar**:
-  - **Custom Up-Next Queue (`+ Antrean`)** pada kartu lagu & pratinjau `#upNextPill`.
-  - **Browser Media Session API**: Sinkronisasi metadata, artwork, dan tombol media perangkat keras (`play`, `pause`, `nexttrack`, `previoustrack`, `seekto`).
-  - **Web Audio DSP**, *Playback Speed* (`0.85x–1.15x`), *Smart A-B Loop*, *Midnight Sleep Timer*, *Quote Card PNG Exporter* (`1080×1920`), serta *Deep-Linking* (`?track=<id>&t=<detik>`).
+</div>
 
 ---
 
-## Cara Menjalankan Website
+## Overview
 
-**Prasyarat:** Node.js v20+ dan npm.
+**Stages of Denial** blends synchronized music playback, real-time audio spectrum analysis, and 4-act scroll choreography into a distraction-free, low-glare cinema interface (`#0B0C10` / `#F2EFE9`).
+
+Because large `.mp3` and `.mp4` media files are excluded from this public repository, cloning and running the project works **immediately out of the box** via a built-in **Generative Ambient Pad** audio fallback and **Pure Silk Aurora** canvas renderer—with full support for loading your own local `.mp3` and `.lrc` files via Drag & Drop.
+
+---
+
+## Key Features
+
+- **4-Act Scroll Choreography** — Smooth **Lenis** + **GSAP ScrollTrigger** transitions across *Verse → Rising → Climax → Outro* with subtle camera depth zoom and optical scrim contrast protection.
+- **Genre-Adaptive Canvas Physics (Zero-Allocation 60 FPS)** — Pre-allocated particle pools tailored to track energy:
+  - `intense`: Rising embers and mid/treble harmonic aurora distortion.
+  - `groovy`: Concentric Sonic Pulse Rings synced to bass/mid transients.
+  - `calm`: Diagonal atmospheric rain streaks and gentle water ripples.
+- **50ms Precision Kinetic Karaoke & Dual-Language Subtitles** — Lazy-loaded word schedules (`public/assets/lyrics/<id>.json`) with *Click-to-Seek*, per-track **Live Sync Offset (`±0.05s`)** persisted in `localStorage`, and toggleable translation subtitles.
+- **Zero-Media Graceful Fallback** — Automatically synthesizes an atmospheric pad routed through the Web Audio analyser when local MP3s are absent, while switching `#bgVideo` errors cleanly to Pure Silk Aurora.
+- **Studio Suite & Hardware Integration** — Minimalist Cinema Bar, custom **Up-Next Queue (`+ Antrean`)**, **Browser Media Session API** lockscreen/media-key controls, 3-band Web Audio DSP (*Studio Master / Midnight Lo-Fi / 8D Spatial*), pitch-preserved speed (`0.85x–1.15x`), Smart A-B Loop, Midnight Sleep Timer, and `1080×1920` Quote Card PNG export.
+
+---
+
+## Quick Start
+
+**Prerequisites:** Node.js `20+` and `npm`.
 
 ```bash
-# 1. Instalasi dependensi
+# 1. Clone the repository
+git clone <your-repo-url>
+cd 01-stages-of-denial-public
+
+# 2. Install dependencies
 npm install
 
-# 2. Jalankan server pengembangan lokal (Vite)
+# 3. Start the development server
 npm run dev
-
-# 3. Build bundle produksi ke direktori dist/
-npm run build
-
-# 4. Pratinjau hasil build produksi secara lokal
-npm run preview
 ```
 
----
+Other available scripts:
 
-## Cara Memuat Audio & Lirik Lagu
+```bash
+npm run build     # Build optimized production bundle to dist/
+npm run preview   # Preview production build locally
+```
 
-Karena repositori publik ini tidak menyertakan berkas media `.mp3` atau `.mp4` berukuran besar, Anda dapat memutar lagu dengan dua cara:
-
-1. **Drag & Drop Langsung di Browser (Tanpa Konfigurasi)**
-   - Tarik dan jatuhkan berkas `.mp3` (dan opsional berkas `.lrc` secara bersamaan atau terpisah) ke jendela browser untuk langsung memutar dan menyinkronkan lirik.
-   - Anda juga bisa menekan tombol **Unggah MP3** di dalam modal Jukebox (`L`).
-
-2. **Menempatkan Berkas Lokal ke Folder `public/assets/`**
-   - Salin berkas audio Anda ke `public/assets/audio/<id>.mp3` (sesuai `audioSrc` pada `config/tracks.json`, misalnya `public/assets/audio/penyangkalan.mp3`).
-   - *(Opsional)* Salin video latar ke `public/assets/video/<id>.mp4`. Jika video tidak tersedia, latar belakang otomatis menampilkan animasi kanvas *Silk Aurora* 60 FPS.
+You can also deep-link directly to any curated track and timestamp:  
+`http://localhost:5173/?track=tarot&t=72`
 
 ---
 
-## Struktur Direktori
+## Loading Your Own Audio & Lyrics
+
+1. **Instant Drag & Drop (Recommended)**
+   - Drag and drop any `.mp3` file—or an `.mp3` + `.lrc` pair—directly onto the browser window to start synchronized playback immediately.
+   - Alternatively, open the Jukebox (`L`) and click **Unggah MP3**.
+
+2. **Local Assets Directory**
+   - Place matching audio files in `public/assets/audio/<track-id>.mp3` (e.g., `public/assets/audio/penyangkalan.mp3`) and optional background loops in `public/assets/video/<track-id>.mp4`.
+   - When local media files are absent, the experience automatically runs in ambient preview mode without errors.
+
+---
+
+## Architecture
 
 ```text
-├── config/                    # Katalog lagu (tracks.json), timeline, & metadata
-├── css/                       # Tema Eye-Comfort Cinema & layout responsif
+├── config/
+│   ├── tracks.json               # 14 curated anthology tracks & visual themes
+│   ├── timeline.json             # 4-act narrative structure
+│   └── playlist_catalog.json     # Optional catalog metadata
+├── css/
+│   └── style.css                 # Eye-comfort cinema palette & responsive HUD
 ├── public/assets/
-│   ├── audio/                 # Tempat menaruh berkas MP3 lokal (diabaikan Git)
-│   ├── covers/                # Thumbnail sampul album
-│   ├── lyrics/                # Data lirik karaoke lazy-loaded (.json)
-│   └── video/                 # Tempat menaruh video latar MP4 opsional (diabaikan Git)
+│   ├── audio/                    # Drop optional local .mp3 files here (gitignored)
+│   ├── covers/                   # Track cover thumbnails
+│   ├── lyrics/                   # Lazy-loaded 50ms karaoke schedules (.json)
+│   └── video/                    # Drop optional local .mp4 loops here (gitignored)
 ├── src/
-│   ├── audio/audioEngine.js       # Web Audio DSP, crossfade, sleep timer, Media Session
-│   ├── lyrics/karaokeEngine.js    # Lazy loader, LRC parser, word sweep, translation & sync offset
-│   ├── scroll/scrollyDirector.js  # Lenis + GSAP choreography, lyric drawer, A-B loop
-│   ├── ui/jukeboxModal.js         # Modal Jukebox, filter mood/genre, custom queue
-│   ├── ui/studioHud.js            # Minimalist Cinema Bar, Studio Popover, Quote Card trigger
-│   ├── visuals/canvasVisualizer.js# Canvas 2D zero-allocation physics & aurora
-│   ├── visuals/quoteCard.js       # Ekspor Lyric Quote Card PNG (1080x1920)
-│   └── main.js                    # Bootstrap & orchestrator
+│   ├── audio/audioEngine.js      # Web Audio DSP, precision clock, ambient pad, Media Session
+│   ├── lyrics/karaokeEngine.js   # Lazy loader, LRC parser, word sweep, sync offset & translation
+│   ├── scroll/scrollyDirector.js # Lenis + GSAP 4-act choreography, lyric drawer, A-B loop
+│   ├── ui/jukeboxModal.js        # Jukebox modal, mood/genre filter, custom queue
+│   ├── ui/studioHud.js           # Cinema HUD, Studio popover, Quote Card trigger
+│   ├── visuals/canvasVisualizer.js # Zero-allocation 60 FPS particles & Silk Aurora
+│   ├── visuals/quoteCard.js      # 1080×1920 Quote Card PNG renderer
+│   └── main.js                   # Application bootstrap & state orchestrator
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -85,24 +104,24 @@ Karena repositori publik ini tidak menyertakan berkas media `.mp3` atau `.mp4` b
 
 ---
 
-## Pintasan Keyboard
+## Keyboard Shortcuts
 
-| Pintasan | Aksi |
-|:---------|:-----|
-| `Space` | Play / Pause pemutaran |
-| `←` / `→` | Mundur / maju `5` detik |
-| `↑` / `↓` | Naikkan / turunkan volume `±10%` |
+| Key | Action |
+|:---|:---|
+| `Space` | Play / Pause |
+| `←` / `→` | Seek `-5s` / `+5s` |
+| `↑` / `↓` | Master volume `±10%` |
 | `M` | Mute / Unmute |
-| `L` | Buka / tutup Modal Jukebox |
-| `T` | Buka / tutup Panel Timeline Lirik & Sync |
-| `D` | Buka / tutup Panel Studio & Telemetri |
-| `[` / `]` / `\` | Set Titik A / Titik B / Hapus A-B Loop |
-| `Q` | Unduh Lyric Quote Card PNG (`1080×1920`) |
-| `F` | Mode Bioskop Layar Penuh |
-| `Esc` | Tutup modal / panel / keluar Mode Bioskop |
+| `L` | Toggle Jukebox library |
+| `T` | Toggle Lyric Timeline & Live Sync drawer |
+| `D` | Toggle Studio Popover & telemetry |
+| `[` / `]` / `\` | Set Loop A / Set Loop B / Clear A-B Loop |
+| `Q` | Export Lyric Quote Card PNG (`1080×1920`) |
+| `F` | Toggle Fullscreen Cinema mode |
+| `Esc` | Close active modal / drawer or exit Cinema mode |
 
 ---
 
-## Lisensi
+## License
 
-Proyek ini dirilis di bawah lisensi [MIT](LICENSE).
+Released under the [MIT License](LICENSE).
