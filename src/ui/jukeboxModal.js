@@ -10,6 +10,8 @@
 
 import { formatLoopSec, showToast, updateSignalStatusUi } from './studioHud.js';
 import { getLyricSignalStatus } from '../scroll/scrollyDirector.js';
+import { generateDynamicTrackPalette } from '../visuals/canvasVisualizer.js';
+import { enhanceGenreSelect } from './customSelect.js';
 
 function escapeHtml(str) {
   return String(str || '')
@@ -93,6 +95,57 @@ export function initJukeboxModal({
   let playlistMetaTitle = '';
   let playlistCatalogLoaded = false;
   let playlistCatalogLoading = false;
+  const newlyImportedIds = new Set();
+
+  const importDonePopup = document.getElementById('importDonePopup');
+  const importDoneMsg = document.getElementById('importDoneMessage');
+  const btnImportDonePlay = document.getElementById('btnImportDonePlay');
+  const btnImportDoneClose = document.getElementById('btnImportDoneClose');
+  let pendingPlayTrack = null;
+
+  function showImportDonePopup(addedTracks = [], skippedCount = 0) {
+    if (!importDonePopup || !importDoneMsg) return;
+    const firstNew = addedTracks[0] || null;
+    pendingPlayTrack = firstNew;
+    const skipNote = skippedCount ? ` (${skippedCount} dilewati)` : '';
+    importDoneMsg.textContent = firstNew
+      ? `✅ Selesai! ${addedTracks.length} lagu berhasil diunduh ke Koleksi Terpasang${skipNote}.`
+      : `ℹ️ Unduhan selesai: ${skippedCount} lagu sudah terpasang sebelumnya.`;
+    if (btnImportDonePlay) btnImportDonePlay.hidden = !firstNew;
+    importDonePopup.classList.remove('hidden');
+  }
+
+  btnImportDoneClose?.addEventListener('click', () => {
+    importDonePopup?.classList.add('hidden');
+  });
+  btnImportDonePlay?.addEventListener('click', () => {
+    const track = pendingPlayTrack;
+    importDonePopup?.classList.add('hidden');
+    if (track) selectTrack(track);
+  });
+
+  async function handleReplaceTrackAudio(track) {
+    if (!track || track.isOriginal) return;
+    showToast(`🔄 Mencari Official Full Audio untuk "${track.title}"...`);
+    try {
+      const res = await fetch('/api/replace-track-audio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trackId: track.id }),
+      });
+      const payload = await res.json();
+      if (!res.ok || !payload.ok) throw new Error(payload?.error || 'Gagal mengganti audio');
+
+      if (Array.isArray(payload.tracks)) setTracks(payload.tracks);
+      renderTracksGrid();
+      if (getActiveTrackId() === track.id && payload.track) {
+        await selectTrack(payload.track);
+      }
+      showToast(`✅ Audio "${track.title}" berhasil diperbarui ke versi penuh!`);
+    } catch (err) {
+      showToast(`⚠ Gagal mengganti audio: ${err.message}`);
+    }
+  }
   let isLoadingPlaylistUrl = false;
   let isImportingSelected = false;
   const selectedVideoIds = new Set();
@@ -398,6 +451,9 @@ export function initJukeboxModal({
 
       const added = finalPayload.importedTracks || [];
       const skipped = finalPayload.skipped || [];
+      added.forEach((t) => {
+        if (t?.id) newlyImportedIds.add(t.id);
+      });
       const instCount = added.filter((t) => t.lyricMode === 'instrumental').length;
 
       setProgressBarUi({
@@ -407,11 +463,9 @@ export function initJukeboxModal({
       });
       setTimeout(() => setProgressBarUi({ active: false, percent: 0 }), 3500);
 
-      showToast(
-        `✅ ${added.length} lagu ditambahkan${skipped.length ? ` (${skipped.length} dilewati)` : ''}`
-      );
+      renderTracksGrid();
       setActiveJukeboxTab('installed');
-      setModalOpenState(false);
+      showImportDonePopup(added, skipped.length);
     } catch (err) {
       console.warn('Selected import failed:', err);
       setProgressBarUi({ active: true, percent: 0, text: `⚠ Impor gagal: ${err.message}` });
@@ -542,26 +596,34 @@ export function initJukeboxModal({
     return raw;
   }
 
+  const jukeboxGenreDropdown = enhanceGenreSelect(jukeboxGenreSelectEl, { allLabel: 'Semua Genre' });
+
   function refreshJukeboxGenreOptions(tracksList = getTracks()) {
     if (!jukeboxGenreSelectEl) return;
-    const genres = Array.from(new Set(tracksList.map((t) => formatDisplayGenre(t)))).sort((a, b) =>
-      a.localeCompare(b)
-    );
+    const genreCounts = new Map();
+    tracksList.forEach((t) => {
+      const g = formatDisplayGenre(t);
+      genreCounts.set(g, (genreCounts.get(g) || 0) + 1);
+    });
+    const genres = Array.from(genreCounts.keys()).sort((a, b) => a.localeCompare(b));
     jukeboxGenreSelectEl.textContent = '';
     const allOpt = document.createElement('option');
     allOpt.value = 'all';
-    allOpt.textContent = 'Genre: Semua';
+    allOpt.textContent = 'Semua Genre';
+    allOpt.dataset.count = String(tracksList.length);
     jukeboxGenreSelectEl.appendChild(allOpt);
     genres.forEach((g) => {
       const opt = document.createElement('option');
       opt.value = g;
       opt.textContent = g;
+      opt.dataset.count = String(genreCounts.get(g) || 0);
       jukeboxGenreSelectEl.appendChild(opt);
     });
     if (activeGenreFilter !== 'all' && !genres.includes(activeGenreFilter)) {
       activeGenreFilter = 'all';
     }
     jukeboxGenreSelectEl.value = activeGenreFilter;
+    jukeboxGenreDropdown?.syncOptions();
   }
 
   function renderTracksGrid() {
@@ -596,34 +658,52 @@ export function initJukeboxModal({
           ? `<span class="track-origin-badge is-instrumental" title="Mode Instrumental Aurora">Instrumental Aurora</span>`
           : `<span class="track-origin-badge is-imported">Impor</span>`;
 
+      const newBadgeHtml = newlyImportedIds.has(track.id)
+        ? `<span class="track-new-badge">BARU</span>`
+        : '';
+
+      const replaceAudioBtnHtml = !track.isOriginal
+        ? `<button type="button" class="track-replace-audio-btn" aria-label="Ganti sumber audio ${escapeHtml(track.title)}" title="Cari ulang &amp; ganti MP3 ke Official Audio">🔄 Ganti Audio</button>`
+        : '';
+
       const deleteBtnHtml = !track.isOriginal
         ? `<button type="button" class="track-delete-btn" aria-label="Hapus ${escapeHtml(track.title)} dari koleksi" title="Hapus dari koleksi (×)">×</button>`
         : '';
 
       card.innerHTML = `
-        <div class="track-thumb-wrap">
-          <img src="${escapeHtml(coverSrc)}" alt="" class="track-cover-img" loading="lazy" onerror="this.style.display='none'">
-          <div class="track-play-hover-btn" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <div class="track-card-top">
+          <div class="track-thumb-wrap">
+            <img src="${escapeHtml(coverSrc)}" alt="" class="track-cover-img" loading="lazy" onerror="this.style.display='none'">
+            <div class="track-play-hover-btn" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="track-card-body">
+            <div class="track-title">${escapeHtml(track.title)}</div>
+            <div class="track-artist">${escapeHtml(track.artist)}</div>
+            <div class="track-meta-row">
+              <span class="track-badge" title="${escapeHtml(displayGenre)}">${escapeHtml(displayGenre)}</span>
+              ${originBadge}
+              ${newBadgeHtml}
+              ${durText ? `<span class="track-duration">${durText}</span>` : ''}
+            </div>
           </div>
         </div>
-        <div class="track-card-body">
-          <div class="track-title">${escapeHtml(track.title)}</div>
-          <div class="track-artist">${escapeHtml(track.artist)}</div>
-          <div class="track-meta-row">
-            <span class="track-badge" title="${escapeHtml(displayGenre)}">${escapeHtml(displayGenre)}</span>
-            ${originBadge}
-            ${durText ? `<span class="track-duration">${durText}</span>` : ''}
-          </div>
+        <div class="track-card-actions">
+          ${replaceAudioBtnHtml}
+          <button type="button" class="track-queue-btn" aria-label="Tambahkan ${escapeHtml(track.title)} ke Antrean Putar Berikutnya" title="Putar Berikutnya (+ Antrean)">+ Antrean</button>
+          ${deleteBtnHtml}
         </div>
-        <button type="button" class="track-queue-btn" aria-label="Tambahkan ${escapeHtml(track.title)} ke Antrean Putar Berikutnya" title="Putar Berikutnya (+ Antrean)">+ Antrean</button>
-        ${deleteBtnHtml}
       `;
 
       if (!track.isOriginal) {
         card.querySelector('.track-delete-btn')?.addEventListener('click', (e) => {
           e.stopPropagation();
           handleDeleteTrack(track);
+        });
+        card.querySelector('.track-replace-audio-btn')?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          handleReplaceTrackAudio(track);
         });
       }
 
@@ -734,18 +814,17 @@ export function initJukeboxModal({
   audioFileInput?.addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    const cleanTitle = file.name.replace(/\.[^.]+$/, '');
+    const dyn = generateDynamicTrackPalette(cleanTitle);
     await selectTrack(
       {
         id: 'custom-' + Date.now(),
-        title: file.name.replace(/\.[^.]+$/, ''),
+        title: cleanTitle,
         artist: 'Local File',
         year: 'Custom',
         genre: 'User Audio',
-        accentPrimary: '#D65A70',
-        accentSecondary: '#D98A5C',
-        accentCold: '#68B2D6',
+        ...dyn,
         bgColor: '#0B0C10',
-        theme: 'crimson-ash',
         lyricMode: 'instrumental',
         description: 'Custom Local Audio Playback',
       },
@@ -762,5 +841,7 @@ export function initJukeboxModal({
     renderTracksGrid,
     setActiveJukeboxTab,
     refreshQueueUi,
+    showImportDonePopup,
+    markNewlyImported: (ids = []) => ids.forEach((id) => id && newlyImportedIds.add(id)),
   };
 }

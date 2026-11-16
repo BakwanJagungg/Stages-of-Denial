@@ -24,13 +24,16 @@ Because large `.mp3` and `.mp4` media files are excluded from this public reposi
 ## Key Features
 
 - **4-Act Scroll Choreography** — Smooth **Lenis** + **GSAP ScrollTrigger** transitions across *Verse → Rising → Climax → Outro* with subtle camera depth zoom and optical scrim contrast protection.
-- **Genre-Adaptive Canvas Physics (Zero-Allocation 60 FPS)** — Pre-allocated particle pools tailored to track energy:
-  - `intense`: Rising embers and mid/treble harmonic aurora distortion.
-  - `groovy`: Concentric Sonic Pulse Rings synced to bass/mid transients.
-  - `calm`: Diagonal atmospheric rain streaks and gentle water ripples.
-- **50ms Precision Kinetic Karaoke & Dual-Language Subtitles** — Lazy-loaded word schedules (`public/assets/lyrics/<id>.json`) with *Click-to-Seek*, per-track **Live Sync Offset (`±0.05s`)** persisted in `localStorage`, and toggleable translation subtitles.
-- **Zero-Media Graceful Fallback** — Automatically synthesizes an atmospheric pad routed through the Web Audio analyser when local MP3s are absent, while switching `#bgVideo` errors cleanly to Pure Silk Aurora.
-- **Studio Suite & Hardware Integration** — Minimalist Cinema Bar, custom **Up-Next Queue (`+ Antrean`)**, **Browser Media Session API** lockscreen/media-key controls, 3-band Web Audio DSP (*Studio Master / Midnight Lo-Fi / 8D Spatial*), pitch-preserved speed (`0.85x–1.15x`), Smart A-B Loop, Midnight Sleep Timer, and `1080×1920` Quote Card PNG export.
+- **Context-Aware & Real-Time Dynamic Visuals (Zero-Allocation 60 FPS)** — Pre-allocated Canvas 2D layers that adapt automatically to track genre, live percussion beat flux, and spectral tone:
+  - `high-tempo` (*J-Pop / Rock / Ska / Anime*): Prismatic Speed Streaks and beat-synced rhythmic pulse halos.
+  - `dreamy` (*Indie / Alternative / Pop*): Interactive Constellation Starfield with proximity link lines.
+  - `ballad` (*Folk / Acoustic / Ballad*): Volumetric Mist Layer and soft diagonal rain reflections.
+  - `prism` (Custom User MP3s): Deterministic eye-comfort palette synthesis (`generateDynamicTrackPalette`) paired with *Prism Constellation & Aura*.
+- **In-Browser Tap-to-Sync Lyric Studio** — Paste plain lyrics, tap `Space` in real time as vocals enter, undo lines, apply 50ms karaoke timings live, or export `.lrc` and `.json` files directly from the browser.
+- **50ms Precision Kinetic Karaoke & Dual-Language Subtitles** — Lazy-loaded word schedules (`public/assets/lyrics/<id>.json`) with *Click-to-Seek*, per-track **Live Sync Offset (`±0.05s`)**, and toggleable Indonesian translations for foreign & regional lyrics.
+- **Virtual Acoustic Room DSP (5 Modes)** — Cycle cleanly through *Studio Master*, *Midnight Lo-Fi*, *8D Spatial*, *Cathedral Hall* (algorithmic `2.4s` stereo `ConvolverNode`), and *Warm Vinyl* (band-pass analog warmth with subtle crackle generator).
+- **Select2-Style Genre Filter & Studio Suite** — Searchable dark-cinema genre dropdown with icons and track counts, custom **Up-Next Queue (`+ Antrean`)**, **Ambient Cinema Idle Mode**, **Browser Media Session API**, pitch-preserved speed (`0.85x–1.15x`), Smart A-B Loop, Midnight Sleep Timer, and `1080×1920` Quote Card PNG export.
+- **Zero-Media Graceful Fallback** — Automatically synthesizes an atmospheric **Generative Ambient Pad** routed through the Web Audio analyser when local MP3s are absent, while switching `#bgVideo` errors cleanly to Pure Silk Aurora.
 
 ---
 

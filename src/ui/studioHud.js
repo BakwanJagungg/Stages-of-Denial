@@ -13,10 +13,11 @@ import {
   setSleepTimer,
   getSleepTimerState,
 } from '../audio/audioEngine.js';
-import { setSceneIntensity } from '../visuals/canvasVisualizer.js';
+import { setSceneIntensity, generateDynamicTrackPalette } from '../visuals/canvasVisualizer.js';
 import { exportLyricQuoteCard } from '../visuals/quoteCard.js';
 import {
   getActiveLyricSnapshot,
+  getPreloadedSubtitles,
   parseLrcText,
   setLyricSignalCallback,
   adjustLyricSyncOffset,
@@ -33,6 +34,7 @@ import {
   clearABLoop,
   setUpNextSyncCallback,
 } from '../scroll/scrollyDirector.js';
+import { enhanceGenreSelect } from './customSelect.js';
 
 /** Format seconds into `MM:SS`. */
 export function formatLoopSec(sec) {
@@ -87,9 +89,14 @@ export function updateSignalStatusUi(mode, customText = '') {
       if (signalStatusDot) signalStatusDot.textContent = '↻';
       signalStatusText.textContent = 'Memuat Lirik...';
       break;
+    case 'auto-searching':
+      if (signalStatusDot) signalStatusDot.textContent = '↻';
+      signalStatusText.textContent = 'Mencari Lirik Otomatis...';
+      break;
     case 'instrumental':
       if (signalStatusDot) signalStatusDot.textContent = '◐';
-      signalStatusText.textContent = 'Mode Instrumental';
+      signalStatusText.textContent = 'Mode Instrumental (Klik untuk Cari Manual)';
+      signalStatusPill.style.cursor = 'pointer';
       break;
     case 'auto-plain':
       if (signalStatusDot) signalStatusDot.textContent = '●';
@@ -117,6 +124,7 @@ export function initStudioHud({
   setGenreFilter,
   selectTrack,
   setCustomTrack,
+  onOpenTapSync,
 }) {
   setLyricSignalCallback((mode) => updateSignalStatusUi(mode));
 
@@ -184,6 +192,34 @@ export function initStudioHud({
     if (!document.fullscreenElement && isCinemaMode) exitCinemaMode();
   });
 
+  // Ambient Cinema Idle Mode: dim HUD & chapter strip after 25s of inactivity while playing
+  let ambientIdleDelayMs = 25000;
+  let ambientLastActivityMs = performance.now();
+
+  const wakeAmbientCinemaHud = () => {
+    ambientLastActivityMs = performance.now();
+    document.body.classList.remove('cinema-idle-mode');
+  };
+
+  window.addEventListener('mousemove', wakeAmbientCinemaHud, { passive: true });
+  window.addEventListener('keydown', wakeAmbientCinemaHud, { passive: true });
+  window.addEventListener('pointerdown', wakeAmbientCinemaHud, { passive: true });
+
+  const ambientIdleIntervalId = setInterval(() => {
+    const gatewayHidden = document.getElementById('gatewayOverlay')?.classList.contains('hidden') ?? true;
+    const popoverHidden = document.getElementById('studioPopover')?.hidden ?? true;
+    const drawerHidden = document.getElementById('lyricDrawer')?.hidden ?? true;
+    const tapSyncHidden = document.getElementById('tapSyncOverlay')?.classList.contains('hidden') ?? true;
+
+    if (!isAudioPlaying() || !gatewayHidden || !popoverHidden || !drawerHidden || !tapSyncHidden) {
+      wakeAmbientCinemaHud();
+      return;
+    }
+    if (performance.now() - ambientLastActivityMs >= ambientIdleDelayMs) {
+      document.body.classList.add('cinema-idle-mode');
+    }
+  }, 500);
+
   // 3. Progress Scrub Hover Tooltip
   const hudProgressBar = document.getElementById('hudProgressBar');
   const progressTooltip = document.getElementById('progressTooltip');
@@ -214,33 +250,40 @@ export function initStudioHud({
   let lastRenderedUpNextVisible = false;
   let lastRenderedUpNextLabel = '';
 
+  const mainGenreDropdown = enhanceGenreSelect(mainGenreSelect, { allLabel: 'Semua Genre', compact: true });
+
   function refreshGenreOptions() {
     if (!mainGenreSelect) return;
     const prevVal = typeof getActiveGenre === 'function' ? getActiveGenre() : mainGenreSelect.value || 'all';
-    const genres = Array.from(
-      new Set(
-        getTracks()
-          .map((t) => String(t.genre || '').trim())
-          .filter((g) => g && !/^playlist/i.test(g))
-      )
-    ).sort((a, b) => a.localeCompare(b));
+    const allTracks = getTracks();
+    const genreCounts = new Map();
+    allTracks.forEach((t) => {
+      const g = String(t.genre || '').trim();
+      if (g && !/^playlist/i.test(g)) {
+        genreCounts.set(g, (genreCounts.get(g) || 0) + 1);
+      }
+    });
+    const genres = Array.from(genreCounts.keys()).sort((a, b) => a.localeCompare(b));
 
     mainGenreSelect.textContent = '';
     const allOpt = document.createElement('option');
     allOpt.value = 'all';
-    allOpt.textContent = 'Genre: Semua';
+    allOpt.textContent = 'Semua Genre';
+    allOpt.dataset.count = String(allTracks.length);
     mainGenreSelect.appendChild(allOpt);
 
     genres.forEach((g) => {
       const opt = document.createElement('option');
       opt.value = g;
       opt.textContent = g;
+      opt.dataset.count = String(genreCounts.get(g) || 0);
       mainGenreSelect.appendChild(opt);
     });
 
     const valid = prevVal === 'all' || genres.includes(prevVal) ? prevVal : 'all';
     mainGenreSelect.value = valid;
     mainGenreSelect.classList.toggle('is-filtered', valid !== 'all');
+    mainGenreDropdown?.syncOptions();
   }
 
   mainGenreSelect?.addEventListener('change', (e) => {
@@ -537,13 +580,49 @@ export function initStudioHud({
     btnToggleTranslation.classList.toggle('active', enabled);
     btnToggleTranslation.setAttribute('aria-pressed', String(enabled));
     const span = btnToggleTranslation.querySelector('span');
-    if (span) span.textContent = enabled ? 'Terjemahan: ON' : 'Terjemahan: OFF';
+    if (span) span.textContent = enabled ? '🌐 Terjemahan: ON' : '🌐 Terjemahan: OFF';
   };
   syncTranslationBtnUi(isTranslationEnabled());
   btnToggleTranslation?.addEventListener('click', () => {
     const next = setTranslationEnabled(!isTranslationEnabled());
     syncTranslationBtnUi(next);
     showToast(next ? '🌐 Terjemahan Lirik: AKTIF' : '🌐 Terjemahan Lirik: NONAKTIF');
+  });
+
+  document.getElementById('btnExportLrc')?.addEventListener('click', () => {
+    const subs = getPreloadedSubtitles().filter((s) => s && !s.isInstrumental && s.text);
+    if (!subs.length) {
+      showToast('⚠ Belum ada lirik vokal untuk diekspor (.LRC)');
+      return;
+    }
+    const lrcText = subs
+      .map((s) => {
+        const safe = Math.max(0, Number(s.start) || 0);
+        const mins = String(Math.floor(safe / 60)).padStart(2, '0');
+        const rem = safe - Math.floor(safe / 60) * 60;
+        const secs = String(Math.floor(rem)).padStart(2, '0');
+        const cs = String(Math.min(99, Math.round((rem - Math.floor(rem)) * 100))).padStart(2, '0');
+        const plain = String(s.text).replace(/<[^>]+>/g, '').trim();
+        return `[${mins}:${secs}.${cs}] ${plain}`;
+      })
+      .join('\n');
+    const track = getActiveTrack?.();
+    const slug = String(track?.id || 'lyrics').replace(/[^a-z0-9-_]+/gi, '-');
+    const blob = new Blob([lrcText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${slug}.lrc`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    showToast(`📄 Mengunduh ${slug}.lrc (${subs.length} baris)`);
+  });
+
+  document.getElementById('btnOpenTapSyncPopover')?.addEventListener('click', () => {
+    setStudioPopoverOpen(false, true);
+    onOpenTapSync?.();
   });
 
   // 8. Scene Intensity, Playback Speed & Sleep Timer controls
@@ -672,18 +751,15 @@ export function initStudioHud({
 
     if (audioFile) {
       const cleanTitle = audioFile.name.replace(/\.[^.]+$/, '');
+      const dyn = generateDynamicTrackPalette(cleanTitle);
       const customTrack = {
         id: `custom-${Date.now()}`,
         title: cleanTitle,
         artist: 'Custom Studio',
         year: 'Studio',
         genre: parsedLrc ? 'MP3 + LRC' : 'User Audio',
-        accentPrimary: '#D65A70',
-        accentSecondary: '#D98A5C',
-        accentCold: '#68B2D6',
+        ...dyn,
         bgColor: '#0B0C10',
-        theme: 'crimson-ash',
-        visualEnergy: 'groovy',
         videoSrc: '',
         subtitles: parsedLrc ? parsedLrc.subtitles : [],
         lyricMode: parsedLrc ? 'synced' : 'instrumental',
@@ -717,5 +793,10 @@ export function initStudioHud({
     refreshGenreOptions,
     playNextTrack,
     playPreviousTrack,
+    setAmbientIdleDelayMs: (ms) => {
+      ambientIdleDelayMs = Math.max(200, Number(ms) || 25000);
+      ambientLastActivityMs = performance.now();
+    },
+    destroy: () => clearInterval(ambientIdleIntervalId),
   };
 }

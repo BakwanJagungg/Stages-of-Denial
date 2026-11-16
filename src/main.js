@@ -10,6 +10,7 @@ import {
   getAudioTime,
   cycleAudioProfile,
   getCurrentAudioProfile,
+  getAcousticState,
   isAudioPlaying,
   togglePlayPause,
   setVolume,
@@ -30,9 +31,14 @@ import {
   setSceneIntensity,
   getSceneIntensity,
   getVisualPhysicsMode,
+  getVisualContextMode,
+  getLiveAudioDynamics,
+  generateDynamicTrackPalette,
 } from './visuals/canvasVisualizer.js';
 import {
   loadTrackLyrics,
+  autoResolveMissingLyrics,
+  getLyricSignalStatus,
   getLyricsCacheStats,
   setTrackSubtitles,
   parseLrcText,
@@ -57,6 +63,8 @@ import {
 } from './scroll/scrollyDirector.js';
 import { initStudioHud, showToast, formatLoopSec } from './ui/studioHud.js';
 import { initJukeboxModal } from './ui/jukeboxModal.js';
+import { initTapSyncStudio } from './lyrics/tapSyncStudio.js';
+import { initLyricSearchModal } from './lyrics/lyricSearchModal.js';
 
 let tracksData = [...initialTracksData];
 let currentActiveTrackId = 'penyangkalan';
@@ -66,6 +74,8 @@ let upNextQueue = [];
 
 let jukeboxCtrl = null;
 let hudCtrl = null;
+let tapSyncCtrl = null;
+let lyricSearchCtrl = null;
 
 function getUpNextQueue() {
   return [...upNextQueue];
@@ -152,8 +162,25 @@ async function selectTrack(track, customFile = null, initialTime = 0, autoStartP
   if (currentActiveTrackId === track.id && !Array.isArray(track.subtitles)) {
     currentActiveTrack = { ...track, subtitles: resolvedSubs };
     const hasVocal = resolvedSubs.some((s) => s && !s.isInstrumental);
-    const mode = track.lyricMode === 'instrumental' || !hasVocal ? 'instrumental' : track.lyricMode || 'synced';
-    setTrackSubtitles(resolvedSubs, mode);
+    if (!hasVocal && !customFile && import.meta.env.DEV) {
+      setTrackSubtitles(resolvedSubs, 'auto-searching');
+      autoResolveMissingLyrics(track).then((resolved) => {
+        if (resolved?.found && currentActiveTrackId === track.id) {
+          if (Array.isArray(resolved.tracks)) tracksData = resolved.tracks;
+          currentActiveTrack = {
+            ...(resolved.track || track),
+            subtitles: resolved.subtitles,
+            lyricMode: resolved.lyricMode || 'synced',
+            hasLyrics: true,
+          };
+          jukeboxCtrl?.renderTracksGrid();
+          showToast(`✨ Lirik ditemukan otomatis (${resolved.subtitles.length} baris)`);
+        }
+      });
+    } else {
+      const mode = track.lyricMode === 'instrumental' || !hasVocal ? 'instrumental' : track.lyricMode || 'synced';
+      setTrackSubtitles(resolvedSubs, mode);
+    }
   }
 
   if (initialTime > 0) {
@@ -176,6 +203,7 @@ hudCtrl = initStudioHud({
   setCustomTrack: (t) => {
     currentActiveTrack = t;
   },
+  onOpenTapSync: () => tapSyncCtrl?.open(),
 });
 
 jukeboxCtrl = initJukeboxModal({
@@ -192,6 +220,73 @@ jukeboxCtrl = initJukeboxModal({
   onClearQueue: clearUpNextQueue,
   onTrackDeleted: removeQueueTrackById,
 });
+
+tapSyncCtrl = initTapSyncStudio({
+  getActiveTrack: () => currentActiveTrack,
+  onApplySubtitles: (subs) => {
+    currentActiveTrack = {
+      ...currentActiveTrack,
+      subtitles: subs,
+      lyricMode: 'synced',
+      hasLyrics: true,
+    };
+  },
+  showToast,
+});
+
+document.getElementById('btnOpenTapSyncJukebox')?.addEventListener('click', () => {
+  jukeboxCtrl?.setModalOpenState(false);
+  tapSyncCtrl?.open();
+});
+
+document.getElementById('btnOpenTapSyncDrawer')?.addEventListener('click', () => {
+  toggleLyricDrawer(false);
+  tapSyncCtrl?.open();
+});
+
+lyricSearchCtrl = initLyricSearchModal({
+  getActiveTrack: () => currentActiveTrack,
+  onTrackLyricsApplied: (payload) => {
+    if (Array.isArray(payload?.tracks)) tracksData = payload.tracks;
+    if (payload?.track && currentActiveTrack?.id === payload.track.id) {
+      currentActiveTrack = { ...payload.track, subtitles: payload.subtitles };
+    }
+    jukeboxCtrl?.renderTracksGrid();
+  },
+  showToast,
+});
+
+document.getElementById('btnOpenLyricSearchJukebox')?.addEventListener('click', () => {
+  jukeboxCtrl?.setModalOpenState(false);
+  lyricSearchCtrl?.open(currentActiveTrack, true);
+});
+
+document.getElementById('btnOpenLyricSearchDrawer')?.addEventListener('click', () => {
+  toggleLyricDrawer(false);
+  lyricSearchCtrl?.open(currentActiveTrack, true);
+});
+
+document.getElementById('signalStatusPill')?.addEventListener('click', () => {
+  if (getLyricSignalStatus() === 'instrumental') {
+    lyricSearchCtrl?.open(currentActiveTrack, true);
+  }
+});
+
+if (import.meta.env.DEV) {
+  fetch('/api/tracks')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((fresh) => {
+      if (Array.isArray(fresh) && fresh.length > 0) {
+        tracksData = fresh;
+        hudCtrl?.refreshGenreOptions();
+        jukeboxCtrl?.renderTracksGrid();
+      }
+    })
+    .catch(() => {});
+}
+
+const topPlayBtn = document.getElementById('btnPlayPause');
+if (topPlayBtn) topPlayBtn.onclick = () => togglePlayPause();
 
 registerMediaSessionHandlers({
   onNext: () => hudCtrl?.playNextTrack(),
@@ -220,6 +315,9 @@ startSyncLoop();
 
 // Global Pro Audiophile Keyboard Shortcuts
 window.addEventListener('keydown', (e) => {
+  if (tapSyncCtrl?.isOpen()) {
+    return;
+  }
   const active = document.activeElement;
   if (active && (['INPUT', 'TEXTAREA', 'SELECT'].includes(active.tagName) || active.isContentEditable)) {
     if (e.code === 'Escape' && jukeboxCtrl?.isModalOpen()) {
@@ -336,6 +434,7 @@ if (typeof window !== 'undefined') {
     },
     cycleAudioProfile,
     getCurrentAudioProfile,
+    getAcousticState,
     setPlaybackSpeed,
     getPlaybackSpeed,
     setSleepTimer,
@@ -343,12 +442,16 @@ if (typeof window !== 'undefined') {
     setSceneIntensity,
     getSceneIntensity,
     getVisualPhysicsMode,
+    getVisualContextMode,
+    getLiveAudioDynamics,
+    generateDynamicTrackPalette,
   };
   window.__scrolly = {
     seekPlayback,
     setActiveTrack,
     setTrackSubtitles,
     loadTrackLyrics,
+    autoResolveMissingLyrics,
     getLyricsCacheStats,
     selectTrack,
     parseLrcText,
@@ -367,5 +470,17 @@ if (typeof window !== 'undefined') {
     isTranslationEnabled,
     playNextTrack: () => hudCtrl?.playNextTrack(),
     playPreviousTrack: () => hudCtrl?.playPreviousTrack(),
+    openTapSyncStudio: () => tapSyncCtrl?.open(),
+    openLyricSearchModal: (t = null, autoRun = true) => lyricSearchCtrl?.open(t, autoRun),
+    showImportDonePopup: (added = [], skipped = 0) => jukeboxCtrl?.showImportDonePopup(added, skipped),
+    markNewlyImported: (ids = []) => jukeboxCtrl?.markNewlyImported(ids),
+    setTracksData: (next) => {
+      if (Array.isArray(next)) {
+        tracksData = next;
+        hudCtrl?.refreshGenreOptions();
+        jukeboxCtrl?.renderTracksGrid();
+      }
+    },
+    setAmbientIdleDelayMs: (ms) => hudCtrl?.setAmbientIdleDelayMs?.(ms),
   };
 }

@@ -22,7 +22,7 @@ import {
   getVocalEnergy,
   getCurrentAudioProfile,
 } from '../audio/audioEngine.js';
-import { setVisualMode, setTheme, setChoreographyState } from '../visuals/canvasVisualizer.js';
+import { setVisualMode, setTheme, setChoreographyState, generateDynamicTrackPalette } from '../visuals/canvasVisualizer.js';
 import {
   loadTrackLyrics,
   preloadTrackLyrics,
@@ -332,26 +332,28 @@ export function getABLoopState() {
  */
 export function applyThemeForTrack(track) {
   if (!track) return;
+  const fallback = !track.accentPrimary || !track.theme ? generateDynamicTrackPalette(track.title || track.id) : null;
+  const primary = track.accentPrimary || fallback?.accentPrimary;
+  const secondary = track.accentSecondary || fallback?.accentSecondary;
+  const cold = track.accentCold || fallback?.accentCold;
+  const theme = track.theme || fallback?.theme || 'crimson';
+  const particleStyle = track.particleStyle || fallback?.particleStyle;
+  const energy = track.visualEnergy || fallback?.visualEnergy || 'calm';
+
   const root = document.documentElement;
-  if (track.accentPrimary) root.style.setProperty('--accent-primary', track.accentPrimary);
-  if (track.accentSecondary) root.style.setProperty('--accent-secondary', track.accentSecondary);
-  if (track.accentCold) root.style.setProperty('--accent-cold', track.accentCold);
+  if (primary) root.style.setProperty('--accent-primary', primary);
+  if (secondary) root.style.setProperty('--accent-secondary', secondary);
+  if (cold) root.style.setProperty('--accent-cold', cold);
   if (track.bgColor) root.style.setProperty('--bg-color', track.bgColor);
 
   const hudTrackName = document.getElementById('hudTrackName');
   if (hudTrackName) hudTrackName.textContent = `${track.artist} · ${track.title}`;
 
-  if (ambientGlow && track.accentPrimary) {
-    ambientGlow.style.background = `radial-gradient(ellipse 65% 55% at 50% 50%, ${track.accentPrimary}26 0%, transparent 75%)`;
+  if (ambientGlow && primary) {
+    ambientGlow.style.background = `radial-gradient(ellipse 65% 55% at 50% 50%, ${primary}26 0%, transparent 75%)`;
   }
 
-  setTheme(
-    track.theme || 'crimson',
-    track.accentPrimary,
-    track.accentSecondary,
-    track.particleStyle,
-    track.visualEnergy || 'calm'
-  );
+  setTheme(theme, primary, secondary, particleStyle, energy, track.genre || '');
 }
 
 /**
@@ -664,6 +666,8 @@ function syncLoop() {
     const curScrollY = window.scrollY || 0;
     const scrollDelta = curScrollY - lastScrollY;
     lastScrollY = curScrollY;
+    document.body.classList.toggle('is-playing', isAudioPlaying());
+    document.body.classList.toggle('is-scrolled', curScrollY > 30);
 
     updateAutoScrollCountdownUi(nowMs);
 

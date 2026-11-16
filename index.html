@@ -87,6 +87,12 @@
               <span>Unggah MP3</span>
             </label>
             <input type="file" id="audioFileInput" accept="audio/*" hidden>
+            <button type="button" id="btnOpenTapSyncJukebox" class="jukebox-upload-btn jukebox-sync-cta" title="Buat &amp; sinkronkan lirik karaoke (Tap-to-Sync Studio)">
+              <span>✨ Buat / Sync Lirik</span>
+            </button>
+            <button type="button" id="btnOpenLyricSearchJukebox" class="jukebox-upload-btn" title="Cari &amp; unduh lirik otomatis dari LRCLIB">
+              <span>🔍 Cari &amp; Unduh Lirik</span>
+            </button>
             <button type="button" id="btnCloseGateway" class="jukebox-close-btn" aria-label="Tutup Anthology Library (Esc)" title="Tutup (Esc)">✕</button>
           </div>
         </div>
@@ -259,7 +265,7 @@
       <div class="studio-ctrl-group">
         <span class="studio-ctrl-label">AUDIO DSP &amp; ALUR</span>
         <div class="studio-chip-row">
-          <button type="button" id="btnAudioProfile" class="hud-chip" aria-label="Ganti profil DSP audio" title="Ganti Profil DSP (Studio Master / Midnight Lo-Fi / 8D Spatial)">
+          <button type="button" id="btnAudioProfile" class="hud-chip" aria-label="Ganti profil DSP audio" title="Ganti Profil DSP (Studio Master / Midnight Lo-Fi / 8D Spatial / Cathedral Hall / Warm Vinyl)">
             <span class="chip-dot" id="audioProfileDot" style="background: #68B2D6; box-shadow: 0 0 8px rgba(104, 178, 214, 0.55);"></span>
             <span id="audioProfileText">Studio Master</span>
           </button>
@@ -317,18 +323,24 @@
 
       <div class="studio-ctrl-group">
         <span class="studio-ctrl-label">EKSPOR &amp; TAMPILAN</span>
-        <div class="studio-chip-row">
+        <div class="studio-export-grid">
           <button type="button" id="btnToggleTranslation" class="hud-chip active" aria-pressed="true" aria-label="Tampilkan atau sembunyikan terjemahan lirik" title="Terjemahan Lirik">
-            <span>Terjemahan: ON</span>
+            <span>🌐 Terjemahan: ON</span>
+          </button>
+          <button type="button" id="btnCinemaMode" class="hud-chip" aria-label="Mode bioskop layar penuh (Shortcut F)" title="Mode Bioskop (F)">
+            <span>🖥️ Mode Bioskop</span>
           </button>
           <button type="button" id="btnQuoteCard" class="hud-chip" aria-label="Unduh kartu kutipan lirik PNG (Shortcut Q)" title="Quote Card PNG (Q)">
-            <span>Quote PNG</span>
+            <span>🖼️ Quote Card PNG</span>
           </button>
           <button type="button" id="btnShareMoment" class="hud-chip" aria-label="Salin tautan momen &amp; timestamp" title="Bagikan Momen">
-            <span>Bagikan</span>
+            <span>🔗 Bagikan Momen</span>
           </button>
-          <button type="button" id="btnCinemaMode" class="hud-chip" aria-label="Mode bioskop layar penuh (Shortcut F)" title="Bioskop (F)">
-            <span>Bioskop</span>
+          <button type="button" id="btnExportLrc" class="hud-chip" aria-label="Unduh file lirik .LRC lagu aktif" title="Ekspor Lirik (.LRC)">
+            <span>📄 Ekspor Lirik (.LRC)</span>
+          </button>
+          <button type="button" id="btnOpenTapSyncPopover" class="hud-chip" aria-label="Buka Tap-to-Sync Lyric Studio" title="Tap-to-Sync Studio">
+            <span>✨ Tap-to-Sync Studio</span>
           </button>
         </div>
       </div>
@@ -344,7 +356,11 @@
         <span class="lyric-drawer-eyebrow">TIMELINE LIRIK</span>
         <h2 class="lyric-drawer-title" id="lyricDrawerTrackTitle">for Revenge · Penyangkalan</h2>
       </div>
-      <button type="button" id="btnCloseLyricDrawer" class="lyric-drawer-close" aria-label="Tutup panel lirik (Shortcut T)" title="Tutup (T)">✕</button>
+      <div class="lyric-drawer-actions">
+        <button type="button" id="btnOpenLyricSearchDrawer" class="lyric-sync-btn" title="Cari &amp; unduh lirik dari LRCLIB">🔍 Cari &amp; Unduh Lirik</button>
+        <button type="button" id="btnOpenTapSyncDrawer" class="lyric-sync-btn lyric-sync-studio-btn" title="Buat atau sinkronkan lirik baru">✨ Buat / Sync Lirik</button>
+        <button type="button" id="btnCloseLyricDrawer" class="lyric-drawer-close" aria-label="Tutup panel lirik (Shortcut T)" title="Tutup (T)">✕</button>
+      </div>
     </div>
     <div class="lyric-sync-bar" role="group" aria-label="Sinkronisasi waktu lirik real-time">
       <span class="lyric-sync-label">Sync Lirik</span>
@@ -465,6 +481,83 @@
   <!-- Full-Width Cinematic Progress Bar -->
   <div id="cinemaProgressBar" class="cinema-progress-line" title="Alur Progres Musik">
     <div id="cinemaProgressFill" class="cinema-progress-fill"></div>
+  </div>
+
+  <!-- In-Browser Tap-to-Sync Lyric Studio Overlay -->
+  <div id="tapSyncOverlay" class="gateway-overlay tap-sync-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="tapSyncTitle">
+    <div class="tap-sync-panel">
+      <div class="tap-sync-header">
+        <div>
+          <span class="lyric-drawer-eyebrow">CREATOR STUDIO · KARAOKE 50MS</span>
+          <h2 id="tapSyncTitle" class="tap-sync-title">Tap-to-Sync Lyric Studio</h2>
+          <p class="tap-sync-sub" id="tapSyncTrackBadge">Lagu Aktif</p>
+        </div>
+        <button type="button" id="btnCloseTapSync" class="jukebox-close-btn" aria-label="Tutup Tap-to-Sync Studio (Esc)" title="Tutup (Esc)">✕</button>
+      </div>
+
+      <div class="tap-sync-grid">
+        <div class="tap-sync-step">
+          <label for="tapSyncLyricsInput" class="tap-sync-label">1. Tempel Lirik (1 baris = 1 ketukan)</label>
+          <textarea id="tapSyncLyricsInput" class="tap-sync-textarea" rows="7" placeholder="Tempel lirik lagu baris demi baris di sini..."></textarea>
+          <button type="button" id="btnTapSyncStart" class="tap-sync-primary-btn">▶ Mulai Putar &amp; Sync dari Awal</button>
+        </div>
+
+        <div class="tap-sync-step">
+          <div class="tap-sync-meta-row">
+            <span class="tap-sync-label" id="tapSyncProgressLabel">Tempel lirik di Langkah 1</span>
+            <strong class="tap-sync-clock" id="tapSyncClock">00:00.00</strong>
+          </div>
+
+          <div class="tap-sync-cue" id="tapSyncCurrentLine" aria-live="polite">
+            Belum ada baris lirik — tempel lirik terlebih dahulu.
+          </div>
+
+          <div class="tap-sync-controls">
+            <button type="button" id="btnTapSyncTap" class="tap-sync-tap-btn" disabled>⏱ Tap Baris Berikutnya (Spasi)</button>
+            <button type="button" id="btnTapSyncUndo" class="lyric-sync-btn" disabled>↩ Undo 1 Baris</button>
+          </div>
+
+          <div class="tap-sync-log" id="tapSyncRecordedList" aria-label="Daftar timestamp lirik terekam"></div>
+        </div>
+      </div>
+
+      <div class="tap-sync-footer">
+        <span class="tap-sync-hint">3. Terapkan langsung ke karaoke atau simpan berkasnya secara permanen:</span>
+        <div class="tap-sync-export-btns">
+          <button type="button" id="btnTapSyncApply" class="tap-sync-primary-btn" disabled>✨ Terapkan ke Pemutar</button>
+          <button type="button" id="btnTapSyncDownloadLrc" class="lyric-sync-btn" disabled>⬇ Unduh .LRC</button>
+          <button type="button" id="btnTapSyncDownloadJson" class="lyric-sync-btn" disabled>⬇ Unduh .JSON</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Non-Blocking Import Complete Pop-up Banner -->
+  <aside id="importDonePopup" class="import-done-popup hidden" role="status" aria-live="polite">
+    <div class="import-done-text" id="importDoneMessage">✅ Selesai! Lagu baru diunduh ke Koleksi Terpasang.</div>
+    <div class="import-done-actions">
+      <button type="button" id="btnImportDonePlay" class="tap-sync-primary-btn">▶ Putar Lagu Baru</button>
+      <button type="button" id="btnImportDoneClose" class="lyric-sync-btn">Tutup</button>
+    </div>
+  </aside>
+
+  <!-- Multi-Stage Lyric Search & Apply Modal -->
+  <div id="lyricSearchOverlay" class="gateway-overlay tap-sync-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lyricSearchTitle">
+    <div class="tap-sync-panel lyric-search-panel">
+      <div class="tap-sync-header">
+        <div>
+          <span class="lyric-drawer-eyebrow">MULTI-STAGE LRCLIB</span>
+          <h2 id="lyricSearchTitle" class="tap-sync-title">Cari &amp; Unduh Lirik</h2>
+          <p class="tap-sync-sub" id="lyricSearchTrackBadge">Lagu Aktif</p>
+        </div>
+        <button type="button" id="btnCloseLyricSearch" class="jukebox-close-btn" aria-label="Tutup Pencarian Lirik (Esc)" title="Tutup (Esc)">✕</button>
+      </div>
+      <div class="lyric-search-bar">
+        <input type="search" id="lyricSearchQueryInput" class="tap-sync-textarea lyric-search-input" placeholder="Ketik judul atau artis (misal: ALMIGHTY Tokyo Ska Paradise Orchestra)" aria-label="Kata kunci pencarian lirik">
+        <button type="button" id="btnRunLyricSearch" class="tap-sync-primary-btn">🔍 Cari</button>
+      </div>
+      <div id="lyricSearchResults" class="lyric-search-results" role="list"></div>
+    </div>
   </div>
 
   <script type="module" src="/src/main.js"></script>

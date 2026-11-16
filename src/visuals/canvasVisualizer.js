@@ -55,7 +55,124 @@ let activeAccentPrimary = '#D65A70';
 let activeAccentSecondary = '#D98A5C';
 let activeParticleStyle = 'falling-ash';
 let activeVisualEnergy = 'intense';
+let activeGenre = '';
+let activeVisualContext = 'ballad'; // 'high-tempo' | 'dreamy' | 'ballad' | 'prism'
 let sceneIntensityMode = 'cinema';
+
+// Zero-GC Live Acoustic & Spectral Dynamics state
+let emaEnergy = 0;
+let liveBeatFlux = 0;
+let beatPulseLevel = 0;
+let livePaceFactor = 1.0;
+let spectralToneRatio = 1.0;
+
+function hslToHex(h, s, l) {
+  const sn = s / 100;
+  const ln = l / 100;
+  const a = sn * Math.min(ln, 1 - ln);
+  const f = (n) => {
+    const k = (n + h / 30) % 12;
+    const c = ln - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    return Math.round(255 * c).toString(16).padStart(2, '0');
+  };
+  return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+}
+
+/**
+ * Deterministically synthesize an eye-comfort dark-cinema color palette from any track title/seed.
+ * @param {string} seedText
+ */
+export function generateDynamicTrackPalette(seedText = 'Custom Audio') {
+  const str = String(seedText || 'Custom Audio');
+  let hash = 2166136261;
+  for (let i = 0; i < str.length; i += 1) {
+    hash ^= str.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  const h1 = Math.abs(hash) % 360;
+  const h2 = (h1 + 42) % 360;
+  const h3 = (h1 + 195) % 360;
+  return {
+    accentPrimary: hslToHex(h1, 64, 62),
+    accentSecondary: hslToHex(h2, 62, 65),
+    accentCold: hslToHex(h3, 56, 66),
+    theme: 'prism-aurora',
+    particleStyle: 'floating-embers',
+    visualEnergy: 'groovy',
+  };
+}
+
+function computeLiveAudioDynamics(bassNorm, midNorm, trebleNorm, vocalNorm, nowMs, dtSec) {
+  const instantEnergy = bassNorm * 0.72 + midNorm * 0.28;
+  emaEnergy += (instantEnergy - emaEnergy) * 0.12;
+  liveBeatFlux = Math.max(0, instantEnergy - emaEnergy);
+  beatPulseLevel = Math.max(beatPulseLevel * Math.exp(-dtSec * 6.5), Math.min(1, liveBeatFlux * 4.5));
+  const targetPace = 0.74 + Math.min(1.42, emaEnergy * 1.15 + beatPulseLevel * 0.72 + vocalNorm * 0.35);
+  livePaceFactor += (targetPace - livePaceFactor) * 0.14;
+  spectralToneRatio = (trebleNorm + 0.08) / (bassNorm * 0.6 + midNorm * 0.4 + 0.12);
+
+  if (liveBeatFlux > 0.045 && instantEnergy > 0.20 && nowMs - lastSonicRingMs > 240) {
+    lastSonicRingMs = nowMs;
+    spawnSonicRing(Math.min(1, instantEnergy * 0.75 + liveBeatFlux * 2.4));
+  }
+}
+
+export function getLiveAudioDynamics() {
+  return {
+    paceFactor: Number(livePaceFactor.toFixed(3)),
+    beatFlux: Number(liveBeatFlux.toFixed(3)),
+    beatPulse: Number(beatPulseLevel.toFixed(3)),
+    spectralToneRatio: Number(spectralToneRatio.toFixed(3)),
+    visualContext: activeVisualContext,
+  };
+}
+
+// Pre-allocated zero-GC context-aware pools
+const STREAK_COUNT = 18;
+const CONSTELLATION_COUNT = 22;
+const RAIN_COUNT = 24;
+const streakPool = Array.from({ length: STREAK_COUNT }, () => ({
+  x: Math.random() * 1400,
+  y: Math.random() * 820,
+  len: 75 + Math.random() * 130,
+  speed: 4.5 + Math.random() * 6.5,
+  alpha: 0.08 + Math.random() * 0.14,
+  alt: Math.random() > 0.5,
+}));
+const constellationPool = Array.from({ length: CONSTELLATION_COUNT }, () => ({
+  x: Math.random() * 1400,
+  y: Math.random() * 820,
+  vx: (Math.random() - 0.5) * 0.35,
+  vy: (Math.random() - 0.5) * 0.25,
+  r: 1.1 + Math.random() * 1.4,
+  phase: Math.random() * Math.PI * 2,
+}));
+const rainPool = Array.from({ length: RAIN_COUNT }, () => ({
+  x: Math.random() * 1400,
+  y: Math.random() * 820,
+  len: 14 + Math.random() * 18,
+  speed: 2.2 + Math.random() * 2.4,
+  alpha: 0.06 + Math.random() * 0.09,
+}));
+
+function resolveVisualContext(genre, energy, particleStyle, theme = '') {
+  const g = String(genre || '');
+  if (theme === 'prism-aurora' || /user audio|mp3\s*\+\s*lrc|custom/i.test(g)) {
+    return 'prism';
+  }
+  if (/j-?pop|j-?rock|rock|ska|anime|punk|metal|electronic|hip-?hop/i.test(g) && energy !== 'calm') {
+    return 'high-tempo';
+  }
+  if (/folk|acoustic|ballad|indo\s*pop|sad|singer/i.test(g) || particleStyle === 'rain' || particleStyle === 'heavy-rain' || energy === 'calm') {
+    return 'ballad';
+  }
+  return 'dreamy';
+}
+
+/** @returns {'high-tempo'|'dreamy'|'ballad'} */
+export function getVisualContextMode() {
+  return activeVisualContext;
+}
 
 // v7.0 Scroll-Linked Choreography Modifiers (zero-GC scalars updated by scrollyDirector)
 let targetCameraZoom = 1.0;
@@ -326,13 +443,16 @@ export function setTheme(
   primaryColor = null,
   secondaryColor = null,
   particleStyle = null,
-  visualEnergy = null
+  visualEnergy = null,
+  genre = null
 ) {
   currentTheme = theme || 'crimson-ash';
   if (primaryColor) activeAccentPrimary = primaryColor;
   if (secondaryColor) activeAccentSecondary = secondaryColor;
   if (particleStyle) activeParticleStyle = particleStyle;
   if (visualEnergy) activeVisualEnergy = visualEnergy;
+  if (genre !== null) activeGenre = genre;
+  activeVisualContext = resolveVisualContext(activeGenre, activeVisualEnergy, activeParticleStyle, currentTheme);
 
   rebuildBokehSprites();
 
@@ -364,8 +484,8 @@ function renderStardust(motionScale) {
   for (let i = 0; i < STAR_COUNT; i++) {
     const s = starPool[i];
     if (motionScale > 0) {
-      s.x += s.speedX * motionScale;
-      s.y += (s.speedY - scrollDrift * s.depth) * motionScale;
+      s.x += s.speedX * motionScale * livePaceFactor;
+      s.y += (s.speedY * livePaceFactor - scrollDrift * s.depth) * motionScale;
       if (s.x < 0) s.x = width;
       if (s.y < -8) s.y = height + 4;
       if (s.y > height + 8) s.y = -4;
@@ -393,12 +513,12 @@ function renderStardust(motionScale) {
 }
 
 function renderBreathingHalo(bassNorm, vocalNorm) {
-  const energy = Math.min(1, bassNorm * 0.58 + vocalNorm * 0.42);
+  const energy = Math.min(1, bassNorm * 0.52 + vocalNorm * 0.35 + beatPulseLevel * 0.32);
   const cx = width * 0.5;
   const cy = height * 0.5;
   const minDim = Math.min(width, height);
-  const radius = minDim * (0.34 + energy * 0.16);
-  const coreAlpha = 0.08 + energy * 0.13;
+  const radius = minDim * (0.34 + energy * 0.18);
+  const coreAlpha = 0.08 + energy * 0.15;
 
   ctx.save();
   ctx.globalCompositeOperation = 'screen';
@@ -491,7 +611,7 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
 
   const layerCount = isPeakClimax ? 4 : isCalm ? 2 : isGroovy ? 3 : isClimaxAct ? 4 : 3;
   const surgeFactor = auroraBoostRemaining > 0 ? 1 + (auroraBoostRemaining / 0.8) * 0.65 : 1;
-  const flowEnergyBoost = 1 + (bassNorm * 0.28 + vocalNorm * 0.24);
+  const flowEnergyBoost = (1 + (bassNorm * 0.28 + vocalNorm * 0.24)) * livePaceFactor;
   const ribbonAmp =
     (isCalm
       ? 14 + vocalNorm * 22
@@ -574,21 +694,15 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
     ctx.stroke();
   }
 
-  if (isGroovy) {
+  // Beat-synced Kinetic Shockwave Rings (universal across all curated, imported & user tracks)
+  {
     const cx = width * 0.5;
     const cy = height * 0.52;
     const grooveHit = bassNorm * 0.62 + midNorm * 0.38;
-    const nowMs = performance.now();
-    if (grooveHit - prevGroovyEnergy > 0.032 && grooveHit > 0.24 && nowMs - lastSonicRingMs > 280) {
-      lastSonicRingMs = nowMs;
-      spawnSonicRing(grooveHit);
-    }
-    prevGroovyEnergy = grooveHit;
-
     for (let i = 0; i < SONIC_RING_COUNT; i++) {
       const ring = sonicRingPool[i];
       if (!ring.active) continue;
-      ring.radius += (1.9 + grooveHit * 2.4) * motionScale;
+      ring.radius += (1.9 + grooveHit * 2.4) * livePaceFactor * motionScale;
       const progress = Math.min(1, ring.radius / Math.max(1, ring.maxRadius));
       const fadeAlpha = ring.alpha * (1 - progress);
       if (progress >= 1 || fadeAlpha <= 0.005) {
@@ -861,6 +975,93 @@ function updateDirectorTelemetry(nowMs, vocalNorm) {
   }
 }
 
+function renderContextLayer(bassNorm, trebleNorm, vocalNorm, motionScale) {
+  if (!ctx || width <= 0 || height <= 0) return;
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  if (activeVisualContext === 'high-tempo' || activeVisualContext === 'prism') {
+    // Prismatic Speed Streaks + subtle eye-comfort beat flash
+    const speedBoost = (1 + bassNorm * 2.2 + trebleNorm * 1.4) * livePaceFactor * motionScale;
+    ctx.lineWidth = 1.4;
+    for (let i = 0; i < STREAK_COUNT; i++) {
+      const s = streakPool[i];
+      s.x += s.speed * speedBoost;
+      s.y -= s.speed * 0.22 * speedBoost;
+      if (s.x > width + s.len) { s.x = -s.len; s.y = Math.random() * height; }
+      if (s.y < -40) s.y = height + 20;
+      ctx.strokeStyle = hexToRgba(s.alt ? activeAccentSecondary : activeAccentPrimary, s.alpha * (0.7 + trebleNorm * 0.8));
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - s.len, s.y + s.len * 0.22);
+      ctx.stroke();
+    }
+    if (bassNorm > 0.62 && motionScale > 0.3) {
+      const flashAlpha = Math.min(0.11, (bassNorm - 0.62) * 0.28);
+      ctx.fillStyle = hexToRgba(activeAccentPrimary, flashAlpha);
+      ctx.fillRect(0, 0, width, height);
+    }
+  }
+  if (activeVisualContext === 'dreamy' || activeVisualContext === 'prism') {
+    // Constellation Starfield with thin proximity links
+    const maxLinkSq = 135 * 135;
+    for (let i = 0; i < CONSTELLATION_COUNT; i++) {
+      const a = constellationPool[i];
+      a.x += a.vx * livePaceFactor * motionScale;
+      a.y += a.vy * livePaceFactor * motionScale;
+      if (a.x < 0) a.x = width; else if (a.x > width) a.x = 0;
+      if (a.y < 0) a.y = height; else if (a.y > height) a.y = 0;
+
+      const twinkle = 0.28 + Math.sin(time * 1.8 + a.phase) * 0.14 + vocalNorm * 0.2;
+      ctx.fillStyle = hexToRgba(SOFT_IVORY, Math.min(0.55, twinkle));
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < CONSTELLATION_COUNT; j++) {
+        const b = constellationPool[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dSq = dx * dx + dy * dy;
+        if (dSq < maxLinkSq) {
+          const linkAlpha = (1 - dSq / maxLinkSq) * 0.14 * (0.8 + vocalNorm * 0.5);
+          ctx.strokeStyle = hexToRgba(activeAccentPrimary, linkAlpha);
+          ctx.lineWidth = 0.7;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+  } else if (activeVisualContext === 'ballad') {
+    // Ballad: Volumetric Mist Layer + soft rain reflections
+    const mistY = height * 0.78;
+    const mistGrad = ctx.createRadialGradient(width * 0.5, mistY, 10, width * 0.5, mistY, width * 0.52);
+    mistGrad.addColorStop(0, hexToRgba(activeAccentPrimary, 0.08 + vocalNorm * 0.05));
+    mistGrad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = mistGrad;
+    ctx.fillRect(0, height * 0.48, width, height * 0.52);
+
+    ctx.lineWidth = 0.9;
+    const dropScale = (1 + bassNorm * 0.45) * motionScale;
+    for (let i = 0; i < RAIN_COUNT; i++) {
+      const r = rainPool[i];
+      r.x -= r.speed * 0.18 * dropScale;
+      r.y += r.speed * dropScale;
+      if (r.y > height + 20) { r.y = -20; r.x = Math.random() * width; }
+      if (r.x < -20) r.x = width + 10;
+      ctx.strokeStyle = hexToRgba(SOFT_IVORY, r.alpha * (0.75 + vocalNorm * 0.35));
+      ctx.beginPath();
+      ctx.moveTo(r.x, r.y);
+      ctx.lineTo(r.x - r.len * 0.18, r.y + r.len);
+      ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
 function render() {
   if (!isRunning || !ctx) return;
 
@@ -884,7 +1085,9 @@ function render() {
   smoothTreble += (levels.treble / 255 - smoothTreble) * 0.14;
   smoothVocal += ((vocal ? vocal.normalized : 0) - smoothVocal) * 0.18;
 
+  computeLiveAudioDynamics(smoothBass, smoothMid, smoothTreble, smoothVocal, nowMs, dtSec);
   renderStardust(motionScale);
+  renderContextLayer(smoothBass, smoothTreble, smoothVocal, motionScale);
   renderBreathingHalo(smoothBass, smoothVocal);
   renderSilkAurora(smoothBass, smoothMid, smoothTreble, smoothVocal, motionScale);
   renderDepthBokeh(smoothBass, smoothVocal, motionScale);

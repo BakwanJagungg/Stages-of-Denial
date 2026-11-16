@@ -196,6 +196,50 @@ export async function loadTrackLyrics(track) {
   return pending;
 }
 
+const autoResolveAttempted = new Set();
+
+/**
+ * Automatically search & apply missing lyrics in background via dev server /api/fetch-lyrics.
+ * @param {Object} track
+ * @returns {Promise<{ found: boolean, subtitles?: Array, lyricMode?: string, track?: Object, tracks?: Array }>}
+ */
+export async function autoResolveMissingLyrics(track) {
+  if (!track || !track.id || String(track.id).startsWith('custom-')) return { found: false };
+  if (autoResolveAttempted.has(track.id)) return { found: false };
+  autoResolveAttempted.add(track.id);
+
+  emitSignal('auto-searching');
+  try {
+    const res = await fetch('/api/fetch-lyrics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        autoApply: true,
+        trackId: track.id,
+        title: track.title || '',
+        artist: track.artist || '',
+        genre: track.genre || '',
+        duration: Number(track.duration) || 210,
+      }),
+    });
+    if (!res.ok) {
+      emitSignal('instrumental');
+      return { found: false };
+    }
+    const payload = await res.json();
+    if (payload?.ok && payload?.found && Array.isArray(payload.subtitles) && payload.subtitles.length > 0) {
+      lyricsCache.set(track.id, payload.subtitles);
+      setTrackSubtitles(payload.subtitles, payload.lyricMode || 'synced');
+      return payload;
+    }
+    emitSignal('instrumental');
+    return { found: false };
+  } catch {
+    emitSignal('instrumental');
+    return { found: false };
+  }
+}
+
 /** Expose cache stats for diagnostics & tests. */
 export function getLyricsCacheStats() {
   return { cachedTrackIds: Array.from(lyricsCache.keys()), size: lyricsCache.size };

@@ -57,6 +57,7 @@ function catalogApiPlugin() {
 }
 
 export default defineConfig({
+  base: './',
   root: './',
   plugins: [catalogApiPlugin()],
   esbuild: {
@@ -71,5 +72,8 @@ export default defineConfig({
     port: 5173,
     open: true,
     cors: true,
+    watch: {
+      ignored: ['**/config/**', '**/public/assets/**'],
+    },
   },
 });

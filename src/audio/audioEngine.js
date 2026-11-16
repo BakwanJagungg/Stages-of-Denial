@@ -25,6 +25,17 @@ let dspMid = null;
 let dspHigh = null;
 let stereoPanner = null;
 let pannerLfo = null;
+// Virtual Acoustic Room & Warm Vinyl Nodes
+let dryGain = null;
+let wetGain = null;
+let convolverNode = null;
+let cachedCathedralBuffer = null;
+let vinylBandpass = null;
+let vinylCrackleGain = null;
+let vinylSourceNode = null;
+let cachedVinylBuffer = null;
+let vinylCrackleActive = false;
+
 let pannerLfoGain = null;
 
 let activeCustomObjectUrl = null;
@@ -261,15 +272,26 @@ function setupAudioGraph() {
       pannerLfo.start();
     }
 
+    dryGain = audioCtx.createGain();
+    dryGain.gain.setValueAtTime(1, audioCtx.currentTime);
+
+    wetGain = audioCtx.createGain();
+    wetGain.gain.setValueAtTime(0, audioCtx.currentTime);
+
+    vinylCrackleGain = audioCtx.createGain();
+    vinylCrackleGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    vinylCrackleGain.connect(crossfadeGain);
+
+    const postStage = stereoPanner || crossfadeGain;
     analyser.connect(lofiLowpass);
     lofiLowpass.connect(dspLow);
     dspLow.connect(dspMid);
     dspMid.connect(dspHigh);
+    dspHigh.connect(dryGain);
+    dryGain.connect(postStage);
+    wetGain.connect(postStage);
     if (stereoPanner) {
-      dspHigh.connect(stereoPanner);
       stereoPanner.connect(crossfadeGain);
-    } else {
-      dspHigh.connect(crossfadeGain);
     }
     crossfadeGain.connect(sleepGain);
     sleepGain.connect(masterGain);
@@ -748,11 +770,119 @@ export function isAudioPlaying() {
   return Boolean(audioEl && !audioEl.paused);
 }
 
+export function createSyntheticImpulseResponse(ctx, durationSec = 2.4, decayRate = 2.8) {
+  const sampleRate = ctx.sampleRate || 48000;
+  const length = Math.max(1, Math.floor(sampleRate * durationSec));
+  const buffer = ctx.createBuffer(2, length, sampleRate);
+  for (let ch = 0; ch < 2; ch += 1) {
+    const channelData = buffer.getChannelData(ch);
+    let lp = 0;
+    for (let i = 0; i < length; i += 1) {
+      const env = Math.pow(1 - i / length, decayRate);
+      const white = Math.random() * 2 - 1;
+      lp = lp * 0.45 + white * 0.55;
+      channelData[i] = lp * env;
+    }
+  }
+  return buffer;
+}
+
+function getOrCreateVinylCrackleBuffer(ctx) {
+  if (cachedVinylBuffer && cachedVinylBuffer.sampleRate === ctx.sampleRate) return cachedVinylBuffer;
+  const sampleRate = ctx.sampleRate || 48000;
+  const length = Math.floor(sampleRate * 4);
+  const buffer = ctx.createBuffer(1, length, sampleRate);
+  const data = buffer.getChannelData(0);
+  let brown = 0;
+  for (let i = 0; i < length; i += 1) {
+    const white = Math.random() * 2 - 1;
+    brown = (brown + 0.04 * white) / 1.04;
+    const impulse = Math.random() < 0.0014 ? (Math.random() * 2 - 1) * 0.45 : 0;
+    data[i] = brown * 0.25 + impulse;
+  }
+  cachedVinylBuffer = buffer;
+  return buffer;
+}
+
+function attachCathedralConvolver() {
+  if (!audioCtx || !dspHigh || !wetGain) return;
+  if (!cachedCathedralBuffer || cachedCathedralBuffer.sampleRate !== audioCtx.sampleRate) {
+    cachedCathedralBuffer = createSyntheticImpulseResponse(audioCtx, 2.4, 2.8);
+  }
+  if (!convolverNode) {
+    convolverNode = audioCtx.createConvolver();
+    convolverNode.normalize = true;
+    convolverNode.buffer = cachedCathedralBuffer;
+    dspHigh.connect(convolverNode);
+    convolverNode.connect(wetGain);
+  }
+}
+
+function detachCathedralConvolver() {
+  if (!convolverNode) return;
+  try { dspHigh?.disconnect(convolverNode); } catch {}
+  try { convolverNode.disconnect(); } catch {}
+  convolverNode.buffer = null;
+  convolverNode = null;
+}
+
+function startVinylCrackle() {
+  if (!audioCtx || !vinylCrackleGain || vinylCrackleActive) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+  const src = audioCtx.createBufferSource();
+  src.buffer = getOrCreateVinylCrackleBuffer(audioCtx);
+  src.loop = true;
+  const bandpass = audioCtx.createBiquadFilter();
+  bandpass.type = 'bandpass';
+  bandpass.frequency.setValueAtTime(1650, audioCtx.currentTime);
+  bandpass.Q.setValueAtTime(0.85, audioCtx.currentTime);
+  src.connect(bandpass);
+  bandpass.connect(vinylCrackleGain);
+  vinylCrackleGain.gain.cancelScheduledValues(audioCtx.currentTime);
+  vinylCrackleGain.gain.setTargetAtTime(0.012, audioCtx.currentTime, 0.06);
+  src.start();
+  vinylSourceNode = src;
+  vinylBandpass = bandpass;
+  vinylCrackleActive = true;
+}
+
+function stopVinylCrackle() {
+  if (vinylCrackleGain && audioCtx) {
+    vinylCrackleGain.gain.cancelScheduledValues(audioCtx.currentTime);
+    vinylCrackleGain.gain.setValueAtTime(0, audioCtx.currentTime);
+  }
+  if (vinylSourceNode) {
+    try { vinylSourceNode.stop(); } catch {}
+    try { vinylSourceNode.disconnect(); } catch {}
+    vinylSourceNode = null;
+  }
+  if (vinylBandpass) {
+    try { vinylBandpass.disconnect(); } catch {}
+    vinylBandpass = null;
+  }
+  vinylCrackleActive = false;
+}
+
+export function cleanupAcousticNodes() {
+  stopVinylCrackle();
+  detachCathedralConvolver();
+}
+
+export function getAcousticState() {
+  return {
+    profileId: getCurrentAudioProfile().id,
+    hasConvolver: Boolean(convolverNode),
+    vinylCrackleActive,
+  };
+}
+
 /** Available Audiophile DSP Sound Profiles */
 export const AUDIO_PROFILES = [
   { id: 'studio', label: 'Studio Master', color: '#68B2D6', desc: 'Respon studio datar jernih tanpa pewarnaan' },
   { id: 'lofi', label: 'Midnight Lo-Fi', color: '#D99F4C', desc: 'Lowpass hangat 4200Hz & sentuhan intim 220Hz' },
   { id: 'spatial', label: '8D Spatial', color: '#D46E9D', desc: 'Ambience L-R berosilasi lembut 0.08Hz (12.5 detik/putaran)' },
+  { id: 'cathedral', label: 'Cathedral Hall', color: '#8E97DC', desc: 'Convolver stereo 2.4s reverb melankolis (wet 0.32)' },
+  { id: 'vinyl', label: 'Warm Vinyl', color: '#D88855', desc: 'Band-pass warmth & desir piringan hitam halus' },
 ];
 
 let currentProfileIndex = 0;
@@ -770,37 +900,45 @@ export function getCurrentAudioProfile() {
   return AUDIO_PROFILES[currentProfileIndex];
 }
 
-/** @param {'studio'|'lofi'|'spatial'} profileId */
+const DSP_PRESETS = {
+  studio: [20000, 120, 0, 3000, 0, 0, 0],
+  lofi: [4200, 220, 2.0, 3000, 0, 0, 0],
+  spatial: [20000, 120, 0.8, 3000, 1.6, 1.2, 0.65],
+  cathedral: [15500, 140, 0.6, 2400, 1.2, -0.8, 0],
+  vinyl: [5200, 185, 2.4, 1450, 1.5, -2.6, 0],
+};
+
+/** @param {'studio'|'lofi'|'spatial'|'cathedral'|'vinyl'} profileId */
 export function applyAudioProfile(profileId) {
+  if (!audioCtx) setupAudioGraph();
   if (!dspLow || !dspMid || !dspHigh || !audioCtx) return;
+
+  const idx = AUDIO_PROFILES.findIndex((p) => p.id === profileId);
+  if (idx >= 0) currentProfileIndex = idx;
+
   const now = audioCtx.currentTime;
-  switch (profileId) {
-    case 'lofi':
-      if (lofiLowpass) lofiLowpass.frequency.setTargetAtTime(4200, now, 0.08);
-      dspLow.frequency.setTargetAtTime(220, now, 0.05);
-      dspLow.gain.setTargetAtTime(2.0, now, 0.05);
-      dspMid.gain.setTargetAtTime(0, now, 0.05);
-      dspHigh.gain.setTargetAtTime(0, now, 0.05);
-      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
-      break;
-    case 'spatial':
-      if (lofiLowpass) lofiLowpass.frequency.setTargetAtTime(20000, now, 0.08);
-      dspLow.frequency.setTargetAtTime(120, now, 0.05);
-      dspLow.gain.setTargetAtTime(0.8, now, 0.05);
-      dspMid.gain.setTargetAtTime(1.6, now, 0.05);
-      dspHigh.gain.setTargetAtTime(1.2, now, 0.05);
-      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0.65, now, 0.18);
-      break;
-    case 'studio':
-    default:
-      if (lofiLowpass) lofiLowpass.frequency.setTargetAtTime(20000, now, 0.08);
-      dspLow.frequency.setTargetAtTime(120, now, 0.05);
-      dspLow.gain.setTargetAtTime(0, now, 0.05);
-      dspMid.gain.setTargetAtTime(0, now, 0.05);
-      dspHigh.gain.setTargetAtTime(0, now, 0.05);
-      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
-      break;
+  if (profileId !== 'cathedral') {
+    if (dryGain) dryGain.gain.setTargetAtTime(1.0, now, 0.06);
+    if (wetGain) wetGain.gain.setTargetAtTime(0.0, now, 0.05);
+    detachCathedralConvolver();
+  } else {
+    attachCathedralConvolver();
+    if (dryGain) dryGain.gain.setTargetAtTime(0.78, now, 0.08);
+    if (wetGain) wetGain.gain.setTargetAtTime(0.32, now, 0.08);
   }
+
+  if (profileId !== 'vinyl') stopVinylCrackle();
+  else if (isAudioPlaying()) startVinylCrackle();
+
+  const [lpFreq, lowFreq, lowGain, midFreq, midGain, highGain, panDepth] =
+    DSP_PRESETS[profileId] || DSP_PRESETS.studio;
+  if (lofiLowpass) lofiLowpass.frequency.setTargetAtTime(lpFreq, now, 0.08);
+  dspLow.frequency.setTargetAtTime(lowFreq, now, 0.05);
+  dspLow.gain.setTargetAtTime(lowGain, now, 0.05);
+  dspMid.frequency.setTargetAtTime(midFreq, now, 0.05);
+  dspMid.gain.setTargetAtTime(midGain, now, 0.05);
+  dspHigh.gain.setTargetAtTime(highGain, now, 0.05);
+  if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(panDepth, now, panDepth > 0 ? 0.18 : 0.12);
 }
 
 function setupEventListeners() {
