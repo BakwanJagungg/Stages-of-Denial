@@ -21,8 +21,17 @@ import {
   getFrequencyLevels,
   getVocalEnergy,
   getCurrentAudioProfile,
+  getAudioContext,
 } from '../audio/audioEngine.js';
-import { setVisualMode, setTheme, setChoreographyState, generateDynamicTrackPalette } from '../visuals/canvasVisualizer.js';
+import { analyzeAudioEnergy, getDefaultFallbackActs } from '../audio/energyEnvelope.js';
+import {
+  setVisualMode,
+  setTheme,
+  setChoreographyState,
+  generateDynamicTrackPalette,
+  getLiveAudioDynamics,
+  setVisualizerTrack,
+} from '../visuals/canvasVisualizer.js';
 import {
   loadTrackLyrics,
   preloadTrackLyrics,
@@ -62,16 +71,6 @@ const hudTimeDuration = document.getElementById('hudTimeDuration');
 const hudProgressBar = document.getElementById('hudProgressBar');
 const hudProgressFill = document.getElementById('hudProgressFill');
 const bgVideo = document.getElementById('bgVideo');
-if (bgVideo) {
-  const activatePureAuroraFallback = () => {
-    bgVideo.style.display = 'none';
-    document.body.classList.add('custom-audio-mode');
-  };
-  bgVideo.addEventListener('error', activatePureAuroraFallback);
-  bgVideo.querySelectorAll('source').forEach((srcEl) => {
-    srcEl.addEventListener('error', activatePureAuroraFallback);
-  });
-}
 const cinematicTransition = document.getElementById('cinematicTransition');
 
 const bassMeterBar = document.getElementById('bassMeterBar');
@@ -353,7 +352,40 @@ export function applyThemeForTrack(track) {
     ambientGlow.style.background = `radial-gradient(ellipse 65% 55% at 50% 50%, ${primary}26 0%, transparent 75%)`;
   }
 
-  setTheme(theme, primary, secondary, particleStyle, energy, track.genre || '');
+  setVisualizerTrack(track);
+}
+
+/**
+ * Dynamically calibrate 4 Story Acts based on offline or decoded RMS energy envelope.
+ * @param {Array<Object>} acts
+ */
+export function setDynamicActTimings(acts) {
+  if (!Array.isArray(acts) || acts.length === 0) return;
+  activeActs = acts;
+  ACT_CONFIG = activeActs.reduce((acc, act) => {
+    acc[act.id] = act;
+    return acc;
+  }, {});
+
+  activeActs.forEach((act) => {
+    const sec = document.getElementById(act.id);
+    if (sec) {
+      const badge = sec.querySelector('.chapter-badge');
+      const heading = sec.querySelector('.cinematic-heading');
+      const lead = sec.querySelector('.cinematic-lead');
+      const watermark = sec.querySelector('.act-watermark');
+      if (badge && act.chapterBadge) badge.textContent = act.chapterBadge;
+      if (heading && act.heading) heading.textContent = act.heading;
+      if (lead && act.lead) lead.textContent = act.lead;
+      if (watermark && act.roman) watermark.textContent = act.roman;
+    }
+  });
+
+  const { currentTime } = getAudioTime();
+  const matchingAct = activeActs.find(
+    (act) => typeof act.startTime === 'number' && currentTime >= act.startTime && currentTime <= act.endTime
+  );
+  if (matchingAct) activateSection(matchingAct.id);
 }
 
 /**
@@ -362,25 +394,32 @@ export function applyThemeForTrack(track) {
  */
 export function setActiveTrack(track) {
   activeTrack = { ...activeTrack, ...track };
+  if (typeof window !== 'undefined') {
+    window.__currentTrack = activeTrack;
+  }
+
+  const outroTitleEl = document.getElementById('outroTrackTitle');
+  if (outroTitleEl) outroTitleEl.textContent = `${track.title || 'Lagu'} · Selesai`;
+  const outroArtistEl = document.getElementById('outroTrackArtist');
+  if (outroArtistEl) outroArtistEl.textContent = track.artist || 'Artis';
+  const outroBadgeEl = document.getElementById('outroTrackBadge');
+  if (outroBadgeEl) outroBadgeEl.textContent = track.genre || 'Music';
+  const outroCoverEl = document.getElementById('outroCoverImg');
+  if (outroCoverEl) outroCoverEl.src = track.coverSrc || '/assets/covers/penyangkalan.webp';
 
   if (track.acts && track.acts.length > 0) {
-    activeActs = track.acts;
-    ACT_CONFIG = activeActs.reduce((acc, act) => {
-      acc[act.id] = act;
-      return acc;
-    }, {});
+    setDynamicActTimings(track.acts);
+  } else {
+    setDynamicActTimings(getDefaultFallbackActs(track.duration || 240, track));
+  }
 
-    activeActs.forEach((act) => {
-      const sec = document.getElementById(act.id);
-      if (sec) {
-        const badge = sec.querySelector('.chapter-badge');
-        const heading = sec.querySelector('.cinematic-heading');
-        const lead = sec.querySelector('.cinematic-lead');
-        const watermark = sec.querySelector('.act-watermark');
-        if (badge && act.chapterBadge) badge.textContent = act.chapterBadge;
-        if (heading && act.heading) heading.textContent = act.heading;
-        if (lead && act.lead) lead.textContent = act.lead;
-        if (watermark && act.roman) watermark.textContent = act.roman;
+  // Non-blocking background energy curve analysis for actual acoustic peaks
+  const audioCtx = getAudioContext();
+  const audioSrc = track.audioSrc || track.audio || (track.id === 'penyangkalan' ? '/assets/audio/penyangkalan.mp3' : '');
+  if (audioCtx && audioSrc) {
+    analyzeAudioEnergy(audioCtx, audioSrc, track.duration || 240, track).then((dynamicActs) => {
+      if (dynamicActs && activeTrack.id === track.id) {
+        setDynamicActTimings(dynamicActs);
       }
     });
   }
@@ -424,7 +463,29 @@ function updateAutoScrollCountdownUi(nowMs) {
   }
 }
 
-function handleUserScroll() {
+let lastUserActivityTime = performance.now();
+function markUserActive() {
+  lastUserActivityTime = performance.now();
+}
+window.addEventListener('mousemove', markUserActive, { passive: true });
+window.addEventListener('mousedown', markUserActive, { passive: true });
+window.addEventListener('touchstart', markUserActive, { passive: true });
+
+/** Check if an event target belongs to studio popover, lyric drawer, or interactive modals */
+export function isWithinScrollableOverlay(target) {
+  if (!target || !(target instanceof Element)) return false;
+  return Boolean(
+    target.closest(
+      '#studioPopover, #lyricDrawer, #jukeboxOverlay, #tapSyncOverlay, #lyricSearchOverlay, .custom-select-dropdown, .cselect-menu, .cselect-options, .modal-overlay, .quote-modal-overlay, [data-lenis-prevent]'
+    )
+  );
+}
+
+function handleUserScroll(e) {
+  if (e && isWithinScrollableOverlay(e.target)) {
+    return;
+  }
+  markUserActive();
   if (!document.getElementById('gatewayOverlay')?.classList.contains('hidden')) return;
   isUserInteracting = true;
   userResumeAtMs = performance.now() + 4000;
@@ -435,11 +496,32 @@ function handleUserScroll() {
   }, 4000);
 }
 
+// Capture-phase stop propagation for wheel/touch inside overlays to prevent Lenis background scroll
+window.addEventListener(
+  'wheel',
+  (e) => {
+    if (isWithinScrollableOverlay(e.target)) {
+      e.stopPropagation();
+    }
+  },
+  { capture: true, passive: true }
+);
+
+window.addEventListener(
+  'touchmove',
+  (e) => {
+    if (isWithinScrollableOverlay(e.target)) {
+      e.stopPropagation();
+    }
+  },
+  { capture: true, passive: true }
+);
+
 window.addEventListener('wheel', handleUserScroll, { passive: true });
 window.addEventListener('touchmove', handleUserScroll, { passive: true });
 window.addEventListener('keydown', (e) => {
   if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.code)) {
-    handleUserScroll();
+    handleUserScroll(e);
   }
 });
 
@@ -681,10 +763,12 @@ function syncLoop() {
     }
 
     if (activeActs) {
-      const matchingAct = activeActs.find(
-        (act) => typeof act.startTime === 'number' && effectiveTime >= act.startTime && effectiveTime <= act.endTime
-      );
-      if (matchingAct && lastActId !== matchingAct.id) activateSection(matchingAct.id);
+      if (isAudioPlaying() || isAudioSeeking()) {
+        const matchingAct = activeActs.find(
+          (act) => typeof act.startTime === 'number' && effectiveTime >= act.startTime && effectiveTime <= act.endTime
+        );
+        if (matchingAct && lastActId !== matchingAct.id) activateSection(matchingAct.id);
+      }
 
       // Compute continuous scroll-linked camera depth interpolation per Babak
       const actZoom = ACT_CAMERA_ZOOM[lastActId] ?? 1.0;
@@ -699,6 +783,22 @@ function syncLoop() {
       setEndingOutroActive(isEnding);
       document.body.classList.toggle('ending-outro-active', isEnding);
     }
+
+    // Dynamic 35mm Cinema Letterbox engagement during Babak III Climax or Ambient Idle
+    const isCinemaIdle = isAudioPlaying() && nowMs - lastUserActivityTime > 3500;
+    const isClimax = lastActId === 'act3';
+    const gatewayEl = document.getElementById('gatewayOverlay');
+    const isGatewayOpen = Boolean(gatewayEl && !gatewayEl.classList.contains('hidden') && !gatewayEl.hidden);
+    const isStudioOpen = Boolean(document.getElementById('studioPopover') && !document.getElementById('studioPopover').hidden);
+    const isDrawerOpen = Boolean(document.getElementById('lyricDrawer') && !document.getElementById('lyricDrawer').hidden);
+    const isTapSyncOpen = Boolean(document.getElementById('tapSyncOverlay') && !document.getElementById('tapSyncOverlay').classList.contains('hidden'));
+    const isLyricSearchOpen = Boolean(document.getElementById('lyricSearchOverlay') && !document.getElementById('lyricSearchOverlay').classList.contains('hidden'));
+    const isModalOpen = isGatewayOpen || isStudioOpen || isDrawerOpen || isTapSyncOpen || isLyricSearchOpen;
+
+    const shouldLetterbox = (isClimax || isCinemaIdle) && !isUserInteracting && !isModalOpen;
+    document.body.classList.toggle('letterbox-engaged', shouldLetterbox);
+    document.body.classList.toggle('cinema-letterbox-active', shouldLetterbox);
+    document.body.classList.toggle('cinema-idle-mode', shouldLetterbox && isCinemaIdle);
 
     if (upNextSyncCb) {
       upNextSyncCb({ effectiveTime, duration, activeTrackId: activeTrack.id });

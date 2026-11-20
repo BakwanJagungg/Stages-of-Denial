@@ -64,6 +64,8 @@ export function initTapSyncStudio({ getActiveTrack, onApplySubtitles, showToast 
   const applyBtnEl = document.getElementById('btnTapSyncApply');
   const dlLrcBtnEl = document.getElementById('btnTapSyncDownloadLrc');
   const dlJsonBtnEl = document.getElementById('btnTapSyncDownloadJson');
+  const importLrcBtnEl = document.getElementById('btnTapSyncImportLrc');
+  const fileInputEl = document.getElementById('tapSyncLrcFileInput');
   const progressLabelEl = document.getElementById('tapSyncProgressLabel');
   const clockEl = document.getElementById('tapSyncClock');
   const currentLineEl = document.getElementById('tapSyncCurrentLine');
@@ -276,6 +278,47 @@ export function initTapSyncStudio({ getActiveTrack, onApplySubtitles, showToast 
     showToast?.(`💾 Mengunduh ${built.trackId}.lrc`);
   }
 
+  function loadLrcTextIntoStudio(text) {
+    const activeTrack = getActiveTrack?.() || { title: 'Lagu' };
+    const parsed = parseLrcText(text, activeTrack.title || 'Lagu');
+    if (!parsed || !Array.isArray(parsed.subtitles) || parsed.subtitles.length === 0) {
+      showToast?.('⚠ Format berkas .LRC tidak valid');
+      return false;
+    }
+
+    lines = parsed.subtitles.map((s) => s.text);
+    if (textareaEl) {
+      textareaEl.value = lines.join('\n');
+    }
+
+    recorded = parsed.subtitles.map((s) => ({
+      start: s.start,
+      end: s.end,
+      text: s.text,
+    }));
+
+    isSyncActive = false;
+    renderStatus();
+    showToast?.(`✅ Berhasil memuat ${recorded.length} baris dari .LRC!`);
+    return true;
+  }
+
+  function handleLrcFileSelected(e) {
+    const file = e.target?.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const text = String(ev.target?.result || '').trim();
+      if (!text) {
+        showToast?.('⚠ Berkas .LRC kosong');
+        return;
+      }
+      loadLrcTextIntoStudio(text);
+      if (fileInputEl) fileInputEl.value = '';
+    };
+    reader.readAsText(file);
+  }
+
   function downloadJson() {
     const built = buildFinalPayload();
     if (!built) return;
@@ -350,12 +393,15 @@ export function initTapSyncStudio({ getActiveTrack, onApplySubtitles, showToast 
   applyBtnEl?.addEventListener('click', applyToPlayer);
   dlLrcBtnEl?.addEventListener('click', downloadLrc);
   dlJsonBtnEl?.addEventListener('click', downloadJson);
+  importLrcBtnEl?.addEventListener('click', () => fileInputEl?.click());
+  fileInputEl?.addEventListener('change', handleLrcFileSelected);
   document.addEventListener('keydown', handleOverlayKeydown);
 
   return {
     isOpen: () => isModalOpen,
     open,
     close,
+    loadLrcTextIntoStudio,
     destroy: () => {
       close();
       document.removeEventListener('keydown', handleOverlayKeydown);

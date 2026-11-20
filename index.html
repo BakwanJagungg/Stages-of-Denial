@@ -21,6 +21,10 @@
   <!-- Cinematic Transition Light Leak Overlay -->
   <div id="cinematicTransition" class="cinematic-transition"></div>
 
+  <!-- Dynamic Cinema Letterbox Bars -->
+  <div id="cinemaLetterboxTop" class="cinema-letterbox letterbox-top" aria-hidden="true"></div>
+  <div id="cinemaLetterboxBottom" class="cinema-letterbox letterbox-bottom" aria-hidden="true"></div>
+
   <!-- Spatial Kinetic Subtitle Stage (Naked Cinema Text Edit) -->
   <div id="kineticStage" class="kinetic-stage"></div>
 
@@ -46,7 +50,7 @@
   <div class="ambient-glow" id="ambientGlow"></div>
 
   <!-- Gateway Jukebox & Track Selector Modal (Choose & Close Library + YTM Playlist Selector) -->
-  <div class="gateway-overlay" id="gatewayOverlay" role="dialog" aria-modal="true" aria-labelledby="gatewayTitle">
+  <div class="gateway-overlay" id="gatewayOverlay" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="gatewayTitle">
     <div class="gateway-card jukebox-modal">
       <header class="jukebox-sticky-header">
         <div class="jukebox-header-top">
@@ -248,27 +252,47 @@
   </div>
 
   <!-- Unified Studio Popover Drawer (Top Right under Studio ▾, Toggle via KeyD) -->
-  <aside class="studio-popover" id="studioPopover" aria-label="Panel Studio dan Telemetri" hidden>
-    <div class="director-header">
-      <span class="director-title">STUDIO TELEMETRY</span>
-      <span class="director-dsp" id="directorDsp">Studio Master</span>
-    </div>
-    <canvas id="directorVocalWave" width="296" height="44" aria-label="Grafik energi vokal 300 hingga 3400Hz"></canvas>
-    <div class="director-grid">
-      <div class="director-cell"><span>FPS</span><strong id="directorFps">60</strong></div>
-      <div class="director-cell"><span>TIME</span><strong id="directorTime">0.00s</strong></div>
-      <div class="director-cell"><span>RATE</span><strong id="directorRate">0.0/s</strong></div>
-      <div class="director-cell"><span>PHASE</span><strong id="directorPhase">idle</strong></div>
+  <aside class="studio-popover" id="studioPopover" aria-label="Panel Studio dan Telemetri" data-lenis-prevent hidden>
+    <!-- Compact Header: Title + Telemetry Single Row -->
+    <div class="studio-header-compact">
+      <div class="studio-header-top">
+        <span class="studio-eyebrow">STUDIO DIRECTOR</span>
+        <button type="button" id="btnCloseStudioPopover" class="studio-btn-close" aria-label="Tutup panel Studio (Shortcut D)" title="Tutup (D)">✕</button>
+      </div>
+      <div class="studio-telemetry-row" aria-label="Telemetri Studio">
+        <span class="telemetry-chip"><span class="telemetry-dot"></span> <strong id="directorFps">60</strong> FPS</span>
+        <span class="telemetry-sep">·</span>
+        <span class="telemetry-chip">SPEED: <strong id="directorSpeed">1.0x</strong></span>
+        <span class="telemetry-sep">·</span>
+        <span class="telemetry-chip" id="directorDsp">Studio Master</span>
+        <!-- Hidden anchors for loop compatibility -->
+        <span id="directorTime" hidden>0.00s</span>
+        <span id="directorRate" hidden>0.0/s</span>
+        <span id="directorPhase" hidden>idle</span>
+        <canvas id="directorVocalWave" width="1" height="1" hidden aria-hidden="true"></canvas>
+      </div>
     </div>
 
-    <div class="studio-controls">
+    <!-- 3 Clean Tab Navigation Buttons -->
+    <nav class="studio-tabs-nav" role="tablist" aria-label="Kategori Pengaturan Studio">
+      <button type="button" class="studio-tab-nav-btn active" role="tab" id="tabBtnAudio" aria-selected="true" aria-controls="studioTabAudio" data-studio-tab="audio">🎛️ Audio &amp; Sync</button>
+      <button type="button" class="studio-tab-nav-btn" role="tab" id="tabBtnVisual" aria-selected="false" aria-controls="studioTabVisual" data-studio-tab="visual">🎨 Visual 2D</button>
+      <button type="button" class="studio-tab-nav-btn" role="tab" id="tabBtnExport" aria-selected="false" aria-controls="studioTabExport" data-studio-tab="export">📤 Ekspor &amp; Lirik</button>
+    </nav>
+
+    <!-- Tab 1: Audio & Sync Panel -->
+    <section class="studio-tab-panel active" role="tabpanel" id="studioTabAudio" aria-labelledby="tabBtnAudio">
       <div class="studio-ctrl-group">
-        <span class="studio-ctrl-label">AUDIO DSP &amp; ALUR</span>
+        <span class="studio-ctrl-label">MODE DSP AUDIO</span>
+        <button type="button" id="btnAudioProfile" class="hud-chip studio-dsp-chip" aria-label="Ganti profil DSP audio" title="Ganti Profil DSP (Auto-Adaptif / Studio Master / Midnight Lo-Fi / 8D Spatial / Cathedral Hall / Warm Vinyl)">
+          <span class="chip-dot" id="audioProfileDot" style="background: #A78BFA; box-shadow: 0 0 8px rgba(167, 139, 250, 0.55);"></span>
+          <span id="audioProfileText">Auto-Adaptif</span>
+        </button>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">ALUR PEMUTARAN</span>
         <div class="studio-chip-row">
-          <button type="button" id="btnAudioProfile" class="hud-chip" aria-label="Ganti profil DSP audio" title="Ganti Profil DSP (Studio Master / Midnight Lo-Fi / 8D Spatial / Cathedral Hall / Warm Vinyl)">
-            <span class="chip-dot" id="audioProfileDot" style="background: #68B2D6; box-shadow: 0 0 8px rgba(104, 178, 214, 0.55);"></span>
-            <span id="audioProfileText">Studio Master</span>
-          </button>
           <button type="button" id="btnAutoNext" class="hud-chip active" aria-pressed="true" aria-label="Toggle putar otomatis lagu berikutnya">
             <span class="chip-dot"></span>
             <span id="autoNextStatusText">Auto-Next</span>
@@ -281,16 +305,7 @@
       </div>
 
       <div class="studio-ctrl-group">
-        <span class="studio-ctrl-label">SCENE MODE</span>
-        <div class="studio-seg-group" role="group" aria-label="Mode intensitas visual">
-          <button type="button" class="studio-seg-btn active" data-scene="cinema" aria-pressed="true">Cinema</button>
-          <button type="button" class="studio-seg-btn" data-scene="pure" aria-pressed="false">Pure Viz</button>
-          <button type="button" class="studio-seg-btn" data-scene="ambient" aria-pressed="false">Ambient</button>
-        </div>
-      </div>
-
-      <div class="studio-ctrl-group">
-        <span class="studio-ctrl-label">PLAYBACK SPEED (PRESERVE PITCH)</span>
+        <span class="studio-ctrl-label">PLAYBACK SPEED (PITCH PRESERVED)</span>
         <div class="studio-seg-group" role="group" aria-label="Kecepatan putar">
           <button type="button" class="studio-seg-btn" data-speed="0.85" aria-pressed="false">0.85x</button>
           <button type="button" class="studio-seg-btn active" data-speed="1.0" aria-pressed="true">1.0x</button>
@@ -320,22 +335,98 @@
           <button type="button" class="studio-seg-btn" data-sync-reset aria-label="Reset offset lirik ke nol">Reset</button>
         </div>
       </div>
+    </section>
+
+    <!-- Tab 2: Visual 2D Panel -->
+    <section class="studio-tab-panel" role="tabpanel" id="studioTabVisual" aria-labelledby="tabBtnVisual" hidden>
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">SCENE INTENSITY</span>
+        <div class="studio-seg-group" role="group" aria-label="Mode intensitas visual">
+          <button type="button" class="studio-seg-btn active" data-scene="cinema" aria-pressed="true">Cinema</button>
+          <button type="button" class="studio-seg-btn" data-scene="pure" aria-pressed="false">Pure Viz</button>
+          <button type="button" class="studio-seg-btn" data-scene="ambient" aria-pressed="false">Ambient</button>
+        </div>
+      </div>
 
       <div class="studio-ctrl-group">
-        <span class="studio-ctrl-label">EKSPOR &amp; TAMPILAN</span>
-        <div class="studio-export-grid">
+        <span class="studio-ctrl-label">TAMPILAN BIOSKOP &amp; KENYAMANAN BACA</span>
+        <div class="studio-chip-row">
+          <button type="button" id="btnToggleLetterbox" class="hud-chip active" aria-pressed="true" aria-label="Toggle Dynamic Cinema Letterbox" title="Dynamic 35mm Cinema Letterbox">
+            <span>🎬 Letterbox: ON</span>
+          </button>
+          <button type="button" id="btnToggleExtraReactive" class="hud-chip" aria-pressed="false" aria-label="Toggle Efek Reaktif Ekstra" title="Aktifkan/nonaktifkan pendar kilat beat flash agar pembacaan lirik tetap tenang dan nyaman">
+            <span class="chip-dot"></span>
+            <span id="extraReactiveStatusText">✨ Efek Ekstra: OFF</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <div class="studio-ctrl-head">
+          <span class="studio-ctrl-label">🎨 18 PANGGUNG 2D SINEMATIK</span>
+          <button type="button" id="btnRandomScene2d" class="studio-btn-random" title="Pilih panggung 2D secara acak">🎲 Acak Panggung</button>
+        </div>
+        <button type="button" class="studio-seg-btn studio-scene-btn-auto" data-scene-2d="auto" aria-pressed="false" title="Auto: Otomatis mengikuti genre &amp; dinamika lagu">
+          <span>✨ Auto (Otomatis Sesuai Lagu)</span>
+        </button>
+        <div class="studio-scene-grid" role="group" aria-label="18 Varian Panggung 2D">
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="kinetic-prism" title="Kinetic Prism: Laser speed streaks &amp; beat chevrons"><span class="scene-item-icon">⚡</span><span class="scene-item-name">Kinetic Prism</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="rain-mist" title="Rain Mist: Soft mist, slanted rain &amp; streetlamp bokeh"><span class="scene-item-icon">🌧️</span><span class="scene-item-name">Rain Mist</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="ember-storm" title="Ember Storm: Rising embers &amp; storm shockwaves"><span class="scene-item-icon">🔥</span><span class="scene-item-name">Ember Storm</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="celestial-drift" title="Celestial Drift: Constellation network &amp; stardust"><span class="scene-item-icon">✨</span><span class="scene-item-name">Celestial Drift</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="analog-wave" title="Analog Wave: Oscilloscope beam &amp; warm film halation"><span class="scene-item-icon">📻</span><span class="scene-item-name">Analog Wave</span></button>
+          <button type="button" class="studio-scene-item-btn active" data-scene-2d="editorial-silk" aria-pressed="true" title="Editorial Silk (Default): Fluid 3-layer silk aurora &amp; god-rays"><span class="scene-item-icon">🌌</span><span class="scene-item-name">Editorial Silk</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="sakura-petals" title="Sakura Petals: Fluttering petal drift &amp; twilight glow"><span class="scene-item-icon">🌸</span><span class="scene-item-name">Sakura Petals</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="aurora-curtain" title="Aurora Curtain: Vertical shimmering drapery in night sky"><span class="scene-item-icon">🌠</span><span class="scene-item-name">Aurora Curtain</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="monolith-bars" title="Monolith Bars: Architectural frequency light pillars"><span class="scene-item-icon">🏛️</span><span class="scene-item-name">Monolith Bars</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="liquid-horizon" title="Liquid Horizon: Ocean waves &amp; specular moon shimmer"><span class="scene-item-icon">🌊</span><span class="scene-item-name">Liquid Horizon</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="cyber-grid" title="Cyber Grid: Outrun floor &amp; retro horizontal neon sun"><span class="scene-item-icon">🌆</span><span class="scene-item-name">Cyber Grid</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="firefly-meadow" title="Firefly Meadow: Bioluminescent fireflies &amp; meadow mist"><span class="scene-item-icon">🌿</span><span class="scene-item-name">Firefly Meadow</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="vinyl-turntable" title="Vinyl Turntable: Rotating vinyl grooves &amp; spindle light"><span class="scene-item-icon">💿</span><span class="scene-item-name">Vinyl Turntable</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="eclipse-corona" title="Eclipse Corona: Solar eclipse &amp; undulating flares"><span class="scene-item-icon">🌑</span><span class="scene-item-name">Eclipse Corona</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="snowfall-quiet" title="Snowfall Quiet: Drifting snowflakes &amp; crystal cold mist"><span class="scene-item-icon">❄️</span><span class="scene-item-name">Snowfall Quiet</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="prism-kaleidoscope" title="Prism Kaleidoscope: Radial symmetry &amp; crystalline mandala"><span class="scene-item-icon">💎</span><span class="scene-item-name">Kaleidoscope</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="radar-sonar" title="Radar Sonar: Concentric sonar &amp; rotating radar sweep"><span class="scene-item-icon">📡</span><span class="scene-item-name">Radar Sonar</span></button>
+          <button type="button" class="studio-scene-item-btn" data-scene-2d="golden-dust-rays" title="Golden Dust Rays: Diagonal sunbeams &amp; floating golden dust"><span class="scene-item-icon">☀️</span><span class="scene-item-name">Golden Rays</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Ekspor & Lirik Panel -->
+    <section class="studio-tab-panel" role="tabpanel" id="studioTabExport" aria-labelledby="tabBtnExport" hidden>
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">TAMPILAN &amp; BIOSKOP</span>
+        <div class="studio-chip-row">
           <button type="button" id="btnToggleTranslation" class="hud-chip active" aria-pressed="true" aria-label="Tampilkan atau sembunyikan terjemahan lirik" title="Terjemahan Lirik">
             <span>🌐 Terjemahan: ON</span>
           </button>
           <button type="button" id="btnCinemaMode" class="hud-chip" aria-label="Mode bioskop layar penuh (Shortcut F)" title="Mode Bioskop (F)">
             <span>🖥️ Mode Bioskop</span>
           </button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">QUOTE CARD PNG &amp; SHARE</span>
+        <div class="studio-export-grid">
           <button type="button" id="btnQuoteCard" class="hud-chip" aria-label="Unduh kartu kutipan lirik PNG (Shortcut Q)" title="Quote Card PNG (Q)">
-            <span>🖼️ Quote Card PNG</span>
+            <span>🖼️ Unduh Quote Card</span>
+          </button>
+          <button type="button" id="btnQuoteRatio" class="hud-chip" aria-label="Ganti rasio Quote Card (9:16 Story / 1:1 Feed)" title="Ganti Rasio Quote Card">
+            <span id="quoteRatioLabel">📐 Rasio: 9:16</span>
+          </button>
+          <button type="button" id="btnCopyQuoteCard" class="hud-chip" aria-label="Salin gambar kartu kutipan ke papan klip" title="Salin Quote Card (Clipboard)">
+            <span>📋 Salin Quote Card</span>
           </button>
           <button type="button" id="btnShareMoment" class="hud-chip" aria-label="Salin tautan momen &amp; timestamp" title="Bagikan Momen">
             <span>🔗 Bagikan Momen</span>
           </button>
+        </div>
+      </div>
+
+      <div class="studio-ctrl-group">
+        <span class="studio-ctrl-label">LIRIK &amp; STUDIO SINKRONISASI</span>
+        <div class="studio-chip-row">
           <button type="button" id="btnExportLrc" class="hud-chip" aria-label="Unduh file lirik .LRC lagu aktif" title="Ekspor Lirik (.LRC)">
             <span>📄 Ekspor Lirik (.LRC)</span>
           </button>
@@ -344,22 +435,24 @@
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="director-shortcuts">Spasi: Play • L: Lagu • T: Lirik • D: Studio • [ / ] / \: A-B Loop</div>
   </aside>
 
   <!-- Interactive Lyric Timeline Drawer (Slide-Over, Toggle via KeyT) -->
-  <aside class="lyric-drawer" id="lyricDrawer" aria-label="Panel Lirik Lengkap" hidden>
+  <aside class="lyric-drawer" id="lyricDrawer" aria-label="Panel Lirik Lengkap" data-lenis-prevent hidden>
     <div class="lyric-drawer-header">
-      <div>
-        <span class="lyric-drawer-eyebrow">TIMELINE LIRIK</span>
-        <h2 class="lyric-drawer-title" id="lyricDrawerTrackTitle">for Revenge · Penyangkalan</h2>
+      <div class="lyric-drawer-header-row1">
+        <div class="lyric-drawer-title-wrap">
+          <span class="lyric-drawer-eyebrow">TIMELINE LIRIK</span>
+          <h2 class="lyric-drawer-title" id="lyricDrawerTrackTitle">for Revenge · Penyangkalan</h2>
+        </div>
+        <button type="button" id="btnCloseLyricDrawer" class="lyric-drawer-close" aria-label="Tutup panel lirik (Shortcut T)" title="Tutup (T)">✕</button>
       </div>
-      <div class="lyric-drawer-actions">
+      <div class="lyric-drawer-actions lyric-drawer-header-row2">
         <button type="button" id="btnOpenLyricSearchDrawer" class="lyric-sync-btn" title="Cari &amp; unduh lirik dari LRCLIB">🔍 Cari &amp; Unduh Lirik</button>
         <button type="button" id="btnOpenTapSyncDrawer" class="lyric-sync-btn lyric-sync-studio-btn" title="Buat atau sinkronkan lirik baru">✨ Buat / Sync Lirik</button>
-        <button type="button" id="btnCloseLyricDrawer" class="lyric-drawer-close" aria-label="Tutup panel lirik (Shortcut T)" title="Tutup (T)">✕</button>
       </div>
     </div>
     <div class="lyric-sync-bar" role="group" aria-label="Sinkronisasi waktu lirik real-time">
@@ -453,25 +546,29 @@
         
         <!-- Enhanced Post-Credit Ending Outro Card (Active during final 8s) -->
         <div class="outro-card" id="act4OutroCard">
-          <div class="outro-eyebrow">AKHIR BABAK · STAGE IV</div>
-          <h3 class="outro-title" id="outroTrackTitle">Penerimaan &amp; Hening</h3>
-          <p class="outro-subtitle">Setiap nada yang selesai meninggalkan ruang tenang untuk bab berikutnya.</p>
-          <div class="outro-actions">
-            <button id="btnOutroReplay" class="btn-outline" type="button">↻ Putar Ulang Lagu Ini</button>
-            <button id="btnOutroNext" class="btn-primary" type="button">Lanjut ke Lagu Berikutnya →</button>
-            <button id="btnOutroQuote" class="btn-secondary" type="button">Unduh Quote Card</button>
-            <button id="btnOutroShare" class="btn-outline" type="button">🔗 Bagikan Momen</button>
+          <div class="outro-card-header">
+            <img id="outroCoverImg" class="outro-cover-img" src="/assets/covers/penyangkalan.webp" alt="Cover Lagu Selesai" width="72" height="72" />
+            <div class="outro-track-meta">
+              <div class="outro-eyebrow" id="outroEyebrow">AKHIR BABAK · STAGE IV</div>
+              <h3 class="outro-title" id="outroTrackTitle">Penyangkalan · Selesai</h3>
+              <div class="outro-artist-wrap">
+                <span class="outro-artist" id="outroTrackArtist">For Revenge</span>
+                <span class="outro-dot-sep">•</span>
+                <span class="outro-badge" id="outroTrackBadge">Indie Rock</span>
+              </div>
+            </div>
+          </div>
+          <p class="outro-subtitle" id="outroSubtitle">Setiap nada yang selesai meninggalkan ruang tenang untuk bab berikutnya.</p>
+          <div class="outro-actions outro-actions-grid">
+            <button id="btnOutroReplay" class="btn-outline outro-grid-btn" type="button">↻ Putar Ulang</button>
+            <button id="btnOutroNext" class="btn-primary outro-grid-btn" type="button">Lanjut Berikutnya →</button>
+            <button id="btnOutroQuote" class="btn-secondary outro-grid-btn" type="button">🖼️ Quote Card PNG</button>
+            <button id="btnOutroShare" class="btn-outline outro-grid-btn" type="button">🔗 Bagikan Momen</button>
           </div>
         </div>
 
         <div class="experience-footer">
-          <p class="developer-note">
-            Dirancang &amp; Dikembangkan oleh <b>Dava</b><br>
-            <small>Interactive Creative Engineering • Web Audio API, Canvas 2D, AudioMotion &amp; GSAP Scrollytelling</small>
-          </p>
-          <button id="btnScrollTop" class="btn-outline">
-            ↑ Putar Ulang dari Awal
-          </button>
+          <p class="developer-note">Dirancang &amp; Dikembangkan oleh <b>Dava</b> · Interactive Creative Engineering (Web Audio API, Canvas 2D &amp; GSAP Scrollytelling)</p>
         </div>
       </div>
     </section>
@@ -484,7 +581,7 @@
   </div>
 
   <!-- In-Browser Tap-to-Sync Lyric Studio Overlay -->
-  <div id="tapSyncOverlay" class="gateway-overlay tap-sync-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="tapSyncTitle">
+  <div id="tapSyncOverlay" class="gateway-overlay tap-sync-overlay hidden" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="tapSyncTitle">
     <div class="tap-sync-panel">
       <div class="tap-sync-header">
         <div>
@@ -497,8 +594,12 @@
 
       <div class="tap-sync-grid">
         <div class="tap-sync-step">
-          <label for="tapSyncLyricsInput" class="tap-sync-label">1. Tempel Lirik (1 baris = 1 ketukan)</label>
-          <textarea id="tapSyncLyricsInput" class="tap-sync-textarea" rows="7" placeholder="Tempel lirik lagu baris demi baris di sini..."></textarea>
+          <div class="tap-sync-step-header">
+            <label for="tapSyncLyricsInput" class="tap-sync-label">1. Tempel / Impor Lirik (1 baris = 1 ketukan)</label>
+            <button type="button" id="btnTapSyncImportLrc" class="lyric-sync-btn tap-sync-import-btn" title="Muat berkas .lrc lokal">⬆ Impor .LRC</button>
+            <input type="file" id="tapSyncLrcFileInput" accept=".lrc,.txt" style="display:none;" />
+          </div>
+          <textarea id="tapSyncLyricsInput" class="tap-sync-textarea" rows="7" placeholder="Tempel lirik lagu baris demi baris di sini, atau klik '⬆ Impor .LRC'..."></textarea>
           <button type="button" id="btnTapSyncStart" class="tap-sync-primary-btn">▶ Mulai Putar &amp; Sync dari Awal</button>
         </div>
 
@@ -542,7 +643,7 @@
   </aside>
 
   <!-- Multi-Stage Lyric Search & Apply Modal -->
-  <div id="lyricSearchOverlay" class="gateway-overlay tap-sync-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lyricSearchTitle">
+  <div id="lyricSearchOverlay" class="gateway-overlay tap-sync-overlay hidden" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="lyricSearchTitle">
     <div class="tap-sync-panel lyric-search-panel">
       <div class="tap-sync-header">
         <div>

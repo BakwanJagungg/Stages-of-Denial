@@ -21,6 +21,27 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+export function createInitialCoverDataUrl(title, c1 = '#D65A70', c2 = '#0B0C10') {
+  const letters = (title || 'MP3')
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0] || '')
+    .join('')
+    .toUpperCase() || 'MP3';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+    <defs>
+      <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${c1}" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="${c2}"/>
+      </linearGradient>
+    </defs>
+    <rect width="160" height="160" rx="12" fill="url(#g)"/>
+    <circle cx="80" cy="80" r="54" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+    <text x="80" y="88" fill="#F2EFE9" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="28" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">${letters}</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
 function getTrackDurationSeconds(track) {
   if (Number(track.duration) > 0) return Number(track.duration);
   const acts = track.acts || [];
@@ -650,7 +671,15 @@ export function initJukeboxModal({
 
       const durSec = getTrackDurationSeconds(track);
       const durText = durSec > 0 ? formatLoopSec(durSec) : '';
-      const coverSrc = track.coverSrc || track.coverImage || `/assets/covers/${track.id}.jpg`;
+      let coverSrc = track.coverSrc || track.coverImage || `/assets/covers/${track.id}.jpg`;
+      const isNewlyImported = newlyImportedIds.has(track.id);
+      if (isNewlyImported || track.updatedAt) {
+        const cacheBuster = `?v=${track.updatedAt || Date.now()}`;
+        if (!coverSrc.startsWith('data:') && !coverSrc.includes('?v=')) {
+          coverSrc += cacheBuster;
+        }
+      }
+      const fallbackSvg = createInitialCoverDataUrl(track.title, track.accentPrimary, track.accentSecondary);
 
       const originBadge = track.isOriginal
         ? `<span class="track-origin-badge is-curated" title="Koleksi Kurasi Utama (Dilindungi)">Kurasi Utama</span>`
@@ -673,7 +702,7 @@ export function initJukeboxModal({
       card.innerHTML = `
         <div class="track-card-top">
           <div class="track-thumb-wrap">
-            <img src="${escapeHtml(coverSrc)}" alt="" class="track-cover-img" loading="lazy" onerror="this.style.display='none'">
+            <img src="${escapeHtml(coverSrc)}" alt="" class="track-cover-img" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(fallbackSvg)}'">
             <div class="track-play-hover-btn" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
@@ -810,12 +839,13 @@ export function initJukeboxModal({
     { passive: true }
   );
 
-  // Local MP3 upload handler
+  // Local MP3 upload handler with instant fallback artwork and zero-latency playback
   audioFileInput?.addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const cleanTitle = file.name.replace(/\.[^.]+$/, '');
     const dyn = generateDynamicTrackPalette(cleanTitle);
+    const initialCover = createInitialCoverDataUrl(cleanTitle, dyn.accentPrimary, dyn.accentSecondary);
     await selectTrack(
       {
         id: 'custom-' + Date.now(),
@@ -823,6 +853,7 @@ export function initJukeboxModal({
         artist: 'Local File',
         year: 'Custom',
         genre: 'User Audio',
+        coverSrc: initialCover,
         ...dyn,
         bgColor: '#0B0C10',
         lyricMode: 'instrumental',

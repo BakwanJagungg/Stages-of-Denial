@@ -5,7 +5,7 @@
  * Features:
  * - Zero-allocation 60-120Hz `getAudioTime()` linear interpolation between browser `currentTime` ticks
  * - Human vocal formant extractor (`getVocalEnergy()`) over 300Hz-3400Hz (bins 7..68)
- * - Clean DSP chain: Studio Master / Midnight Lo-Fi (4200Hz LPF) / 8D Spatial (0.08Hz LFO)
+ * - Clean DSP chain: Studio Master / Midnight Lo-Fi / 8D Spatial / Cathedral Hall / Warm Vinyl
  * - Crossfade gain staging (0.7s fade) + Midnight Sleep Timer fade-out + Blob URL cleanup
  */
 
@@ -25,6 +25,10 @@ let dspMid = null;
 let dspHigh = null;
 let stereoPanner = null;
 let pannerLfo = null;
+let pannerLfoGain = null;
+let hrtfPanner = null;
+let isHrtfActive = false;
+
 // Virtual Acoustic Room & Warm Vinyl Nodes
 let dryGain = null;
 let wetGain = null;
@@ -36,137 +40,12 @@ let vinylSourceNode = null;
 let cachedVinylBuffer = null;
 let vinylCrackleActive = false;
 
-let pannerLfoGain = null;
-
 let activeCustomObjectUrl = null;
 let switchToken = 0;
 let onTrackEndedHandler = null;
-let onAudioFallbackHandler = null;
 let playbackSpeed = 1.0;
-let currentTrackMeta = null;
-
-// Built-in Generative Ambient Pad Fallback State (when local MP3 is omitted)
-let ambientFallbackActive = false;
-let ambientPlaying = false;
-let ambientDuration = 240;
-let ambientElapsed = 0;
-let ambientAnchorMs = 0;
-let ambientNodes = null;
-let ambientFallbackNotifiedForTrack = '';
-
-export function setAudioFallbackHandler(fn) {
-  onAudioFallbackHandler = typeof fn === 'function' ? fn : null;
-}
-
-export function setActiveAudioTrackMeta(track) {
-  currentTrackMeta = track || null;
-}
-
-function resolveTrackDuration(trackConfig) {
-  const d = Number(trackConfig?.duration);
-  if (Number.isFinite(d) && d > 10) return d;
-  const acts = trackConfig?.acts;
-  if (Array.isArray(acts) && acts.length > 0) {
-    const end = Number(acts[acts.length - 1]?.endTime);
-    if (Number.isFinite(end) && end > 10) return end;
-  }
-  return 240;
-}
-
-function stopAmbientPad() {
-  if (!ambientNodes) return;
-  try {
-    ambientNodes.oscs.forEach((o) => {
-      try { o.stop(); o.disconnect(); } catch {}
-    });
-    ambientNodes.lfo?.stop();
-    ambientNodes.lfo?.disconnect();
-    ambientNodes.lfoGain?.disconnect();
-    ambientNodes.filter?.disconnect();
-    ambientNodes.padGain?.disconnect();
-  } catch {}
-  ambientNodes = null;
-}
-
-function startAmbientPad() {
-  if (!audioCtx || !analyser) return;
-  stopAmbientPad();
-  const now = audioCtx.currentTime;
-  const padGain = audioCtx.createGain();
-  padGain.gain.setValueAtTime(0.0001, now);
-  padGain.gain.setTargetAtTime(0.14, now, 0.45);
-
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = 'lowpass';
-  filter.frequency.setValueAtTime(520, now);
-  filter.Q.setValueAtTime(1.1, now);
-
-  const lfo = audioCtx.createOscillator();
-  lfo.type = 'sine';
-  lfo.frequency.setValueAtTime(0.11, now);
-  const lfoGain = audioCtx.createGain();
-  lfoGain.gain.setValueAtTime(220, now);
-  lfo.connect(lfoGain);
-  lfoGain.connect(filter.frequency);
-  lfo.start(now);
-
-  // Warm atmospheric chord (D2, A2, D3, F3)
-  const freqs = [73.42, 110.0, 146.83, 174.61];
-  const oscs = freqs.map((hz, i) => {
-    const osc = audioCtx.createOscillator();
-    osc.type = i % 2 === 0 ? 'triangle' : 'sine';
-    osc.frequency.setValueAtTime(hz, now);
-    osc.detune.setValueAtTime((i - 1.5) * 4, now);
-    osc.connect(filter);
-    osc.start(now);
-    return osc;
-  });
-
-  filter.connect(padGain);
-  padGain.connect(analyser);
-  ambientNodes = { oscs, lfo, lfoGain, filter, padGain };
-}
-
-function exitAmbientFallback() {
-  ambientFallbackActive = false;
-  ambientPlaying = false;
-  stopAmbientPad();
-}
-
-function enterAmbientFallback(trackConfig = currentTrackMeta, startAt = 0, autoPlay = true) {
-  setupAudioGraph();
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(() => {});
-  }
-  const dur = resolveTrackDuration(trackConfig);
-  ambientFallbackActive = true;
-  ambientDuration = dur;
-  ambientElapsed = Math.max(0, Math.min(dur, Number(startAt) || 0));
-  ambientAnchorMs = performance.now();
-  ambientPlaying = Boolean(autoPlay);
-
-  if (audioEl && !audioEl.paused) {
-    try { audioEl.pause(); } catch {}
-  }
-
-  if (ambientPlaying) {
-    startAmbientPad();
-    updatePlayPauseIcons(true);
-    syncMediaPlaybackState('playing');
-  } else {
-    stopAmbientPad();
-    updatePlayPauseIcons(false);
-    syncMediaPlaybackState('paused');
-  }
-
-  const trackId = trackConfig?.id || 'default';
-  if (ambientFallbackNotifiedForTrack !== trackId) {
-    ambientFallbackNotifiedForTrack = trackId;
-    if (typeof onAudioFallbackHandler === 'function') {
-      onAudioFallbackHandler(trackConfig);
-    }
-  }
-}
+let currentTrackConfig = null;
+let filterSweepActive = false;
 
 // Midnight Sleep Timer State
 let sleepMode = 'off'; // 'off' | '15m' | '30m' | 'end'
@@ -259,6 +138,28 @@ function setupAudioGraph() {
     dspHigh.frequency.setValueAtTime(8500, audioCtx.currentTime);
     dspHigh.gain.setValueAtTime(0, audioCtx.currentTime);
 
+    // True 3D Binaural HRTF Panner (with graceful fallback to StereoPannerNode)
+    if (typeof audioCtx.createPanner === 'function') {
+      try {
+        hrtfPanner = audioCtx.createPanner();
+        hrtfPanner.panningModel = 'HRTF';
+        hrtfPanner.distanceModel = 'inverse';
+        hrtfPanner.refDistance = 1;
+        hrtfPanner.maxDistance = 10000;
+        hrtfPanner.rolloffFactor = 1;
+        hrtfPanner.coneInnerAngle = 360;
+        if (hrtfPanner.positionX) {
+          hrtfPanner.positionX.setValueAtTime(0, audioCtx.currentTime);
+          hrtfPanner.positionY.setValueAtTime(0, audioCtx.currentTime);
+          hrtfPanner.positionZ.setValueAtTime(-1, audioCtx.currentTime);
+        } else if (typeof hrtfPanner.setPosition === 'function') {
+          hrtfPanner.setPosition(0, 0, -1);
+        }
+      } catch {
+        hrtfPanner = null;
+      }
+    }
+
     stereoPanner = typeof audioCtx.createStereoPanner === 'function' ? audioCtx.createStereoPanner() : null;
     if (stereoPanner) {
       stereoPanner.pan.setValueAtTime(0, audioCtx.currentTime);
@@ -282,7 +183,8 @@ function setupAudioGraph() {
     vinylCrackleGain.gain.setValueAtTime(0, audioCtx.currentTime);
     vinylCrackleGain.connect(crossfadeGain);
 
-    const postStage = stereoPanner || crossfadeGain;
+    const spatialNode = hrtfPanner || stereoPanner;
+    const postStage = spatialNode || crossfadeGain;
     analyser.connect(lofiLowpass);
     lofiLowpass.connect(dspLow);
     dspLow.connect(dspMid);
@@ -290,8 +192,8 @@ function setupAudioGraph() {
     dspHigh.connect(dryGain);
     dryGain.connect(postStage);
     wetGain.connect(postStage);
-    if (stereoPanner) {
-      stereoPanner.connect(crossfadeGain);
+    if (spatialNode) {
+      spatialNode.connect(crossfadeGain);
     }
     crossfadeGain.connect(sleepGain);
     sleepGain.connect(masterGain);
@@ -314,6 +216,7 @@ function setupAudioGraph() {
       updatePlayPauseIcons(true);
       syncMediaPlaybackState('playing');
       syncMediaSessionPositionState(true);
+      if (getCurrentAudioProfile().id === 'vinyl') startVinylCrackle();
       if (bgVideoEl) {
         bgVideoEl.muted = true;
         bgVideoEl.volume = 0;
@@ -325,12 +228,14 @@ function setupAudioGraph() {
       updatePlayPauseIcons(false);
       syncMediaPlaybackState('paused');
       syncMediaSessionPositionState(true);
+      stopVinylCrackle();
       if (bgVideoEl && !bgVideoEl.paused) bgVideoEl.pause();
     });
 
     audioEl.addEventListener('ended', () => {
       updatePlayPauseIcons(false);
       syncMediaPlaybackState('paused');
+      stopVinylCrackle();
       if (bgVideoEl) bgVideoEl.pause();
       if (sleepMode === 'end') {
         clearSleepTimerInternal(true);
@@ -353,11 +258,8 @@ function setupAudioGraph() {
       }
     });
 
-    audioEl.addEventListener('error', () => {
-      const src = audioEl?.currentSrc || audioEl?.src || '';
-      if (!src || src.startsWith('blob:')) return;
-      if (ambientFallbackActive) return;
-      enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, false);
+    audioEl.addEventListener('error', (err) => {
+      console.warn('Audio playback error:', err);
     });
   }
 
@@ -376,30 +278,48 @@ export async function initAudio(mode = 'song', source = null) {
   }
 
   if (mode === 'file' && source) {
-    exitAmbientFallback();
     audioEl.src = typeof source === 'string' ? source : URL.createObjectURL(source);
-  }
-
-  if (audioEl.error || audioEl.networkState === 3) {
-    enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
-    return;
   }
 
   try {
     await audioEl.play();
-    if (bgVideoEl && bgVideoEl.style.display !== 'none') {
+    if (bgVideoEl) {
       bgVideoEl.muted = true;
       bgVideoEl.volume = 0;
       bgVideoEl.currentTime = audioEl.currentTime;
       bgVideoEl.play().catch(() => {});
     }
   } catch (err) {
-    if (audioEl.error || audioEl.networkState === 3 || err?.name === 'NotSupportedError') {
-      enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
-    } else {
-      console.warn('audioEl.play() awaiting user gesture:', err);
-    }
+    console.warn('audioEl.play() awaiting user gesture:', err);
   }
+}
+
+function updateHrtfOrbit(nowSec) {
+  if (!hrtfPanner || !isHrtfActive || !audioCtx) return;
+  const angle = nowSec * 2 * Math.PI * 0.08; // 1 full revolution every ~12.5 seconds
+  const radius = 2.4;
+  const x = Math.sin(angle) * radius;
+  const z = Math.cos(angle) * radius;
+  const y = Math.sin(angle * 2) * 0.25; // Subtle natural height variation
+  const now = audioCtx.currentTime;
+  if (hrtfPanner.positionX) {
+    hrtfPanner.positionX.setTargetAtTime(x, now, 0.05);
+    hrtfPanner.positionY.setTargetAtTime(y, now, 0.05);
+    hrtfPanner.positionZ.setTargetAtTime(z, now, 0.05);
+  } else if (typeof hrtfPanner.setPosition === 'function') {
+    hrtfPanner.setPosition(x, y, z);
+  }
+}
+
+/**
+ * Return current 3D HRTF spatial panner state for telemetry/testing.
+ */
+export function getHrtfPannerState() {
+  return {
+    isHrtfActive,
+    hasHrtf: Boolean(hrtfPanner),
+    panningModel: hrtfPanner?.panningModel || (stereoPanner ? 'stereo' : 'none'),
+  };
 }
 
 /**
@@ -407,33 +327,6 @@ export async function initAudio(mode = 'song', source = null) {
  * @returns {{ currentTime: number, duration: number, progress: number }}
  */
 export function getAudioTime() {
-  if (ambientFallbackActive) {
-    const nowMs = performance.now();
-    let cur = ambientElapsed;
-    if (ambientPlaying) {
-      cur = ambientElapsed + (nowMs - ambientAnchorMs) * 0.001 * (playbackSpeed || 1);
-      if (cur >= ambientDuration) {
-        ambientElapsed = ambientDuration;
-        ambientPlaying = false;
-        stopAmbientPad();
-        updatePlayPauseIcons(false);
-        syncMediaPlaybackState('paused');
-        if (sleepMode === 'end') {
-          clearSleepTimerInternal(true);
-        } else if (typeof onTrackEndedHandler === 'function') {
-          onTrackEndedHandler();
-        }
-        cur = ambientDuration;
-      }
-    }
-    const synced = Math.min(ambientDuration, Math.max(0, cur));
-    return {
-      currentTime: synced,
-      duration: ambientDuration,
-      progress: Math.min(1, Math.max(0, synced / (ambientDuration || 1))),
-    };
-  }
-
   if (!audioEl) {
     return { currentTime: 0, duration: 240, progress: 0 };
   }
@@ -463,6 +356,11 @@ export function getAudioTime() {
   const interpolated = clockAnchorAudioTime + (nowMs - clockAnchorPerfMs) * 0.001 * rate;
   const bounded = Math.min(rawTime + 0.05, interpolated);
   const currentTime = Math.min(duration, Math.max(0, bounded + LYRIC_SYNC_OFFSET));
+
+  if (isHrtfActive) {
+    updateHrtfOrbit(currentTime);
+  }
+
   return { currentTime, duration, progress: Math.min(1, Math.max(0, currentTime / duration)) };
 }
 
@@ -471,13 +369,7 @@ export function getAudioTime() {
  * @param {number} timeInSeconds
  */
 export function seekAudio(timeInSeconds) {
-  if (ambientFallbackActive) {
-    const target = Math.max(0, Math.min(ambientDuration, Number(timeInSeconds) || 0));
-    ambientElapsed = target;
-    ambientAnchorMs = performance.now();
-    syncMediaSessionPositionState(true);
-    return;
-  }
+  resetCrossfadeFilter(0.15);
   const dur = audioEl && audioEl.duration && !Number.isNaN(audioEl.duration) ? audioEl.duration : 240;
   const target = Math.max(0, Math.min(dur, timeInSeconds));
   if (audioEl) audioEl.currentTime = target;
@@ -583,11 +475,15 @@ export function getVolume() {
  */
 export async function switchTrack(trackConfig, customFile = null, initialTime = 0) {
   setupAudioGraph();
+  currentTrackConfig = trackConfig;
+  resetFilterSweep();
   const myToken = ++switchToken;
-  currentTrackMeta = trackConfig || currentTrackMeta;
-  ambientFallbackNotifiedForTrack = '';
-  exitAmbientFallback();
   updateMediaSessionMetadata(trackConfig);
+  stopVinylCrackle();
+
+  if (getCurrentAudioProfile().id === 'auto') {
+    applyAudioProfile('auto');
+  }
 
   if (audioCtx.state === 'suspended') {
     await audioCtx.resume();
@@ -623,6 +519,7 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
   if (audioEl) {
     audioEl.pause();
     audioEl.src = targetAudioSrc;
+    audioEl.load();
     applySpeedToElements(playbackSpeed);
     if (seekStart > 0) {
       audioEl.addEventListener(
@@ -647,12 +544,10 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
     bgVideoEl.muted = true;
     bgVideoEl.volume = 0;
     if (targetVideoSrc && !isCustomAudio) {
-      bgVideoEl.style.display = '';
       bgVideoEl.src = targetVideoSrc;
       bgVideoEl.currentTime = seekStart;
       bgVideoEl.playbackRate = playbackSpeed;
     } else {
-      bgVideoEl.style.display = 'none';
       bgVideoEl.removeAttribute('src');
       bgVideoEl.load();
     }
@@ -665,31 +560,23 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
     if (shouldCrossfade) crossfadeGain.gain.setTargetAtTime(1.0, nowIn, 0.22);
   }
 
-  if (!customFile && targetAudioSrc) {
-    try {
-      const headRes = await fetch(targetAudioSrc, { method: 'HEAD' });
-      const contentType = String(headRes.headers.get('content-type') || '');
-      if (myToken !== switchToken) return;
-      if (!headRes.ok || contentType.includes('text/html')) {
-        enterAmbientFallback(trackConfig, seekStart, true);
-        return;
-      }
-    } catch {
-      if (myToken !== switchToken) return;
-      enterAmbientFallback(trackConfig, seekStart, true);
-      return;
-    }
-  }
+  resetCrossfadeFilter(0.25);
 
   try {
-    if (audioEl) await audioEl.play();
-    if (bgVideoEl && targetVideoSrc && !isCustomAudio) bgVideoEl.play().catch(() => {});
+    if (audioEl) {
+      const playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        await playPromise.catch((err) => {
+          if (crossfadeGain && audioCtx) crossfadeGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+          console.warn('Playback play request deferred (awaiting user gesture):', err);
+        });
+      }
+    }
+    if (bgVideoEl && targetVideoSrc && !isCustomAudio) {
+      bgVideoEl.play().catch(() => {});
+    }
   } catch (err) {
     if (crossfadeGain && audioCtx) crossfadeGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
-    if (!customFile && audioEl && (audioEl.error || audioEl.networkState === 3)) {
-      enterAmbientFallback(trackConfig, seekStart, true);
-      return;
-    }
     console.warn('Playback play request deferred (awaiting user gesture):', err);
   }
 }
@@ -698,48 +585,20 @@ export async function switchTrack(trackConfig, customFile = null, initialTime = 
 export async function togglePlayPause() {
   if (!audioCtx) setupAudioGraph();
   if (audioCtx.state === 'suspended') await audioCtx.resume();
-
-  if (ambientFallbackActive) {
-    if (ambientPlaying) {
-      ambientElapsed = Math.min(ambientDuration, ambientElapsed + (performance.now() - ambientAnchorMs) * 0.001 * (playbackSpeed || 1));
-      ambientPlaying = false;
-      stopAmbientPad();
-      updatePlayPauseIcons(false);
-      syncMediaPlaybackState('paused');
-    } else {
-      if (ambientElapsed >= ambientDuration - 0.1) ambientElapsed = 0;
-      ambientAnchorMs = performance.now();
-      ambientPlaying = true;
-      startAmbientPad();
-      updatePlayPauseIcons(true);
-      syncMediaPlaybackState('playing');
-    }
-    syncMediaSessionPositionState(true);
-    return;
-  }
-
   if (!audioEl) return;
 
-  if (audioEl.error || audioEl.networkState === 3) {
-    enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
-    return;
-  }
-
   if (audioEl.paused) {
+    resetCrossfadeFilter(0.2);
     try {
       await audioEl.play();
-      if (bgVideoEl && bgVideoEl.style.display !== 'none') {
+      if (bgVideoEl) {
         bgVideoEl.muted = true;
         bgVideoEl.volume = 0;
         bgVideoEl.currentTime = audioEl.currentTime;
         bgVideoEl.play().catch(() => {});
       }
     } catch (err) {
-      if (audioEl.error || audioEl.networkState === 3 || err?.name === 'NotSupportedError') {
-        enterAmbientFallback(currentTrackMeta, audioEl.currentTime || 0, true);
-      } else {
-        console.error('Playback failed:', err);
-      }
+      console.error('Playback failed:', err);
     }
   } else {
     audioEl.pause();
@@ -766,10 +625,17 @@ function updatePlayPauseIcons(playing) {
 
 /** @returns {boolean} */
 export function isAudioPlaying() {
-  if (ambientFallbackActive) return ambientPlaying;
   return Boolean(audioEl && !audioEl.paused);
 }
 
+/** Available Audiophile DSP Sound Profiles */
+/**
+ * Synthesize stereo exponential-decay impulse response for Cathedral Hall acoustic mode.
+ * @param {AudioContext} ctx
+ * @param {number} [durationSec=2.4]
+ * @param {number} [decayRate=2.8]
+ * @returns {AudioBuffer}
+ */
 export function createSyntheticImpulseResponse(ctx, durationSec = 2.4, decayRate = 2.8) {
   const sampleRate = ctx.sampleRate || 48000;
   const length = Math.max(1, Math.floor(sampleRate * durationSec));
@@ -778,7 +644,9 @@ export function createSyntheticImpulseResponse(ctx, durationSec = 2.4, decayRate
     const channelData = buffer.getChannelData(ch);
     let lp = 0;
     for (let i = 0; i < length; i += 1) {
-      const env = Math.pow(1 - i / length, decayRate);
+      const t = i / length;
+      const env = Math.pow(1 - t, decayRate);
+      // Slight low-pass smoothing on white noise avoids metallic ringing on vocals
       const white = Math.random() * 2 - 1;
       lp = lp * 0.45 + white * 0.55;
       channelData[i] = lp * env;
@@ -788,7 +656,9 @@ export function createSyntheticImpulseResponse(ctx, durationSec = 2.4, decayRate
 }
 
 function getOrCreateVinylCrackleBuffer(ctx) {
-  if (cachedVinylBuffer && cachedVinylBuffer.sampleRate === ctx.sampleRate) return cachedVinylBuffer;
+  if (cachedVinylBuffer && cachedVinylBuffer.sampleRate === ctx.sampleRate) {
+    return cachedVinylBuffer;
+  }
   const sampleRate = ctx.sampleRate || 48000;
   const length = Math.floor(sampleRate * 4);
   const buffer = ctx.createBuffer(1, length, sampleRate);
@@ -797,6 +667,7 @@ function getOrCreateVinylCrackleBuffer(ctx) {
   for (let i = 0; i < length; i += 1) {
     const white = Math.random() * 2 - 1;
     brown = (brown + 0.04 * white) / 1.04;
+    // Sparse dusty needle crackles + ultra-gentle warm surface noise
     const impulse = Math.random() < 0.0014 ? (Math.random() * 2 - 1) * 0.45 : 0;
     data[i] = brown * 0.25 + impulse;
   }
@@ -826,21 +697,25 @@ function detachCathedralConvolver() {
   convolverNode = null;
 }
 
-function startVinylCrackle() {
+function startVinylCrackle(level = 0.012) {
   if (!audioCtx || !vinylCrackleGain || vinylCrackleActive) return;
   if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+
   const src = audioCtx.createBufferSource();
   src.buffer = getOrCreateVinylCrackleBuffer(audioCtx);
   src.loop = true;
+
   const bandpass = audioCtx.createBiquadFilter();
   bandpass.type = 'bandpass';
   bandpass.frequency.setValueAtTime(1650, audioCtx.currentTime);
   bandpass.Q.setValueAtTime(0.85, audioCtx.currentTime);
+
   src.connect(bandpass);
   bandpass.connect(vinylCrackleGain);
   vinylCrackleGain.gain.cancelScheduledValues(audioCtx.currentTime);
-  vinylCrackleGain.gain.setTargetAtTime(0.012, audioCtx.currentTime, 0.06);
+  vinylCrackleGain.gain.setTargetAtTime(level, audioCtx.currentTime, 0.06);
   src.start();
+
   vinylSourceNode = src;
   vinylBandpass = bandpass;
   vinylCrackleActive = true;
@@ -863,6 +738,7 @@ function stopVinylCrackle() {
   vinylCrackleActive = false;
 }
 
+/** Release acoustic DSP nodes cleanly without touching cached reusable graph topology. */
 export function cleanupAcousticNodes() {
   stopVinylCrackle();
   detachCathedralConvolver();
@@ -876,8 +752,8 @@ export function getAcousticState() {
   };
 }
 
-/** Available Audiophile DSP Sound Profiles */
 export const AUDIO_PROFILES = [
+  { id: 'auto', label: 'Auto-Adaptif', color: '#A78BFA', desc: 'DSP cerdas otomatis beradaptasi dengan genre & tempo lagu' },
   { id: 'studio', label: 'Studio Master', color: '#68B2D6', desc: 'Respon studio datar jernih tanpa pewarnaan' },
   { id: 'lofi', label: 'Midnight Lo-Fi', color: '#D99F4C', desc: 'Lowpass hangat 4200Hz & sentuhan intim 220Hz' },
   { id: 'spatial', label: '8D Spatial', color: '#D46E9D', desc: 'Ambience L-R berosilasi lembut 0.08Hz (12.5 detik/putaran)' },
@@ -908,7 +784,19 @@ const DSP_PRESETS = {
   vinyl: [5200, 185, 2.4, 1450, 1.5, -2.6, 0],
 };
 
-/** @param {'studio'|'lofi'|'spatial'|'cathedral'|'vinyl'} profileId */
+function resolveAdaptiveDsp(trackConfig) {
+  const genre = String(trackConfig?.genre || '').toLowerCase();
+  const visualEnergy = String(trackConfig?.visualEnergy || '').toLowerCase();
+  if (/acoustic|folk|ballad|sad|pop\s*akustik|singer/i.test(genre) || visualEnergy === 'calm') {
+    return 'ballad';
+  }
+  if (/indie|lo-?fi|retro|chill|vintage|bedroom/i.test(genre)) {
+    return 'lofi';
+  }
+  return 'studio';
+}
+
+/** @param {'auto'|'studio'|'lofi'|'spatial'|'cathedral'|'vinyl'} profileId */
 export function applyAudioProfile(profileId) {
   if (!audioCtx) setupAudioGraph();
   if (!dspLow || !dspMid || !dspHigh || !audioCtx) return;
@@ -917,7 +805,54 @@ export function applyAudioProfile(profileId) {
   if (idx >= 0) currentProfileIndex = idx;
 
   const now = audioCtx.currentTime;
-  if (profileId !== 'cathedral') {
+
+  if (profileId === 'auto') {
+    const adaptiveMode = resolveAdaptiveDsp(currentTrackConfig);
+    if (adaptiveMode === 'ballad') {
+      // Acoustic / Folk / Ballad -> subtle Cathedral Hall (wet 0.14) for intimate room
+      attachCathedralConvolver();
+      if (dryGain) dryGain.gain.setTargetAtTime(0.86, now, 0.08);
+      if (wetGain) wetGain.gain.setTargetAtTime(0.14, now, 0.08);
+      stopVinylCrackle();
+      if (lofiLowpass && !filterSweepActive) lofiLowpass.frequency.setTargetAtTime(17500, now, 0.08);
+      dspLow.frequency.setTargetAtTime(135, now, 0.05);
+      dspLow.gain.setTargetAtTime(0.8, now, 0.05);
+      dspMid.frequency.setTargetAtTime(2600, now, 0.05);
+      dspMid.gain.setTargetAtTime(1.0, now, 0.05);
+      dspHigh.gain.setTargetAtTime(0.2, now, 0.05);
+      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
+    } else if (adaptiveMode === 'lofi') {
+      // Indie / Retro / Lo-Fi -> Warm Vinyl with ultra-minimal crackle (0.005)
+      detachCathedralConvolver();
+      if (dryGain) dryGain.gain.setTargetAtTime(0.96, now, 0.06);
+      if (wetGain) wetGain.gain.setTargetAtTime(0.0, now, 0.05);
+      if (isAudioPlaying()) startVinylCrackle(0.005);
+      if (lofiLowpass && !filterSweepActive) lofiLowpass.frequency.setTargetAtTime(5200, now, 0.08);
+      dspLow.frequency.setTargetAtTime(185, now, 0.05);
+      dspLow.gain.setTargetAtTime(2.2, now, 0.05);
+      dspMid.frequency.setTargetAtTime(1450, now, 0.05);
+      dspMid.gain.setTargetAtTime(1.4, now, 0.05);
+      dspHigh.gain.setTargetAtTime(-2.2, now, 0.05);
+      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
+    } else {
+      // Rock / J-Pop / High-Tempo -> clean Studio Master
+      detachCathedralConvolver();
+      if (dryGain) dryGain.gain.setTargetAtTime(1.0, now, 0.06);
+      if (wetGain) wetGain.gain.setTargetAtTime(0.0, now, 0.05);
+      stopVinylCrackle();
+      if (lofiLowpass && !filterSweepActive) lofiLowpass.frequency.setTargetAtTime(20000, now, 0.08);
+      dspLow.frequency.setTargetAtTime(120, now, 0.05);
+      dspLow.gain.setTargetAtTime(0, now, 0.05);
+      dspMid.frequency.setTargetAtTime(3000, now, 0.05);
+      dspMid.gain.setTargetAtTime(0, now, 0.05);
+      dspHigh.gain.setTargetAtTime(0, now, 0.05);
+      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
+    }
+    return;
+  }
+
+  const isCathedral = profileId === 'cathedral';
+  if (!isCathedral) {
     if (dryGain) dryGain.gain.setTargetAtTime(1.0, now, 0.06);
     if (wetGain) wetGain.gain.setTargetAtTime(0.0, now, 0.05);
     detachCathedralConvolver();
@@ -928,17 +863,83 @@ export function applyAudioProfile(profileId) {
   }
 
   if (profileId !== 'vinyl') stopVinylCrackle();
-  else if (isAudioPlaying()) startVinylCrackle();
+  else if (isAudioPlaying()) startVinylCrackle(0.012);
 
   const [lpFreq, lowFreq, lowGain, midFreq, midGain, highGain, panDepth] =
     DSP_PRESETS[profileId] || DSP_PRESETS.studio;
-  if (lofiLowpass) lofiLowpass.frequency.setTargetAtTime(lpFreq, now, 0.08);
+  if (lofiLowpass && !filterSweepActive) lofiLowpass.frequency.setTargetAtTime(lpFreq, now, 0.08);
   dspLow.frequency.setTargetAtTime(lowFreq, now, 0.05);
   dspLow.gain.setTargetAtTime(lowGain, now, 0.05);
   dspMid.frequency.setTargetAtTime(midFreq, now, 0.05);
   dspMid.gain.setTargetAtTime(midGain, now, 0.05);
   dspHigh.gain.setTargetAtTime(highGain, now, 0.05);
-  if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(panDepth, now, panDepth > 0 ? 0.18 : 0.12);
+
+  if (profileId === 'spatial') {
+    isHrtfActive = true;
+    if (hrtfPanner) {
+      if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
+    } else if (pannerLfoGain) {
+      pannerLfoGain.gain.setTargetAtTime(panDepth, now, 0.18);
+    }
+  } else {
+    isHrtfActive = false;
+    if (hrtfPanner) {
+      if (hrtfPanner.positionX) {
+        hrtfPanner.positionX.setTargetAtTime(0, now, 0.08);
+        hrtfPanner.positionY.setTargetAtTime(0, now, 0.08);
+        hrtfPanner.positionZ.setTargetAtTime(-1, now, 0.08);
+      } else if (typeof hrtfPanner.setPosition === 'function') {
+        hrtfPanner.setPosition(0, 0, -1);
+      }
+    }
+    if (pannerLfoGain) pannerLfoGain.gain.setTargetAtTime(0, now, 0.12);
+  }
+}
+
+/**
+ * Apply smooth cinematic low-pass filter sweep transition over the final seconds of a track.
+ * @param {number} [durationSec=2.5]
+ */
+export function triggerFilterSweep(durationSec = 2.5) {
+  if (!audioCtx || !lofiLowpass) return;
+  filterSweepActive = true;
+  const now = audioCtx.currentTime;
+  const currentF = Math.max(750, lofiLowpass.frequency.value || 20000);
+  lofiLowpass.frequency.cancelScheduledValues(now);
+  lofiLowpass.frequency.setValueAtTime(currentF, now);
+  lofiLowpass.frequency.exponentialRampToValueAtTime(750, now + durationSec);
+}
+
+/**
+ * Reset crossfade low-pass filter to full range (20,000 Hz) smoothly,
+ * preventing audio from sounding boxy / muffled after Auto-Next, track switch, or seek.
+ * @param {number} [rampSec=0.25]
+ */
+export function resetCrossfadeFilter(rampSec = 0.25) {
+  filterSweepActive = false;
+  if (!audioCtx || !lofiLowpass) return;
+  const now = audioCtx.currentTime;
+  lofiLowpass.frequency.cancelScheduledValues(now);
+  const currentF = Math.max(750, Math.min(20000, lofiLowpass.frequency.value || 20000));
+  lofiLowpass.frequency.setValueAtTime(currentF, now);
+
+  const activeProfile = getCurrentAudioProfile().id;
+  let targetFreq = 20000;
+  if (activeProfile === 'lofi') targetFreq = 4200;
+  else if (activeProfile === 'vinyl') targetFreq = 5200;
+  else if (activeProfile === 'auto') {
+    const adaptiveMode = resolveAdaptiveDsp(currentTrackConfig);
+    targetFreq = adaptiveMode === 'lofi' ? 5200 : adaptiveMode === 'ballad' ? 17500 : 20000;
+  }
+  lofiLowpass.frequency.setTargetAtTime(targetFreq, now, Math.max(0.04, rampSec));
+}
+
+/**
+ * Legacy alias for resetCrossfadeFilter.
+ * @param {number} [rampSec=0.25]
+ */
+export function resetFilterSweep(rampSec = 0.25) {
+  resetCrossfadeFilter(rampSec);
 }
 
 function setupEventListeners() {
@@ -980,10 +981,6 @@ function applySpeedToElements(rate) {
 /** @param {number} rate */
 export function setPlaybackSpeed(rate) {
   const safeRate = Math.max(0.5, Math.min(2.0, Number(rate) || 1.0));
-  if (ambientFallbackActive && ambientPlaying) {
-    ambientElapsed = Math.min(ambientDuration, ambientElapsed + (performance.now() - ambientAnchorMs) * 0.001 * (playbackSpeed || 1));
-    ambientAnchorMs = performance.now();
-  }
   playbackSpeed = safeRate;
   applySpeedToElements(safeRate);
   if (audioEl) resetClockAnchor(audioEl.currentTime || 0);

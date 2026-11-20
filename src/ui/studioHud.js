@@ -12,8 +12,19 @@ import {
   setPlaybackSpeed,
   setSleepTimer,
   getSleepTimerState,
+  triggerFilterSweep,
+  resetFilterSweep,
+  resetCrossfadeFilter,
 } from '../audio/audioEngine.js';
-import { setSceneIntensity, generateDynamicTrackPalette } from '../visuals/canvasVisualizer.js';
+import {
+  setSceneIntensity,
+  setScene2DArchetype,
+  getScene2DArchetype,
+  generateDynamicTrackPalette,
+  SCENE_ARCHETYPES,
+  setExtraReactiveEffects,
+  getExtraReactiveEffects,
+} from '../visuals/canvasVisualizer.js';
 import { exportLyricQuoteCard } from '../visuals/quoteCard.js';
 import {
   getActiveLyricSnapshot,
@@ -361,12 +372,30 @@ export function initStudioHud({
     upNextPillEl.hidden = true;
   }
 
+  let filterSweepTriggered = false;
+  let lastFilterTrackId = '';
+
   setUpNextSyncCallback(({ effectiveTime, duration, activeTrackId }) => {
     if (!upNextPillEl || !upNextTrackLabelEl) return;
     if (upNextTrackIdRef !== activeTrackId) {
       upNextTrackIdRef = activeTrackId;
       upNextSkipOffset = 0;
       upNextDismissedForTrackId = '';
+    }
+
+    if (lastFilterTrackId !== activeTrackId) {
+      lastFilterTrackId = activeTrackId;
+      filterSweepTriggered = false;
+    }
+
+    // Filter-Sweep Crossfade: gentle low-pass sweep over the final 2.5s before Auto-Next track transition
+    if (isAutoNext && duration > 10 && duration - effectiveTime <= 2.5 && !filterSweepTriggered) {
+      filterSweepTriggered = true;
+      triggerFilterSweep(2.5);
+    } else if (filterSweepTriggered && duration > 10 && duration - effectiveTime > 2.6) {
+      // User seeked backward out of the filter sweep transition window
+      filterSweepTriggered = false;
+      resetCrossfadeFilter(0.2);
     }
 
     const customQ = typeof getUpNextQueue === 'function' ? getUpNextQueue() : [];
@@ -441,21 +470,43 @@ export function initStudioHud({
   refreshGenreOptions();
 
   // 5. Quote Card PNG Exporter & Share Moment
-  async function handleExportQuoteCard() {
+  let quoteCardRatio = '9:16'; // '9:16' | '1:1'
+
+  async function handleExportQuoteCard(action = 'download') {
     try {
       const activeTrack = getActiveTrack();
       const snap = getActiveLyricSnapshot();
-      const { filename } = await exportLyricQuoteCard({
+      const actStepEl = document.querySelector('.chapter-step.active');
+      const actLabel = actStepEl ? actStepEl.textContent.trim() : '';
+
+      const { filename, copied } = await exportLyricQuoteCard({
         track: activeTrack,
         words: snap.words,
         fallbackText: snap.text || activeTrack?.description,
         currentTime: snap.currentTime,
+        aspectRatio: quoteCardRatio,
+        action,
+        actLabel,
       });
-      showToast(`🖼 Quote Card terunduh: ${filename}`);
+
+      if (copied) {
+        showToast('📋 Gambar Quote Card berhasil disalin ke Clipboard!');
+      } else {
+        showToast(`🖼 Quote Card terunduh (${quoteCardRatio}): ${filename}`);
+      }
     } catch (err) {
       console.warn('Quote card export failed:', err);
       showToast('⚠ Gagal membuat Quote Card PNG');
     }
+  }
+
+  function toggleQuoteRatio() {
+    quoteCardRatio = quoteCardRatio === '9:16' ? '1:1' : '9:16';
+    const labelEl = document.getElementById('quoteRatioLabel');
+    if (labelEl) {
+      labelEl.textContent = `📐 Rasio: ${quoteCardRatio === '9:16' ? '9:16 (Story)' : '1:1 (Feed)'}`;
+    }
+    showToast(`📐 Rasio Quote Card: ${quoteCardRatio === '9:16' ? '9:16 (Story)' : '1:1 (Feed)'}`);
   }
 
   function legacyCopyText(text) {
@@ -490,7 +541,9 @@ export function initStudioHud({
     }
   }
 
-  document.getElementById('btnQuoteCard')?.addEventListener('click', handleExportQuoteCard);
+  document.getElementById('btnQuoteCard')?.addEventListener('click', () => handleExportQuoteCard('download'));
+  document.getElementById('btnCopyQuoteCard')?.addEventListener('click', () => handleExportQuoteCard('copy'));
+  document.getElementById('btnQuoteRatio')?.addEventListener('click', toggleQuoteRatio);
   document.getElementById('btnShareMoment')?.addEventListener('click', handleShareMoment);
 
   // 6. Studio Popover Toggle
@@ -522,6 +575,48 @@ export function initStudioHud({
     if (!studioPopoverEl || studioPopoverEl.hidden) return;
     if (studioPopoverEl.contains(e.target) || btnStudioPopover?.contains(e.target)) return;
     setStudioPopoverOpen(false, true);
+  });
+
+  // 6b. Studio Popover 3-Tab Navigation (v16.0)
+  const tabNavBtns = Array.from(document.querySelectorAll('[data-studio-tab]'));
+  const tabPanels = {
+    audio: document.getElementById('studioTabAudio'),
+    visual: document.getElementById('studioTabVisual'),
+    export: document.getElementById('studioTabExport'),
+  };
+  const STORAGE_KEY_STUDIO_TAB = 'stages_of_denial_studio_tab';
+
+  function switchStudioTab(tabKey) {
+    const valid = ['audio', 'visual', 'export'].includes(tabKey) ? tabKey : 'audio';
+    tabNavBtns.forEach((btn) => {
+      const active = btn.dataset.studioTab === valid;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', String(active));
+    });
+    Object.entries(tabPanels).forEach(([key, panel]) => {
+      if (!panel) return;
+      const isTarget = key === valid;
+      panel.hidden = !isTarget;
+      panel.classList.toggle('active', isTarget);
+    });
+    try {
+      localStorage.setItem(STORAGE_KEY_STUDIO_TAB, valid);
+    } catch {}
+  }
+
+  tabNavBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      switchStudioTab(btn.dataset.studioTab);
+    });
+  });
+
+  // Restore persisted tab on init
+  const initialTab = localStorage.getItem(STORAGE_KEY_STUDIO_TAB) || 'audio';
+  switchStudioTab(initialTab);
+
+  // Close button inside studio popover header
+  document.getElementById('btnCloseStudioPopover')?.addEventListener('click', () => {
+    setStudioPopoverOpen(false);
   });
 
   // 7. Babak IV Outro, Lyric Drawer & A-B Loop HUD buttons
@@ -589,6 +684,53 @@ export function initStudioHud({
     showToast(next ? '🌐 Terjemahan Lirik: AKTIF' : '🌐 Terjemahan Lirik: NONAKTIF');
   });
 
+  // Dynamic 35mm Cinema Letterbox Toggle
+  const btnToggleLetterbox = document.getElementById('btnToggleLetterbox');
+  let letterboxPref = (() => {
+    try {
+      return localStorage.getItem('sod_letterbox_enabled') !== 'false';
+    } catch {
+      return true;
+    }
+  })();
+
+  const syncLetterboxBtnUi = (enabled) => {
+    document.body.classList.toggle('letterbox-disabled', !enabled);
+    if (!btnToggleLetterbox) return;
+    btnToggleLetterbox.classList.toggle('active', enabled);
+    btnToggleLetterbox.setAttribute('aria-pressed', String(enabled));
+    const span = btnToggleLetterbox.querySelector('span');
+    if (span) span.textContent = enabled ? '🎬 Letterbox: ON' : '🎬 Letterbox: OFF';
+  };
+  syncLetterboxBtnUi(letterboxPref);
+
+  btnToggleLetterbox?.addEventListener('click', () => {
+    letterboxPref = !letterboxPref;
+    syncLetterboxBtnUi(letterboxPref);
+    try {
+      localStorage.setItem('sod_letterbox_enabled', letterboxPref ? 'true' : 'false');
+    } catch {}
+    showToast(letterboxPref ? '🎬 Dynamic Letterbox: AKTIF' : '🎬 Dynamic Letterbox: NONAKTIF');
+  });
+
+  // Visual Eye-Comfort Extra Reactive Effects Toggle
+  const btnToggleExtraReactive = document.getElementById('btnToggleExtraReactive');
+  const syncExtraReactiveBtnUi = (enabled) => {
+    if (!btnToggleExtraReactive) return;
+    btnToggleExtraReactive.classList.toggle('active', enabled);
+    btnToggleExtraReactive.setAttribute('aria-pressed', String(enabled));
+    const span = document.getElementById('extraReactiveStatusText');
+    if (span) span.textContent = enabled ? '✨ Efek Ekstra: ON' : '✨ Efek Ekstra: OFF';
+  };
+  syncExtraReactiveBtnUi(getExtraReactiveEffects());
+
+  btnToggleExtraReactive?.addEventListener('click', () => {
+    const nextState = !getExtraReactiveEffects();
+    setExtraReactiveEffects(nextState);
+    syncExtraReactiveBtnUi(nextState);
+    showToast(nextState ? '✨ Efek Reaktif Ekstra: AKTIF (Beat Flash ON)' : '✨ Efek Reaktif Ekstra: NONAKTIF (Clean & Eye-Comfort)');
+  });
+
   document.getElementById('btnExportLrc')?.addEventListener('click', () => {
     const subs = getPreloadedSubtitles().filter((s) => s && !s.isInstrumental && s.text);
     if (!subs.length) {
@@ -630,6 +772,7 @@ export function initStudioHud({
   sceneSegBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const mode = setSceneIntensity(btn.dataset.scene);
+      document.body.classList.toggle('scene-mode-ambient', mode === 'ambient');
       sceneSegBtns.forEach((b) => {
         const active = b.dataset.scene === mode;
         b.classList.toggle('active', active);
@@ -640,6 +783,47 @@ export function initStudioHud({
     });
   });
 
+  // 8b. 2D Cinematic Scene Archetype controls (v16.0 18-Archetype System)
+  const scene2dSegBtns = Array.from(document.querySelectorAll('[data-scene-2d]'));
+  const btnRandomScene2d = document.getElementById('btnRandomScene2d');
+
+  function syncScene2dUi(activeMode, userSetting) {
+    scene2dSegBtns.forEach((b) => {
+      const mode = b.getAttribute('data-scene-2d');
+      const active = mode === userSetting;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  if (scene2dSegBtns.length) {
+    const { userSetting, activeMode } = getScene2DArchetype();
+    syncScene2dUi(activeMode, userSetting);
+
+    scene2dSegBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const chosen = btn.getAttribute('data-scene-2d');
+        const newActive = setScene2DArchetype(chosen);
+        syncScene2dUi(newActive, chosen);
+        const meta = SCENE_ARCHETYPES.find((s) => s.id === chosen);
+        const activeMeta = SCENE_ARCHETYPES.find((s) => s.id === newActive);
+        const chosenLabel = chosen === 'auto' ? 'Auto (Adaptif)' : (meta ? meta.name : chosen);
+        const activeLabel = activeMeta ? activeMeta.name : newActive;
+        showToast(`🎨 Panggung 2D: ${chosenLabel} (Aktif: ${activeLabel})`);
+      });
+    });
+
+    btnRandomScene2d?.addEventListener('click', () => {
+      const candidates = SCENE_ARCHETYPES.map((s) => s.id);
+      const randomChosen = candidates[Math.floor(Math.random() * candidates.length)];
+      const newActive = setScene2DArchetype(randomChosen);
+      syncScene2dUi(newActive, randomChosen);
+      const meta = SCENE_ARCHETYPES.find((s) => s.id === randomChosen);
+      showToast(`🎲 Acak Panggung: ${meta ? `${meta.icon} ${meta.name}` : randomChosen}`);
+    });
+  }
+
+  const directorSpeedEl = document.getElementById('directorSpeed');
   const speedSegBtns = Array.from(document.querySelectorAll('[data-speed]'));
   speedSegBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -649,6 +833,9 @@ export function initStudioHud({
         b.classList.toggle('active', active);
         b.setAttribute('aria-pressed', String(active));
       });
+      if (directorSpeedEl) {
+        directorSpeedEl.textContent = `${rate}x`;
+      }
       showToast(`⏩ Kecepatan Putar: ${rate}x`);
     });
   });

@@ -4,7 +4,8 @@
  */
 
 import { getAudioTime, isAudioPlaying, togglePlayPause } from '../audio/audioEngine.js';
-import { triggerHighlightPulse } from '../visuals/canvasVisualizer.js';
+import { triggerHighlightPulse, triggerLyricSentiment, getLiveAudioDynamics } from '../visuals/canvasVisualizer.js';
+import { analyzeLyricMotif } from './lyricSentiment.js';
 
 const kineticStage = document.getElementById('kineticStage');
 const subtitleTokenizerHost = document.createElement('div');
@@ -466,19 +467,31 @@ export function preloadTrackLyrics(trackOrSubtitles) {
 
   let peakWords = 24;
   const prepared = sourceSubs.map((sub) => {
-    const rawTokens = tokenizeSubtitleHtml(sub.text);
+    let subText = sub.text || '';
+    const rawTokens = tokenizeSubtitleHtml(subText);
     const plain = rawTokens.map((t) => t.text).join(' ');
-    const isInstrumental = sub.isInstrumental === true || plain.includes('♪') || /^\[.*\]$/.test(plain);
-    const totalSyllables = rawTokens.reduce((sum, tok) => sum + countSyllables(tok.text), 0);
-    if (rawTokens.length > peakWords) peakWords = rawTokens.length;
+    const isInstrumental = sub.isInstrumental === true || plain.includes('♪') || plain.includes('Mode Instrumental') || /^\[.*\]$/.test(plain);
+    let finalTokens = rawTokens;
+    if (isInstrumental) {
+      subText = '♪ [Mode Instrumental] ♪';
+      finalTokens = [
+        { text: '♪', isHighlight: false },
+        { text: '[Mode', isHighlight: false },
+        { text: 'Instrumental]', isHighlight: false },
+        { text: '♪', isHighlight: false },
+      ];
+    }
+    const totalSyllables = finalTokens.reduce((sum, tok) => sum + countSyllables(tok.text), 0);
+    if (finalTokens.length > peakWords) peakWords = finalTokens.length;
 
     return {
       ...sub,
+      text: subText,
       start: Number(sub.start),
       end: Number(sub.end),
       translation: typeof sub.translation === 'string' ? sub.translation.trim() : '',
       acousticWords: Array.isArray(sub.words) ? sub.words : null,
-      rawTokens,
+      rawTokens: finalTokens,
       isInstrumental,
       totalSyllables: Math.max(1, totalSyllables),
       syllablesPerSecond: 1,
@@ -672,6 +685,33 @@ function bindSlotToSubtitle(slot, sub, subIndex) {
     }
   }
 
+  // 1. Scan and trigger Lyric Sentiment Synesthesia micro-trigger
+  if (sub && sub.text && !sub.isInstrumental) {
+    const sentiment = analyzeLyricMotif(sub.text);
+    if (sentiment.motif) {
+      triggerLyricSentiment(sentiment.motif, sentiment.tint);
+    }
+  }
+
+  // 2. Pacing-Aware Line Transition dynamics
+  const dynamics = typeof getLiveAudioDynamics === 'function' ? getLiveAudioDynamics() : null;
+  const livePace = dynamics?.paceFactor ?? 1.0;
+  let lineTransSpeed = sub.transitionSpeedSec ?? 0.24;
+  let lineExitSpeed = sub.exitSpeedSec ?? 0.16;
+
+  slot.el.classList.remove('pacing-snappy', 'pacing-mist');
+  if (livePace > 1.25) {
+    // Fast tempo (J-Pop / Rock / Ska): snappy kinetic slide ~0.18s
+    lineTransSpeed = 0.18;
+    lineExitSpeed = 0.12;
+    slot.el.classList.add('pacing-snappy');
+  } else if (livePace < 0.95) {
+    // Slow tempo (Acoustic / Ballad): serene mist cross-dissolve ~0.60s
+    lineTransSpeed = 0.60;
+    lineExitSpeed = 0.45;
+    slot.el.classList.add('pacing-mist');
+  }
+
   let enterX = '0px';
   let enterY = '18px';
   if (sub.vector === 'throw-from-left') {
@@ -686,12 +726,12 @@ function bindSlotToSubtitle(slot, sub, subIndex) {
   }
   slot.el.style.setProperty('--enter-x', enterX);
   slot.el.style.setProperty('--enter-y', enterY);
-  slot.el.style.setProperty('--transition-speed', `${sub.transitionSpeedSec ?? 0.24}s`);
-  slot.el.style.setProperty('--exit-speed', `${sub.exitSpeedSec ?? 0.16}s`);
+  slot.el.style.setProperty('--transition-speed', `${lineTransSpeed}s`);
+  slot.el.style.setProperty('--exit-speed', `${lineExitSpeed}s`);
 
   slot.zoneClass = `zone-${sub.zone || 'center-cinematic'}`;
   slot.isInstrumental = sub.isInstrumental;
-  slot.exitSpeedSec = sub.exitSpeedSec ?? 0.16;
+  slot.exitSpeedSec = lineExitSpeed;
 
   if (slot.translationEl) {
     slot.translationEl.textContent = sub.translation || '';
@@ -793,8 +833,10 @@ export function syncKineticSubtitles(rawEffectiveTime, vocalTelemetry) {
     lastVocalGlowStr = glowIntensity;
     kineticStage.style.setProperty('--vocal-glow', glowIntensity);
   }
-  const hasAcousticBoost = Boolean(vocalTelemetry?.isVocalActive || (vocalTelemetry?.vocalEnergy ?? 0) > 58);
+  const hasAcousticBoost = Boolean(vocalTelemetry?.isVocalActive || (vocalTelemetry?.vocalEnergy ?? 0) > 46);
   kineticStage.classList.toggle('vocal-energy-boost', hasAcousticBoost);
+  const isVocalPeak = Boolean(vocalTelemetry?.isVocalActive && ((vocalTelemetry?.vocalEnergy ?? 0) > 50 || (vocalTelemetry?.normalized ?? 0) > 0.58));
+  kineticStage.classList.toggle('vocal-peak-active', isVocalPeak);
 
   let activeIdx = -1;
   let preRollIdx = -1;

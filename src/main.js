@@ -7,6 +7,7 @@ import initialTracksData from '../config/tracks.json';
 import {
   initAudio,
   switchTrack,
+  resetCrossfadeFilter,
   getAudioTime,
   cycleAudioProfile,
   getCurrentAudioProfile,
@@ -23,10 +24,9 @@ import {
   getSleepTimerState,
   registerMediaSessionHandlers,
   updateMediaSessionMetadata,
-  setAudioFallbackHandler,
-  setActiveAudioTrackMeta,
 } from './audio/audioEngine.js';
 import {
+  initVisualizer,
   startVisualizer,
   setSceneIntensity,
   getSceneIntensity,
@@ -34,6 +34,16 @@ import {
   getVisualContextMode,
   getLiveAudioDynamics,
   generateDynamicTrackPalette,
+  get3DVisualState,
+  getTelemetryFps,
+  getPeak2DState,
+  setScene2DArchetype,
+  getScene2DArchetype,
+  resolve2DSceneArchetype,
+  setVisualizerTrack,
+  SCENE_ARCHETYPES,
+  setExtraReactiveEffects,
+  getExtraReactiveEffects,
 } from './visuals/canvasVisualizer.js';
 import {
   loadTrackLyrics,
@@ -136,6 +146,7 @@ function setGenreFilter(nextGenre = 'all') {
  * start audio/visuals, and jump to `initialTime` when provided.
  */
 async function selectTrack(track, customFile = null, initialTime = 0, autoStartPlayback = true) {
+  resetCrossfadeFilter(0.15);
   currentActiveTrackId = track.id;
   currentActiveTrack = track;
 
@@ -144,6 +155,12 @@ async function selectTrack(track, customFile = null, initialTime = 0, autoStartP
 
   const outroTitleEl = document.getElementById('outroTrackTitle');
   if (outroTitleEl) outroTitleEl.textContent = `${track.title} · Selesai`;
+  const outroArtistEl = document.getElementById('outroTrackArtist');
+  if (outroArtistEl) outroArtistEl.textContent = track.artist || 'Artis';
+  const outroBadgeEl = document.getElementById('outroTrackBadge');
+  if (outroBadgeEl) outroBadgeEl.textContent = track.genre || 'Music';
+  const outroCoverEl = document.getElementById('outroCoverImg');
+  if (outroCoverEl) outroCoverEl.src = track.coverSrc || '/assets/covers/penyangkalan.webp';
 
   document.querySelectorAll('.track-card').forEach((card) => {
     card.classList.toggle('active', card.dataset.trackId === track.id);
@@ -293,14 +310,11 @@ registerMediaSessionHandlers({
   onPrevious: () => hudCtrl?.playPreviousTrack(),
   onSeek: (sec) => seekPlayback(sec),
 });
-setActiveAudioTrackMeta(currentActiveTrack);
-setAudioFallbackHandler(() => {
-  showToast('🎧 Audio MP3 lokal belum tersedia — memutar mode pratinjau ambient (Drag & Drop MP3 untuk lagu penuh)');
-});
 updateMediaSessionMetadata(currentActiveTrack);
 
-// Start 60 FPS Choreography Loop
+// Start 60 FPS Choreography Loop & Peak 2D Cinematic Visual Engine
 startSyncLoop();
+initVisualizer();
 
 // Startup Deep-Link Hydration (?track=<id>&t=<seconds>)
 (function hydrateDeepLink() {
@@ -445,6 +459,18 @@ if (typeof window !== 'undefined') {
     getVisualContextMode,
     getLiveAudioDynamics,
     generateDynamicTrackPalette,
+    get3DVisualState,
+    getTelemetryFps,
+    getPeak2DState,
+    startVisualizer,
+    initVisualizer,
+    setScene2DArchetype,
+    getScene2DArchetype,
+    resolve2DSceneArchetype,
+    setVisualizerTrack,
+    SCENE_ARCHETYPES,
+    setExtraReactiveEffects,
+    getExtraReactiveEffects,
   };
   window.__scrolly = {
     seekPlayback,

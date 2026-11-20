@@ -53,11 +53,54 @@ let visualMode = 'intro';
 let currentTheme = 'crimson-ash';
 let activeAccentPrimary = '#D65A70';
 let activeAccentSecondary = '#D98A5C';
+let activeAccentCold = '#68B2D6';
 let activeParticleStyle = 'falling-ash';
 let activeVisualEnergy = 'intense';
 let activeGenre = '';
 let activeVisualContext = 'ballad'; // 'high-tempo' | 'dreamy' | 'ballad' | 'prism'
 let sceneIntensityMode = 'cinema';
+
+const STORAGE_KEY_2D_SCENE = 'stages_of_denial_2d_scene';
+let userSceneArchetype = (() => {
+  try {
+    return localStorage.getItem(STORAGE_KEY_2D_SCENE) || 'editorial-silk';
+  } catch {
+    return 'editorial-silk';
+  }
+})();
+let activeSceneArchetype = userSceneArchetype || 'editorial-silk';
+
+const STORAGE_KEY_EXTRA_REACTIVE = 'stages_of_denial_extra_reactive';
+let extraReactiveEffects = (() => {
+  try {
+    return localStorage.getItem(STORAGE_KEY_EXTRA_REACTIVE) === 'true';
+  } catch {
+    return false;
+  }
+})();
+
+export function setExtraReactiveEffects(enabled) {
+  extraReactiveEffects = Boolean(enabled);
+  try {
+    localStorage.setItem(STORAGE_KEY_EXTRA_REACTIVE, extraReactiveEffects ? 'true' : 'false');
+  } catch {}
+  return extraReactiveEffects;
+}
+
+export function getExtraReactiveEffects() {
+  return extraReactiveEffects;
+}
+let activeTrackMeta = {
+  id: 'penyangkalan',
+  title: 'Penyangkalan',
+  artist: 'for Revenge',
+  genre: 'Post-Rock / Emo',
+  particleStyle: 'falling-ash',
+  visualEnergy: 'intense',
+  accentPrimary: '#D65A70',
+  accentSecondary: '#D98A5C',
+  accentCold: '#68B2D6',
+};
 
 // Zero-GC Live Acoustic & Spectral Dynamics state
 let emaEnergy = 0;
@@ -127,33 +170,70 @@ export function getLiveAudioDynamics() {
   };
 }
 
-// Pre-allocated zero-GC context-aware pools
-const STREAK_COUNT = 18;
-const CONSTELLATION_COUNT = 22;
-const RAIN_COUNT = 24;
-const streakPool = Array.from({ length: STREAK_COUNT }, () => ({
-  x: Math.random() * 1400,
-  y: Math.random() * 820,
-  len: 75 + Math.random() * 130,
-  speed: 4.5 + Math.random() * 6.5,
-  alpha: 0.08 + Math.random() * 0.14,
-  alt: Math.random() > 0.5,
-}));
-const constellationPool = Array.from({ length: CONSTELLATION_COUNT }, () => ({
-  x: Math.random() * 1400,
-  y: Math.random() * 820,
-  vx: (Math.random() - 0.5) * 0.35,
-  vy: (Math.random() - 0.5) * 0.25,
-  r: 1.1 + Math.random() * 1.4,
-  phase: Math.random() * Math.PI * 2,
-}));
-const rainPool = Array.from({ length: RAIN_COUNT }, () => ({
-  x: Math.random() * 1400,
-  y: Math.random() * 820,
-  len: 14 + Math.random() * 18,
-  speed: 2.2 + Math.random() * 2.4,
-  alpha: 0.06 + Math.random() * 0.09,
-}));
+import {
+  SCENE_ARCHETYPES,
+  renderSceneArchetype,
+  resolve2DSceneArchetype as modularResolve2DSceneArchetype,
+} from './scenes/index.js';
+
+export { SCENE_ARCHETYPES };
+
+/**
+ * Automatically determine the most fitting 2D cinematic stage archetype
+ * from the 18 distinct modular variants based on track metadata and real-time audio dynamics.
+ */
+export function resolve2DSceneArchetype(trackMeta, liveAudioDynamics = null) {
+  if (userSceneArchetype && userSceneArchetype !== 'auto') {
+    return userSceneArchetype;
+  }
+  return modularResolve2DSceneArchetype(trackMeta, liveAudioDynamics);
+}
+
+/** Set user override for 2D scene archetype */
+export function setScene2DArchetype(mode) {
+  const valid = ['auto', ...SCENE_ARCHETYPES.map((s) => s.id)];
+  userSceneArchetype = valid.includes(mode) ? mode : 'auto';
+  try {
+    localStorage.setItem(STORAGE_KEY_2D_SCENE, userSceneArchetype);
+  } catch {}
+  activeSceneArchetype = resolve2DSceneArchetype(activeTrackMeta, { paceFactor: livePaceFactor });
+  return activeSceneArchetype;
+}
+
+/** Return active 2D scene archetype state */
+export function getScene2DArchetype() {
+  return {
+    userSetting: userSceneArchetype,
+    activeMode: activeSceneArchetype,
+  };
+}
+
+/** Set active track metadata for dynamic scene resolution */
+export function setVisualizerTrack(track) {
+  if (!track) return;
+  activeTrackMeta = {
+    id: track.id || '',
+    title: track.title || '',
+    artist: track.artist || '',
+    genre: track.genre || '',
+    theme: track.theme || 'crimson-ash',
+    particleStyle: track.particleStyle || 'falling-ash',
+    visualEnergy: track.visualEnergy || 'calm',
+    accentPrimary: track.accentPrimary || '#D65A70',
+    accentSecondary: track.accentSecondary || '#D98A5C',
+    accentCold: track.accentCold || '#68B2D6',
+  };
+  setTheme(
+    track.theme,
+    track.accentPrimary,
+    track.accentSecondary,
+    track.particleStyle,
+    track.visualEnergy,
+    track.genre || '',
+    track.accentCold || null
+  );
+  activeSceneArchetype = resolve2DSceneArchetype(activeTrackMeta, { paceFactor: 1.0 });
+}
 
 function resolveVisualContext(genre, energy, particleStyle, theme = '') {
   const g = String(genre || '');
@@ -305,8 +385,83 @@ function lerpColorRgba(hexA, hexB, mixRatio, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-function buildBokehSprite(colorHex, innerAlpha, midAlpha) {
-  const size = 96;
+/** Interpolate between two hex colors and return standard 6-char hex. */
+function lerpColorHex(hexA, hexB, mixRatio) {
+  const [r1, g1, b1] = parseHexRgb(hexA);
+  const [r2, g2, b2] = parseHexRgb(hexB);
+  const t = Math.max(0, Math.min(1, mixRatio));
+  const r = Math.round(r1 + (r2 - r1) * t).toString(16).padStart(2, '0');
+  const g = Math.round(g1 + (g2 - g1) * t).toString(16).padStart(2, '0');
+  const b = Math.round(b1 + (b2 - b1) * t).toString(16).padStart(2, '0');
+  return `#${r}${g}${b}`;
+}
+
+// Lyric Synesthesia Micro-Trigger State (Zero-GC scalar interpolation)
+let activeSentimentMotif = null;
+let sentimentMotifTimer = 0;
+let smoothRainSurge = 0;
+let smoothFireSurge = 0;
+let smoothNightSurge = 0;
+let smoothWarmthSurge = 0;
+
+/**
+ * Emit zero-latency micro-trigger when an active lyric line contains a motif.
+ * @param {'rain'|'fire'|'night'|'warmth'} motif
+ * @param {string|null} [tint=null]
+ */
+export function triggerLyricSentiment(motif, tint = null) {
+  activeSentimentMotif = motif;
+  sentimentMotifTimer = 4.2;
+}
+
+export function getSynesthesiaState() {
+  return {
+    activeMotif: activeSentimentMotif,
+    timer: Number(sentimentMotifTimer.toFixed(2)),
+    rainSurge: Number(smoothRainSurge.toFixed(3)),
+    fireSurge: Number(smoothFireSurge.toFixed(3)),
+    nightSurge: Number(smoothNightSurge.toFixed(3)),
+    warmthSurge: Number(smoothWarmthSurge.toFixed(3)),
+  };
+}
+
+// 35mm Film Grain Post-Processing (128x128 tile updated at 12 FPS)
+const GRAIN_SIZE = 128;
+let grainCanvas = null;
+let grainCtx = null;
+let grainImageData = null;
+let grainData32 = null;
+let grainPattern = null;
+let lastGrainUpdateMs = 0;
+
+function initGrain() {
+  if (grainCanvas) return;
+  grainCanvas = document.createElement('canvas');
+  grainCanvas.width = GRAIN_SIZE;
+  grainCanvas.height = GRAIN_SIZE;
+  grainCtx = grainCanvas.getContext('2d');
+  grainImageData = grainCtx.createImageData(GRAIN_SIZE, GRAIN_SIZE);
+  grainData32 = new Uint32Array(grainImageData.data.buffer);
+  updateGrainPattern();
+}
+
+function updateGrainPattern() {
+  if (!grainCtx || !grainData32) return;
+  const len = grainData32.length;
+  for (let i = 0; i < len; i++) {
+    const val = (Math.random() * 255) | 0;
+    // 32-bit pixel: alpha 0x30 with random greyscale intensity
+    grainData32[i] = (0x30 << 24) | (val << 16) | (val << 8) | val;
+  }
+  grainCtx.putImageData(grainImageData, 0, 0);
+  if (ctx) {
+    grainPattern = ctx.createPattern(grainCanvas, 'repeat');
+  }
+}
+
+let foregroundBokehSprite = null;
+
+function buildBokehSprite(colorHex, innerAlpha, midAlpha, size = 96) {
   const off = document.createElement('canvas');
   off.width = size;
   off.height = size;
@@ -323,8 +478,9 @@ function buildBokehSprite(colorHex, innerAlpha, midAlpha) {
 }
 
 function rebuildBokehSprites() {
-  primaryBokehSprite = buildBokehSprite(activeAccentPrimary, 0.55, 0.26);
-  secondaryBokehSprite = buildBokehSprite(activeAccentSecondary || SOFT_IVORY, 0.45, 0.18);
+  primaryBokehSprite = buildBokehSprite(activeAccentPrimary, 0.55, 0.26, 96);
+  secondaryBokehSprite = buildBokehSprite(activeAccentSecondary || SOFT_IVORY, 0.45, 0.18, 96);
+  foregroundBokehSprite = buildBokehSprite(activeAccentPrimary, 0.22, 0.08, 192);
 }
 
 /** Initialize Eye-Comfort AudioMotion-Analyzer gradient spectrum at viewport bottom edge. */
@@ -371,25 +527,56 @@ export function initAudioMotion() {
   }
 }
 
-const STAR_COUNT = 72;
+const STAR_COUNT = 84;
+const STAR_Z_MAX = 1200;
 const starPool = Array.from({ length: STAR_COUNT }, (_, idx) => {
   const depth = idx % 3 === 0 ? 0.35 : idx % 3 === 1 ? 0.65 : 1.0;
   return {
-    x: Math.random() * width,
-    y: Math.random() * height,
-    r: 0.6 + depth * 0.95,
-    baseAlpha: 0.08 + depth * 0.16,
-    speedX: -0.05 * depth,
-    speedY: -0.08 * depth,
+    x: (Math.random() - 0.5) * 1600,
+    y: (Math.random() - 0.5) * 1100,
+    z: 30 + Math.random() * (STAR_Z_MAX - 30),
+    r: 0.75 + depth * 1.1,
+    baseAlpha: 0.12 + depth * 0.2,
+    speedZ: 0.9 + depth * 1.25,
     depth,
     phase: Math.random() * Math.PI * 2,
+    prevProjX: 0,
+    prevProjY: 0,
   };
 });
 
+// 3D Volumetric Orbital Halo / Wireframe Rings (Zero heap allocation per frame)
+const ORBITAL_RING_COUNT = 3;
+const ORBITAL_SEGMENTS = 52;
+const ringProjX = new Float32Array(ORBITAL_RING_COUNT * (ORBITAL_SEGMENTS + 1));
+const ringProjY = new Float32Array(ORBITAL_RING_COUNT * (ORBITAL_SEGMENTS + 1));
+const ringProjZ = new Float32Array(ORBITAL_RING_COUNT * (ORBITAL_SEGMENTS + 1));
+const ringProjScale = new Float32Array(ORBITAL_RING_COUNT * (ORBITAL_SEGMENTS + 1));
+let isWebGL3DActive = false;
+
+/** Legacy helper export for backwards compatibility */
+export function setWebGL3DActive(active) {
+  isWebGL3DActive = false;
+}
+
+// 3-Layer True 2D Depth-of-Field (DoF) Bokeh Pools
+// Layer 1: Background distant micro-particles (crisp, small, slow drift)
+const BG_BOKEH_COUNT = 32;
+const bgBokehPool = Array.from({ length: BG_BOKEH_COUNT }, () => ({
+  x: Math.random() * (width || 1200),
+  y: Math.random() * (height || 800),
+  radius: 1.5 + Math.random() * 2.5,
+  alpha: 0.12 + Math.random() * 0.18,
+  speedX: (Math.random() - 0.5) * 0.12,
+  speedY: -0.08 - Math.random() * 0.14,
+  swayPhase: Math.random() * Math.PI * 2,
+}));
+
+// Layer 2: Midground synesthesia weather bokeh particles
 const BOKEH_COUNT = 52;
 const bokehPool = Array.from({ length: BOKEH_COUNT }, (_, idx) => ({
-  x: Math.random() * width,
-  y: Math.random() * height,
+  x: Math.random() * (width || 1200),
+  y: Math.random() * (height || 800),
   radius: 10 + Math.random() * 28,
   alpha: 0.14 + Math.random() * 0.22,
   speedX: (Math.random() - 0.5) * 0.28,
@@ -397,6 +584,21 @@ const bokehPool = Array.from({ length: BOKEH_COUNT }, (_, idx) => ({
   swayPhase: Math.random() * Math.PI * 2,
   swayAmp: 0.2 + Math.random() * 0.45,
   useSecondary: idx % 3 === 0,
+}));
+
+// Layer 3: Foreground large soft blurred DoF orbs with cursor parallax
+const FG_BOKEH_COUNT = 14;
+const fgBokehPool = Array.from({ length: FG_BOKEH_COUNT }, (_, idx) => ({
+  x: Math.random() * (width || 1200),
+  y: Math.random() * (height || 800),
+  radius: 42 + Math.random() * 46,
+  alpha: 0.04 + Math.random() * 0.07,
+  speedX: (Math.random() - 0.5) * 0.16,
+  speedY: -0.10 - Math.random() * 0.18,
+  swayPhase: Math.random() * Math.PI * 2,
+  swayAmp: 0.15 + Math.random() * 0.35,
+  parallaxFactor: 0.75 + Math.random() * 0.55,
+  useSecondary: idx % 2 === 0,
 }));
 
 function resetBokehItem(b, isRainStyle) {
@@ -412,20 +614,50 @@ function resetBokehItem(b, isRainStyle) {
   }
 }
 
-function handleResize() {
+let dprScaleMultiplier = 1.0;
+let lowFpsConsecutiveMs = 0;
+let isDprAutoThrottled = false;
+
+function applyDynamicDpr() {
   if (!canvas || !ctx) return;
   width = window.innerWidth;
   height = window.innerHeight;
-  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
+  dpr = Math.max(0.75, Number((baseDpr * dprScaleMultiplier).toFixed(2)));
   canvas.width = Math.floor(width * dpr);
   canvas.height = Math.floor(height * dpr);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
+
+function handleResize() {
+  applyDynamicDpr();
+}
 window.addEventListener('resize', handleResize);
 handleResize();
 rebuildBokehSprites();
+
+/** Return current canvas device pixel ratio */
+export function getCanvasDpr() {
+  return dpr;
+}
+
+/** Return whether canvas DPR was auto-throttled for performance */
+export function isCanvasDprThrottled() {
+  return isDprAutoThrottled;
+}
+
+/**
+ * Manually trigger canvas DPR scaling factor (e.g. 0.75 for low-power or testing).
+ * @param {number} [factor=0.75]
+ */
+export function triggerCanvasDprScale(factor = 0.75) {
+  isDprAutoThrottled = factor < 1.0;
+  dprScaleMultiplier = Math.max(0.5, Math.min(1.0, factor));
+  applyDynamicDpr();
+  return dpr;
+}
 
 /** @param {'intro'|'verse'|'climax'|'outro'} mode */
 export function setVisualMode(mode) {
@@ -444,11 +676,13 @@ export function setTheme(
   secondaryColor = null,
   particleStyle = null,
   visualEnergy = null,
-  genre = null
+  genre = null,
+  coldColor = null
 ) {
   currentTheme = theme || 'crimson-ash';
   if (primaryColor) activeAccentPrimary = primaryColor;
   if (secondaryColor) activeAccentSecondary = secondaryColor;
+  if (coldColor) activeAccentCold = coldColor;
   if (particleStyle) activeParticleStyle = particleStyle;
   if (visualEnergy) activeVisualEnergy = visualEnergy;
   if (genre !== null) activeGenre = genre;
@@ -476,38 +710,95 @@ export function setTheme(
   }
 }
 
-function renderStardust(motionScale) {
-  const scrollDrift = smoothScrollVelocity * 0.42;
-  const drawTrails = Math.abs(scrollDrift) > 0.45 && motionScale > 0.2;
+function renderStardust(motionScale, dtNorm = 1.0) {
+  if (motionScale <= 0 || !ctx) return;
+  const isReduced = reducedMotionQuery.matches;
+  const isClimaxAct = visualMode === 'climax';
+  const isHighTempo = activeVisualContext === 'high-tempo' || activeVisualContext === 'prism';
+
+  const cx = width * 0.5;
+  const cy = height * 0.5;
+  const fov = 420;
+
+  // 3D Camera parallax rotation from cursor
+  const rotPitch = isReduced ? 0 : mouseSmoothNormY * 0.28;
+  const rotYaw = isReduced ? 0 : mouseSmoothNormX * 0.28;
+  const cosPitch = Math.cos(rotPitch);
+  const sinPitch = Math.sin(rotPitch);
+  const cosYaw = Math.cos(rotYaw);
+  const sinYaw = Math.sin(rotYaw);
+
+  // Z-depth fly-through acceleration during Climax or High-Tempo
+  const flyThroughFactor = (isClimaxAct ? 3.4 : isHighTempo ? 2.4 : 0.85) *
+    (1 + smoothBass * 1.8) * livePaceFactor;
 
   ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
   for (let i = 0; i < STAR_COUNT; i++) {
     const s = starPool[i];
-    if (motionScale > 0) {
-      s.x += s.speedX * motionScale * livePaceFactor;
-      s.y += (s.speedY * livePaceFactor - scrollDrift * s.depth) * motionScale;
-      if (s.x < 0) s.x = width;
-      if (s.y < -8) s.y = height + 4;
-      if (s.y > height + 8) s.y = -4;
+
+    // Forward fly-through: star moves towards camera (-z) with guaranteed ambient drift
+    const starSpeed = (s.speedZ * flyThroughFactor * (motionScale || 0.25) + 0.15) * dtNorm;
+    s.z -= starSpeed;
+    s.y += smoothScrollVelocity * 0.35 * s.depth * (motionScale || 0.25) * dtNorm;
+
+    // Wrap-around to far plane when passing camera
+    if (s.z <= 20) {
+      s.z = STAR_Z_MAX - (20 - s.z);
+      s.x = (Math.random() - 0.5) * 1600;
+      s.y = (Math.random() - 0.5) * 1100;
+      s.prevProjX = 0;
+      s.prevProjY = 0;
+    } else if (s.z > STAR_Z_MAX) {
+      s.z = 20;
     }
+
+    if (s.y > 700) s.y = -700;
+    else if (s.y < -700) s.y = 700;
+    if (s.x > 1000) s.x = -1000;
+    else if (s.x < -1000) s.x = 1000;
+
+    // 3D Rotation (Pitch then Yaw)
+    const y1 = s.y * cosPitch - (s.z - 600) * sinPitch;
+    const z1 = s.y * sinPitch + (s.z - 600) * cosPitch;
+    const x2 = s.x * cosYaw + z1 * sinYaw;
+    const z2 = -s.x * sinYaw + z1 * cosYaw + 600;
+
+    const zEff = Math.max(15, z2);
+    const scale = fov / (fov + zEff);
+    const projX = cx + x2 * scale;
+    const projY = cy + y1 * scale;
+
+    const depthFog = Math.max(0, Math.min(1, 1 - (zEff / STAR_Z_MAX)));
     const breathe = 0.78 + 0.22 * Math.sin(time * 0.9 + s.phase);
-    const alpha = (s.baseAlpha * breathe).toFixed(3);
-    if (drawTrails) {
-      const tailLen = Math.min(22, Math.abs(scrollDrift) * s.depth * 3.5);
-      const dir = scrollDrift >= 0 ? 1 : -1;
-      ctx.strokeStyle = `rgba(242, 239, 233, ${alpha})`;
-      ctx.lineWidth = s.r * 1.1;
-      ctx.lineCap = 'round';
+    const starAlpha = Math.min(0.85, s.baseAlpha * depthFog * breathe * (0.8 + smoothVocal * 0.4));
+    const projR = Math.max(0.5, s.r * scale * 1.5);
+
+    if (projX >= -20 && projX <= width + 20 && projY >= -20 && projY <= height + 20) {
+      if (!isReduced && flyThroughFactor > 2.0 && s.prevProjX !== 0 && s.prevProjY !== 0 && motionScale > 0.3) {
+        const dx = projX - s.prevProjX;
+        const dy = projY - s.prevProjY;
+        const trailLen = Math.min(28, Math.sqrt(dx * dx + dy * dy) * 1.4);
+        if (trailLen > 1.5) {
+          const angle = Math.atan2(projY - cy, projX - cx);
+          ctx.strokeStyle = `rgba(242, 239, 233, ${(starAlpha * 0.65).toFixed(3)})`;
+          ctx.lineWidth = Math.max(0.6, projR * 0.9);
+          ctx.beginPath();
+          ctx.moveTo(projX, projY);
+          ctx.lineTo(projX - Math.cos(angle) * trailLen, projY - Math.sin(angle) * trailLen);
+          ctx.stroke();
+        }
+      }
+
+      ctx.fillStyle = `rgba(242, 239, 233, ${starAlpha.toFixed(3)})`;
       ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x, s.y + dir * tailLen);
-      ctx.stroke();
-    } else {
-      ctx.fillStyle = `rgba(242, 239, 233, ${alpha})`;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.arc(projX, projY, projR, 0, Math.PI * 2);
       ctx.fill();
     }
+
+    s.prevProjX = projX;
+    s.prevProjY = projY;
   }
   ctx.restore();
 }
@@ -533,27 +824,151 @@ function renderBreathingHalo(bassNorm, vocalNorm) {
   ctx.restore();
 }
 
-const GROOVE_MOTE_COUNT = 26;
-const grooveMotePool = Array.from({ length: GROOVE_MOTE_COUNT }, (_, idx) => ({
-  x: Math.random() * width,
-  y: height * (0.28 + Math.random() * 0.44),
-  r: 4 + Math.random() * 10,
-  vx: (Math.random() - 0.5) * 0.9,
-  phase: idx * 0.7,
-  alpha: 0.16 + Math.random() * 0.18,
-  warmTone: idx % 2 === 0,
-}));
+/**
+ * 3D Volumetric Orbital Halo / Wireframe Rings
+ * Mathematically projected in Canvas 2D with zero heap allocation per frame.
+ */
+function render3DOrbitalRings(smoothBass, smoothVocal, motionScale, dtNorm = 1.0) {
+  if (motionScale <= 0 || !ctx) return;
+  const isReduced = reducedMotionQuery.matches;
+  const cx = width * 0.5;
+  const cy = height * 0.5;
+  const fov = 420;
 
-const EMBER_COUNT = 24;
-const emberPool = Array.from({ length: EMBER_COUNT }, () => ({
-  x: Math.random() * width,
-  y: height * (0.45 + Math.random() * 0.55),
-  r: 1.8 + Math.random() * 3.2,
-  vy: -(0.7 + Math.random() * 1.15),
-  vx: (Math.random() - 0.5) * 0.45,
-  alpha: 0.22 + Math.random() * 0.2,
-  phase: Math.random() * Math.PI * 2,
-}));
+  const rotPitch = isReduced ? 0 : mouseSmoothNormY * 0.32;
+  const rotYaw = isReduced ? 0 : mouseSmoothNormX * 0.32;
+
+  // Theme & Synesthesia dynamic color interpolation
+  let ringPrimary = activeAccentPrimary;
+  let ringSecondary = activeAccentSecondary || activeAccentPrimary;
+
+  if (smoothRainSurge > 0.05) {
+    ringPrimary = lerpColorHex(ringPrimary, '#94A3B8', smoothRainSurge * 0.85);
+    ringSecondary = lerpColorHex(ringSecondary, '#64748B', smoothRainSurge * 0.85);
+  } else if (smoothFireSurge > 0.05) {
+    ringPrimary = lerpColorHex(ringPrimary, '#E11D48', smoothFireSurge * 0.85);
+    ringSecondary = lerpColorHex(ringSecondary, '#F43F5E', smoothFireSurge * 0.85);
+  } else if (smoothNightSurge > 0.05) {
+    ringPrimary = lerpColorHex(ringPrimary, '#38BDF8', smoothNightSurge * 0.85);
+    ringSecondary = lerpColorHex(ringSecondary, '#818CF8', smoothNightSurge * 0.85);
+  } else if (smoothWarmthSurge > 0.05) {
+    ringPrimary = lerpColorHex(ringPrimary, '#E6B86A', smoothWarmthSurge * 0.85);
+    ringSecondary = lerpColorHex(ringSecondary, '#F59E0B', smoothWarmthSurge * 0.85);
+  }
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  const minDim = Math.min(width, height);
+  const harmonicPulse = smoothBass * 0.22 + smoothVocal * 0.14;
+
+  for (let rIdx = 0; rIdx < ORBITAL_RING_COUNT; rIdx++) {
+    const baseRadius = minDim * (0.22 + rIdx * 0.08) * (1 + harmonicPulse);
+    const ringOffset = rIdx * (ORBITAL_SEGMENTS + 1);
+
+    // Continuous slow 3D rotation angles per ring
+    let pitch, yaw, roll;
+    if (rIdx === 0) {
+      pitch = 1.05 + Math.sin(time * 0.22) * 0.15 + rotPitch;
+      yaw = time * 0.18 + rotYaw;
+      roll = 0.25;
+    } else if (rIdx === 1) {
+      pitch = -0.85 + Math.cos(time * 0.26) * 0.18 + rotPitch;
+      yaw = -time * 0.24 + 1.2 + rotYaw;
+      roll = 0.75;
+    } else {
+      pitch = 1.35 + Math.sin(time * 0.15) * 0.12 + rotPitch;
+      yaw = time * 0.14 - 1.5 + rotYaw;
+      roll = -time * 0.1;
+    }
+
+    const cosRoll = Math.cos(roll);
+    const sinRoll = Math.sin(roll);
+    const cosPitch = Math.cos(pitch);
+    const sinPitch = Math.sin(pitch);
+    const cosYaw = Math.cos(yaw);
+    const sinYaw = Math.sin(yaw);
+
+    for (let seg = 0; seg <= ORBITAL_SEGMENTS; seg++) {
+      const theta = (seg / ORBITAL_SEGMENTS) * Math.PI * 2;
+      const ripple = 1 + Math.sin(theta * 4 + time * 2.4 + rIdx * 1.5) * (smoothBass * 0.07 + smoothVocal * 0.05);
+      const rad = baseRadius * ripple;
+
+      const x0 = rad * Math.cos(theta);
+      const y0 = rad * Math.sin(theta);
+      const z0 = Math.sin(theta * 3 + time * 1.8) * (14 * smoothBass);
+
+      // Roll (Z)
+      const x1 = x0 * cosRoll - y0 * sinRoll;
+      const y1 = x0 * sinRoll + y0 * cosRoll;
+      const z1 = z0;
+
+      // Pitch (X)
+      const x2 = x1;
+      const y2 = y1 * cosPitch - z1 * sinPitch;
+      const z2 = y1 * sinPitch + z1 * cosPitch;
+
+      // Yaw (Y)
+      const x3 = x2 * cosYaw + z2 * sinYaw;
+      const y3 = y2;
+      const z3 = -x2 * sinYaw + z2 * cosYaw;
+
+      // Projection with frustum offset
+      const zProj = z3 + 450;
+      const scale = fov / (fov + Math.max(20, zProj));
+      const px = cx + x3 * scale;
+      const py = cy + y3 * scale;
+
+      const idx = ringOffset + seg;
+      ringProjX[idx] = px;
+      ringProjY[idx] = py;
+      ringProjZ[idx] = zProj;
+      ringProjScale[idx] = scale;
+    }
+
+    // Render wireframe ring path at full pristine 2D cinematic clarity
+    const baseAlpha = isReduced
+      ? 0.1
+      : Math.min(0.55, (0.16 + smoothBass * 0.26 + smoothVocal * 0.14) * (rIdx === 0 ? 1 : 0.82));
+    const ringAlpha = baseAlpha;
+    const activeRingColor = rIdx % 2 === 0 ? ringPrimary : ringSecondary;
+
+    ctx.beginPath();
+    ctx.moveTo(ringProjX[ringOffset], ringProjY[ringOffset]);
+    for (let seg = 1; seg <= ORBITAL_SEGMENTS; seg++) {
+      ctx.lineTo(ringProjX[ringOffset + seg], ringProjY[ringOffset + seg]);
+    }
+    ctx.closePath();
+
+    ctx.strokeStyle = hexToRgba(activeRingColor, ringAlpha);
+    ctx.lineWidth = Math.max(0.8, (1.1 + smoothBass * 1.2) * (rIdx === 0 ? 1.2 : 0.95));
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+
+    // Subtle inner glowing border
+    ctx.lineWidth = 0.6;
+    ctx.strokeStyle = hexToRgba(SOFT_IVORY, ringAlpha * 0.45);
+    ctx.stroke();
+
+    // Holographic stardust node vertices every 4th segment
+    if (!isReduced) {
+      for (let seg = 0; seg < ORBITAL_SEGMENTS; seg += 4) {
+        const idx = ringOffset + seg;
+        const px = ringProjX[idx];
+        const py = ringProjY[idx];
+        const sc = ringProjScale[idx];
+        const pipRadius = Math.max(0.6, 1.3 * sc * (1 + smoothBass * 0.8));
+        ctx.fillStyle = hexToRgba(SOFT_IVORY, Math.min(0.7, ringAlpha * 1.5));
+        ctx.beginPath();
+        ctx.arc(px, py, pipRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  ctx.restore();
+}
 
 const SONIC_RING_COUNT = 6;
 const sonicRingPool = Array.from({ length: SONIC_RING_COUNT }, () => ({
@@ -568,24 +983,6 @@ let sonicRingHead = 0;
 let prevGroovyEnergy = 0;
 let lastSonicRingMs = 0;
 
-const RAIN_STREAK_COUNT = 34;
-const rainStreakPool = Array.from({ length: RAIN_STREAK_COUNT }, (_, idx) => ({
-  x: Math.random() * width,
-  y: Math.random() * height,
-  len: 14 + Math.random() * 20,
-  speed: 3.4 + Math.random() * 2.6,
-  alpha: 0.12 + (idx % 10) * 0.01,
-}));
-
-const CALM_RIPPLE_COUNT = 5;
-const calmRipplePool = Array.from({ length: CALM_RIPPLE_COUNT }, (_, idx) => ({
-  x: width * (0.2 + Math.random() * 0.6),
-  y: height * (0.64 + Math.random() * 0.22),
-  radius: idx * 24,
-  maxRadius: 90 + Math.random() * 55,
-  alpha: 0.16,
-}));
-
 function spawnSonicRing(energy) {
   const ring = sonicRingPool[sonicRingHead];
   sonicRingHead = (sonicRingHead + 1) % SONIC_RING_COUNT;
@@ -598,9 +995,12 @@ function spawnSonicRing(energy) {
 }
 
 /**
- * Multi-layer Silk Aurora featuring dynamic color-shift & dual-harmonic climax ribbons.
+ * 3-Layer Multi-Octave Fluid Silk Aurora:
+ * - Layer 0: Far Haze (broad, soft atmospheric backdrop)
+ * - Layer 1: Mid Silk Wave (fluid undulation, mid-bass & tempo reactive)
+ * - Layer 2: Near Harmonic Ribbon (crisp foreground ribbon with vocal & synesthesia harmonics)
  */
-function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale) {
+function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale, dtNorm = 1.0) {
   const baseY = height * 0.54;
   const isClimaxAct = visualMode === 'climax' || visualMode === 'verse';
   const isPeakClimax = visualMode === 'climax';
@@ -609,7 +1009,6 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
   const isGroovy = activeVisualEnergy === 'groovy';
   const isIntense = activeVisualEnergy === 'intense';
 
-  const layerCount = isPeakClimax ? 4 : isCalm ? 2 : isGroovy ? 3 : isClimaxAct ? 4 : 3;
   const surgeFactor = auroraBoostRemaining > 0 ? 1 + (auroraBoostRemaining / 0.8) * 0.65 : 1;
   const flowEnergyBoost = (1 + (bassNorm * 0.28 + vocalNorm * 0.24)) * livePaceFactor;
   const ribbonAmp =
@@ -631,45 +1030,54 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
 
   const colorShiftPhase = 0.5 + 0.5 * Math.sin(time * 0.35 + bassNorm * 1.4);
 
+  // 3 Distinct Depth Layers: Far Haze (0), Mid Silk Wave (1), Near Harmonic Ribbon (2)
+  const layerCount = 3;
   for (let layer = 0; layer < layerCount; layer++) {
-    const speedRate = (isCalm ? 0.22 : isGroovy ? 0.64 : isClimaxAct ? 0.8 : 0.46) * surgeFactor * flowEnergyBoost;
-    const phase = time * (speedRate + layer * 0.18) * (motionScale || 0.2) + layer * 1.5;
-    const mixRatio = layer % 2 === 1 ? colorShiftPhase : 1 - colorShiftPhase * 0.7;
-    const baseAlpha = isCalm ? 0.15 : isGroovy ? 0.22 : isClimaxAct ? 0.24 : 0.18;
-    const alpha = Math.max(0.11, baseAlpha - layer * 0.025);
-    const ySpread = (isIntense || isPeakClimax) ? 34 : 24;
-    const yOffset = (layer - (layerCount - 1) * 0.5) * ySpread;
-    const thickness = isCalm
-      ? 42 + layer * 16 + bassNorm * 10
-      : isGroovy
-        ? 52 + layer * 18 + (bassNorm + midNorm) * 18
-        : (isClimaxAct ? 68 : 54) + layer * 22 + bassNorm * 38;
+    const isFarHaze = layer === 0;
+    const isMidWave = layer === 1;
+    const isNearRibbon = layer === 2;
+
+    const layerSpeed = isFarHaze ? 0.35 : isMidWave ? 0.68 : 0.95;
+    const speedRate = (isCalm ? 0.22 : isGroovy ? 0.58 : isClimaxAct ? 0.82 : 0.46) * layerSpeed * surgeFactor * flowEnergyBoost * (1 - smoothNightSurge * 0.45);
+    const ambientFlow = Math.max(0.14, speedRate * (motionScale || 0.25));
+    const phase = time * ambientFlow + layer * 1.8;
+    const mixRatio = isNearRibbon ? colorShiftPhase : 1 - colorShiftPhase * 0.7;
+
+    const baseAlpha = isFarHaze ? 0.14 : isMidWave ? 0.22 : 0.28;
+    const alpha = Math.max(0.08, baseAlpha * (isCalm ? 0.85 : 1.0));
+    const yOffset = (layer - 1) * (isPeakClimax ? 30 : 22);
+
+    const thickness = isFarHaze
+      ? (isCalm ? 72 : 108) + bassNorm * 34
+      : isMidWave
+        ? (isCalm ? 42 : 62) + (bassNorm + midNorm) * 24
+        : (isCalm ? 3 : 4.5) + vocalNorm * 3.5;
 
     ctx.beginPath();
-    const steps = isCalm ? 24 : 36;
+    const steps = 36;
     for (let s = 0; s <= steps; s++) {
       const ratio = s / steps;
       const x = ratio * width;
       const envelope = Math.sin(ratio * Math.PI);
 
       let wave;
-      if (isCalm && !isPeakClimax) {
-        wave = Math.sin(ratio * 3.1 + phase) * 0.8 + Math.cos(ratio * 5.2 - phase * 0.5) * 0.2;
-      } else if (isGroovy && !isPeakClimax) {
+      if (isFarHaze) {
+        wave = Math.sin(ratio * 2.8 + phase) * 0.75 + Math.cos(ratio * 4.6 - phase * 0.4) * 0.25;
+      } else if (isMidWave) {
         wave =
-          Math.sin(ratio * 5.6 + phase) * 0.54 +
-          Math.sin(ratio * 11.4 - phase * 1.15) * (0.28 + midNorm * 0.22) +
-          Math.cos(ratio * 16.8 + phase * 1.4) * (0.14 * bassNorm);
+          Math.sin(ratio * 5.2 + phase) * 0.5 +
+          Math.sin(ratio * 10.8 - phase * 1.1) * (0.3 + midNorm * 0.22) +
+          Math.cos(ratio * 15.4 + phase * 1.3) * (0.15 * bassNorm);
       } else {
-        // Dual harmonic climax waves + sharp mid/treble distortion for intense tracks
-        const drive = isPeakClimax ? 1.2 : isIntense ? 1.05 : 0.78;
+        // Near Harmonic Ribbon: high-harmonic oscillation driven by vocals & climax
+        const drive = isPeakClimax ? 1.25 : isIntense ? 1.1 : 0.85;
         const harmonicDistortion = isIntense
-          ? Math.sin(ratio * 27.0 - phase * 2.2) * (0.14 * (midNorm + trebleNorm))
+          ? Math.sin(ratio * 24.0 - phase * 2.0) * (0.12 * (midNorm + trebleNorm + vocalNorm))
           : 0;
         wave =
-          Math.sin(ratio * 4.8 + phase) * 0.5 +
-          Math.sin(ratio * 13.5 - phase * 1.35) * (0.34 * drive + bassNorm * 0.22) +
-          Math.cos(ratio * 21.0 + phase * 1.8) * (0.18 * trebleNorm * drive) +
+          Math.sin(ratio * 4.6 + phase) * 0.48 +
+          Math.sin(ratio * 12.8 - phase * 1.3) * (0.32 * drive + bassNorm * 0.2) +
+          Math.cos(ratio * 20.0 + phase * 1.7) * (0.18 * trebleNorm * drive) +
           harmonicDistortion;
       }
 
@@ -681,17 +1089,28 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.lineWidth = thickness;
+    const primaryTint = smoothRainSurge > 0.01
+      ? lerpColorHex(activeAccentPrimary, '#94A3B8', smoothRainSurge * 0.45)
+      : smoothFireSurge > 0.01
+        ? lerpColorHex(activeAccentPrimary, '#E11D48', smoothFireSurge * 0.45)
+        : activeAccentPrimary;
+    const secondaryTint = smoothWarmthSurge > 0.01
+      ? lerpColorHex(activeAccentSecondary || activeAccentPrimary, '#E6B86A', smoothWarmthSurge * 0.55)
+      : (activeAccentSecondary || activeAccentPrimary);
+
     ctx.strokeStyle = lerpColorRgba(
-      activeAccentPrimary,
-      activeAccentSecondary || activeAccentPrimary,
+      primaryTint,
+      secondaryTint,
       mixRatio,
       alpha
     );
     ctx.stroke();
 
-    ctx.lineWidth = isCalm && !isPeakClimax ? 1.5 : 2.2;
-    ctx.strokeStyle = `rgba(242, 239, 233, ${(alpha * (isCalm ? 0.3 : 0.45)).toFixed(3)})`;
-    ctx.stroke();
+    if (isNearRibbon) {
+      ctx.lineWidth = isCalm && !isPeakClimax ? 1.5 : 2.2;
+      ctx.strokeStyle = `rgba(242, 239, 233, ${(alpha * (isCalm ? 0.35 : 0.55)).toFixed(3)})`;
+      ctx.stroke();
+    }
   }
 
   // Beat-synced Kinetic Shockwave Rings (universal across all curated, imported & user tracks)
@@ -702,7 +1121,7 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
     for (let i = 0; i < SONIC_RING_COUNT; i++) {
       const ring = sonicRingPool[i];
       if (!ring.active) continue;
-      ring.radius += (1.9 + grooveHit * 2.4) * livePaceFactor * motionScale;
+      ring.radius += (1.9 + grooveHit * 2.4) * livePaceFactor * motionScale * dtNorm;
       const progress = Math.min(1, ring.radius / Math.max(1, ring.maxRadius));
       const fadeAlpha = ring.alpha * (1 - progress);
       if (progress >= 1 || fadeAlpha <= 0.005) {
@@ -717,74 +1136,6 @@ function renderSilkAurora(bassNorm, midNorm, trebleNorm, vocalNorm, motionScale)
     }
   }
 
-  if (isGroovy && secondaryBokehSprite && primaryBokehSprite) {
-    const grooveEnergy = midNorm * 0.55 + bassNorm * 0.45;
-    for (let i = 0; i < GROOVE_MOTE_COUNT; i++) {
-      const m = grooveMotePool[i];
-      m.x += (m.vx + Math.cos(time * 1.2 + m.phase) * (0.55 + grooveEnergy * 1.4)) * motionScale;
-      const bounceY = Math.sin(time * 2.1 + m.phase) * (8 + grooveEnergy * 24);
-      if (m.x < -30) m.x = width + 30;
-      if (m.x > width + 30) m.x = -30;
-      const drawY = m.y + bounceY;
-      const r = m.r * (0.9 + grooveEnergy * 0.55);
-      ctx.globalAlpha = Math.min(0.42, m.alpha * (0.75 + grooveEnergy * 0.75));
-      ctx.drawImage(m.warmTone ? secondaryBokehSprite : primaryBokehSprite, m.x - r, drawY - r, r * 2, r * 2);
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  if (isIntense) {
-    const sparkDrive = (isClimaxAct ? 0.78 : 0.58) + (midNorm * 0.68 + trebleNorm * 0.56 + bassNorm * 0.35);
-    for (let i = 0; i < EMBER_COUNT; i++) {
-      const e = emberPool[i];
-      e.x += (e.vx + Math.sin(time * 1.8 + e.phase) * (0.35 + midNorm * 0.45)) * motionScale;
-      e.y += e.vy * sparkDrive * motionScale;
-      if (e.y < height * 0.08) {
-        e.y = height * (0.74 + Math.random() * 0.24);
-        e.x = Math.random() * width;
-      }
-      ctx.fillStyle = hexToRgba(activeAccentSecondary || activeAccentPrimary, Math.min(0.42, e.alpha * (0.6 + midNorm * 0.45 + bassNorm * 0.35)));
-      ctx.beginPath();
-      ctx.arc(e.x, e.y, e.r * (0.85 + trebleNorm * 0.4), 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  if (isCalm) {
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 1.05;
-    for (let i = 0; i < RAIN_STREAK_COUNT; i++) {
-      const drop = rainStreakPool[i];
-      drop.x += drop.speed * 0.24 * motionScale;
-      drop.y += drop.speed * (0.85 + vocalNorm * 0.3) * motionScale;
-      if (drop.y > height + 24 || drop.x > width + 24) {
-        drop.x = Math.random() * width;
-        drop.y = -24 - Math.random() * 60;
-      }
-      ctx.strokeStyle = hexToRgba(SOFT_IVORY, drop.alpha);
-      ctx.beginPath();
-      ctx.moveTo(drop.x, drop.y);
-      ctx.lineTo(drop.x + drop.len * 0.24, drop.y + drop.len);
-      ctx.stroke();
-    }
-
-    ctx.lineWidth = 1.1;
-    for (let i = 0; i < CALM_RIPPLE_COUNT; i++) {
-      const rp = calmRipplePool[i];
-      rp.radius += (0.45 + vocalNorm * 0.35) * motionScale;
-      if (rp.radius >= rp.maxRadius) {
-        rp.radius = 4;
-        rp.x = width * (0.18 + Math.random() * 0.64);
-        rp.y = height * (0.6 + Math.random() * 0.26);
-      }
-      const prog = rp.radius / rp.maxRadius;
-      ctx.strokeStyle = hexToRgba(activeAccentSecondary || activeAccentPrimary, 0.16 * (1 - prog));
-      ctx.beginPath();
-      ctx.ellipse(rp.x, rp.y, rp.radius, rp.radius * 0.34, 0, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-  }
-
   ctx.restore();
 }
 
@@ -792,8 +1143,8 @@ export function getVisualPhysicsMode() {
   return activeVisualEnergy;
 }
 
-function renderDepthBokeh(bassNorm, vocalNorm, motionScale) {
-  if (!primaryBokehSprite || !secondaryBokehSprite) return;
+function renderDepthBokeh(bassNorm, vocalNorm, motionScale, dtNorm = 1.0) {
+  if (!primaryBokehSprite || !secondaryBokehSprite || !foregroundBokehSprite) return;
 
   const isCalm = activeVisualEnergy === 'calm';
   const isGroovy = activeVisualEnergy === 'groovy';
@@ -803,45 +1154,274 @@ function renderDepthBokeh(bassNorm, vocalNorm, motionScale) {
     activeParticleStyle === 'falling-ash';
 
   const basePace = isCalm ? 0.48 : isGroovy ? 0.92 : 1.05;
-  const speedMult = (basePace + bassNorm * (isCalm ? 0.25 : 0.68) + vocalNorm * 0.38) * motionScale;
+  const speedMult = Math.max(0.18, (basePace + bassNorm * (isCalm ? 0.25 : 0.68) + vocalNorm * 0.38) * (motionScale || 0.25) * dtNorm);
 
   ctx.save();
   ctx.globalCompositeOperation = 'screen';
 
+  // --- Layer 1: Background Distant Micro-Particles ---
+  ctx.fillStyle = hexToRgba(activeAccentSecondary || SOFT_IVORY, 0.22);
+  for (let i = 0; i < BG_BOKEH_COUNT; i++) {
+    const b = bgBokehPool[i];
+    b.x += (b.speedX + Math.sin(time * 0.4 + b.swayPhase) * 0.08) * speedMult * 0.45;
+    b.y += b.speedY * speedMult * 0.45;
+    if (b.y < -10) b.y = height + 10;
+    if (b.y > height + 10) b.y = -10;
+    if (b.x < -10) b.x = width + 10;
+    if (b.x > width + 10) b.x = -10;
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // --- Layer 2: Midground Synesthesia Weather Bokeh ---
   for (let i = 0; i < BOKEH_COUNT; i++) {
     const b = bokehPool[i];
-    if (speedMult > 0) {
-      b.x += (b.speedX + Math.sin(time * 0.7 + b.swayPhase) * b.swayAmp * 0.25) * speedMult;
-      b.y += (isRainStyle ? Math.abs(b.speedY) : -Math.abs(b.speedY)) * speedMult;
-
-      if (cursorActive && motionScale > 0.2) {
-        const dx = b.x - cursorPxX;
-        const dy = b.y - cursorPxY;
-        const distSq = dx * dx + dy * dy;
-        const maxDist = 140;
-        if (distSq > 1 && distSq < maxDist * maxDist) {
-          const dist = Math.sqrt(distSq);
-          const falloff = 1 - dist / maxDist;
-          const nx = dx / dist;
-          const ny = dy / dist;
-          const force = falloff * 1.45 * motionScale;
-          b.x += (nx - ny * 0.45) * force;
-          b.y += (ny + nx * 0.45) * force;
-        }
-      }
-
-      if (isRainStyle && b.y > height + b.radius * 2) resetBokehItem(b, true);
-      else if (!isRainStyle && b.y < -b.radius * 2) resetBokehItem(b, false);
-      if (b.x < -b.radius * 2) b.x = width + b.radius;
-      if (b.x > width + b.radius * 2) b.x = -b.radius;
+    let dirShiftY = 0;
+    let dirShiftX = 0;
+    if (smoothRainSurge > 0.02) {
+      dirShiftY += smoothRainSurge * 2.8 * (motionScale || 0.25) * dtNorm;
+    }
+    if (smoothNightSurge > 0.02) {
+      dirShiftY -= (0.75 + smoothNightSurge * 2.2) * (motionScale || 0.25) * dtNorm;
+      dirShiftX += Math.sin(time * 0.7 + b.swayPhase) * (0.45 + smoothNightSurge * 0.8) * (motionScale || 0.25) * dtNorm;
+    }
+    if (smoothFireSurge > 0.02) {
+      dirShiftY -= (0.45 + smoothFireSurge * 1.8) * (motionScale || 0.25) * dtNorm;
+      dirShiftX += Math.sin(time * 2.4 + b.swayPhase) * (0.5 + smoothFireSurge * 1.5) * (motionScale || 0.25) * dtNorm;
     }
 
-    const r = b.radius * (0.94 + vocalNorm * 0.14);
+    b.x += (b.speedX + Math.sin(time * 0.7 + b.swayPhase) * b.swayAmp * 0.25) * speedMult + dirShiftX;
+    b.y += (isRainStyle ? Math.abs(b.speedY) : -Math.abs(b.speedY)) * speedMult + dirShiftY;
+
+    if (cursorActive && motionScale > 0.15) {
+      const dx = b.x - cursorPxX;
+      const dy = b.y - cursorPxY;
+      const distSq = dx * dx + dy * dy;
+      const maxDist = 140;
+      if (distSq > 1 && distSq < maxDist * maxDist) {
+        const dist = Math.sqrt(distSq);
+        const falloff = 1 - dist / maxDist;
+        const nx = dx / dist;
+        const ny = dy / dist;
+        const force = falloff * 1.45 * (motionScale || 0.25) * dtNorm;
+        b.x += (nx - ny * 0.45) * force;
+        b.y += (ny + nx * 0.45) * force;
+      }
+    }
+
+    if (b.y > height + b.radius * 2) resetBokehItem(b, true);
+    else if (b.y < -b.radius * 2) resetBokehItem(b, false);
+    if (b.x < -b.radius * 2) b.x = width + b.radius;
+    if (b.x > width + b.radius * 2) b.x = -b.radius;
+
+    const warmthScale = 1 + smoothWarmthSurge * 0.42;
+    const r = b.radius * (0.94 + vocalNorm * 0.14) * warmthScale;
     const sprite = b.useSecondary ? secondaryBokehSprite : primaryBokehSprite;
-    ctx.globalAlpha = Math.min(0.45, b.alpha * (0.82 + vocalNorm * 0.35));
+    ctx.globalAlpha = Math.min(0.52, b.alpha * (0.82 + vocalNorm * 0.35 + smoothWarmthSurge * 0.45));
     ctx.drawImage(sprite, b.x - r, b.y - r, r * 2, r * 2);
   }
 
+  // --- Layer 3: Foreground Large Soft Blurred DoF Orbs with Cursor Parallax ---
+  const pOffsetX = (mouseSmoothNormX || 0) * 36;
+  const pOffsetY = (mouseSmoothNormY || 0) * 24;
+
+  for (let i = 0; i < FG_BOKEH_COUNT; i++) {
+    const b = fgBokehPool[i];
+    b.x += (b.speedX + Math.sin(time * 0.5 + b.swayPhase) * b.swayAmp * 0.2) * speedMult * 0.65;
+    b.y += b.speedY * speedMult * 0.65;
+    if (b.y < -b.radius * 2) b.y = height + b.radius * 2;
+    if (b.y > height + b.radius * 2) b.y = -b.radius * 2;
+    if (b.x < -b.radius * 2) b.x = width + b.radius * 2;
+    if (b.x > width + b.radius * 2) b.x = -b.radius * 2;
+
+    const drawX = b.x + pOffsetX * b.parallaxFactor;
+    const drawY = b.y + pOffsetY * b.parallaxFactor;
+    const r = b.radius * (0.95 + vocalNorm * 0.2);
+    const sprite = b.useSecondary ? secondaryBokehSprite : foregroundBokehSprite;
+
+    ctx.globalAlpha = Math.min(0.16, b.alpha * (0.85 + vocalNorm * 0.4));
+    ctx.drawImage(sprite, drawX - r, drawY - r, r * 2, r * 2);
+  }
+
+  ctx.restore();
+}
+
+/**
+ * Volumetric God-Rays: Soft angled light shafts sweeping subtly and expanding with vocal energy.
+ */
+function renderVolumetricGodRays(smoothVocal, motionScale, dtNorm = 1.0) {
+  if (motionScale <= 0 || !ctx) return;
+
+  const isCalm = visualMode === 'verse' || activeVisualEnergy === 'calm';
+  const isClimax = visualMode === 'climax';
+  const isOutro = visualMode === 'outro';
+
+  const maxAllowed = extraReactiveEffects ? 0.16 : 0.08;
+  const actIntensity = extraReactiveEffects
+    ? (isClimax ? 0.12 : isOutro ? 0.08 : 0.06)
+    : (isClimax ? 0.055 : isOutro ? 0.04 : 0.035);
+  const vocalBoost = (smoothVocal || 0) * (extraReactiveEffects ? 0.08 : 0.03);
+  const totalAlpha = Math.min(maxAllowed, actIntensity + vocalBoost);
+  if (totalAlpha < 0.005) return;
+
+  const rayColor = smoothWarmthSurge > 0.1
+    ? '#E6B86A'
+    : smoothFireSurge > 0.1
+      ? '#E11D48'
+      : smoothRainSurge > 0.1
+        ? '#94A3B8'
+        : (activeAccentPrimary || '#D65A70');
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  const originX = width * 0.18;
+  const originY = -50;
+  const sweepBase = 0.52 + Math.sin(time * 0.25) * 0.12;
+
+  for (let i = 0; i < 3; i++) {
+    const rayAngle = sweepBase + (i - 1) * 0.22 + Math.sin(time * 0.35 + i * 1.6) * 0.04;
+    const rayLength = Math.max(width, height) * 1.45;
+    const rayWidthStart = 24 + i * 14;
+    const rayWidthEnd = 170 + i * 95 + vocalBoost * 150;
+
+    const endX = originX + Math.cos(rayAngle) * rayLength;
+    const endY = originY + Math.sin(rayAngle) * rayLength;
+
+    const normalX = -Math.sin(rayAngle);
+    const normalY = Math.cos(rayAngle);
+
+    const p1x = originX - normalX * (rayWidthStart * 0.5);
+    const p1y = originY - normalY * (rayWidthStart * 0.5);
+    const p2x = originX + normalX * (rayWidthStart * 0.5);
+    const p2y = originY + normalY * (rayWidthStart * 0.5);
+
+    const p3x = endX + normalX * (rayWidthEnd * 0.5);
+    const p3y = endY + normalY * (rayWidthEnd * 0.5);
+    const p4x = endX - normalX * (rayWidthEnd * 0.5);
+    const p4y = endY - normalY * (rayWidthEnd * 0.5);
+
+    const grad = ctx.createLinearGradient(originX, originY, endX, endY);
+    const rayAlpha = totalAlpha * (1 - i * 0.24);
+    grad.addColorStop(0, hexToRgba(rayColor, rayAlpha * 1.25));
+    grad.addColorStop(0.35, hexToRgba(rayColor, rayAlpha * 0.75));
+    grad.addColorStop(0.75, hexToRgba(rayColor, rayAlpha * 0.25));
+    grad.addColorStop(1, hexToRgba(rayColor, 0));
+
+    ctx.beginPath();
+    ctx.moveTo(p1x, p1y);
+    ctx.lineTo(p2x, p2y);
+    ctx.lineTo(p3x, p3y);
+    ctx.lineTo(p4x, p4y);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * Anamorphic Cinema Flare: Horizontal luminous beam featured during Act III Climax on heavy transients.
+ */
+function renderAnamorphicCinemaFlare(smoothBass, motionScale) {
+  if (motionScale <= 0.1 || !ctx) return;
+  if (visualMode !== 'climax') return;
+
+  const hitEnergy = smoothBass * 0.65 + liveBeatFlux * 0.35;
+  if (hitEnergy < 0.36) return;
+
+  const flareAlpha = Math.min(0.68, (hitEnergy - 0.34) * 1.55);
+  const cx = width * 0.5;
+  const cy = height * 0.52;
+  const flareWidth = width * (0.42 + hitEnergy * 0.45);
+  const flareHeight = 5 + hitEnergy * 7;
+
+  const flareColor = activeAccentSecondary || activeAccentPrimary || '#D65A70';
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  // Horizontal anamorphic beam
+  const beamGrad = ctx.createLinearGradient(cx - flareWidth, cy, cx + flareWidth, cy);
+  beamGrad.addColorStop(0, 'rgba(0,0,0,0)');
+  beamGrad.addColorStop(0.3, hexToRgba(flareColor, flareAlpha * 0.18));
+  beamGrad.addColorStop(0.46, hexToRgba('#FFFFFF', flareAlpha * 0.5));
+  beamGrad.addColorStop(0.5, hexToRgba('#FFFFFF', flareAlpha * 0.95));
+  beamGrad.addColorStop(0.54, hexToRgba('#FFFFFF', flareAlpha * 0.5));
+  beamGrad.addColorStop(0.7, hexToRgba(flareColor, flareAlpha * 0.18));
+  beamGrad.addColorStop(1, 'rgba(0,0,0,0)');
+
+  ctx.fillStyle = beamGrad;
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, flareWidth, flareHeight, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Subtle central core flare
+  const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 32 + hitEnergy * 28);
+  coreGrad.addColorStop(0, hexToRgba('#FFFFFF', flareAlpha * 0.65));
+  coreGrad.addColorStop(0.38, hexToRgba(flareColor, flareAlpha * 0.3));
+  coreGrad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = coreGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 32 + hitEnergy * 28, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+/**
+ * Dynamic Visual Novel Mood Framing: Breathing reactive vignette at canvas edges.
+ */
+function renderCinematicVignette(smoothBass, motionScale) {
+  if (motionScale <= 0 || !ctx) return;
+
+  const isClimax = visualMode === 'climax';
+  const isOutro = visualMode === 'outro';
+  const isCalm = visualMode === 'verse';
+
+  const baseVignette = isClimax ? 0.32 : isOutro ? 0.18 : isCalm ? 0.16 : 0.22;
+  const pulse = baseVignette + Math.sin(time * 0.75) * 0.02 + smoothBass * (isClimax ? 0.14 : 0.07);
+
+  const cx = width * 0.5;
+  const cy = height * 0.5;
+  const maxDim = Math.max(width, height);
+  const innerR = maxDim * (isClimax ? 0.38 : 0.44);
+  const outerR = maxDim * 0.78;
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'source-over';
+  const grad = ctx.createRadialGradient(cx, cy, innerR, cx, cy, outerR);
+  grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
+  grad.addColorStop(0.7, `rgba(11, 12, 16, ${(pulse * 0.45).toFixed(3)})`);
+  grad.addColorStop(1, `rgba(11, 12, 16, ${(pulse * 0.88).toFixed(3)})`);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, width, height);
+  ctx.restore();
+}
+
+function renderAmbientBackdropGlow(bassNorm, motionScale) {
+  if (motionScale <= 0 || !ctx) return;
+  let glowColor = activeAccentPrimary || '#D65A70';
+  if (smoothRainSurge > 0.1) glowColor = '#94A3B8';
+  else if (smoothFireSurge > 0.1) glowColor = '#E11D48';
+  else if (smoothNightSurge > 0.1) glowColor = '#38BDF8';
+  else if (smoothWarmthSurge > 0.1) glowColor = '#E6B86A';
+
+  const breath = 0.035 + bassNorm * 0.075;
+  const cx = width * 0.5;
+  const cy = height * 0.5;
+  const maxR = Math.max(width, height) * 0.75;
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  const grad = ctx.createRadialGradient(cx, cy, maxR * 0.32, cx, cy, maxR);
+  grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
+  grad.addColorStop(0.68, hexToRgba(glowColor, breath * 0.4));
+  grad.addColorStop(1, hexToRgba(glowColor, breath));
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, width, height);
   ctx.restore();
 }
 
@@ -938,15 +1518,45 @@ function updateParallaxAndCameraLayers(isReduced) {
   }
 }
 
+let detectedRefreshRate = 60;
+let isHighRefreshTier = false;
+
 function updateDirectorTelemetry(nowMs, vocalNorm) {
   fpsAccFrames += 1;
   fpsAccMs += Math.min(200, Math.max(0, nowMs - lastFrameMs));
   if (fpsAccMs >= 400) {
-    currentFps = Math.max(1, Math.min(120, Math.round((fpsAccFrames * 1000) / fpsAccMs)));
+    currentFps = Math.max(1, Math.min(240, Math.round((fpsAccFrames * 1000) / fpsAccMs)));
     fpsAccFrames = 0;
     fpsAccMs = 0;
+
+    // Detect hardware refresh rate tier
+    if (currentFps > 130) detectedRefreshRate = 144;
+    else if (currentFps > 105) detectedRefreshRate = 120;
+    else if (currentFps > 75) detectedRefreshRate = 90;
+    else detectedRefreshRate = 60;
+
+    isHighRefreshTier = detectedRefreshRate >= 100;
+
     if (directorFpsEl && directorHudEl && !directorHudEl.hidden) {
-      directorFpsEl.textContent = String(currentFps);
+      directorFpsEl.textContent = `${currentFps} (${detectedRefreshRate}Hz)`;
+    }
+
+    // Dynamic Canvas DPR Auto-Scaling:
+    // High-Refresh Tier (>= 100Hz): trigger if FPS < 75 for 3 consecutive seconds
+    // Standard Tier (60Hz): trigger if FPS < 48 for 3 consecutive seconds
+    const lowFpsThreshold = isHighRefreshTier ? 75 : 48;
+    const recoveryThreshold = isHighRefreshTier ? 85 : 55;
+
+    if (currentFps < lowFpsThreshold && isRunning) {
+      lowFpsConsecutiveMs += 400;
+      if (lowFpsConsecutiveMs >= 3000 && !isDprAutoThrottled) {
+        isDprAutoThrottled = true;
+        dprScaleMultiplier = 0.75;
+        applyDynamicDpr();
+        console.warn(`[CanvasVisualizer] Low FPS (${currentFps} in ${detectedRefreshRate}Hz tier) detected for 3s. Auto-scaled internal DPR to ${dpr} for stability.`);
+      }
+    } else if (currentFps >= recoveryThreshold) {
+      lowFpsConsecutiveMs = Math.max(0, lowFpsConsecutiveMs - 400);
     }
   }
 
@@ -975,110 +1585,48 @@ function updateDirectorTelemetry(nowMs, vocalNorm) {
   }
 }
 
-function renderContextLayer(bassNorm, trebleNorm, vocalNorm, motionScale) {
-  if (!ctx || width <= 0 || height <= 0) return;
-  ctx.save();
-  ctx.globalCompositeOperation = 'screen';
-
-  if (activeVisualContext === 'high-tempo' || activeVisualContext === 'prism') {
-    // Prismatic Speed Streaks + subtle eye-comfort beat flash
-    const speedBoost = (1 + bassNorm * 2.2 + trebleNorm * 1.4) * livePaceFactor * motionScale;
-    ctx.lineWidth = 1.4;
-    for (let i = 0; i < STREAK_COUNT; i++) {
-      const s = streakPool[i];
-      s.x += s.speed * speedBoost;
-      s.y -= s.speed * 0.22 * speedBoost;
-      if (s.x > width + s.len) { s.x = -s.len; s.y = Math.random() * height; }
-      if (s.y < -40) s.y = height + 20;
-      ctx.strokeStyle = hexToRgba(s.alt ? activeAccentSecondary : activeAccentPrimary, s.alpha * (0.7 + trebleNorm * 0.8));
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - s.len, s.y + s.len * 0.22);
-      ctx.stroke();
-    }
-    if (bassNorm > 0.62 && motionScale > 0.3) {
-      const flashAlpha = Math.min(0.11, (bassNorm - 0.62) * 0.28);
-      ctx.fillStyle = hexToRgba(activeAccentPrimary, flashAlpha);
-      ctx.fillRect(0, 0, width, height);
-    }
-  }
-  if (activeVisualContext === 'dreamy' || activeVisualContext === 'prism') {
-    // Constellation Starfield with thin proximity links
-    const maxLinkSq = 135 * 135;
-    for (let i = 0; i < CONSTELLATION_COUNT; i++) {
-      const a = constellationPool[i];
-      a.x += a.vx * livePaceFactor * motionScale;
-      a.y += a.vy * livePaceFactor * motionScale;
-      if (a.x < 0) a.x = width; else if (a.x > width) a.x = 0;
-      if (a.y < 0) a.y = height; else if (a.y > height) a.y = 0;
-
-      const twinkle = 0.28 + Math.sin(time * 1.8 + a.phase) * 0.14 + vocalNorm * 0.2;
-      ctx.fillStyle = hexToRgba(SOFT_IVORY, Math.min(0.55, twinkle));
-      ctx.beginPath();
-      ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-      ctx.fill();
-
-      for (let j = i + 1; j < CONSTELLATION_COUNT; j++) {
-        const b = constellationPool[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dSq = dx * dx + dy * dy;
-        if (dSq < maxLinkSq) {
-          const linkAlpha = (1 - dSq / maxLinkSq) * 0.14 * (0.8 + vocalNorm * 0.5);
-          ctx.strokeStyle = hexToRgba(activeAccentPrimary, linkAlpha);
-          ctx.lineWidth = 0.7;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-  } else if (activeVisualContext === 'ballad') {
-    // Ballad: Volumetric Mist Layer + soft rain reflections
-    const mistY = height * 0.78;
-    const mistGrad = ctx.createRadialGradient(width * 0.5, mistY, 10, width * 0.5, mistY, width * 0.52);
-    mistGrad.addColorStop(0, hexToRgba(activeAccentPrimary, 0.08 + vocalNorm * 0.05));
-    mistGrad.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = mistGrad;
-    ctx.fillRect(0, height * 0.48, width, height * 0.52);
-
-    ctx.lineWidth = 0.9;
-    const dropScale = (1 + bassNorm * 0.45) * motionScale;
-    for (let i = 0; i < RAIN_COUNT; i++) {
-      const r = rainPool[i];
-      r.x -= r.speed * 0.18 * dropScale;
-      r.y += r.speed * dropScale;
-      if (r.y > height + 20) { r.y = -20; r.x = Math.random() * width; }
-      if (r.x < -20) r.x = width + 10;
-      ctx.strokeStyle = hexToRgba(SOFT_IVORY, r.alpha * (0.75 + vocalNorm * 0.35));
-      ctx.beginPath();
-      ctx.moveTo(r.x, r.y);
-      ctx.lineTo(r.x - r.len * 0.18, r.y + r.len);
-      ctx.stroke();
-    }
-  }
-
-  ctx.restore();
-}
-
-function render() {
+function render(timestamp) {
   if (!isRunning || !ctx) return;
 
-  const nowMs = performance.now();
-  const dtSec = Math.min(0.05, Math.max(0.001, (nowMs - lastFrameMs) / 1000));
+  const nowMs = typeof timestamp === 'number' && timestamp > 0 ? timestamp : performance.now();
+  if (lastFrameMs === 0) {
+    lastFrameMs = nowMs;
+  }
+  const rawDtSec = (nowMs - lastFrameMs) / 1000;
+  const dtSec = Number.isFinite(rawDtSec) ? Math.min(0.05, Math.max(0.001, rawDtSec)) : 0.016;
+  const dtNorm = Number.isFinite(dtSec) ? Math.min(3.0, Math.max(0.1, dtSec * 60)) : 1.0;
   if (auroraBoostRemaining > 0) {
     auroraBoostRemaining = Math.max(0, auroraBoostRemaining - dtSec);
   }
 
   const isReduced = reducedMotionQuery.matches;
-  const motionScale = isReduced ? 0.12 : 1.0;
-  time += isReduced ? 0.004 : 0.016;
+  const motionScale = isReduced ? 0.35 : 1.0;
+  time += (isReduced ? 0.008 : 0.016) * dtNorm;
 
   ctx.clearRect(0, 0, width, height);
 
   const levels = getFrequencyLevels();
   const vocal = getVocalEnergy();
+
+  if (!audioMotion) {
+    initAudioMotion();
+  }
+
+  // Smooth continuous lerp for Lyric Synesthesia micro-triggers (zero flickering)
+  if (sentimentMotifTimer > 0) {
+    sentimentMotifTimer = Math.max(0, sentimentMotifTimer - dtSec);
+    if (sentimentMotifTimer === 0) activeSentimentMotif = null;
+  }
+  const targetRain = activeSentimentMotif === 'rain' ? 1.0 : 0.0;
+  const targetFire = activeSentimentMotif === 'fire' ? 1.0 : 0.0;
+  const targetNight = activeSentimentMotif === 'night' ? 1.0 : 0.0;
+  const targetWarmth = activeSentimentMotif === 'warmth' ? 1.0 : 0.0;
+
+  const lerpSpeed = Math.min(1.0, dtSec * 3.8);
+  smoothRainSurge += (targetRain - smoothRainSurge) * lerpSpeed;
+  smoothFireSurge += (targetFire - smoothFireSurge) * lerpSpeed;
+  smoothNightSurge += (targetNight - smoothNightSurge) * lerpSpeed;
+  smoothWarmthSurge += (targetWarmth - smoothWarmthSurge) * lerpSpeed;
 
   smoothBass += (levels.bass / 255 - smoothBass) * 0.14;
   smoothMid += (levels.mid / 255 - smoothMid) * 0.14;
@@ -1086,12 +1634,59 @@ function render() {
   smoothVocal += ((vocal ? vocal.normalized : 0) - smoothVocal) * 0.18;
 
   computeLiveAudioDynamics(smoothBass, smoothMid, smoothTreble, smoothVocal, nowMs, dtSec);
-  renderStardust(motionScale);
-  renderContextLayer(smoothBass, smoothTreble, smoothVocal, motionScale);
-  renderBreathingHalo(smoothBass, smoothVocal);
-  renderSilkAurora(smoothBass, smoothMid, smoothTreble, smoothVocal, motionScale);
-  renderDepthBokeh(smoothBass, smoothVocal, motionScale);
+
+  // Dynamic Scene Archetype resolution
+  const resolvedScene = resolve2DSceneArchetype(activeTrackMeta, { paceFactor: livePaceFactor });
+  if (resolvedScene !== activeSceneArchetype) {
+    activeSceneArchetype = resolvedScene;
+  }
+
+  // Common dark-cinema atmospheric backdrop glow
+  renderAmbientBackdropGlow(smoothBass, motionScale);
+
+  // Dispatch to 1 of 18 distinct 2D Cinematic Scene Archetypes
+  renderSceneArchetype(activeSceneArchetype, ctx, width, height, {
+    time,
+    smoothBass,
+    smoothMid,
+    smoothTreble,
+    smoothVocal,
+    motionScale,
+    dtNorm,
+    dtSec,
+    activeAccentPrimary,
+    activeAccentSecondary,
+    activeAccentCold,
+    isClimax: visualMode === 'climax',
+    livePaceFactor,
+    getAnalyserNode,
+    renderVolumetricGodRays,
+    renderStardust,
+    render3DOrbitalRings,
+    renderBreathingHalo,
+    renderSilkAurora,
+    renderAnamorphicCinemaFlare,
+    renderDepthBokeh,
+    extraReactiveEffects,
+  });
+
   renderHighlightRipples(dtSec);
+  renderCinematicVignette(smoothBass, motionScale);
+
+  // 35mm Film Grain post-processing layer (128x128 offscreen tile updated at 12 FPS, 0.035 opacity)
+  if (!grainCanvas) initGrain();
+  if (nowMs - lastGrainUpdateMs >= 83) {
+    lastGrainUpdateMs = nowMs;
+    updateGrainPattern();
+  }
+  if (grainPattern && motionScale > 0.05) {
+    ctx.save();
+    ctx.globalAlpha = 0.035;
+    ctx.globalCompositeOperation = 'screen';
+    ctx.fillStyle = grainPattern;
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+  }
 
   updateParallaxAndCameraLayers(isReduced);
   updateFrequencyDisplay(levels);
@@ -1106,5 +1701,64 @@ export function startVisualizer() {
   initAudioMotion();
   if (isRunning) return;
   isRunning = true;
-  render();
+  lastFrameMs = performance.now();
+  if (!animId) {
+    animId = requestAnimationFrame(render);
+  }
+}
+
+/** Standard alias for initializing visualizer */
+export const initVisualizer = startVisualizer;
+
+// Auto-start continuous 2D visualizer loop when DOM canvas is ready
+if (typeof window !== 'undefined' && canvas && ctx) {
+  startVisualizer();
+}
+
+/** Return 3D visual projection engine state for telemetry & verification */
+export function get3DVisualState() {
+  return {
+    enabled: true,
+    activeRings: ORBITAL_RING_COUNT,
+    starCount: STAR_COUNT,
+    fov: 420,
+    starMaxZ: STAR_Z_MAX,
+    isHighRefreshTier,
+    detectedRefreshRate,
+    currentFps,
+  };
+}
+
+/** Return FPS & refresh rate telemetry state */
+export function getTelemetryFps() {
+  return {
+    fps: currentFps,
+    detectedHz: detectedRefreshRate,
+    isHighRefreshTier,
+    dpr,
+    isThrottled: isDprAutoThrottled,
+  };
+}
+
+/** Return Peak 2D Cinematic Visual Novel Engine state for telemetry & verification */
+export function getPeak2DState() {
+  return {
+    version: '16.0',
+    engine: 'Peak 2D Cinematic Visual Novel Engine',
+    visualMode,
+    currentTheme,
+    sceneArchetype: activeSceneArchetype,
+    userSceneSetting: userSceneArchetype,
+    extraReactiveEffects,
+    godRaysActive: activeSceneArchetype === 'editorial-silk',
+    anamorphicFlareReady: true,
+    silkAuroraLayers: activeSceneArchetype === 'editorial-silk' ? 3 : 0,
+    dofBokehLayers: {
+      background: BG_BOKEH_COUNT,
+      midground: BOKEH_COUNT,
+      foreground: FG_BOKEH_COUNT,
+    },
+    fps: currentFps,
+    dpr,
+  };
 }
