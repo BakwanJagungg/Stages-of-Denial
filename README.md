@@ -2,11 +2,11 @@
 
 # Stages of Denial (Penyangkalan)
 
-**An eye-comfort 60–144 FPS audiovisual scrollytelling experience powered by Web Audio API DSP, adaptive Canvas 2D cinematic scenes, and 50ms precision kinetic karaoke.**
+**Pengalaman scrollytelling audiovisual yang nyaman di mata, berjalan mulus di 60-144 FPS dengan Web Audio API, panggung visual Canvas 2D adaptif, dan karaoke kinetik berpresisi 50ms.**
 
 [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Web Audio API](https://img.shields.io/badge/Web_Audio-DSP_Engine-D65A70?style=flat-square)](#architecture)
-[![Canvas 2D](https://img.shields.io/badge/Canvas_2D-18_Modular_Scenes-68B2D6?style=flat-square)](#18-optional-2d-cinematic-scene-archetypes)
+[![Web Audio API](https://img.shields.io/badge/Web_Audio-DSP_Engine-D65A70?style=flat-square)](#struktur-direktori)
+[![Canvas 2D](https://img.shields.io/badge/Canvas_2D-18_Modular_Scenes-68B2D6?style=flat-square)](#2-18-pilihan-panggung-visual-2d-modular)
 [![License: MIT](https://img.shields.io/badge/License-MIT-A7A29C?style=flat-square)](LICENSE)
 
 </div>
@@ -16,94 +16,94 @@
 ## 📸 Preview Efek Visual
 
 ### 1. Default Clean Stage: Editorial Silk
-> *Tampilan awal default yang bersih, tenang, dan elegan. Menggabungkan 3 lapis Fluid Silk Aurora, cincin orbital tipis di horizon tengah, dan pendar lembut stardust tanpa silau.*
+> *Tampilan awal default yang bersih, tenang, dan elegan. Menggabungkan 3 lapis Fluid Silk Aurora, cincin orbital tipis di horizon tengah, dan partikel stardust lembut tanpa efek silau.*
 ![Default Editorial Silk](docs/screenshots/01-default-editorial-silk.png)
 
 <br/>
 
 ### 2. Babak III Climax: Ember Storm
-> *Pusaran bara api vertikal yang bergejolak, partikel abu terbang, dan kilatan shockwave amarah saat dinamika audio mencapai puncaknya.*
+> *Pusaran bara api vertikal, partikel abu beterbangan, dan pendar shockwave saat dinamika lagu mencapai puncaknya.*
 ![Scene Ember Storm](docs/screenshots/02-scene-ember-storm.png)
 
 <br/>
 
 ### 3. Indie Pop & Dreamy: Celestial Drift
-> *Jaringan rasi bintang dinamis dengan garis penghubung kedekatan partikel dan debu kosmik mengapung bebas di langit malam.*
+> *Jaringan rasi bintang dinamis dengan garis penghubung antar partikel dan debu kosmik yang melayang tenang di langit malam.*
 ![Scene Celestial Drift](docs/screenshots/03-scene-celestial-drift.png)
 
 <br/>
 
 ### 4. Synth-Pop & Retro Outrun: Cyber Grid
-> *Kisi perspektif lantai 2D retro dengan matahari terbenam neon bersegmen yang berdenyut mengikuti denyut bass dan tempo.*
+> *Lantai perspektif 2D retro dengan matahari neon bersegmen yang berdenyut mengikuti ketukan bass dan tempo lagu.*
 ![Scene Cyber Grid](docs/screenshots/04-scene-cyber-grid.png)
 
 <br/>
 
-### 5. Tabbed Studio HUD (Varian 18 Panggung 2D)
-> *Panel kontrol studio 3-tab modern (Audio & Sync · Visual 2D · Ekspor & Lirik) dengan isolasi scroll penuh dan tombol acak panggung.*
+### 5. Tabbed Studio HUD: 18 Pilihan Visual
+> *Panel Studio modern 3 tab (Audio & Sync, Visual 2D, Ekspor & Lirik) dengan isolasi scroll mandiri dan tombol acak panggung.*
 ![Studio HUD Visuals](docs/screenshots/05-studio-hud-visuals.png)
 
 ---
 
-## Overview
+## Tentang Proyek Ini
 
-**Stages of Denial** memadukan sinkronisasi pemutaran musik, analisis spektrum Web Audio real-time, dan koreografi 4 babak scrollytelling (*Verse → Rising → Climax → Outro*) ke dalam antarmuka sinematik ramah mata berlatar gelap (`#0B0C10` / `#F2EFE9`).
+Stages of Denial menggabungkan pemutaran musik, analisis frekuensi audio real-time, dan alur scrollytelling 4 babak (Verse, Rising, Climax, Outro) dalam tampilan bioskop gelap yang ramah di mata (`#0B0C10` / `#F2EFE9`).
 
-Proyek ini dirancang **100% mandiri (Zero-Media Fallback)**: jika file `.mp3` dan `.mp4` lokal tidak disertakan di repositori publik, aplikasi langsung mengaktifkan **Generative Ambient Pad Synth** dan **Canvas 2D Pure Silk Renderer** secara otomatis, serta mendukung fitur Drag & Drop instan untuk file MP3 dan LRC milik pengguna.
+Proyek ini siap pakai langsung setelah di-clone (Zero-Media Fallback). Jika file `.mp3` dan `.mp4` lokal tidak ada di repositori, aplikasi otomatis menyalakan synthesizer ambient bawaan dan visual Canvas 2D tanpa error. Anda juga bisa langsung memutar file MP3 dan LRC milik sendiri cukup dengan drag and drop ke browser.
 
 ---
 
-## Fitur Utama (v16.0)
+## Fitur Utama
 
-### 1. Default Clean & Eye-Comfort Stage (`editorial-silk`)
-- Menjadi tampilan default awal saat pertama kali membuka website: pita *Fluid Silk Aurora* mengalir halus dengan opasitas lembut, cincin orbital tipis elegan di tengah, partikel bokeh/stardust tenang, serta *god-rays* halus (`opacity <= 0.08`).
-- Dilengkapi toggle kenyamanan baca: **`✨ Efek Reaktif Ekstra: OFF/ON`** di Tab Visual untuk meredam beat flash keras sehingga lirik karaoke tetap sangat nyaman dibaca.
+### 1. Panggung Default Bersih & Nyaman di Mata (Editorial Silk)
+- Menjadi tampilan default saat web pertama kali dibuka: pita Fluid Silk Aurora mengalir tenang, cincin orbital tipis di tengah, stardust lembut, dan berkas cahaya halus (`opacity <= 0.08`).
+- Dilengkapi tombol toggle kenyamanan membaca: `✨ Efek Reaktif Ekstra: OFF/ON` di Tab Visual untuk mematikan pendar kilat keras agar teks lirik tetap terbaca jelas.
 
-### 2. 18 Arketipe Panggung 2D Sinematik Modular
-Seluruh adegan 2D diarsiteksikan secara modular di `src/visuals/scenes/` dengan alokasi heap nol (*zero-allocation per frame*) pada 60–144 FPS:
+### 2. 18 Pilihan Panggung Visual 2D Modular
+Semua efek visual dibagi per modul di folder `src/visuals/scenes/`, tetap ringan di memori dan berjalan mulus di 60-144 FPS:
 
-| Arketipe Panggung | Ikon | Karakter Visual & Mood Lagu |
+| Panggung Visual | Ikon | Karakter Visual & Suasana Lagu |
 |:---|:---:|:---|
-| **Editorial Silk** | 🌌 | *(Default)* 3 lapis pita sutra aurora cair + pilar cahaya lembut |
-| **Kinetic Prism** | ⚡ | Laser speed streaks diagonal + denyut geometri ritmis |
-| **Rain Mist** | 🌧️ | Hujan miring 2 kedalaman + kabut senja + ripple air |
-| **Ember Storm** | 🔥 | Pusaran bara api naik + kilat petir + shockwave amarah |
-| **Celestial Drift** | ✨ | Jaringan konstelasi bintang + tautan kedekatan + stardust |
-| **Analog Wave** | 📻 | Gelombang osiloskop dual-beam fosfor + halasi film analog |
-| **Sakura Petals** | 🌸 | Guguran kelopak sakura melayang dengan goyangan sinus |
-| **Aurora Curtain** | 🌠 | Tirai vertikal aurora kutub berombak di langit malam |
-| **Monolith Bars** | 🏛️ | Pilar monolit cahaya arsitektural mengikuti spektrum |
-| **Liquid Horizon** | 🌊 | Ombak samudra berlapis di horizon + pantulan rembulan |
-| **Cyber Grid** | 🌆 | Lantai perspektif outrun neon + matahari terbenam bersegmen |
-| **Firefly Meadow** | 🌿 | Kunang-kunang bioluminesen melayang organik di kabut padang |
-| **Vinyl Turntable** | 💿 | Piringan hitam berputar sinematik dengan alur refleksi cahaya |
-| **Eclipse Corona** | 🌑 | Cakram gerhana bulan dengan korona surya berdenyut |
-| **Snowfall Quiet** | ❄️ | Butiran salju halus multi-kedalaman melayang ditiup angin |
-| **Prism Kaleidoscope** | 💎 | Simetri radial 6 arah berdenyut mengikuti ketukan ritmis |
-| **Radar Sonar** | 📡 | Pancaran sonar konsentris + garis sapuan radar 360° |
-| **Golden Dust Rays** | ☀️ | Berkas cahaya matahari diagonal + debu emas melayang tenang |
+| **Editorial Silk** | 🌌 | *(Default)* 3 lapis pita sutra aurora lembut dan pilar cahaya tenang |
+| **Kinetic Prism** | ⚡ | Garis kecepatan laser diagonal dan denyut ritmis |
+| **Rain Mist** | 🌧️ | Hujan miring 2 lapisan kedalaman, kabut senja, dan riak air |
+| **Ember Storm** | 🔥 | Pusaran bara api naik, kilat petir, dan shockwave klimaks |
+| **Celestial Drift** | ✨ | Jaringan rasi bintang, garis relasi partikel, dan stardust |
+| **Analog Wave** | 📻 | Gelombang osiloskop dual-beam fosfor dan nuansa film analog |
+| **Sakura Petals** | 🌸 | Guguran kelopak sakura melayang dengan ayunan sinus |
+| **Aurora Curtain** | 🌠 | Tirai aurora kutub vertikal yang bergelombang di langit malam |
+| **Monolith Bars** | 🏛️ | Pilar cahaya arsitektural yang naik turun mengikuti frekuensi |
+| **Liquid Horizon** | 🌊 | Ombak lautan berlapis di horizon dengan pantulan rembulan |
+| **Cyber Grid** | 🌆 | Kisi lantai perspektif neon outrun dan matahari bersegmen |
+| **Firefly Meadow** | 🌿 | Kunang-kunang bercahaya yang melayang di atas kabut rumput |
+| **Vinyl Turntable** | 💿 | Piringan hitam berputar dengan alur refleksi cahaya |
+| **Eclipse Corona** | 🌑 | Cakram gerhana bulan dengan pendar lidah api matahari |
+| **Snowfall Quiet** | ❄️ | Butiran salju halus berlapis kedalaman ditiup angin tenang |
+| **Prism Kaleidoscope** | 💎 | Pola simetri kristal 6 arah berdenyut mengikuti ketukan ritmis |
+| **Radar Sonar** | 📡 | Pancaran sonar melingkar dan garis sapuan radar 360 derajat |
+| **Golden Dust Rays** | ☀️ | Berkas cahaya matahari diagonal dan partikel debu emas |
 
-### 3. Redesain Tabbed Studio HUD & Scroll-Lock Isolation
-- **Sistem 3 Tab Rapi:** `🎛️ Audio & Sync`, `🎨 Visual 2D`, dan `📤 Ekspor & Lirik` dengan status tab yang tersimpan otomatis di `localStorage`.
-- **Scroll-Lock Isolation:** Interaksi gulir mouse wheel pada `#studioPopover`, `#lyricDrawer`, `#jukeboxOverlay`, maupun modal lirik terisolasi secara internal (`overscroll-behavior: contain` + `data-lenis-prevent`) tanpa menggeser halaman latar belakang dan tanpa memicu countdown pill auto-scroll.
-- **Tombol 🎲 Acak Panggung:** Menemukan variasi visual baru hanya dengan satu klik instan.
+### 3. Studio HUD 3 Tab & Isolasi Scroll Penuh
+- **Navigasi 3 Tab:** `🎛️ Audio & Sync`, `🎨 Visual 2D`, dan `📤 Ekspor & Lirik`. Pilihan tab tersimpan otomatis di `localStorage`.
+- **Isolasi Scroll:** Saat menggulir mouse wheel di atas panel Studio, drawer lirik, atau modal, halaman utama di belakang tidak ikut bergeser dan countdown auto-scroll tidak terganggu.
+- **Tombol 🎲 Acak Panggung:** Menemukan variasi visual baru secara instan dalam satu klik.
 
-### 4. In-Browser Tap-to-Sync Lyric Studio
-- Tempel lirik teks biasa, putar lagu, dan ketuk tombol `Space` secara langsung sesuai ketukan vokal.
-- Dilengkapi fitur *Undo*, preview live offset (`±0.05s`), serta ekspor file `.lrc` dan format `.json` karaoke berpresisi 50 milidetik.
+### 4. Tap-to-Sync Studio di Browser
+- Tempel teks lirik biasa, putar lagu, lalu tekan tombol `Space` tepat saat vokal masuk.
+- Menyediakan tombol undo, pengatur delay langsung (`±0.05s`), serta ekspor file `.lrc` dan format `.json` karaoke 50 milidetik.
 
-### 5. Virtual Acoustic Room DSP (5 Mode)
-- Pilihan profil akustik imersif: *Auto-Adaptif*, *Studio Master*, *Midnight Lo-Fi*, *8D Spatial*, *Cathedral Hall* (`ConvolverNode` stereo 2.4s), dan *Warm Vinyl* (simulasi desis hangat pita analog).
+### 5. Efek Akustik Ruang DSP (5 Mode)
+- Pilihan ruang audio Web Audio API: Auto-Adaptif, Studio Master, Midnight Lo-Fi, 8D Spatial, Cathedral Hall (reverb konvolusi stereo 2.4s), dan Warm Vinyl (efek piringan hitam hangat).
 
-### 6. Dual-Language Subtitles & Select2 Genre Filter
-- Penanda karaoke suku kata kinetik dengan terjemahan dwibahasa (Indonesia / Inggris).
-- Dropdown genre kustom bertema bioskop gelap dengan ikon dinamis dan penghitung lagu otomatis.
+### 6. Subtitle Dwibahasa & Filter Genre
+- Tampilan karaoke kata per kata dengan opsi terjemahan dwibahasa (Indonesia / Inggris).
+- Menu pilihan genre bernuansa bioskop gelap lengkap dengan ikon dan jumlah lagu.
 
 ---
 
-## Menjalankan Proyek
+## Cara Menjalankan Proyek
 
-**Kebutuhan:** Node.js versi `20+` dan `npm`.
+**Kebutuhan:** Node.js versi 20+ dan npm.
 
 ```bash
 # 1. Clone repositori
@@ -113,27 +113,27 @@ cd Stages-of-Denial
 # 2. Pasang dependensi
 npm install
 
-# 3. Jalankan server pengembangan
+# 3. Jalankan server lokal
 npm run dev
 ```
 
-Buka peramban di `http://localhost:5173`. Perintah tambahan yang tersedia:
+Buka browser di `http://localhost:5173`. Perintah lain yang tersedia:
 
 ```bash
-npm run build     # Kompilasi paket produksi teroptimasi ke dist/
-npm run preview   # Pratinjau lokal dari paket produksi dist/
+npm run build     # Buat file produksi ke folder dist/
+npm run preview   # Coba jalankan hasil build secara lokal
 ```
 
 ---
 
-## Memutar Audio & Lirik Pribadi
+## Memutar Lagu & Lirik Sendiri
 
-1. **Fitur Drag & Drop Instan (Disarankan)**
-   - Tarik dan lepas file `.mp3` (atau pasangan `.mp3` + `.lrc`) langsung ke jendela browser untuk memulai pemutaran tersinkronisasi seketika.
-2. **Pustaka Jukebox Antologi**
-   - Tekan tombol `L` pada keyboard untuk membuka Jukebox, memilih lagu kurasi, atau mengeklik **Unggah MP3**.
-3. **Penyimpanan Aset Lokal**
-   - Letakkan file audio di `public/assets/audio/<track-id>.mp3` dan video latar di `public/assets/video/<track-id>.mp4`. Jika media belum tersedia, mode *Generative Ambient Pad* akan aktif otomatis tanpa galat.
+1. **Drag and Drop Langsung (Paling Praktis)**
+   - Tarik file `.mp3` (atau pasangan `.mp3` + `.lrc`) dari komputer Anda dan lepas langsung ke jendela browser untuk memutarnya.
+2. **Menu Jukebox**
+   - Tekan tombol `L` di keyboard untuk membuka koleksi lagu atau klik tombol **Unggah MP3**.
+3. **Penyimpanan Manual**
+   - Taruh file audio di `public/assets/audio/<track-id>.mp3` dan video loop di `public/assets/video/<track-id>.mp4`. Jika file tidak ada, suara ambient sintetis otomatis aktif tanpa error.
 
 ---
 
@@ -141,26 +141,26 @@ npm run preview   # Pratinjau lokal dari paket produksi dist/
 
 ```text
 ├── config/
-│   ├── tracks.json               # 14 lagu kurasi utama & tema visual
+│   ├── tracks.json               # Daftar 14 lagu kurasi utama dan tema visual
 │   ├── timeline.json             # Struktur narasi 4 babak
-│   └── playlist_catalog.json     # Metadata katalog antologi
+│   └── playlist_catalog.json     # Metadata katalog playlist
 ├── css/
-│   └── style.css                 # Palet bioskop rendah silau & tata letak responsif
+│   └── style.css                 # Desain antarmuka bioskop dan tata letak responsif
 ├── docs/
-│   └── screenshots/              # Dokumentasi tangkapan layar visual
+│   └── screenshots/              # Gambar dokumentasi efek visual
 ├── public/assets/
-│   ├── audio/                    # File .mp3 lokal (opsional, gitignored)
-│   ├── covers/                   # Cover art 14 lagu kurasi
-│   ├── lyrics/                   # Jadwal karaoke presisi 50ms (.json)
+│   ├── audio/                    # Tempat file .mp3 lokal (opsional, gitignored)
+│   ├── covers/                   # Gambar cover 14 lagu kurasi
+│   ├── lyrics/                   # File lirik karaoke presisi 50ms (.json)
 │   └── video/                    # Video loop latar belakang (gitignored)
 ├── src/
-│   ├── audio/                    # DSP Web Audio, clock sinkronisasi, ambient synth
-│   ├── lyrics/                   # Mesin karaoke kinetik & Tap-to-Sync Studio
-│   ├── scroll/                   # Lenis + GSAP koreografi 4 babak & isolasi scroll
-│   ├── ui/                       # Jukebox modal, filter genre, Studio HUD tabbed
-│   ├── visuals/scenes/           # 18 modul arketipe panggung 2D zero-allocation
-│   ├── visuals/canvasVisualizer.js # Kompositor kanvas 2D utama & film grain 35mm
-│   └── main.js                   # Bootstrap aplikasi & orkestrator state
+│   ├── audio/                    # Pengolah DSP Web Audio, clock, dan synth ambient
+│   ├── lyrics/                   # Mesin karaoke kinetik dan Tap-to-Sync Studio
+│   ├── scroll/                   # Pengatur scroll 4 babak dan isolasi popover
+│   ├── ui/                       # Modal Jukebox, filter genre, dan Studio HUD 3 tab
+│   ├── visuals/scenes/           # 18 modul panggung visual 2D
+│   ├── visuals/canvasVisualizer.js # Kanvas visual 2D utama dan efek film grain
+│   └── main.js                   # Inisialisasi aplikasi dan pengatur state utama
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -174,18 +174,18 @@ npm run preview   # Pratinjau lokal dari paket produksi dist/
 |:---|:---|
 | `Space` | Putar / Jeda Audio |
 | `←` / `→` | Mundur / Maju 5 detik |
-| `↑` / `↓` | Atur Volume Master ±10% |
+| `↑` / `↓` | Volume Master ±10% |
 | `M` | Matikan / Nyalakan Suara (Mute) |
-| `L` | Buka / Tutup Jukebox Antologi |
+| `L` | Buka / Tutup Jukebox |
 | `T` | Buka / Tutup Drawer Lirik & Live Sync |
-| `D` | Buka / Tutup Studio HUD (Tabbed Popover) |
-| `[` / `]` / `\` | Pasang Titik A / Pasang Titik B / Hapus A-B Loop |
-| `Q` | Ekspor Kartu Kutipan Lirik PNG (`1080×1920`) |
-| `F` | Mode Bioskop Layar Penuh (Fullscreen) |
-| `Esc` | Tutup modal/drawer aktif atau keluar mode bioskop |
+| `D` | Buka / Tutup Panel Studio HUD |
+| `[` / `]` / `\` | Set Titik A / Set Titik B / Hapus A-B Loop |
+| `Q` | Ekspor Gambar Kartu Kutipan Lirik PNG (1080x1920) |
+| `F` | Layar Penuh (Fullscreen) |
+| `Esc` | Tutup modal atau drawer yang sedang aktif |
 
 ---
 
 ## Lisensi
 
-Dilisensikan di bawah [Lisensi MIT](LICENSE).
+Proyek ini dirilis di bawah [Lisensi MIT](LICENSE).
